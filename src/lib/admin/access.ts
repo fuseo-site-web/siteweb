@@ -59,6 +59,19 @@ export function verifyAdminSession(
   }
 }
 
+/** Ce compte est-il l'administrateur ? (sans appel réseau : pour décider d'afficher le bouton d'accès) */
+export function isAdminAccount(user: {
+  email?: string | null;
+  email_confirmed_at?: string | null;
+}): boolean {
+  return (
+    !!env.ADMIN_ACCESS_CODE &&
+    !!env.ADMIN_SESSION_SECRET &&
+    !!user.email_confirmed_at &&
+    user.email?.toLowerCase() === ADMIN_EMAIL
+  );
+}
+
 /** Compte administrateur : bonne adresse e-mail, confirmée. Retourne null sinon (l'espace n'existe pas pour les autres). */
 export async function getAdminUser() {
   if (!env.ADMIN_ACCESS_CODE || !env.ADMIN_SESSION_SECRET) return null;

@@ -496,3 +496,73 @@ test.describe('référencement', () => {
     }
   });
 });
+
+test.describe('numéro de vol', () => {
+  test('saisir le numéro remplit tout seul aéroports, dates et heures', async ({ page }) => {
+    await page.route('**/api/flight*', (r) => {
+      const url = new URL(r.request().url());
+      expect(url.searchParams.get('number')).toBe('AF1380');
+      return r.fulfill({
+        json: {
+          from: 'CDG',
+          to: 'LHR',
+          depDate: '2026-11-04',
+          depTime: '07:05',
+          arrDate: '2026-11-04',
+          arrTime: '07:30',
+          approx: false,
+        },
+      });
+    });
+    await page.goto('/plan-anti-jet-lag');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await page.locator('#outbound0fn').fill('AF1380');
+    await expect(page.getByText('Vol trouvé : les informations sont remplies')).toBeVisible();
+    await expect(page.locator('#outbound0dd')).toHaveValue('2026-11-04');
+    await expect(page.locator('#outbound0dt')).toHaveValue('07:05');
+    await expect(page.locator('#outbound0at')).toHaveValue('07:30');
+  });
+
+  test('signale des horaires estimés et un service indisponible, sans rien inventer', async ({
+    page,
+  }) => {
+    let mode: 'approx' | 'quota' = 'approx';
+    await page.route('**/api/flight*', (r) =>
+      mode === 'approx'
+        ? r.fulfill({
+            json: {
+              from: 'CDG',
+              to: 'HND',
+              depDate: '2026-12-15',
+              depTime: '23:30',
+              arrDate: '2026-12-16',
+              arrTime: '19:05',
+              approx: true,
+            },
+          })
+        : r.fulfill({ status: 503, json: { error: 'quota' } }),
+    );
+    await page.goto('/plan-anti-jet-lag');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await page.locator('#outbound0fn').fill('AF276');
+    await expect(page.getByText('Horaires habituels de ce vol')).toBeVisible();
+    mode = 'quota';
+    await page.locator('#outbound0fn').fill('AF277');
+    await expect(
+      page.getByText('La recherche de vol est momentanément indisponible'),
+    ).toBeVisible();
+  });
+
+  test('un numéro de forme invalide ne lance aucune recherche', async ({ page }) => {
+    let calls = 0;
+    await page.route('**/api/flight*', (r) => {
+      calls++;
+      return r.fulfill({ status: 404, json: { error: 'not_found' } });
+    });
+    await page.goto('/plan-anti-jet-lag');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await page.locator('#outbound0fn').fill('12');
+    await page.waitForTimeout(1200);
+    expect(calls).toBe(0);
+  });
+});

@@ -93,6 +93,29 @@
   padding: 5px 14px;
 }
 
+.adminBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #4a3500;
+  background: var(--amber);
+  text-decoration: none;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.adminBtn:hover {
+  transform: translateY(-1px);
+}
+
+.adminBtn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
 .signout {
   font: inherit;
   font-weight: 700;

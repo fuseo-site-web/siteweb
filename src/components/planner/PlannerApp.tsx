@@ -124,6 +124,9 @@ const inputToForm = (i: PlanInput): Form => ({
   coffee: i.coffee,
 });
 
+type LookupKind = 'busy' | 'ok' | 'approx' | 'fail' | 'quota' | 'airport';
+const FLIGHT_RE = /^[A-Za-z0-9]{2}\s?\d{1,4}[A-Za-z]?$/;
+
 type SaveState = 'idle' | 'saving' | 'saved' | 'login' | 'consent' | 'error';
 
 export function PlannerApp() {
@@ -138,7 +141,10 @@ export function PlannerApp() {
   const [plan, setPlan] = useState<PlanResponse | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
-  const [lookupMsg, setLookupMsg] = useState('');
+  // Recherche de vol : une par étape, déclenchée toute seule quand le numéro est saisi.
+  const [lookups, setLookups] = useState<Record<string, LookupKind>>({});
+  const lookupTimers = useRef<Record<string, number>>({});
+  const lookupKeys = useRef<Record<string, string>>({});
   const top = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -198,28 +204,64 @@ export function PlannerApp() {
 
   const complete = (l: Leg) => l.from && l.to && l.dd && l.dt && l.ad && l.at;
 
-  async function lookup(g: 'outbound' | 'ret', i: number) {
-    const leg = form![g][i]!;
-    setLookupMsg('');
-    if (!leg.fn || !leg.dd) return;
-    const r = await fetch(`/api/flight?number=${encodeURIComponent(leg.fn)}&date=${leg.dd}`);
-    if (!r.ok) return setLookupMsg(t('lookupFail'));
-    const f = (await r.json()) as {
-      from: string;
-      to: string;
-      depDate: string;
-      depTime: string;
-      arrDate: string;
-      arrTime: string;
-    };
-    setLeg(g, i, {
-      from: f.from,
-      to: f.to,
-      dd: f.depDate,
-      dt: f.depTime,
-      ad: f.arrDate,
-      at: f.arrTime,
-    });
+  /** Remplit l'étape (aéroports, dates et heures) à partir du numéro de vol. */
+  async function lookup(
+    g: 'outbound' | 'ret',
+    i: number,
+    { fn, dd, force = false }: { fn: string; dd: string; force?: boolean },
+  ) {
+    const id = `${g}${i}`;
+    if (!FLIGHT_RE.test(fn)) return;
+    const key = `${fn.toUpperCase().replace(/\s/g, '')}|${dd}`;
+    if (!force && lookupKeys.current[id] === key) return;
+    lookupKeys.current[id] = key;
+    setLookups((m) => ({ ...m, [id]: 'busy' }));
+    try {
+      const r = await fetch(
+        `/api/flight?number=${encodeURIComponent(fn)}${dd ? `&date=${dd}` : ''}`,
+      );
+      if (!r.ok) {
+        const e = (await r.json().catch(() => ({}))) as { error?: string };
+        const kind: LookupKind =
+          e.error === 'unknown_airport' ? 'airport' : r.status === 404 ? 'fail' : 'quota';
+        return setLookups((m) => ({ ...m, [id]: kind }));
+      }
+      const f = (await r.json()) as {
+        from: string;
+        to: string;
+        depDate: string;
+        depTime: string;
+        arrDate: string;
+        arrTime: string;
+        approx?: boolean;
+      };
+      setLeg(g, i, {
+        from: f.from,
+        to: f.to,
+        dd: f.depDate,
+        dt: f.depTime,
+        ad: f.arrDate,
+        at: f.arrTime,
+      });
+      lookupKeys.current[id] = `${fn.toUpperCase().replace(/\s/g, '')}|${f.depDate}`;
+      setLookups((m) => ({ ...m, [id]: f.approx ? 'approx' : 'ok' }));
+    } catch {
+      setLookups((m) => ({ ...m, [id]: 'quota' }));
+    }
+  }
+
+  /** Lance la recherche 0,7 s après la dernière frappe (le numéro doit avoir une forme valide). */
+  function scheduleLookup(g: 'outbound' | 'ret', i: number, fn: string, dd: string) {
+    const id = `${g}${i}`;
+    window.clearTimeout(lookupTimers.current[id]);
+    if (!FLIGHT_RE.test(fn)) {
+      setLookups((m) => {
+        const { [id]: _drop, ...rest } = m;
+        return rest;
+      });
+      return;
+    }
+    lookupTimers.current[id] = window.setTimeout(() => void lookup(g, i, { fn, dd }), 700);
   }
 
   async function generate(f: Form = form!) {
@@ -278,6 +320,33 @@ export function PlannerApp() {
           : ''}
       </legend>
       <div className={styles.legGrid}>
+        <div className={`${styles.field} ${styles.wide}`}>
+          <label htmlFor={`${g}${i}fn`}>{t('flightNumber')}</label>
+          <div className={styles.inline}>
+            <input
+              id={`${g}${i}fn`}
+              value={l.fn}
+              maxLength={10}
+              placeholder="AF1380"
+              autoComplete="off"
+              onChange={(e) => {
+                setLeg(g, i, { fn: e.target.value });
+                scheduleLookup(g, i, e.target.value, l.dd);
+              }}
+            />
+            <button
+              type="button"
+              className={styles.ghost}
+              onClick={() => lookup(g, i, { fn: l.fn, dd: l.dd, force: true })}
+              disabled={!FLIGHT_RE.test(l.fn)}
+            >
+              {t('lookup')}
+            </button>
+          </div>
+          <p className={styles.hint} role="status" aria-live="polite">
+            {lookups[`${g}${i}`] ? t(`lookup_${lookups[`${g}${i}`]}`) : t('lookupHint')}
+          </p>
+        </div>
         <AirportField
           label={t('from')}
           value={l.from}
@@ -290,7 +359,10 @@ export function PlannerApp() {
             id={`${g}${i}dd`}
             type="date"
             value={l.dd}
-            onChange={(e) => setLeg(g, i, { dd: e.target.value })}
+            onChange={(e) => {
+              setLeg(g, i, { dd: e.target.value });
+              if (l.fn) scheduleLookup(g, i, l.fn, e.target.value);
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -319,26 +391,6 @@ export function PlannerApp() {
             value={l.at}
             onChange={(e) => setLeg(g, i, { at: e.target.value })}
           />
-        </div>
-        <div className={`${styles.field} ${styles.wide}`}>
-          <label htmlFor={`${g}${i}fn`}>{t('flightNumber')}</label>
-          <div className={styles.inline}>
-            <input
-              id={`${g}${i}fn`}
-              value={l.fn}
-              maxLength={10}
-              placeholder="AF292"
-              onChange={(e) => setLeg(g, i, { fn: e.target.value })}
-            />
-            <button
-              type="button"
-              className={styles.ghost}
-              onClick={() => lookup(g, i)}
-              disabled={!l.fn || !l.dd}
-            >
-              {t('lookup')}
-            </button>
-          </div>
         </div>
       </div>
       <p className={styles.small}>{t('localHint')}</p>
@@ -551,7 +603,6 @@ export function PlannerApp() {
                 {form.ret.length ? t('addLeg') : t('addReturn')}
               </button>
             ) : null}
-            {lookupMsg ? <p className={styles.hint}>{lookupMsg}</p> : null}
           </section>
 
           <section>

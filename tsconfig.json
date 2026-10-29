@@ -47,8 +47,7 @@
   ],
   "exclude": [
     "node_modules",
-    ".next-e2e/**/* 2.ts",
-    ".next-e2e/**/* 3.ts",
-    ".next-e2e/**/* 4.ts"
+    ".next/**/* ?.ts",
+    ".next-e2e/**/* ?.ts"
   ]
 }

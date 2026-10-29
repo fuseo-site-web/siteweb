@@ -1,3 +1,5 @@
+import { ShieldCheck } from 'lucide-react';
+import NextLink from 'next/link';
 import { connection } from 'next/server';
 import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
@@ -10,6 +12,7 @@ import { Welcome } from '@/components/account/Welcome';
 import { Ticket } from '@/components/account/Ticket';
 import { PageHero } from '@/components/content/PageHero';
 import { Link, redirect } from '@/i18n/navigation';
+import { isAdminAccount } from '@/lib/admin/access';
 import { getCurrentUser } from '@/lib/auth';
 import { decryptJson } from '@/lib/crypto/health';
 import type { PlanInput } from '@/lib/plan-schema';
@@ -254,6 +257,12 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
           <div className={dash.topSide}>
             {active[0] ? (
               <span className={dash.badge}>{offerName[active[0].offer] ?? active[0].offer}</span>
+            ) : null}
+            {isAdminAccount(user) ? (
+              // Réservé au compte administrateur : l'espace /admin demande ensuite son code d'ouverture.
+              <NextLink href="/admin" className={dash.adminBtn}>
+                <ShieldCheck size={16} aria-hidden="true" /> Espace administrateur
+              </NextLink>
             ) : null}
             <SignOutButton className={dash.signout} />
           </div>

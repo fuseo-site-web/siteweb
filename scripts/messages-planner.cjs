@@ -48,8 +48,11 @@ module.exports = [
   ['planner.noAirport', 'Aucun aéroport trouvé. Essayez le nom de la ville.'],
   [
     'planner.flightNumber',
-    'Numéro de vol (optionnel)',
-    M('Flight number (optional)', 'Número de vuelo (opcional)'),
+    'Numéro de vol (remplit le reste automatiquement)',
+    M(
+      'Flight number (fills in the rest automatically)',
+      'Número de vuelo (rellena el resto automáticamente)',
+    ),
   ],
   [
     'planner.lookup',
@@ -57,7 +60,48 @@ module.exports = [
     M('Fill in from flight number', 'Rellenar con el número de vuelo'),
   ],
   [
-    'planner.lookupFail',
+    'planner.lookupHint',
+    'Saisissez le numéro de vol (ex. AF1380) : aéroports, dates et heures se remplissent tout seuls.',
+    M(
+      'Enter the flight number (e.g. AF1380): airports, dates and times fill in by themselves.',
+      'Introduzca el número de vuelo (p. ej. AF1380): aeropuertos, fechas y horas se rellenan solos.',
+    ),
+  ],
+  ['planner.lookup_busy', 'Recherche du vol…', M('Looking up the flight…', 'Buscando el vuelo…')],
+  [
+    'planner.lookup_ok',
+    'Vol trouvé : les informations sont remplies. Vérifiez-les sur votre billet.',
+    M(
+      'Flight found: the details are filled in. Check them against your ticket.',
+      'Vuelo encontrado: los datos están rellenados. Compruébelos con su billete.',
+    ),
+  ],
+  [
+    'planner.lookup_approx',
+    "Horaires habituels de ce vol, d'après ses derniers vols. Pensez à les vérifier sur votre billet.",
+    M(
+      'Usual times for this flight, based on its latest departures. Please check them against your ticket.',
+      'Horarios habituales de este vuelo, según sus últimas salidas. Compruébelos con su billete.',
+    ),
+  ],
+  [
+    'planner.lookup_quota',
+    'La recherche de vol est momentanément indisponible. Saisissez les horaires à la main.',
+    M(
+      'Flight lookup is temporarily unavailable. Please enter the times manually.',
+      'La búsqueda de vuelos no está disponible por ahora. Introduzca los horarios a mano.',
+    ),
+  ],
+  [
+    'planner.lookup_airport',
+    "Un des aéroports de ce vol n'est pas encore dans notre liste. Choisissez-le à la main.",
+    M(
+      "One of this flight's airports is not in our list yet. Please choose it manually.",
+      'Uno de los aeropuertos de este vuelo aún no está en nuestra lista. Elíjalo a mano.',
+    ),
+  ],
+  [
+    'planner.lookup_fail',
     "Ce vol n'a pas été trouvé pour cette date. Saisissez les horaires à la main.",
     M(
       'This flight was not found for that date. Enter the times manually.',

@@ -12,6 +12,7 @@ vi.mock('@/env', () => ({
 import {
   ADMIN_EMAIL,
   checkAdminCode,
+  isAdminAccount,
   signAdminSession,
   verifyAdminSession,
 } from '@/lib/admin/access';
@@ -52,5 +53,13 @@ describe("accès à l'espace administrateur", () => {
     expect(verifyAdminSession(payload, USER, now, SECRET)).toBe(false);
     expect(verifyAdminSession(undefined, USER, now, SECRET)).toBe(false);
     expect(verifyAdminSession(token, USER, now, 'x'.repeat(40))).toBe(false);
+  });
+
+  it("n'affiche le bouton d'accès qu'au compte administrateur, avec une adresse confirmée", () => {
+    const ok = { email: 'Contact.Fuseo@gmail.com', email_confirmed_at: '2026-10-01T00:00:00Z' };
+    expect(isAdminAccount(ok)).toBe(true);
+    expect(isAdminAccount({ ...ok, email_confirmed_at: null })).toBe(false);
+    expect(isAdminAccount({ ...ok, email: 'autre@gmail.com' })).toBe(false);
+    expect(isAdminAccount({ email: null })).toBe(false);
   });
 });
