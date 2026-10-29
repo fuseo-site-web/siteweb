@@ -2,10 +2,11 @@ import { useTranslations } from 'next-intl';
 import { FuseoMark } from '@/components/brand/FuseoMark';
 import { Link } from '@/i18n/navigation';
 import { AuthButton } from '@/components/auth/AuthButton';
+import type { SlugMap } from '@/content/blog';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import styles from './SiteHeader.module.css';
 
-export function SiteHeader() {
+export function SiteHeader({ slugs }: { slugs: SlugMap }) {
   const t = useTranslations('nav');
 
   return (
@@ -24,7 +25,7 @@ export function SiteHeader() {
           <Link href="/tarifs">{t('pricing')}</Link>
         </nav>
         <div className={styles.actions}>
-          <LanguageSwitcher />
+          <LanguageSwitcher slugs={slugs} />
           <AuthButton className={styles.login} />
           <Link href="/plan" className={styles.cta}>
             {t('cta')}

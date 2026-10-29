@@ -438,3 +438,61 @@ test.describe('espace administrateur et statistiques', () => {
     expect(results.violations).toEqual([]);
   });
 });
+
+test.describe('référencement', () => {
+  test('une adresse inconnue renvoie une vraie 404, y compris pour un article dans la mauvaise langue', async ({
+    request,
+  }) => {
+    for (const path of [
+      '/blog/article-qui-nexiste-pas',
+      '/en/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
+      '/es/blog/melatonin-and-jet-lag-what-the-studies-really-say',
+    ]) {
+      expect((await request.get(path)).status(), path).toBe(404);
+    }
+  });
+
+  test("le sélecteur de langue d'un article renvoie vers sa traduction, sans préfixe /fr", async ({
+    page,
+  }) => {
+    await page.goto('/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes');
+    const hrefs = await page
+      .locator('a[lang]')
+      .evaluateAll((els) => els.map((e) => [e.getAttribute('lang'), e.getAttribute('href')]));
+    expect(Object.fromEntries(hrefs)).toMatchObject({
+      fr: '/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
+      en: '/en/blog/melatonin-and-jet-lag-what-the-studies-really-say',
+      es: '/es/blog/melatonina-y-jet-lag-lo-que-dicen-realmente-los-estudios',
+    });
+    await page.goto('/en/pricing');
+    expect(await page.locator('a[lang="fr"]').getAttribute('href')).toBe('/tarifs');
+  });
+
+  test('chaque page a un titre de 20 à 60 caractères, une description et une image de partage', async ({
+    page,
+  }) => {
+    for (const path of [
+      '/',
+      '/blog',
+      '/connexion',
+      '/contact',
+      '/plan-du-site',
+      '/la-science-du-jet-lag',
+      '/en/site-map',
+      '/es/mapa-del-sitio',
+    ]) {
+      await page.goto(path);
+      const title = await page.title();
+      expect(title.length, `${path}: ${title}`).toBeGreaterThanOrEqual(20);
+      expect(title.length, `${path}: ${title}`).toBeLessThanOrEqual(60);
+      const desc = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
+      expect(desc.length, path).toBeGreaterThanOrEqual(70);
+      expect(desc.length, path).toBeLessThanOrEqual(160);
+      await expect(page.locator('meta[property="og:image"]'), path).toHaveCount(1);
+      await expect(page.locator('meta[name="twitter:card"]'), path).toHaveAttribute(
+        'content',
+        'summary_large_image',
+      );
+    }
+  });
+});

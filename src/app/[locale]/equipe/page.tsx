@@ -55,7 +55,7 @@ export default async function TeamPage({ params }: Props) {
         '@id': `${absoluteUrl('/', locale)}#ims`,
         name: 'Institut Médical du Sommeil',
         url: IMS_URL,
-        medicalSpecialty: 'Sleep medicine',
+        knowsAbout: 'Sleep medicine',
       },
       {
         '@type': 'Person',

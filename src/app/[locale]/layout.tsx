@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { env } from '@/env';
+import { blogSlugMap } from '@/content/blog';
 import { routing } from '@/i18n/routing';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -38,6 +39,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'nav' });
+  const slugs = await blogSlugMap();
 
   return (
     <html lang={locale} className={montserrat.variable}>
@@ -47,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
             {t('skip')}
           </a>
           <ConsentProvider>
-            <SiteHeader />
+            <SiteHeader slugs={slugs} />
             <main id="contenu">{children}</main>
             <SiteFooter />
           </ConsentProvider>

@@ -107,3 +107,19 @@ export const coverOf = (id: string) =>
 
 /** Image d'un article : celle téléversée dans l'admin, sinon l'illustration générée du site. */
 export const coverOfPost = (p: Post) => p.cover ?? coverOf(p.id);
+
+/** Pour le sélecteur de langue : chaque slug d'un article intégré → son slug dans chaque langue. */
+export type SlugMap = Record<string, Partial<Record<'fr' | 'en' | 'es', string>>>;
+
+export async function blogSlugMap(): Promise<SlugMap> {
+  const lists = await Promise.all(
+    (['fr', 'en', 'es'] as const).map(async (l) => [l, await getStaticPosts(l)] as const),
+  );
+  const byId = new Map<string, Partial<Record<'fr' | 'en' | 'es', string>>>();
+  for (const [l, posts] of lists) {
+    for (const p of posts) byId.set(p.id, { ...byId.get(p.id), [l]: p.slug });
+  }
+  const map: SlugMap = {};
+  for (const slugs of byId.values()) for (const slug of Object.values(slugs)) map[slug] = slugs;
+  return map;
+}

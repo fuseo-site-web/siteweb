@@ -1,7 +1,10 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { Link, usePathname } from '@/i18n/navigation';
+import type { SlugMap } from '@/content/blog';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { getPathname, usePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import styles from './SiteHeader.module.css';
 
@@ -31,21 +34,29 @@ const FLAGS: Record<string, React.ReactNode> = {
 };
 const NAMES: Record<string, string> = { fr: 'Français', en: 'English', es: 'Español' };
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ slugs }: { slugs: SlugMap }) {
   const current = useLocale();
   const pathname = usePathname();
   const t = useTranslations('nav');
+  const params = useParams<{ slug?: string }>();
+  // Côté serveur le chemin est « /blog/[slug] », côté navigateur il contient le slug : on gère les deux.
+  const isArticle = pathname === '/blog/[slug]' || /^\/blog\/[^/]+$/.test(pathname);
+  const article = isArticle ? (params.slug ?? /^\/blog\/([^/]+)$/.exec(pathname)?.[1]) : undefined;
+
+  const targetFor = (locale: string) => {
+    if (!isArticle) return pathname as Exclude<typeof pathname, '/blog/[slug]'>;
+    const slug = article ? slugs[article]?.[locale as 'fr' | 'en' | 'es'] : undefined;
+    return slug ? { pathname: '/blog/[slug]' as const, params: { slug } } : '/blog';
+  };
 
   return (
     <div className={styles.lang} role="group" aria-label={t('language')}>
       {routing.locales.map((locale) => (
         <Link
           key={locale}
-          // Un article de blog a un slug propre à chaque langue : on renvoie vers l'index du blog.
-          href={pathname === '/blog/[slug]' ? '/blog' : pathname}
-          locale={locale}
+          // Un article de blog a un slug propre à chaque langue : on renvoie vers sa traduction, sinon vers l'index.
+          href={getPathname({ href: targetFor(locale), locale })}
           lang={locale}
-          hrefLang={locale}
           aria-label={NAMES[locale]}
           aria-current={locale === current ? 'true' : undefined}
           title={NAMES[locale]}
