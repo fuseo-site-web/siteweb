@@ -13,6 +13,15 @@ type Win = Window & {
   __fuseoClarity?: boolean;
 };
 
+const SITE_HOST = new URL(env.NEXT_PUBLIC_SITE_URL).hostname;
+const LOCAL_HOST = /^(localhost|127(\.\d+){3}|\[::1\]|.+\.localhost|.+\.local)$/;
+
+/** Mesure uniquement sur le vrai domaine : ni en local, ni sur les aperçus de déploiement. */
+function measurable() {
+  const h = location.hostname;
+  return !LOCAL_HOST.test(h) && (h === SITE_HOST || h === `www.${SITE_HOST}`);
+}
+
 const GA_ID = env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const CLARITY_ID = env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 
@@ -76,6 +85,7 @@ export function AnalyticsLoader({ analytics }: { analytics: boolean }) {
 
   useEffect(() => {
     const w = window as Win;
+    if (!measurable()) return;
     if (!analytics) {
       // Choix retiré après acceptation : on coupe la mesure et on efface les cookies.
       if (w.__fuseoGa || w.__fuseoClarity) {
@@ -100,7 +110,7 @@ export function AnalyticsLoader({ analytics }: { analytics: boolean }) {
 
   useEffect(() => {
     const w = window as Win;
-    if (!analytics || !CLARITY_ID) return;
+    if (!analytics || !CLARITY_ID || !measurable()) return;
     if (clarityAllowed(path)) {
       if (!w.__fuseoClarity) {
         if (w.clarity && document.querySelector('script[src*="clarity.ms/tag"]')) {

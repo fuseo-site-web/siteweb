@@ -21,12 +21,16 @@ export function ProfileForm({
   email,
   initial,
   countries,
+  welcome,
 }: {
   email: string;
   initial: ProfileInitial;
   countries: Array<{ code: string; label: string }>;
+  /** Première connexion : tous les champs sont obligatoires, puis retour à la page d'origine. */
+  welcome?: { next: string | null };
 }) {
   const t = useTranslations('account');
+  const w = useTranslations('onboarding');
   const router = useRouter();
   const uid = useId();
   const [v, setV] = useState(initial);
@@ -45,9 +49,12 @@ export function ProfileForm({
       onSubmit={(e) => {
         e.preventDefault();
         start(async () => {
-          const r = await saveProfile(v);
+          const r = await saveProfile(v, { complete: !!welcome });
           setState(r.ok ? 'saved' : r.invalid ? 'invalid' : 'error');
-          if (r.ok) router.refresh();
+          if (!r.ok) return;
+          // Première connexion : on retourne là où l'utilisateur voulait aller, sinon on affiche son espace.
+          if (welcome?.next) router.push(welcome.next);
+          else router.refresh();
         });
       }}
     >
@@ -62,6 +69,7 @@ export function ProfileForm({
             id={`${uid}-fn`}
             value={v.firstName}
             maxLength={80}
+            required={!!welcome}
             autoComplete="given-name"
             onChange={(e) => set('firstName')(e.target.value)}
           />
@@ -72,6 +80,7 @@ export function ProfileForm({
             id={`${uid}-ln`}
             value={v.lastName}
             maxLength={80}
+            required={!!welcome}
             autoComplete="family-name"
             onChange={(e) => set('lastName')(e.target.value)}
           />
@@ -85,6 +94,7 @@ export function ProfileForm({
             id={`${uid}-bd`}
             type="date"
             value={v.birthDate}
+            required={!!welcome}
             autoComplete="bday"
             onChange={(e) => set('birthDate')(e.target.value)}
           />
@@ -94,6 +104,7 @@ export function ProfileForm({
           <select
             id={`${uid}-co`}
             value={v.country}
+            required={!!welcome}
             autoComplete="country"
             onChange={(e) => set('country')(e.target.value)}
           >
@@ -116,7 +127,7 @@ export function ProfileForm({
 
       <div className={styles.formActions}>
         <button type="submit" className={styles.save} disabled={pending}>
-          {t('profileSave')}
+          {welcome ? (pending ? w('saving') : w('cta')) : t('profileSave')}
         </button>
         <span
           role={state === 'invalid' || state === 'error' ? 'alert' : 'status'}
@@ -125,7 +136,9 @@ export function ProfileForm({
           {state === 'saved'
             ? t('profileUpdated')
             : state === 'invalid'
-              ? t('profileInvalid')
+              ? welcome
+                ? w('missing')
+                : t('profileInvalid')
               : state === 'error'
                 ? t('error')
                 : ''}

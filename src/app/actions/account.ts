@@ -61,12 +61,22 @@ export async function signOutAction(): Promise<Result> {
 }
 
 /** Informations personnelles (identité) : validées côté serveur, propriétaire seul (RLS). */
-export async function saveProfile(raw: unknown): Promise<Result & { invalid?: boolean }> {
+export async function saveProfile(
+  raw: unknown,
+  options: { complete?: boolean } = {},
+): Promise<Result & { invalid?: boolean }> {
   const { supabase, user } = await getCurrentUser();
   if (!user) return { ok: false };
   const parsed = profileSchema.safeParse(raw);
   if (!parsed.success) return { ok: false, invalid: true };
   const v = parsed.data;
+  // Première connexion : les cinq informations sont obligatoires.
+  if (
+    options.complete &&
+    !(v.firstName && v.lastName && v.birthDate && v.country && v.homeAirport)
+  ) {
+    return { ok: false, invalid: true };
+  }
   const row = {
     first_name: v.firstName,
     last_name: v.lastName,

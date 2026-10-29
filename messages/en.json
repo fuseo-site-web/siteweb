@@ -507,5 +507,21 @@
     "always": "Always on",
     "analytics": "Audience measurement",
     "analyticsDesc": "Google Analytics and Microsoft Clarity. Clarity is never active on plan and account pages."
+  },
+  "onboarding": {
+    "eyebrow": "Welcome aboard",
+    "title": "Welcome to Fuseo, let’s get acquainted",
+    "lead": "Your space is ready. Before your first flight, tell us a little about yourself: we will build your anti-jet-lag plans from these details.",
+    "b1Title": "Your trips, your tickets",
+    "b1Text": "Find your saved trips, upcoming and past, on all your devices.",
+    "b2Title": "Save time",
+    "b2Text": "Your usual airport is suggested as soon as you create a plan.",
+    "b3Title": "Privacy",
+    "b3Text": "These details stay private: they are only used to personalise your space.",
+    "formTitle": "Your details",
+    "formNote": "All fields are required to enter your space.",
+    "cta": "Go to my space",
+    "saving": "Saving…",
+    "missing": "Please fill in every field, with a valid airport and date of birth."
   }
 }

@@ -6,12 +6,14 @@ import styles from '@/components/account/Account.module.css';
 import dash from '@/components/account/Dashboard.module.css';
 import { ProfileForm } from '@/components/account/ProfileForm';
 import { Tabs } from '@/components/account/Tabs';
+import { Welcome } from '@/components/account/Welcome';
 import { Ticket } from '@/components/account/Ticket';
 import { PageHero } from '@/components/content/PageHero';
 import { Link, redirect } from '@/i18n/navigation';
 import { getCurrentUser } from '@/lib/auth';
 import { decryptJson } from '@/lib/crypto/health';
 import type { PlanInput } from '@/lib/plan-schema';
+import { isProfileComplete, safeNext } from '@/lib/onboarding';
 import { COUNTRY_CODES } from '@/lib/profile-schema';
 import { pageMetadata } from '@/lib/seo';
 import { buildTicket, splitTickets, type TicketView } from '@/lib/trip-view';
@@ -30,21 +32,20 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
-export default async function AccountPage({ params }: Props) {
+export default async function AccountPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'account' });
   return (
-    <>
-      <PageHero title={t('title')} lead={t('lead')} icon="user" />
-      <Suspense fallback={<div className={styles.wrap} aria-busy="true" />}>
-        <Dashboard locale={locale} />
-      </Suspense>
-    </>
+    <Suspense fallback={<div className={styles.wrap} aria-busy="true" />}>
+      <Dashboard
+        locale={locale}
+        next={searchParams.then((q) => (typeof q.next === 'string' ? q.next : null))}
+      />
+    </Suspense>
   );
 }
 
-async function Dashboard({ locale }: { locale: string }) {
+async function Dashboard({ locale, next }: { locale: string; next: Promise<string | null> }) {
   // L'heure courante (statut à venir / passé) est propre à chaque requête.
   await connection();
   const { supabase, user } = await getCurrentUser();
@@ -87,6 +88,30 @@ async function Dashboard({ locale }: { locale: string }) {
   })).sort((a, b) => a.label.localeCompare(b.label, locale));
 
   const p = profile.data;
+
+  // Première connexion : message de bienvenue, puis informations du compte avant l'accès à l'espace.
+  if (!isProfileComplete(p)) {
+    const meta = user.user_metadata as Record<string, unknown>;
+    const fromGoogle = (k: string) =>
+      typeof meta[k] === 'string' ? (meta[k] as string).trim().slice(0, 80) : '';
+    const target = safeNext(await next, '');
+    return (
+      <Welcome
+        locale={locale}
+        email={user.email ?? ''}
+        countries={countries}
+        next={target || null}
+        initial={{
+          firstName: p?.first_name || fromGoogle('given_name'),
+          lastName: p?.last_name || fromGoogle('family_name'),
+          birthDate: p?.birth_date ?? '',
+          country: p?.country ?? '',
+          homeAirport: p?.home_airport ?? '',
+        }}
+      />
+    );
+  }
+
   const filled = [p?.first_name, p?.last_name, p?.birth_date, p?.country, p?.home_airport].filter(
     Boolean,
   ).length;
@@ -207,60 +232,63 @@ async function Dashboard({ locale }: { locale: string }) {
   );
 
   return (
-    <div className={styles.wrap}>
-      <section className={dash.top} aria-label={t('greeting', { name: displayName })}>
-        <span className={dash.avatar} aria-hidden="true">
-          {initials}
-        </span>
-        <div className={dash.who}>
-          <h2>{t('greeting', { name: displayName })}</h2>
-          <p>
-            {user.email} · {t('memberSince', { date: date(user.created_at) })}
-          </p>
-          {completion < 100 ? (
-            <div className={dash.progress}>
-              <small id="profile-progress">{t('profileProgress', { n: completion })}</small>
-              <progress max={100} value={completion} aria-labelledby="profile-progress" />
-            </div>
-          ) : null}
-        </div>
-        <div className={dash.topSide}>
-          {active[0] ? (
-            <span className={dash.badge}>{offerName[active[0].offer] ?? active[0].offer}</span>
-          ) : null}
-          <SignOutButton className={dash.signout} />
-        </div>
-      </section>
+    <>
+      <PageHero title={t('title')} lead={t('lead')} icon="user" />
+      <div className={styles.wrap}>
+        <section className={dash.top} aria-label={t('greeting', { name: displayName })}>
+          <span className={dash.avatar} aria-hidden="true">
+            {initials}
+          </span>
+          <div className={dash.who}>
+            <h2>{t('greeting', { name: displayName })}</h2>
+            <p>
+              {user.email} · {t('memberSince', { date: date(user.created_at) })}
+            </p>
+            {completion < 100 ? (
+              <div className={dash.progress}>
+                <small id="profile-progress">{t('profileProgress', { n: completion })}</small>
+                <progress max={100} value={completion} aria-labelledby="profile-progress" />
+              </div>
+            ) : null}
+          </div>
+          <div className={dash.topSide}>
+            {active[0] ? (
+              <span className={dash.badge}>{offerName[active[0].offer] ?? active[0].offer}</span>
+            ) : null}
+            <SignOutButton className={dash.signout} />
+          </div>
+        </section>
 
-      <div className={dash.stats}>
-        <div className={dash.stat}>
-          <b>{tickets.length}</b>
-          <span>{t('statTrips')}</span>
+        <div className={dash.stats}>
+          <div className={dash.stat}>
+            <b>{tickets.length}</b>
+            <span>{t('statTrips')}</span>
+          </div>
+          <div className={dash.stat}>
+            <b>{upcoming.length}</b>
+            <span>{t('statUpcoming')}</span>
+          </div>
+          <div className={dash.stat}>
+            <b>{zones}</b>
+            <span>{t('statZones')}</span>
+          </div>
+          <div className={dash.stat}>
+            <b className={dash.small}>
+              {upcoming[0] ? t('countdown', { n: Math.max(upcoming[0].daysUntil, 0) }) : '—'}
+            </b>
+            <span>{t('statNext')}</span>
+          </div>
         </div>
-        <div className={dash.stat}>
-          <b>{upcoming.length}</b>
-          <span>{t('statUpcoming')}</span>
-        </div>
-        <div className={dash.stat}>
-          <b>{zones}</b>
-          <span>{t('statZones')}</span>
-        </div>
-        <div className={dash.stat}>
-          <b className={dash.small}>
-            {upcoming[0] ? t('countdown', { n: Math.max(upcoming[0].daysUntil, 0) }) : '—'}
-          </b>
-          <span>{t('statNext')}</span>
-        </div>
+
+        <Tabs
+          label={t('title')}
+          tabs={[
+            { id: 'trips', label: t('tabTrips'), count: tickets.length, content: tripsPanel },
+            { id: 'profile', label: t('tabProfile'), content: profilePanel },
+            { id: 'data', label: t('tabData'), content: dataPanel },
+          ]}
+        />
       </div>
-
-      <Tabs
-        label={t('title')}
-        tabs={[
-          { id: 'trips', label: t('tabTrips'), count: tickets.length, content: tripsPanel },
-          { id: 'profile', label: t('tabProfile'), content: profilePanel },
-          { id: 'data', label: t('tabData'), content: dataPanel },
-        ]}
-      />
-    </div>
+    </>
   );
 }
