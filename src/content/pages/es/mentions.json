@@ -1,0 +1,64 @@
+{
+  "title": "Aviso legal",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Editor del sitio"
+    },
+    {
+      "type": "p",
+      "text": "El sitio fuseo.net está editado por SLEEPTECHNOLOGY, sociedad por acciones simplificada (SAS) francesa con un capital de 520 €, inscrita en el Registro Mercantil de Nanterre con el número 933 908 196, con domicilio social en 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine (Francia)."
+    },
+    {
+      "type": "p",
+      "text": "Contacto: contact@fuseo.net"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Directora de la publicación"
+    },
+    {
+      "type": "p",
+      "text": "Sarah Taieb, presidenta de SLEEPTECHNOLOGY."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Alojamiento"
+    },
+    {
+      "type": "p",
+      "text": "Netlify, Inc., 44 Montgomery Street, Suite 300, San Francisco, CA 94104, Estados Unidos. Sitio: www.netlify.com."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Comité científico"
+    },
+    {
+      "type": "p",
+      "text": "Los contenidos y el método de Fuseo se han diseñado con el Dr. Jonathan Taieb, médico del sueño del Institut Médical du Sommeil, y el Dr. Maxime Elbaz, ingeniero y doctor en neurociencias, antiguo director técnico del Centro del Sueño y la Vigilancia del Hôtel-Dieu de París."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Naturaleza de la información"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo proporciona información y consejos generales sobre el sueño y la cronobiología del viaje. El servicio no constituye una consulta médica, no establece diagnósticos y no sustituye el consejo de un profesional sanitario."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Propiedad intelectual"
+    },
+    {
+      "type": "p",
+      "text": "Todos los elementos del sitio (textos, gráficos, logotipo, cronogramas, código) son propiedad de SLEEPTECHNOLOGY o se utilizan con autorización. Queda prohibida cualquier reproducción sin autorización."
+    }
+  ]
+}

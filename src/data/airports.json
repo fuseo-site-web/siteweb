@@ -1,0 +1,978 @@
+[
+  {
+    "code": "CDG",
+    "name": "Paris Charles-de-Gaulle",
+    "city": "Paris",
+    "cityEn": "Paris",
+    "cityEs": "París",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "ORY",
+    "name": "Paris Orly",
+    "city": "Paris",
+    "cityEn": "Paris",
+    "cityEs": "París",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "BVA",
+    "name": "Paris Beauvais",
+    "city": "Paris",
+    "cityEn": "Paris",
+    "cityEs": "París",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "LYS",
+    "name": "Lyon Saint-Exupéry",
+    "city": "Lyon",
+    "cityEn": "Lyon",
+    "cityEs": "Lyon",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "NCE",
+    "name": "Nice Côte d'Azur",
+    "city": "Nice",
+    "cityEn": "Nice",
+    "cityEs": "Niza",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "MRS",
+    "name": "Marseille Provence",
+    "city": "Marseille",
+    "cityEn": "Marseille",
+    "cityEs": "Marsella",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "TLS",
+    "name": "Toulouse Blagnac",
+    "city": "Toulouse",
+    "cityEn": "Toulouse",
+    "cityEs": "Toulouse",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "BOD",
+    "name": "Bordeaux Mérignac",
+    "city": "Bordeaux",
+    "cityEn": "Bordeaux",
+    "cityEs": "Burdeos",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "NTE",
+    "name": "Nantes Atlantique",
+    "city": "Nantes",
+    "cityEn": "Nantes",
+    "cityEs": "Nantes",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "MPL",
+    "name": "Montpellier",
+    "city": "Montpellier",
+    "cityEn": "Montpellier",
+    "cityEs": "Montpellier",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "BSL",
+    "name": "Bâle-Mulhouse",
+    "city": "Bâle-Mulhouse",
+    "cityEn": "Basel-Mulhouse",
+    "cityEs": "Basilea-Mulhouse",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "SXB",
+    "name": "Strasbourg",
+    "city": "Strasbourg",
+    "cityEn": "Strasbourg",
+    "cityEs": "Estrasburgo",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "LIL",
+    "name": "Lille",
+    "city": "Lille",
+    "cityEn": "Lille",
+    "cityEs": "Lille",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "AJA",
+    "name": "Ajaccio",
+    "city": "Ajaccio",
+    "cityEn": "Ajaccio",
+    "cityEs": "Ajaccio",
+    "tz": "Europe/Paris"
+  },
+  {
+    "code": "RUN",
+    "name": "La Réunion Roland-Garros",
+    "city": "La Réunion",
+    "cityEn": "Réunion",
+    "cityEs": "La Reunión",
+    "tz": "Indian/Reunion"
+  },
+  {
+    "code": "FDF",
+    "name": "Fort-de-France Martinique",
+    "city": "Martinique",
+    "cityEn": "Martinique",
+    "cityEs": "Martinica",
+    "tz": "America/Martinique"
+  },
+  {
+    "code": "PTP",
+    "name": "Pointe-à-Pitre Guadeloupe",
+    "city": "Guadeloupe",
+    "cityEn": "Guadeloupe",
+    "cityEs": "Guadalupe",
+    "tz": "America/Guadeloupe"
+  },
+  {
+    "code": "CAY",
+    "name": "Cayenne Guyane",
+    "city": "Cayenne",
+    "cityEn": "Cayenne",
+    "cityEs": "Cayena",
+    "tz": "America/Cayenne"
+  },
+  {
+    "code": "PPT",
+    "name": "Papeete Tahiti",
+    "city": "Tahiti",
+    "cityEn": "Tahiti",
+    "cityEs": "Tahiti",
+    "tz": "Pacific/Tahiti"
+  },
+  {
+    "code": "NOU",
+    "name": "Nouméa La Tontouta",
+    "city": "Nouméa",
+    "cityEn": "Nouméa",
+    "cityEs": "Nouméa",
+    "tz": "Pacific/Noumea"
+  },
+  {
+    "code": "DZA",
+    "name": "Mayotte Dzaoudzi",
+    "city": "Mayotte",
+    "cityEn": "Mayotte",
+    "cityEs": "Mayotte",
+    "tz": "Indian/Mayotte"
+  },
+  {
+    "code": "LHR",
+    "name": "Londres Heathrow",
+    "city": "Londres",
+    "cityEn": "London",
+    "cityEs": "Londres",
+    "tz": "Europe/London"
+  },
+  {
+    "code": "LGW",
+    "name": "Londres Gatwick",
+    "city": "Londres",
+    "cityEn": "London",
+    "cityEs": "Londres",
+    "tz": "Europe/London"
+  },
+  {
+    "code": "DUB",
+    "name": "Dublin",
+    "city": "Dublin",
+    "cityEn": "Dublin",
+    "cityEs": "Dublín",
+    "tz": "Europe/Dublin"
+  },
+  {
+    "code": "AMS",
+    "name": "Amsterdam Schiphol",
+    "city": "Amsterdam",
+    "cityEn": "Amsterdam",
+    "cityEs": "Ámsterdam",
+    "tz": "Europe/Amsterdam"
+  },
+  {
+    "code": "BRU",
+    "name": "Bruxelles",
+    "city": "Bruxelles",
+    "cityEn": "Brussels",
+    "cityEs": "Bruselas",
+    "tz": "Europe/Brussels"
+  },
+  {
+    "code": "GVA",
+    "name": "Genève",
+    "city": "Genève",
+    "cityEn": "Geneva",
+    "cityEs": "Ginebra",
+    "tz": "Europe/Zurich"
+  },
+  {
+    "code": "ZRH",
+    "name": "Zurich",
+    "city": "Zurich",
+    "cityEn": "Zurich",
+    "cityEs": "Zúrich",
+    "tz": "Europe/Zurich"
+  },
+  {
+    "code": "FRA",
+    "name": "Francfort",
+    "city": "Francfort",
+    "cityEn": "Frankfurt",
+    "cityEs": "Fráncfort",
+    "tz": "Europe/Berlin"
+  },
+  {
+    "code": "MUC",
+    "name": "Munich",
+    "city": "Munich",
+    "cityEn": "Munich",
+    "cityEs": "Múnich",
+    "tz": "Europe/Berlin"
+  },
+  {
+    "code": "BER",
+    "name": "Berlin",
+    "city": "Berlin",
+    "cityEn": "Berlin",
+    "cityEs": "Berlín",
+    "tz": "Europe/Berlin"
+  },
+  {
+    "code": "VIE",
+    "name": "Vienne",
+    "city": "Vienne",
+    "cityEn": "Vienna",
+    "cityEs": "Viena",
+    "tz": "Europe/Vienna"
+  },
+  {
+    "code": "CPH",
+    "name": "Copenhague",
+    "city": "Copenhague",
+    "cityEn": "Copenhagen",
+    "cityEs": "Copenhague",
+    "tz": "Europe/Copenhagen"
+  },
+  {
+    "code": "OSL",
+    "name": "Oslo",
+    "city": "Oslo",
+    "cityEn": "Oslo",
+    "cityEs": "Oslo",
+    "tz": "Europe/Oslo"
+  },
+  {
+    "code": "ARN",
+    "name": "Stockholm Arlanda",
+    "city": "Stockholm",
+    "cityEn": "Stockholm",
+    "cityEs": "Estocolmo",
+    "tz": "Europe/Stockholm"
+  },
+  {
+    "code": "HEL",
+    "name": "Helsinki",
+    "city": "Helsinki",
+    "cityEn": "Helsinki",
+    "cityEs": "Helsinki",
+    "tz": "Europe/Helsinki"
+  },
+  {
+    "code": "MAD",
+    "name": "Madrid Barajas",
+    "city": "Madrid",
+    "cityEn": "Madrid",
+    "cityEs": "Madrid",
+    "tz": "Europe/Madrid"
+  },
+  {
+    "code": "BCN",
+    "name": "Barcelone",
+    "city": "Barcelone",
+    "cityEn": "Barcelona",
+    "cityEs": "Barcelona",
+    "tz": "Europe/Madrid"
+  },
+  {
+    "code": "LIS",
+    "name": "Lisbonne",
+    "city": "Lisbonne",
+    "cityEn": "Lisbon",
+    "cityEs": "Lisboa",
+    "tz": "Europe/Lisbon"
+  },
+  {
+    "code": "FCO",
+    "name": "Rome Fiumicino",
+    "city": "Rome",
+    "cityEn": "Rome",
+    "cityEs": "Roma",
+    "tz": "Europe/Rome"
+  },
+  {
+    "code": "MXP",
+    "name": "Milan Malpensa",
+    "city": "Milan",
+    "cityEn": "Milan",
+    "cityEs": "Milán",
+    "tz": "Europe/Rome"
+  },
+  {
+    "code": "ATH",
+    "name": "Athènes",
+    "city": "Athènes",
+    "cityEn": "Athens",
+    "cityEs": "Atenas",
+    "tz": "Europe/Athens"
+  },
+  {
+    "code": "IST",
+    "name": "Istanbul",
+    "city": "Istanbul",
+    "cityEn": "Istanbul",
+    "cityEs": "Estambul",
+    "tz": "Europe/Istanbul"
+  },
+  {
+    "code": "WAW",
+    "name": "Varsovie",
+    "city": "Varsovie",
+    "cityEn": "Warsaw",
+    "cityEs": "Varsovia",
+    "tz": "Europe/Warsaw"
+  },
+  {
+    "code": "PRG",
+    "name": "Prague",
+    "city": "Prague",
+    "cityEn": "Prague",
+    "cityEs": "Praga",
+    "tz": "Europe/Prague"
+  },
+  {
+    "code": "BUD",
+    "name": "Budapest",
+    "city": "Budapest",
+    "cityEn": "Budapest",
+    "cityEs": "Budapest",
+    "tz": "Europe/Budapest"
+  },
+  {
+    "code": "KEF",
+    "name": "Reykjavik",
+    "city": "Reykjavik",
+    "cityEn": "Reykjavik",
+    "cityEs": "Reikiavik",
+    "tz": "Atlantic/Reykjavik"
+  },
+  {
+    "code": "TLV",
+    "name": "Tel Aviv Ben Gourion",
+    "city": "Tel Aviv",
+    "cityEn": "Tel Aviv",
+    "cityEs": "Tel Aviv",
+    "tz": "Asia/Jerusalem"
+  },
+  {
+    "code": "CAI",
+    "name": "Le Caire",
+    "city": "Le Caire",
+    "cityEn": "Cairo",
+    "cityEs": "El Cairo",
+    "tz": "Africa/Cairo"
+  },
+  {
+    "code": "CMN",
+    "name": "Casablanca",
+    "city": "Casablanca",
+    "cityEn": "Casablanca",
+    "cityEs": "Casablanca",
+    "tz": "Africa/Casablanca"
+  },
+  {
+    "code": "RAK",
+    "name": "Marrakech",
+    "city": "Marrakech",
+    "cityEn": "Marrakesh",
+    "cityEs": "Marrakech",
+    "tz": "Africa/Casablanca"
+  },
+  {
+    "code": "ALG",
+    "name": "Alger",
+    "city": "Alger",
+    "cityEn": "Algiers",
+    "cityEs": "Argel",
+    "tz": "Africa/Algiers"
+  },
+  {
+    "code": "TUN",
+    "name": "Tunis",
+    "city": "Tunis",
+    "cityEn": "Tunis",
+    "cityEs": "Túnez",
+    "tz": "Africa/Tunis"
+  },
+  {
+    "code": "DSS",
+    "name": "Dakar",
+    "city": "Dakar",
+    "cityEn": "Dakar",
+    "cityEs": "Dakar",
+    "tz": "Africa/Dakar"
+  },
+  {
+    "code": "ABJ",
+    "name": "Abidjan",
+    "city": "Abidjan",
+    "cityEn": "Abidjan",
+    "cityEs": "Abiyán",
+    "tz": "Africa/Abidjan"
+  },
+  {
+    "code": "LOS",
+    "name": "Lagos",
+    "city": "Lagos",
+    "cityEn": "Lagos",
+    "cityEs": "Lagos",
+    "tz": "Africa/Lagos"
+  },
+  {
+    "code": "NBO",
+    "name": "Nairobi",
+    "city": "Nairobi",
+    "cityEn": "Nairobi",
+    "cityEs": "Nairobi",
+    "tz": "Africa/Nairobi"
+  },
+  {
+    "code": "ADD",
+    "name": "Addis-Abeba",
+    "city": "Addis-Abeba",
+    "cityEn": "Addis Ababa",
+    "cityEs": "Adís Abeba",
+    "tz": "Africa/Addis_Ababa"
+  },
+  {
+    "code": "JNB",
+    "name": "Johannesburg",
+    "city": "Johannesburg",
+    "cityEn": "Johannesburg",
+    "cityEs": "Johannesburgo",
+    "tz": "Africa/Johannesburg"
+  },
+  {
+    "code": "CPT",
+    "name": "Le Cap",
+    "city": "Le Cap",
+    "cityEn": "Cape Town",
+    "cityEs": "Ciudad del Cabo",
+    "tz": "Africa/Johannesburg"
+  },
+  {
+    "code": "MRU",
+    "name": "Maurice",
+    "city": "Maurice",
+    "cityEn": "Mauritius",
+    "cityEs": "Mauricio",
+    "tz": "Indian/Mauritius"
+  },
+  {
+    "code": "SEZ",
+    "name": "Seychelles",
+    "city": "Seychelles",
+    "cityEn": "Seychelles",
+    "cityEs": "Seychelles",
+    "tz": "Indian/Mahe"
+  },
+  {
+    "code": "TNR",
+    "name": "Antananarivo",
+    "city": "Antananarivo",
+    "cityEn": "Antananarivo",
+    "cityEs": "Antananarivo",
+    "tz": "Indian/Antananarivo"
+  },
+  {
+    "code": "DXB",
+    "name": "Dubaï",
+    "city": "Dubaï",
+    "cityEn": "Dubai",
+    "cityEs": "Dubái",
+    "tz": "Asia/Dubai"
+  },
+  {
+    "code": "AUH",
+    "name": "Abu Dhabi",
+    "city": "Abu Dhabi",
+    "cityEn": "Abu Dhabi",
+    "cityEs": "Abu Dabi",
+    "tz": "Asia/Dubai"
+  },
+  {
+    "code": "DOH",
+    "name": "Doha",
+    "city": "Doha",
+    "cityEn": "Doha",
+    "cityEs": "Doha",
+    "tz": "Asia/Qatar"
+  },
+  {
+    "code": "RUH",
+    "name": "Riyad",
+    "city": "Riyad",
+    "cityEn": "Riyadh",
+    "cityEs": "Riad",
+    "tz": "Asia/Riyadh"
+  },
+  {
+    "code": "JED",
+    "name": "Djeddah",
+    "city": "Djeddah",
+    "cityEn": "Jeddah",
+    "cityEs": "Yeda",
+    "tz": "Asia/Riyadh"
+  },
+  {
+    "code": "MCT",
+    "name": "Mascate",
+    "city": "Mascate",
+    "cityEn": "Muscat",
+    "cityEs": "Mascate",
+    "tz": "Asia/Muscat"
+  },
+  {
+    "code": "DEL",
+    "name": "New Delhi",
+    "city": "New Delhi",
+    "cityEn": "New Delhi",
+    "cityEs": "Nueva Delhi",
+    "tz": "Asia/Kolkata"
+  },
+  {
+    "code": "BOM",
+    "name": "Bombay",
+    "city": "Bombay",
+    "cityEn": "Mumbai",
+    "cityEs": "Bombay",
+    "tz": "Asia/Kolkata"
+  },
+  {
+    "code": "MLE",
+    "name": "Malé Maldives",
+    "city": "Maldives",
+    "cityEn": "Maldives",
+    "cityEs": "Maldivas",
+    "tz": "Indian/Maldives"
+  },
+  {
+    "code": "CMB",
+    "name": "Colombo",
+    "city": "Colombo",
+    "cityEn": "Colombo",
+    "cityEs": "Colombo",
+    "tz": "Asia/Colombo"
+  },
+  {
+    "code": "BKK",
+    "name": "Bangkok",
+    "city": "Bangkok",
+    "cityEn": "Bangkok",
+    "cityEs": "Bangkok",
+    "tz": "Asia/Bangkok"
+  },
+  {
+    "code": "SGN",
+    "name": "Hô Chi Minh-Ville",
+    "city": "Hô Chi Minh-Ville",
+    "cityEn": "Ho Chi Minh City",
+    "cityEs": "Ciudad Ho Chi Minh",
+    "tz": "Asia/Ho_Chi_Minh"
+  },
+  {
+    "code": "SIN",
+    "name": "Singapour",
+    "city": "Singapour",
+    "cityEn": "Singapore",
+    "cityEs": "Singapur",
+    "tz": "Asia/Singapore"
+  },
+  {
+    "code": "KUL",
+    "name": "Kuala Lumpur",
+    "city": "Kuala Lumpur",
+    "cityEn": "Kuala Lumpur",
+    "cityEs": "Kuala Lumpur",
+    "tz": "Asia/Kuala_Lumpur"
+  },
+  {
+    "code": "CGK",
+    "name": "Jakarta",
+    "city": "Jakarta",
+    "cityEn": "Jakarta",
+    "cityEs": "Yakarta",
+    "tz": "Asia/Jakarta"
+  },
+  {
+    "code": "DPS",
+    "name": "Bali Denpasar",
+    "city": "Bali",
+    "cityEn": "Bali",
+    "cityEs": "Bali",
+    "tz": "Asia/Makassar"
+  },
+  {
+    "code": "HKG",
+    "name": "Hong Kong",
+    "city": "Hong Kong",
+    "cityEn": "Hong Kong",
+    "cityEs": "Hong Kong",
+    "tz": "Asia/Hong_Kong"
+  },
+  {
+    "code": "PEK",
+    "name": "Pékin Capital",
+    "city": "Pékin",
+    "cityEn": "Beijing",
+    "cityEs": "Pekín",
+    "tz": "Asia/Shanghai"
+  },
+  {
+    "code": "PVG",
+    "name": "Shanghai Pudong",
+    "city": "Shanghai",
+    "cityEn": "Shanghai",
+    "cityEs": "Shanghái",
+    "tz": "Asia/Shanghai"
+  },
+  {
+    "code": "TPE",
+    "name": "Taipei",
+    "city": "Taipei",
+    "cityEn": "Taipei",
+    "cityEs": "Taipei",
+    "tz": "Asia/Taipei"
+  },
+  {
+    "code": "ICN",
+    "name": "Séoul Incheon",
+    "city": "Séoul",
+    "cityEn": "Seoul",
+    "cityEs": "Seúl",
+    "tz": "Asia/Seoul"
+  },
+  {
+    "code": "HND",
+    "name": "Tokyo Haneda",
+    "city": "Tokyo",
+    "cityEn": "Tokyo",
+    "cityEs": "Tokio",
+    "tz": "Asia/Tokyo"
+  },
+  {
+    "code": "NRT",
+    "name": "Tokyo Narita",
+    "city": "Tokyo",
+    "cityEn": "Tokyo",
+    "cityEs": "Tokio",
+    "tz": "Asia/Tokyo"
+  },
+  {
+    "code": "KIX",
+    "name": "Osaka Kansai",
+    "city": "Osaka",
+    "cityEn": "Osaka",
+    "cityEs": "Osaka",
+    "tz": "Asia/Tokyo"
+  },
+  {
+    "code": "MNL",
+    "name": "Manille",
+    "city": "Manille",
+    "cityEn": "Manila",
+    "cityEs": "Manila",
+    "tz": "Asia/Manila"
+  },
+  {
+    "code": "SYD",
+    "name": "Sydney",
+    "city": "Sydney",
+    "cityEn": "Sydney",
+    "cityEs": "Sídney",
+    "tz": "Australia/Sydney"
+  },
+  {
+    "code": "MEL",
+    "name": "Melbourne",
+    "city": "Melbourne",
+    "cityEn": "Melbourne",
+    "cityEs": "Melbourne",
+    "tz": "Australia/Melbourne"
+  },
+  {
+    "code": "BNE",
+    "name": "Brisbane",
+    "city": "Brisbane",
+    "cityEn": "Brisbane",
+    "cityEs": "Brisbane",
+    "tz": "Australia/Brisbane"
+  },
+  {
+    "code": "PER",
+    "name": "Perth",
+    "city": "Perth",
+    "cityEn": "Perth",
+    "cityEs": "Perth",
+    "tz": "Australia/Perth"
+  },
+  {
+    "code": "AKL",
+    "name": "Auckland",
+    "city": "Auckland",
+    "cityEn": "Auckland",
+    "cityEs": "Auckland",
+    "tz": "Pacific/Auckland"
+  },
+  {
+    "code": "JFK",
+    "name": "New York JFK",
+    "city": "New York",
+    "cityEn": "New York",
+    "cityEs": "Nueva York",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "EWR",
+    "name": "New York Newark",
+    "city": "New York",
+    "cityEn": "New York",
+    "cityEs": "Nueva York",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "BOS",
+    "name": "Boston",
+    "city": "Boston",
+    "cityEn": "Boston",
+    "cityEs": "Boston",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "IAD",
+    "name": "Washington Dulles",
+    "city": "Washington",
+    "cityEn": "Washington",
+    "cityEs": "Washington",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "MIA",
+    "name": "Miami",
+    "city": "Miami",
+    "cityEn": "Miami",
+    "cityEs": "Miami",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "ATL",
+    "name": "Atlanta",
+    "city": "Atlanta",
+    "cityEn": "Atlanta",
+    "cityEs": "Atlanta",
+    "tz": "America/New_York"
+  },
+  {
+    "code": "ORD",
+    "name": "Chicago O'Hare",
+    "city": "Chicago",
+    "cityEn": "Chicago",
+    "cityEs": "Chicago",
+    "tz": "America/Chicago"
+  },
+  {
+    "code": "DFW",
+    "name": "Dallas",
+    "city": "Dallas",
+    "cityEn": "Dallas",
+    "cityEs": "Dallas",
+    "tz": "America/Chicago"
+  },
+  {
+    "code": "IAH",
+    "name": "Houston",
+    "city": "Houston",
+    "cityEn": "Houston",
+    "cityEs": "Houston",
+    "tz": "America/Chicago"
+  },
+  {
+    "code": "DEN",
+    "name": "Denver",
+    "city": "Denver",
+    "cityEn": "Denver",
+    "cityEs": "Denver",
+    "tz": "America/Denver"
+  },
+  {
+    "code": "PHX",
+    "name": "Phoenix",
+    "city": "Phoenix",
+    "cityEn": "Phoenix",
+    "cityEs": "Phoenix",
+    "tz": "America/Phoenix"
+  },
+  {
+    "code": "LAS",
+    "name": "Las Vegas",
+    "city": "Las Vegas",
+    "cityEn": "Las Vegas",
+    "cityEs": "Las Vegas",
+    "tz": "America/Los_Angeles"
+  },
+  {
+    "code": "LAX",
+    "name": "Los Angeles",
+    "city": "Los Angeles",
+    "cityEn": "Los Angeles",
+    "cityEs": "Los Ángeles",
+    "tz": "America/Los_Angeles"
+  },
+  {
+    "code": "SFO",
+    "name": "San Francisco",
+    "city": "San Francisco",
+    "cityEn": "San Francisco",
+    "cityEs": "San Francisco",
+    "tz": "America/Los_Angeles"
+  },
+  {
+    "code": "SEA",
+    "name": "Seattle",
+    "city": "Seattle",
+    "cityEn": "Seattle",
+    "cityEs": "Seattle",
+    "tz": "America/Los_Angeles"
+  },
+  {
+    "code": "HNL",
+    "name": "Honolulu",
+    "city": "Honolulu",
+    "cityEn": "Honolulu",
+    "cityEs": "Honolulu",
+    "tz": "Pacific/Honolulu"
+  },
+  {
+    "code": "YUL",
+    "name": "Montréal",
+    "city": "Montréal",
+    "cityEn": "Montreal",
+    "cityEs": "Montreal",
+    "tz": "America/Toronto"
+  },
+  {
+    "code": "YYZ",
+    "name": "Toronto",
+    "city": "Toronto",
+    "cityEn": "Toronto",
+    "cityEs": "Toronto",
+    "tz": "America/Toronto"
+  },
+  {
+    "code": "YVR",
+    "name": "Vancouver",
+    "city": "Vancouver",
+    "cityEn": "Vancouver",
+    "cityEs": "Vancouver",
+    "tz": "America/Vancouver"
+  },
+  {
+    "code": "MEX",
+    "name": "Mexico",
+    "city": "Mexico",
+    "cityEn": "Mexico City",
+    "cityEs": "Ciudad de México",
+    "tz": "America/Mexico_City"
+  },
+  {
+    "code": "CUN",
+    "name": "Cancún",
+    "city": "Cancún",
+    "cityEn": "Cancún",
+    "cityEs": "Cancún",
+    "tz": "America/Cancun"
+  },
+  {
+    "code": "PUJ",
+    "name": "Punta Cana",
+    "city": "Punta Cana",
+    "cityEn": "Punta Cana",
+    "cityEs": "Punta Cana",
+    "tz": "America/Santo_Domingo"
+  },
+  {
+    "code": "HAV",
+    "name": "La Havane",
+    "city": "La Havane",
+    "cityEn": "Havana",
+    "cityEs": "La Habana",
+    "tz": "America/Havana"
+  },
+  {
+    "code": "BOG",
+    "name": "Bogotá",
+    "city": "Bogotá",
+    "cityEn": "Bogotá",
+    "cityEs": "Bogotá",
+    "tz": "America/Bogota"
+  },
+  {
+    "code": "LIM",
+    "name": "Lima",
+    "city": "Lima",
+    "cityEn": "Lima",
+    "cityEs": "Lima",
+    "tz": "America/Lima"
+  },
+  {
+    "code": "GRU",
+    "name": "São Paulo",
+    "city": "São Paulo",
+    "cityEn": "São Paulo",
+    "cityEs": "São Paulo",
+    "tz": "America/Sao_Paulo"
+  },
+  {
+    "code": "GIG",
+    "name": "Rio de Janeiro",
+    "city": "Rio de Janeiro",
+    "cityEn": "Rio de Janeiro",
+    "cityEs": "Río de Janeiro",
+    "tz": "America/Sao_Paulo"
+  },
+  {
+    "code": "EZE",
+    "name": "Buenos Aires",
+    "city": "Buenos Aires",
+    "cityEn": "Buenos Aires",
+    "cityEs": "Buenos Aires",
+    "tz": "America/Argentina/Buenos_Aires"
+  },
+  {
+    "code": "SCL",
+    "name": "Santiago du Chili",
+    "city": "Santiago",
+    "cityEn": "Santiago",
+    "cityEs": "Santiago",
+    "tz": "America/Santiago"
+  }
+]

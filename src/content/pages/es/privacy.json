@@ -1,0 +1,60 @@
+{
+  "title": "Privacidad y cookies",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Responsable del tratamiento"
+    },
+    {
+      "type": "p",
+      "text": "SLEEPTECHNOLOGY, sociedad por acciones simplificada (SAS) francesa con un capital de 520 €, inscrita en el Registro Mercantil de Nanterre con el número 933 908 196, con domicilio social en 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine (Francia). Contacto: contact@fuseo.net."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Los datos de su plan permanecen en su dispositivo"
+    },
+    {
+      "type": "p",
+      "text": "Sus horarios de sueño, sus vuelos y sus ajustes se guardan únicamente en el navegador de su dispositivo (almacenamiento local), para que pueda recuperar su plan. No se envían a nuestros servidores. Puede borrarlos en cualquier momento eliminando los datos del sitio en su navegador."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Pago"
+    },
+    {
+      "type": "p",
+      "text": "Los pagos los procesa Stripe, que recoge los datos necesarios para el pago (correo electrónico, datos de la tarjeta). Fuseo solo recibe la confirmación del pago y los datos de facturación, conservados durante el plazo impuesto por las obligaciones contables (10 años)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Alojamiento y fuentes tipográficas"
+    },
+    {
+      "type": "p",
+      "text": "El sitio está alojado en Netlify, que puede registrar datos técnicos de conexión (dirección IP, fecha, página consultada) con fines de seguridad. Las fuentes tipográficas se cargan desde Google Fonts, lo que transmite su dirección IP a Google."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Cookies y rastreadores"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo no utiliza cookies publicitarias ni de seguimiento. El almacenamiento local solo sirve para el funcionamiento del servicio (su plan, su acceso de pago) y no requiere consentimiento. Si se añade una medición de audiencia, se le informará y se le pedirá su consentimiento cuando la ley lo exija."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Sus derechos"
+    },
+    {
+      "type": "p",
+      "text": "Dispone de un derecho de acceso, rectificación, supresión, limitación, oposición y portabilidad de sus datos. Para ejercerlos: contact@fuseo.net. También puede presentar una reclamación ante la CNIL, la autoridad francesa de protección de datos (www.cnil.fr)."
+    }
+  ]
+}

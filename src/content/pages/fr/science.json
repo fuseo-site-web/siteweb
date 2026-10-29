@@ -1,0 +1,228 @@
+{
+  "title": "Pourquoi on est fatigué, ou éveillé au mauvais moment, quand on change de fuseau",
+  "lead": "Le jet lag n'est ni un manque de volonté ni une simple fatigue de voyage. C'est un décalage entre votre horloge biologique et l'heure du pays où vous êtes. Voici comment il fonctionne, et comment on le corrige.",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Une horloge au cœur du cerveau"
+    },
+    {
+      "type": "p",
+      "text": "Au centre du cerveau, dans l'hypothalamus, un petit groupe de neurones appelé noyau suprachiasmatique joue le rôle de chef d'orchestre. Il impose au corps un rythme d'environ 24 heures : c'est le rythme circadien."
+    },
+    {
+      "type": "p",
+      "text": "Cette horloge règle bien plus que le sommeil : la température du corps, la sécrétion de mélatonine le soir et de cortisol le matin, la vigilance, l'appétit, la digestion."
+    },
+    {
+      "type": "p",
+      "text": "Elle est remise à l'heure chaque jour, principalement par la lumière captée par les yeux."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Pourquoi on est fatigué… puis impossible à endormir"
+    },
+    {
+      "type": "p",
+      "text": "Deux mécanismes décident de votre envie de dormir. Le premier est une <b>pression de sommeil</b> qui s'accumule à chaque heure passée éveillé et se vide pendant la nuit. Le second est le <b>signal d'éveil de l'horloge</b>, qui monte au fil de la journée et culmine le soir, justement pour compenser la fatigue accumulée, puis s'effondre la nuit."
+    },
+    {
+      "type": "p",
+      "text": "Chez soi, les deux sont synchronisés : on tient toute la journée et on s'endort facilement le soir. Après un vol vers l'est, l'horloge est restée à l'heure de départ. Résultat : un coup de barre en début d'après-midi local, qui correspond à la nuit de votre corps, puis un regain d'éveil au moment où vous voudriez dormir."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Fatigue du voyage",
+          "text": [
+            "Nuit écourtée, attente, cabine sèche et bruyante : elle disparaît après une bonne nuit de sommeil."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Jet lag",
+          "text": [
+            "Il persiste tant que l'horloge n'est pas recalée sur l'heure locale, même après avoir bien dormi. C'est lui que Fuseo cible."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Tout le corps est décalé, et pas au même rythme"
+    },
+    {
+      "type": "p",
+      "text": "Chaque organe possède ses propres horloges, synchronisées par l'horloge centrale. Après un changement de fuseau, elles ne se recalent pas toutes à la même vitesse. Pendant quelques jours, le cerveau, le foie ou l'intestin ne sont plus d'accord entre eux sur l'heure qu'il est."
+    },
+    {
+      "type": "p",
+      "text": "C'est ce qui explique que le jet lag ne se résume pas au sommeil :"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Sommeil",
+          "text": ["endormissement difficile, réveils nocturnes ou très matinaux"]
+        },
+        {
+          "type": "card",
+          "title": "Vigilance",
+          "text": ["somnolence en journée, baisse de concentration et de mémoire"]
+        },
+        {
+          "type": "card",
+          "title": "Digestion",
+          "text": ["faim à contretemps, inconfort digestif"]
+        },
+        {
+          "type": "card",
+          "title": "Humeur",
+          "text": ["irritabilité, moral en baisse"]
+        },
+        {
+          "type": "card",
+          "title": "Performance",
+          "text": ["réflexes et prise de décision moins sûrs"]
+        },
+        {
+          "type": "card",
+          "title": "Immunité",
+          "text": ["le manque de sommeil rend plus vulnérable aux infections"]
+        },
+        {
+          "type": "card",
+          "kicker": "17 h",
+          "title": "Vigilance",
+          "text": [
+            "Après 17 à 19 heures d'éveil, les performances mesurées sont comparables à celles d'une alcoolémie de 0,5 g/L (Williamson &amp; Feyer, 2000)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "× 4,2",
+          "title": "Défenses immunitaires",
+          "text": [
+            "Chez 164 volontaires exposés à un virus du rhume, dormir moins de 6 heures multipliait le risque de tomber malade par 4,2 (Prather et al., 2015)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Est",
+          "title": "Sens du voyage",
+          "text": [
+            "Les voyages vers l'est sont en général les plus éprouvants, car ils demandent d'avancer l'horloge (Sack, 2010)."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Combien de temps pour s'adapter ?"
+    },
+    {
+      "type": "p",
+      "text": "Il n'existe pas de règle unique. Sans aide, l'horloge ne se décale que progressivement, jour après jour, et la vitesse d'adaptation varie selon :"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "le nombre de fuseaux horaires traversés ;",
+        "le sens du voyage : vers l'est, l'horloge doit avancer, ce qui est en général plus difficile que de la retarder vers l'ouest ;",
+        "vos horaires de sommeil avant et pendant le voyage ;",
+        "la lumière reçue sur place, et surtout à quel moment ;",
+        "les différences individuelles, dont l'âge et le chronotype."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Sur un aller-retour, le décalage se paie deux fois : à l'arrivée, puis au retour."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Idées reçues"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "« Il suffit de bien s'hydrater. »",
+          "text": ["Boire améliore le confort du vol, mais ne recale pas l'horloge."]
+        },
+        {
+          "type": "card",
+          "title": "« Une grosse nuit en arrivant, et c'est réglé. »",
+          "text": ["Elle efface la fatigue du voyage, pas le décalage de l'horloge."]
+        },
+        {
+          "type": "card",
+          "title": "« Il faut toujours prendre le soleil le matin. »",
+          "text": [
+            "Tout dépend du sens du voyage et de votre heure biologique : au mauvais moment, la lumière décale l'horloge dans le mauvais sens."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "« La mélatonine, on la prend quand on veut. »",
+          "text": [
+            "Son effet dépend de l'heure de prise, et elle ne convient pas à tout le monde : demandez un avis médical."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "« Une longue sieste à l'arrivée aide à récupérer. »",
+          "text": [
+            "Une sieste longue retarde l'endormissement du soir. Mieux vaut 20 à 30 minutes en début d'après-midi."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "« Le jet lag, c'est dans la tête. »",
+          "text": [
+            "C'est un phénomène biologique mesurable : décalage de la mélatonine, de la température et des rythmes des organes."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Ce que fait Fuseo"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo applique ces principes à votre voyage : à partir de vos vols et de vos horaires habituels, il estime où en est votre horloge chaque jour et en déduit trois leviers."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Lumière",
+          "text": ["Quand la chercher, quand l'éviter, y compris à bord."]
+        },
+        {
+          "type": "card",
+          "title": "Sommeil",
+          "text": ["Horaires avant le départ, en vol et sur place, sieste comprise."]
+        },
+        {
+          "type": "card",
+          "title": "Caféine",
+          "text": ["L'heure du dernier café pour protéger la nuit suivante."]
+        }
+      ]
+    }
+  ]
+}

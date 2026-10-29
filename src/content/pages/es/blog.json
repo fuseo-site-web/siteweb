@@ -1,0 +1,326 @@
+[
+  {
+    "id": "jet-lag-est-ouest",
+    "title": "Por qué el jet lag es más duro hacia el este",
+    "lead": "Un París–Nueva York suele llevarse mejor que un Nueva York–París. No es una impresión: es una cuestión del sentido en que debe girar su reloj interno.",
+    "tag": "Cronobiología",
+    "readTime": "4 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "Un París–Nueva York suele llevarse mejor que un Nueva York–París. No es una impresión: es una cuestión del sentido en que debe girar su reloj interno.",
+    "keepLabel": "Lo esencial",
+    "keep": "Hacia el este, el reloj debe adelantarse, lo que va en contra de su tendencia natural. La luz en el momento adecuado es la principal palanca para ayudarle.",
+    "refs": [
+      "Czeisler CA et al. Stability, precision, and near-24-hour period of the human circadian pacemaker. Science. 1999;284:2177-2181.",
+      "Sack RL. Jet lag. N Engl J Med. 2010;362:440-447.",
+      "Waterhouse J et al. Jet lag: trends and coping strategies. Lancet. 2007;369:1117-1129."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Un reloj algo más lento que la Tierra"
+      },
+      {
+        "type": "p",
+        "text": "En los adultos, el reloj interno funciona de media con un ciclo algo superior a 24 horas, de unas 24 h 10 min en un estudio de referencia realizado en condiciones controladas. Cada día, la luz lo ajusta al día de 24 horas."
+      },
+      {
+        "type": "p",
+        "text": "Esta ligera lentitud tiene una consecuencia directa en el viaje: al reloj le resulta más natural desplazarse un poco más tarde que más temprano."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Hacia el oeste: el día se alarga"
+      },
+      {
+        "type": "p",
+        "text": "Al volar hacia el oeste, el día del viaje se alarga. El reloj debe retrasarse, es decir, ir en el sentido en que ya deriva de forma espontánea. La adaptación suele ser más rápida."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Hacia el este: el día se acorta"
+      },
+      {
+        "type": "p",
+        "text": "Hacia el este, en cambio, hay que adelantar el reloj: dormirse y despertarse antes de lo que el cuerpo espera. Es más difícil, y conciliar el sueño por la noche en destino suele ser el primer problema. En los desfases muy grandes hacia el este, a veces el reloj incluso se ajusta en el otro sentido, retrasándose muchas horas."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Lo que influye en la adaptación"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "el número de zonas horarias atravesadas y el sentido del viaje;",
+          "la luz que recibe en destino y, sobre todo, en qué momento;",
+          "los horarios de sueño antes y durante el viaje;",
+          "las diferencias individuales, entre ellas la edad y el cronotipo."
+        ]
+      }
+    ],
+    "slug": "por-que-el-jet-lag-es-mas-duro-hacia-el-este"
+  },
+  {
+    "id": "lumiere-horloge-biologique",
+    "title": "La luz, la primera palanca contra el desfase horario",
+    "lead": "Ningún suplemento ni truco ajusta el reloj interno con tanta fuerza como la luz. Pero hay que recibirla en el momento adecuado.",
+    "tag": "Luz",
+    "readTime": "4 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "Ningún suplemento ni truco ajusta el reloj interno con tanta fuerza como la luz. Pero hay que recibirla en el momento adecuado.",
+    "keepLabel": "Lo esencial",
+    "keep": "La luz adelanta o retrasa el reloj según la hora biológica a la que se recibe. Fuseo calcula esas ventanas a partir de sus vuelos y sus horarios de sueño.",
+    "refs": [
+      "Berson DM et al. Phototransduction by retinal ganglion cells that set the circadian clock. Science. 2002;295:1070-1073.",
+      "Khalsa SBS et al. A phase response curve to single bright light pulses in human subjects. J Physiol. 2003;549:945-952.",
+      "Eastman CI, Burgess HJ. How to travel the world without jet lag. Sleep Med Clin. 2009;4:241-255."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Cómo la luz ajusta el reloj"
+      },
+      {
+        "type": "p",
+        "text": "Unas células especializadas de la retina, ricas en melanopsina, captan la luz e informan directamente al reloj central situado en el cerebro. Es la señal que lo pone en hora cada día."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "El mismo rayo de sol puede ayudar o perjudicar"
+      },
+      {
+        "type": "p",
+        "text": "El efecto de la luz depende de la hora biológica a la que se recibe. El punto de referencia es el mínimo de temperatura corporal, que suele producirse de 2 a 3 horas antes de su despertar habitual."
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Recibida en las horas posteriores a ese punto, la luz adelanta el reloj: útil hacia el este.",
+          "Recibida en las horas anteriores, lo retrasa: útil hacia el oeste."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Tras un vuelo largo, su «mañana biológica» puede caer en plena tarde local. Por eso un consejo genérico como «salga por la mañana» puede, en algunos casos, frenar la adaptación."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Al aire libre, la luz es mucho más intensa"
+      },
+      {
+        "type": "p",
+        "text": "La luz del día al aire libre es mucho más intensa que la iluminación interior, incluso con el cielo cubierto. Cuando hay que buscar la luz, salir es la mejor opción. Cuando hay que evitarla, unas gafas de sol suelen bastar."
+      }
+    ],
+    "slug": "la-luz-la-primera-palanca-contra-el-desfase-horario"
+  },
+  {
+    "id": "melatonine-jet-lag",
+    "title": "Melatonina y jet lag: lo que dicen realmente los estudios",
+    "lead": "La melatonina es el suplemento más citado para el desfase horario. Hay pruebas a su favor, pero también precauciones que conviene conocer.",
+    "tag": "Melatonina",
+    "readTime": "5 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "La melatonina es el suplemento más citado para el desfase horario. Hay pruebas a su favor, pero también precauciones que conviene conocer.",
+    "keepLabel": "Lo esencial",
+    "keep": "La melatonina puede ayudar, sobre todo hacia el este y a partir de cinco zonas horarias. Consulte a un médico antes de tomarla, sobre todo si sigue un tratamiento.",
+    "refs": [
+      "Herxheimer A, Petrie KJ. Melatonin for the prevention and treatment of jet lag. Cochrane Database Syst Rev. 2002.",
+      "ANSES. Avis relatif aux risques liés à la consommation de compléments alimentaires contenant de la mélatonine. 2018.",
+      "Sack RL. Jet lag. N Engl J Med. 2010;362:440-447."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Una hormona de la noche"
+      },
+      {
+        "type": "p",
+        "text": "El organismo secreta melatonina por la tarde-noche y durante la noche. Tomada en comprimido, puede facilitar el sueño y ayudar al reloj a desplazarse, según la hora de la toma."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Lo que muestran los ensayos"
+      },
+      {
+        "type": "p",
+        "text": "Una revisión Cochrane concluyó que la melatonina reduce los síntomas del jet lag en los viajeros que atraviesan al menos cinco zonas horarias, sobre todo hacia el este, cuando se toma a la hora de acostarse en destino. Las dosis bajas parecían tan eficaces como las altas sobre el desfase; las altas actuaban algo más sobre el sueño."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Las precauciones"
+      },
+      {
+        "type": "p",
+        "text": "En Francia, la agencia sanitaria ANSES recomendó que ciertas personas eviten los suplementos de melatonina, en particular las mujeres embarazadas o lactantes, los niños y adolescentes y las personas con enfermedades inflamatorias o autoinmunes. Son posibles interacciones con algunos tratamientos, y la somnolencia puede afectar a la conducción."
+      },
+      {
+        "type": "p",
+        "text": "La hora de la toma importa tanto como la dosis: tomada en el momento equivocado, la melatonina puede desplazar el reloj en sentido contrario."
+      }
+    ],
+    "slug": "melatonina-y-jet-lag-lo-que-dicen-realmente-los-estudios"
+  },
+  {
+    "id": "dormir-en-avion",
+    "title": "Dormir bien en el avión: lo que realmente ayuda",
+    "lead": "Dormir a bordo solo sirve si es en el momento adecuado. Y algunos reflejos habituales hacen más mal que bien.",
+    "tag": "En vuelo",
+    "readTime": "4 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "Dormir a bordo solo sirve si es en el momento adecuado. Y algunos reflejos habituales hacen más mal que bien.",
+    "keepLabel": "Lo esencial",
+    "keep": "Duerma a bordo según la noche de su destino y deje de lado el alcohol: perjudica el sueño, y más aún en altitud.",
+    "refs": [
+      "Ebrahim IO et al. Alcohol and sleep I: effects on normal sleep. Alcohol Clin Exp Res. 2013;37:539-549.",
+      "Trammer RA, Elmenhorst EM et al. Effects of moderate alcohol consumption and hypobaric hypoxia: implications for passengers' sleep, oxygen saturation and heart rate on long-haul flights. Thorax. 2024;79:970-978.",
+      "Waterhouse J et al. Jet lag: trends and coping strategies. Lancet. 2007;369:1117-1129."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Dormir cuando es de noche… en el destino"
+      },
+      {
+        "type": "p",
+        "text": "El momento de dormir en vuelo depende de su destino y de su estrategia, no de la hora de salida. En un vuelo nocturno hacia el este, dormir alineado con la noche del país de llegada ayuda a iniciar la adaptación. Fuseo lo indica vuelo a vuelo."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "El alcohol, falso amigo del sueño"
+      },
+      {
+        "type": "p",
+        "text": "El alcohol a veces ayuda a dormirse, pero fragmenta la segunda mitad de la noche. En cabina, la presión corresponde a una altitud de hasta unos 2.400 metros. Un estudio en cámara que reproducía esa presión mostró que la combinación de alcohol y altitud reducía el sueño profundo, bajaba la oxigenación de la sangre y aceleraba el corazón durante el sueño, incluso en adultos jóvenes y sanos."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Los reflejos útiles"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "antifaz opaco y tapones o auriculares con cancelación de ruido;",
+          "asiento de ventanilla para que no le despierten los vecinos;",
+          "nada de cafeína en las horas previas al momento previsto para dormir;",
+          "hidratación regular, sin excesos antes de dormir."
+        ]
+      }
+    ],
+    "slug": "dormir-bien-en-el-avion-lo-que-realmente-ayuda"
+  },
+  {
+    "id": "cafeine-sieste-premier-jour",
+    "title": "Cafeína y siesta: cómo usarlas bien el primer día",
+    "lead": "El día de la llegada, dos herramientas ayudan a aguantar hasta la noche: un café bien situado y una siesta corta. Mal utilizadas, arruinan la primera noche.",
+    "tag": "Optimización",
+    "readTime": "4 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "El día de la llegada, dos herramientas ayudan a aguantar hasta la noche: un café bien situado y una siesta corta. Mal utilizadas, arruinan la primera noche.",
+    "keepLabel": "Lo esencial",
+    "keep": "Café por la mañana, no por la tarde; siesta de 30 minutos como máximo a primera hora de la tarde, nada de siestas largas al llegar.",
+    "refs": [
+      "Drake C et al. Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. J Clin Sleep Med. 2013;9:1195-1200.",
+      "Rosekind MR et al. Crew factors in flight operations IX: Effects of planned cockpit rest on crew performance and alertness in long-haul operations. NASA Technical Memorandum 108839. 1994."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "La cafeína actúa más tiempo de lo que se cree"
+      },
+      {
+        "type": "p",
+        "text": "En un estudio, una dosis alta de cafeína tomada 6 horas antes de acostarse seguía reduciendo el sueño en más de una hora, a menudo sin que los participantes lo notaran. La duración del efecto varía mucho de una persona a otra."
+      },
+      {
+        "type": "p",
+        "text": "Consejo práctico: reserve el café para el inicio del día en destino y déjelo mucho antes de la hora prevista para acostarse. Fuseo muestra la hora del último café para cada día."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "La siesta, sí, pero corta"
+      },
+      {
+        "type": "p",
+        "text": "La NASA estudió a pilotos de vuelos de largo recorrido autorizados a descansar 40 minutos en la cabina. Durmieron una media de 26 minutos, y después su rendimiento y su vigilancia eran mejores que los de las tripulaciones sin descanso."
+      },
+      {
+        "type": "p",
+        "text": "Una siesta corta, de 20 a 30 minutos, a primera hora de la tarde ayuda a aguantar hasta la noche. En cambio, una siesta larga al llegar por la mañana retrasa el sueño nocturno."
+      }
+    ],
+    "slug": "cafeina-y-siesta-como-usarlas-bien-el-primer-dia"
+  },
+  {
+    "id": "preparer-horloge-avant-depart",
+    "title": "Preparar el reloj antes de partir",
+    "lead": "El jet lag puede empezar a tratarse antes incluso de subir al avión, desplazando progresivamente el sueño los días anteriores.",
+    "tag": "Preparación",
+    "readTime": "4 min de lectura",
+    "byline": "Equipo Fuseo · septiembre de 2026",
+    "excerpt": "El jet lag puede empezar a tratarse antes incluso de subir al avión, desplazando progresivamente el sueño los días anteriores.",
+    "keepLabel": "Lo esencial",
+    "keep": "Unos días de desfase progresivo, con luz en el momento adecuado, reducen el jet lag antes incluso de la salida.",
+    "refs": [
+      "Eastman CI et al. Advancing circadian rhythms before eastward flight: a strategy to prevent or reduce jet lag. Sleep. 2005;28:33-44.",
+      "Burgess HJ et al. Preflight adjustment to eastward travel: 3 days of advancing sleep with and without morning bright light. J Biol Rhythms. 2003;18:318-328."
+    ],
+    "refsTitle": "Referencias",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "El principio"
+      },
+      {
+        "type": "p",
+        "text": "Para un viaje hacia el este, unos investigadores probaron un método sencillo: adelantar la hora de acostarse y de levantarse una hora al día durante tres días, con luz intensa al despertar. El reloj interno se adelantaba claramente antes de la salida, lo que reduce el camino por recorrer en destino."
+      },
+      {
+        "type": "p",
+        "text": "Hacia el oeste es al revés: acostarse un poco más tarde cada noche y buscar la luz por la tarde-noche."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Adaptarlo a su vida"
+      },
+      {
+        "type": "p",
+        "text": "Tres días de desfase no siempre son compatibles con el trabajo o la familia. Incluso uno o dos días de preparación, o un desfase parcial, reducen la diferencia que hay que recuperar. En Fuseo, usted elige de 0 a 3 días de preparación."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Cuándo no prepararse"
+      },
+      {
+        "type": "p",
+        "text": "Para una estancia muy corta, a veces es preferible no desplazar el reloj en absoluto, o solo a medias, para no sufrir un segundo jet lag al volver. Fuseo propone estas estrategias automáticamente según la duración de la estancia."
+      }
+    ],
+    "slug": "preparar-el-reloj-antes-de-partir"
+  }
+]

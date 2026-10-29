@@ -1,0 +1,12 @@
+# Le runtime Next.js de Netlify est détecté automatiquement.
+# Les en-têtes de sécurité sont définis dans next.config.ts (une seule source).
+# Variables d'environnement : Netlify > Site configuration > Environment variables (voir .env.example).
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[context.production.environment]
+  NEXT_PUBLIC_SITE_URL = "https://fuseo.net"

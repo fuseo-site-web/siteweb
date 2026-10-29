@@ -1,0 +1,60 @@
+{
+  "title": "Confidentialité et cookies",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Responsable du traitement"
+    },
+    {
+      "type": "p",
+      "text": "SLEEPTECHNOLOGY, société par actions simplifiée au capital de 520 €, immatriculée au RCS de Nanterre sous le numéro 933 908 196, dont le siège social est situé 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine. Contact : contact@fuseo.net."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Les données de votre plan restent sur votre appareil"
+    },
+    {
+      "type": "p",
+      "text": "Vos horaires de sommeil, vos vols et vos réglages sont enregistrés uniquement dans le navigateur de votre appareil (stockage local), pour vous permettre de retrouver votre plan. Ils ne sont pas envoyés à nos serveurs. Vous pouvez les effacer à tout moment en vidant les données du site dans votre navigateur."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Paiement"
+    },
+    {
+      "type": "p",
+      "text": "Les paiements sont traités par Stripe, qui recueille les données nécessaires au paiement (adresse email, informations de carte). Fuseo reçoit uniquement la confirmation du paiement et les informations de facturation, conservées pendant la durée imposée par les obligations comptables (10 ans)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Hébergement et polices"
+    },
+    {
+      "type": "p",
+      "text": "Le site est hébergé par Netlify, qui peut enregistrer des données techniques de connexion (adresse IP, date, page consultée) à des fins de sécurité. Les polices d'écriture sont chargées depuis Google Fonts, ce qui transmet votre adresse IP à Google."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Cookies et traceurs"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo n'utilise aucun cookie publicitaire ni de traçage. Le stockage local sert uniquement au fonctionnement du service (votre plan, votre accès payé) et ne nécessite pas de consentement. Si une mesure d'audience est ajoutée, vous en serez informé et votre accord sera demandé lorsque la loi l'exige."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Vos droits"
+    },
+    {
+      "type": "p",
+      "text": "Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Pour les exercer : contact@fuseo.net. Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "title": "Conditions générales de vente",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "1. Objet"
+    },
+    {
+      "type": "p",
+      "text": "Les présentes conditions générales de vente régissent la vente des plans anti-jet lag proposés sur fuseo.net par SLEEPTECHNOLOGY, société par actions simplifiée au capital de 520 €, immatriculée au RCS de Nanterre sous le numéro 933 908 196, dont le siège social est situé 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine (« Fuseo »), à toute personne physique agissant à titre personnel (« le Client »)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "2. Services et prix"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<b>Découverte</b> : gratuit. Aperçu des premiers jours du plan.",
+        "<b>Un voyage</b> : 8,90 € TTC. Plan complet pour un voyage aller et retour, escales comprises, avec export PDF et rappels d'agenda.",
+        "<b>Grand voyageur</b> : 79,90 € TTC. Plans complets illimités pendant 12 mois à compter du paiement, sans reconduction automatique."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Les prix sont indiqués en euros, toutes taxes comprises. Fuseo peut les modifier à tout moment ; le prix applicable est celui affiché au moment de la commande."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "3. Commande et paiement"
+    },
+    {
+      "type": "p",
+      "text": "Le paiement s'effectue en ligne, en une seule fois, par l'intermédiaire de la plateforme sécurisée Stripe. Fuseo n'a jamais accès aux données complètes de la carte bancaire. Un reçu est adressé par email à l'adresse indiquée lors du paiement."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "4. Accès au plan"
+    },
+    {
+      "type": "p",
+      "text": "Le plan complet est débloqué immédiatement après le paiement, sur l'appareil et le navigateur utilisés pour la commande. Le Client est invité à télécharger son plan en PDF pour le conserver. En cas de difficulté d'accès, il peut contacter Fuseo avec son reçu de paiement."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "5. Droit de rétractation"
+    },
+    {
+      "type": "p",
+      "text": "Le plan est un contenu numérique fourni immédiatement après le paiement. Conformément à l'article L221-28, 13° du Code de la consommation, le Client demande expressément l'exécution immédiate et renonce à son droit de rétractation en cochant la case prévue à cet effet avant le paiement."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "6. Nature du service"
+    },
+    {
+      "type": "p",
+      "text": "Les plans Fuseo sont des conseils généraux d'hygiène de vie et de chronobiologie, calculés à partir des informations saisies par le Client. Ils ne constituent ni une consultation, ni un diagnostic, ni un traitement. Le service s'adresse aux adultes en bonne santé. En cas de grossesse, de maladie chronique, de trouble bipolaire, de maladie des yeux ou de traitement en cours, le Client doit demander l'avis de son médecin. La mélatonine et tout médicament ne doivent être pris que sur avis médical."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "7. Responsabilité"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo s'engage à fournir un service conforme à sa description. Sa responsabilité ne saurait être engagée en cas d'informations inexactes saisies par le Client, de modification des horaires de vol, ou d'utilisation du plan contraire aux avertissements ci-dessus."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "8. Données personnelles"
+    },
+    {
+      "type": "p",
+      "text": "Voir la politique de confidentialité."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "9. Réclamations et médiation"
+    },
+    {
+      "type": "p",
+      "text": "Toute réclamation peut être adressée à contact@fuseo.net. Conformément aux articles L611-1 et suivants du Code de la consommation, le Client peut ensuite recourir gratuitement au médiateur de la consommation suivant : [nom et coordonnées du médiateur à compléter]."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "10. Droit applicable"
+    },
+    {
+      "type": "p",
+      "text": "Les présentes conditions sont soumises au droit français."
+    }
+  ]
+}

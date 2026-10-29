@@ -1,0 +1,205 @@
+{
+  "title": "Our method: a calculation, not a one-size-fits-all rule",
+  "lead": "Every Fuseo plan is calculated for you by a chronobiology engine: it simulates your body clock hour by hour, tests hundreds of scenarios and keeps only the one that resets you fastest, in real life.",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "From flight to plan, in six steps"
+    },
+    {
+      "type": "p",
+      "text": "What happens between the moment you enter your flights and the moment your plan appears."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<b>Your profile</b>Bedtime and wake-up time, chronotype, age, sleep, caffeine: we estimate the timing of your “biological night”.",
+        "<b>Your itinerary</b>Every flight, connection and clock change is converted to the minute, including the international date line.",
+        "<b>Your simulated clock</b>A mathematical model of the human clock calculates, every 6 minutes, where your body is.",
+        "<b>Hundreds of scenarios</b>Bedtime, light, darkness: the engine simulates 500 to 1,400 variants and keeps the best one.",
+        "<b>The real-life filter</b>Actual sunlight at the airport, flight time, connections, appointments: anything impossible is replaced.",
+        "<b>Safety checks</b>Melatonin only after a questionnaire, never sleeping pills, drowsy-driving alert."
+      ]
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "6 min",
+          "text": ["time step of the body clock calculation"]
+        },
+        {
+          "type": "card",
+          "title": "500 to 1,400",
+          "text": ["scenarios simulated for a single plan"]
+        },
+        {
+          "type": "card",
+          "title": "≈ 2,000",
+          "text": ["clock points calculated per trip"]
+        },
+        {
+          "type": "card",
+          "title": "33",
+          "text": ["automated tests for every engine release"]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Under the hood: four scientific models"
+    },
+    {
+      "type": "p",
+      "text": "Models published in peer-reviewed journals, rewritten and assembled by our team. No unverifiable “home-made” formula."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "kicker": "01",
+          "title": "The body clock",
+          "text": [
+            "A mathematical oscillator that reproduces the brain's central clock and its response to light, developed at Harvard by Kronauer, Jewett and Forger. It is the heart of the calculation: it tells, at every moment, what time it is “for your body”."
+          ],
+          "ref": "Forger, Jewett &amp; Kronauer, J Biol Rhythms, 1999"
+        },
+        {
+          "type": "card",
+          "kicker": "02",
+          "title": "The effect of light",
+          "text": [
+            "The same light advances the clock after your lowest body-temperature point and delays it before. The engine accounts for biological time, intensity (outdoors, lamp, cabin) and duration of exposure."
+          ],
+          "ref": "Khalsa 2003 · Zeitzer 2000 · St Hilaire 2012 · Chang 2012"
+        },
+        {
+          "type": "card",
+          "kicker": "03",
+          "title": "Sleep and alertness",
+          "text": [
+            "The two-process model: sleep pressure that builds while awake, and the circadian rhythm that modulates it. It predicts your energy slumps and schedules naps and caffeine."
+          ],
+          "ref": "Borbély 1982 · Daan, Beersma &amp; Borbély 1984"
+        },
+        {
+          "type": "card",
+          "kicker": "04",
+          "title": "Melatonin, as an option",
+          "text": [
+            "Two effects calculated separately: resetting the clock and helping you fall asleep. Offered only when useful, at a low dose, and after a safety questionnaire."
+          ],
+          "ref": "Lewy 1998 · Burgess 2008, 2010"
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Models derived from aerospace medicine"
+    },
+    {
+      "type": "p",
+      "text": "These models were not invented for a travel app. They come from research on the fatigue of people who work against the clock: astronauts, aircrews, night workers."
+    },
+    {
+      "type": "p",
+      "text": "For example, simulation software based on Kronauer's clock model was used to estimate the body clock of 21 astronauts during long-duration missions aboard the International Space Station. The two-process sleep model underpins the biomathematical fatigue models used to assess aircrew schedules in aviation."
+    },
+    {
+      "type": "p",
+      "text": "Fuseo applies these same principles to your trip, under the supervision of a sleep physician who is also an <b>aerospace medicine physician</b>."
+    },
+    {
+      "type": "p",
+      "text": "Fuseo is not a fatigue-management tool for on-duty aircrew, nor a medical device."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Validated by our scientific committee"
+    },
+    {
+      "type": "p",
+      "text": "The models, their parameters, the safety rules and the way advice is presented to you have been reviewed and validated by Fuseo's scientific committee, which brings together a sleep physician and an engineer-researcher in sleep technologies."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<b>Dr Jonathan Taieb</b> · sleep physician, aerospace medicine physician, founder of the Institut Médical du Sommeil",
+        "<b>Dr Maxime Elbaz</b> · engineer, PhD in neuroscience, former technical director of the Sleep and Alertness Centre at Hôtel-Dieu hospital, Paris (AP-HP), eHealth coordinator"
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "What we check with every release"
+    },
+    {
+      "type": "p",
+      "text": "Before every release, the engine is automatically tested on real trips and difficult cases."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "8 reference routes",
+          "text": [
+            "Paris ⇄ New York, Tokyo, Los Angeles and Sydney, both ways, with or without connections."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Calendar traps",
+          "text": [
+            "Clock changes (hours that do not exist or happen twice), the date line, arriving “the day before”."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Never the wrong way",
+          "text": [
+            "No light is ever advised at a time when it would worsen the time difference: this is checked against the simulation, over the full 24-hour cycle."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Nothing impossible",
+          "text": [
+            "No “go out in the sun” mid-flight or at night, no nap during a connection, no sleep during your appointment."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Every profile",
+          "text": [
+            "Stays of 24 h, 48 h or a week, immediate return, early birds or night owls, short and long sleepers."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "If the plan goes off track",
+          "text": [
+            "Delayed flight, missed light, short night: the plan is recalculated from what actually happened."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "What we do not claim"
+    },
+    {
+      "type": "p",
+      "text": "Your body clock is <b>estimated</b> from your answers, without blood tests or sensors: the uncertainty is about one hour, and we show it. Alertness scores are relative predictions, not a medical measurement or fitness to drive. Fuseo provides general information on travel chronobiology and does not replace the advice of a healthcare professional."
+    }
+  ]
+}

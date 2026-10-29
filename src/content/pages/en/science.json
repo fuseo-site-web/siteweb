@@ -1,0 +1,228 @@
+{
+  "title": "Why you feel tired, or wide awake at the wrong time, when you change time zones",
+  "lead": "Jet lag is neither a lack of willpower nor simple travel fatigue. It is a mismatch between your body clock and the time in the country you are in. Here is how it works, and how to correct it.",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "A clock at the heart of the brain"
+    },
+    {
+      "type": "p",
+      "text": "In the middle of the brain, in the hypothalamus, a small group of neurons called the suprachiasmatic nucleus acts as the conductor. It imposes a rhythm of about 24 hours on the body: the circadian rhythm."
+    },
+    {
+      "type": "p",
+      "text": "This clock regulates far more than sleep: body temperature, melatonin release in the evening and cortisol in the morning, alertness, appetite, digestion."
+    },
+    {
+      "type": "p",
+      "text": "It is reset every day, mainly by the light picked up by the eyes."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Why you are exhausted… then unable to fall asleep"
+    },
+    {
+      "type": "p",
+      "text": "Two mechanisms decide how sleepy you are. The first is a <b>sleep pressure</b> that builds up with every hour spent awake and empties during the night. The second is the <b>clock's wake signal</b>, which rises through the day and peaks in the evening, precisely to offset accumulated fatigue, then collapses at night."
+    },
+    {
+      "type": "p",
+      "text": "At home, the two are in sync: you last all day and fall asleep easily at night. After an eastbound flight, the clock has stayed on departure time. Result: a slump in the early local afternoon, which is your body's night, then a surge of alertness just when you want to sleep."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Travel fatigue",
+          "text": [
+            "Short night, waiting, dry and noisy cabin: it disappears after a good night's sleep."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Jet lag",
+          "text": [
+            "It persists as long as the clock has not been reset to local time, even after a good sleep. This is what Fuseo targets."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "The whole body is out of sync, and not at the same pace"
+    },
+    {
+      "type": "p",
+      "text": "Each organ has its own clocks, synchronized by the central clock. After a time-zone change, they do not all reset at the same speed. For a few days, the brain, liver or gut no longer agree on what time it is."
+    },
+    {
+      "type": "p",
+      "text": "This is why jet lag is about more than sleep:"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Sleep",
+          "text": ["trouble falling asleep, waking at night or very early"]
+        },
+        {
+          "type": "card",
+          "title": "Alertness",
+          "text": ["daytime sleepiness, poorer concentration and memory"]
+        },
+        {
+          "type": "card",
+          "title": "Digestion",
+          "text": ["hunger at odd times, digestive discomfort"]
+        },
+        {
+          "type": "card",
+          "title": "Mood",
+          "text": ["irritability, low mood"]
+        },
+        {
+          "type": "card",
+          "title": "Performance",
+          "text": ["less reliable reflexes and decision-making"]
+        },
+        {
+          "type": "card",
+          "title": "Immunity",
+          "text": ["lack of sleep makes you more vulnerable to infections"]
+        },
+        {
+          "type": "card",
+          "kicker": "17 h",
+          "title": "Alertness",
+          "text": [
+            "After 17 to 19 hours awake, measured performance is comparable to a blood alcohol level of 0.05% (Williamson &amp; Feyer, 2000)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "× 4,2",
+          "title": "Immune defences",
+          "text": [
+            "Among 164 volunteers exposed to a cold virus, sleeping less than 6 hours multiplied the risk of falling ill by 4.2 (Prather et al., 2015)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "East",
+          "title": "Direction of travel",
+          "text": [
+            "Eastbound trips are generally the hardest, because they require advancing the clock (Sack, 2010)."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "How long does it take to adapt?"
+    },
+    {
+      "type": "p",
+      "text": "There is no single rule. Without help, the clock only shifts gradually, day after day, and the speed of adaptation depends on:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "the number of time zones crossed;",
+        "the direction of travel: eastward, the clock must advance, which is generally harder than delaying it westward;",
+        "your sleep schedule before and during the trip;",
+        "the light you get at your destination, and above all when;",
+        "individual differences, including age and chronotype."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "On a round trip, you pay for the time difference twice: on arrival, then on return."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Common myths"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "“Just stay hydrated.”",
+          "text": ["Drinking makes the flight more comfortable, but does not reset the clock."]
+        },
+        {
+          "type": "card",
+          "title": "“One big night's sleep on arrival and you're sorted.”",
+          "text": ["It clears travel fatigue, not the clock's time difference."]
+        },
+        {
+          "type": "card",
+          "title": "“You should always get morning sun.”",
+          "text": [
+            "It all depends on the direction of travel and your biological time: at the wrong moment, light shifts the clock the wrong way."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "“You can take melatonin whenever you like.”",
+          "text": [
+            "Its effect depends on when it is taken, and it is not suitable for everyone: ask for medical advice."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "“A long nap on arrival helps you recover.”",
+          "text": [
+            "A long nap delays falling asleep at night. Better to have 20 to 30 minutes in the early afternoon."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "“Jet lag is all in the mind.”",
+          "text": [
+            "It is a measurable biological phenomenon: shifted melatonin, temperature and organ rhythms."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "What Fuseo does"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo applies these principles to your trip: from your flights and usual schedule, it estimates where your clock is each day and derives three levers."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Light",
+          "text": ["When to seek it, when to avoid it, including on board."]
+        },
+        {
+          "type": "card",
+          "title": "Sleep",
+          "text": ["Schedules before departure, in flight and at your destination, naps included."]
+        },
+        {
+          "type": "card",
+          "title": "Caffeine",
+          "text": ["The time of your last coffee, to protect the following night."]
+        }
+      ]
+    }
+  ]
+}

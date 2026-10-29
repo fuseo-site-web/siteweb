@@ -1,0 +1,64 @@
+{
+  "title": "Legal notice",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Site publisher"
+    },
+    {
+      "type": "p",
+      "text": "The website fuseo.net is published by SLEEPTECHNOLOGY, a French simplified joint-stock company (SAS) with share capital of €520, registered with the Nanterre Trade and Companies Register under number 933 908 196, whose registered office is at 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine, France."
+    },
+    {
+      "type": "p",
+      "text": "Contact: contact@fuseo.net"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Publication director"
+    },
+    {
+      "type": "p",
+      "text": "Sarah Taieb, president of SLEEPTECHNOLOGY."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Host"
+    },
+    {
+      "type": "p",
+      "text": "Netlify, Inc., 44 Montgomery Street, Suite 300, San Francisco, CA 94104, United States. Website: www.netlify.com."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Scientific committee"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo's content and method are designed with Dr Jonathan Taieb, sleep physician at the Institut Médical du Sommeil, and Dr Maxime Elbaz, engineer and PhD in neuroscience, former technical director of the Sleep and Alertness Centre at Hôtel-Dieu hospital, Paris."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Nature of the information"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo provides general information and advice on sleep and travel chronobiology. The service is not a medical consultation, does not make a diagnosis and does not replace the advice of a healthcare professional."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Intellectual property"
+    },
+    {
+      "type": "p",
+      "text": "All elements of the site (texts, graphics, logo, timelines, code) are the property of SLEEPTECHNOLOGY or used under licence. Any reproduction without authorization is prohibited."
+    }
+  ]
+}

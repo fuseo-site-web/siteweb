@@ -1,0 +1,32 @@
+{
+  "title": "Fuseo Pro",
+  "lead": "La chronobiologie pour ceux qui voyagent beaucoup.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Pour qui ?",
+          "text": [
+            "Entreprises avec des collaborateurs qui voyagent à l'international",
+            "Clubs et organisations sportives",
+            "Pilotes et personnels navigants",
+            "Agences et acteurs du voyage premium"
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Ce que nous proposons",
+          "text": [
+            "Accès multi-utilisateurs",
+            "Protocoles de voyage adaptés à vos déplacements",
+            "Préparation avant départ",
+            "Stratégies lumière et sommeil",
+            "Accompagnement par l'équipe de l'Institut Médical du Sommeil, selon l'offre"
+          ]
+        }
+      ]
+    }
+  ]
+}

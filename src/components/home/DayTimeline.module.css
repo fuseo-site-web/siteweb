@@ -1,0 +1,143 @@
+.bar {
+  position: relative;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  margin: 14px 0 32px;
+}
+
+.seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 8px;
+  transform-origin: 0 50%;
+  animation: grow 0.9s var(--ease-out) both;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.sleep {
+  background: var(--sleep);
+}
+
+.seek {
+  background: var(--amber);
+}
+
+.avoid {
+  background: repeating-linear-gradient(135deg, var(--avoid) 0 5px, transparent 5px 9px);
+  border: 1.5px solid var(--avoid);
+}
+
+.nap {
+  background: var(--sky);
+  opacity: 0.7;
+  top: 9px;
+  bottom: 9px;
+}
+
+.wind {
+  background: var(--wind);
+  top: 10px;
+  bottom: 10px;
+}
+
+.sleepf {
+  background: var(--sleep);
+  opacity: 0.75;
+}
+
+.cafok {
+  background: var(--caf);
+  opacity: 0.55;
+}
+
+.wake {
+  background: var(--amber);
+  border-radius: 50%;
+}
+
+.flight {
+  top: -6px;
+  bottom: auto;
+  height: 6px;
+  background: var(--sky);
+  border-radius: 3px;
+}
+
+.mark {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  border: 2.5px solid var(--surface);
+}
+
+.caf {
+  background: var(--caf);
+}
+
+.tick {
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  padding-top: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.list b {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.list span:last-child {
+  color: var(--muted);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dot.caf {
+  border-radius: 50%;
+}
+
+.dot.flight {
+  top: auto;
+  height: 12px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg {
+    animation: none;
+  }
+}

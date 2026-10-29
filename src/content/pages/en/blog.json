@@ -1,0 +1,326 @@
+[
+  {
+    "id": "jet-lag-est-ouest",
+    "title": "Why jet lag is harder when flying east",
+    "lead": "Paris–New York is often easier to handle than New York–Paris. It is not just an impression: it is about which way your internal clock has to turn.",
+    "tag": "Chronobiology",
+    "readTime": "4 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "Paris–New York is often easier to handle than New York–Paris. It is not just an impression: it is about which way your internal clock has to turn.",
+    "keepLabel": "Key takeaway",
+    "keep": "Flying east, the clock must advance, which goes against its natural tendency. Light at the right time is the main lever to help it.",
+    "refs": [
+      "Czeisler CA et al. Stability, precision, and near-24-hour period of the human circadian pacemaker. Science. 1999;284:2177-2181.",
+      "Sack RL. Jet lag. N Engl J Med. 2010;362:440-447.",
+      "Waterhouse J et al. Jet lag: trends and coping strategies. Lancet. 2007;369:1117-1129."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "A clock slightly slower than the Earth"
+      },
+      {
+        "type": "p",
+        "text": "In adults, the internal clock runs on average on a cycle slightly longer than 24 hours, about 24 h 10 min in a landmark study under controlled conditions. Every day, light resets it to the 24-hour day."
+      },
+      {
+        "type": "p",
+        "text": "This slight slowness has a direct consequence for travel: it is more natural for the clock to shift a little later than to shift earlier."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Flying west: the day gets longer"
+      },
+      {
+        "type": "p",
+        "text": "When flying west, the travel day gets longer. The clock has to be delayed, that is, move in the direction it already drifts naturally. Adaptation is generally faster."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Flying east: the day gets shorter"
+      },
+      {
+        "type": "p",
+        "text": "Flying east, the clock must instead be advanced: falling asleep and waking up earlier than the body expects. This is harder, and falling asleep in the evening at the destination is often the first problem. For very large eastward shifts, the clock sometimes even resets the other way, by delaying many hours."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "What affects adaptation"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "the number of time zones crossed and the direction of travel;",
+          "the light you get at your destination, and above all when;",
+          "sleep schedules before and during the trip;",
+          "individual differences, including age and chronotype."
+        ]
+      }
+    ],
+    "slug": "why-jet-lag-is-harder-when-flying-east"
+  },
+  {
+    "id": "lumiere-horloge-biologique",
+    "title": "Light, the first lever against jet lag",
+    "lead": "No supplement or trick resets the internal clock as powerfully as light. But you have to get it at the right time.",
+    "tag": "Light",
+    "readTime": "4 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "No supplement or trick resets the internal clock as powerfully as light. But you have to get it at the right time.",
+    "keepLabel": "Key takeaway",
+    "keep": "Light advances or delays the clock depending on the biological time at which you receive it. Fuseo calculates these windows from your flights and sleep schedule.",
+    "refs": [
+      "Berson DM et al. Phototransduction by retinal ganglion cells that set the circadian clock. Science. 2002;295:1070-1073.",
+      "Khalsa SBS et al. A phase response curve to single bright light pulses in human subjects. J Physiol. 2003;549:945-952.",
+      "Eastman CI, Burgess HJ. How to travel the world without jet lag. Sleep Med Clin. 2009;4:241-255."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "How light sets the clock"
+      },
+      {
+        "type": "p",
+        "text": "Specialized cells in the retina, rich in melanopsin, capture light and directly inform the central clock in the brain. This is the signal that resets it every day."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "The same ray of sunshine can help or harm"
+      },
+      {
+        "type": "p",
+        "text": "The effect of light depends on the biological time at which it is received. The reference point is the minimum body temperature, which usually occurs 2 to 3 hours before your usual wake-up time."
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Received in the hours after that point, light advances the clock: useful when flying east.",
+          "Received in the hours before it, light delays it: useful when flying west."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "After a long flight, your “biological morning” can fall in the middle of the local afternoon. That is why generic advice like “go out in the morning” can, in some cases, slow down adaptation."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Outdoors, light is far more intense"
+      },
+      {
+        "type": "p",
+        "text": "Outdoor daylight is much more intense than indoor lighting, even on an overcast day. When you need to seek light, going outside is therefore the best option. When you need to avoid it, sunglasses are often enough."
+      }
+    ],
+    "slug": "light-the-first-lever-against-jet-lag"
+  },
+  {
+    "id": "melatonine-jet-lag",
+    "title": "Melatonin and jet lag: what the studies really say",
+    "lead": "Melatonin is the supplement most often mentioned for jet lag. There is evidence in its favour, but also precautions you should know.",
+    "tag": "Melatonin",
+    "readTime": "5 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "Melatonin is the supplement most often mentioned for jet lag. There is evidence in its favour, but also precautions you should know.",
+    "keepLabel": "Key takeaway",
+    "keep": "Melatonin can help, especially eastward and beyond five time zones. Ask a doctor before taking it, particularly if you are on medication.",
+    "refs": [
+      "Herxheimer A, Petrie KJ. Melatonin for the prevention and treatment of jet lag. Cochrane Database Syst Rev. 2002.",
+      "ANSES. Avis relatif aux risques liés à la consommation de compléments alimentaires contenant de la mélatonine. 2018.",
+      "Sack RL. Jet lag. N Engl J Med. 2010;362:440-447."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "A night hormone"
+      },
+      {
+        "type": "p",
+        "text": "Melatonin is secreted by the body in the evening and at night. Taken as a tablet, it can both help you fall asleep and help the clock shift, depending on when it is taken."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "What the trials show"
+      },
+      {
+        "type": "p",
+        "text": "A Cochrane review concluded that melatonin reduces jet lag symptoms in travelers crossing at least five time zones, especially eastward, when taken at bedtime at the destination. Low doses seemed as effective as higher ones for the time shift, with higher doses acting slightly more on falling asleep."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Precautions"
+      },
+      {
+        "type": "p",
+        "text": "In France, the health agency ANSES advised certain people to avoid melatonin supplements, notably pregnant or breastfeeding women, children and adolescents, and people with inflammatory or autoimmune diseases. Interactions with some medications are possible, and drowsiness can impair driving."
+      },
+      {
+        "type": "p",
+        "text": "Timing matters as much as the dose: taken at the wrong time, melatonin can shift the clock the wrong way."
+      }
+    ],
+    "slug": "melatonin-and-jet-lag-what-the-studies-really-say"
+  },
+  {
+    "id": "dormir-en-avion",
+    "title": "Sleeping well on a plane: what really helps",
+    "lead": "Sleeping on board is only useful at the right time. And some common habits do more harm than good.",
+    "tag": "In flight",
+    "readTime": "4 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "Sleeping on board is only useful at the right time. And some common habits do more harm than good.",
+    "keepLabel": "Key takeaway",
+    "keep": "Sleep on board according to the night at your destination, and skip the alcohol: it damages sleep, even more so at altitude.",
+    "refs": [
+      "Ebrahim IO et al. Alcohol and sleep I: effects on normal sleep. Alcohol Clin Exp Res. 2013;37:539-549.",
+      "Trammer RA, Elmenhorst EM et al. Effects of moderate alcohol consumption and hypobaric hypoxia: implications for passengers' sleep, oxygen saturation and heart rate on long-haul flights. Thorax. 2024;79:970-978.",
+      "Waterhouse J et al. Jet lag: trends and coping strategies. Lancet. 2007;369:1117-1129."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Sleep when it is night… at your destination"
+      },
+      {
+        "type": "p",
+        "text": "When to sleep in flight depends on your destination and your strategy, not on the departure time. On an eastbound night flight, sleeping in line with the night at your destination helps start the adaptation. Fuseo tells you flight by flight."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Alcohol, sleep's false friend"
+      },
+      {
+        "type": "p",
+        "text": "Alcohol sometimes helps you fall asleep, but it fragments the second half of the night. In the cabin, pressure corresponds to an altitude of up to about 2,400 metres. A study in a chamber reproducing this pressure showed that combining alcohol and altitude reduced deep sleep, lowered blood oxygen and sped up the heart during sleep, even in young, healthy adults."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Useful habits"
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "blackout mask and earplugs or noise-cancelling headphones;",
+          "window seat so your neighbours don't wake you;",
+          "no caffeine in the hours before you plan to sleep;",
+          "regular hydration, without overdoing it before sleep."
+        ]
+      }
+    ],
+    "slug": "sleeping-well-on-a-plane-what-really-helps"
+  },
+  {
+    "id": "cafeine-sieste-premier-jour",
+    "title": "Caffeine and naps: using them well on day one",
+    "lead": "On arrival day, two tools help you last until the evening: a well-timed coffee and a short nap. Used badly, they sabotage the first night.",
+    "tag": "Optimization",
+    "readTime": "4 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "On arrival day, two tools help you last until the evening: a well-timed coffee and a short nap. Used badly, they sabotage the first night.",
+    "keepLabel": "Key takeaway",
+    "keep": "Coffee in the morning, not the afternoon; a nap of 30 minutes at most in the early afternoon, no long nap on arrival.",
+    "refs": [
+      "Drake C et al. Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. J Clin Sleep Med. 2013;9:1195-1200.",
+      "Rosekind MR et al. Crew factors in flight operations IX: Effects of planned cockpit rest on crew performance and alertness in long-haul operations. NASA Technical Memorandum 108839. 1994."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Caffeine works longer than you think"
+      },
+      {
+        "type": "p",
+        "text": "In one study, a high dose of caffeine taken 6 hours before bedtime still cut sleep by more than an hour, often without participants noticing. How long it acts varies greatly from one person to another."
+      },
+      {
+        "type": "p",
+        "text": "Practical tip: keep coffee for the start of the day at your destination, and stop well before your planned bedtime. Fuseo shows the time of your last coffee for each day."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Naps, yes, but short ones"
+      },
+      {
+        "type": "p",
+        "text": "NASA studied long-haul pilots allowed to rest for 40 minutes in the cockpit. They slept 26 minutes on average, and both their performance and alertness were better afterwards than those of crews without rest."
+      },
+      {
+        "type": "p",
+        "text": "A short nap of 20 to 30 minutes in the early afternoon helps you last until the evening. A long nap on arriving in the morning, on the other hand, delays falling asleep at night."
+      }
+    ],
+    "slug": "caffeine-and-naps-using-them-well-on-day-one"
+  },
+  {
+    "id": "preparer-horloge-avant-depart",
+    "title": "Preparing your clock before you leave",
+    "lead": "You can start treating jet lag before you even board the plane, by gradually shifting your sleep in the days before.",
+    "tag": "Preparation",
+    "readTime": "4 min read",
+    "byline": "Fuseo team · September 2026",
+    "excerpt": "You can start treating jet lag before you even board the plane, by gradually shifting your sleep in the days before.",
+    "keepLabel": "Key takeaway",
+    "keep": "A few days of gradual shifting, with light at the right time, reduce jet lag even before departure.",
+    "refs": [
+      "Eastman CI et al. Advancing circadian rhythms before eastward flight: a strategy to prevent or reduce jet lag. Sleep. 2005;28:33-44.",
+      "Burgess HJ et al. Preflight adjustment to eastward travel: 3 days of advancing sleep with and without morning bright light. J Biol Rhythms. 2003;18:318-328."
+    ],
+    "refsTitle": "References",
+    "blocks": [
+      {
+        "type": "h",
+        "level": 2,
+        "text": "The principle"
+      },
+      {
+        "type": "p",
+        "text": "For an eastbound trip, researchers tested a simple method: bringing bedtime and wake-up time forward by one hour a day for three days, with bright light on waking. The internal clock advanced markedly before departure, which reduces the distance left to cover at the destination."
+      },
+      {
+        "type": "p",
+        "text": "Flying west, it is the opposite: go to bed a little later each evening and seek light in the evening."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "Fitting it into your life"
+      },
+      {
+        "type": "p",
+        "text": "Three days of shifting are not always compatible with work or family. Even one or two days of preparation, or a partial shift, reduce the gap to catch up. In Fuseo, you choose 0 to 3 days of preparation."
+      },
+      {
+        "type": "h",
+        "level": 2,
+        "text": "When not to prepare"
+      },
+      {
+        "type": "p",
+        "text": "For a very short stay, it is sometimes better not to shift your clock at all, or only halfway, to avoid a second jet lag on return. Fuseo offers these strategies automatically depending on the length of stay."
+      }
+    ],
+    "slug": "preparing-your-clock-before-you-leave"
+  }
+]

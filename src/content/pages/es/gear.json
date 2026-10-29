@@ -1,0 +1,41 @@
+{
+  "title": "Equipamiento de viaje para dormir mejor",
+  "lead": "Lo que puede ayudarle a seguir su plan cuando falta luz o tranquilidad. Ninguno de estos equipos es imprescindible.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Luz",
+          "text": [
+            "Cuando su plan pide luz intensa temprano por la mañana o tarde por la noche, una lámpara de fototerapia puede sustituir al sol. Elija un modelo conforme a las normas médicas, de luz blanca y con filtro UV, y siga sus instrucciones de distancia y duración."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Oscuridad",
+          "text": [
+            "Un antifaz bien opaco ayuda a dormir en vuelo y a evitar la luz en los momentos indicados. Al aire libre, unas gafas de sol suelen bastar."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Ruido",
+          "text": [
+            "Tapones de espuma o auriculares con cancelación de ruido para las noches en el avión y en el hotel."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Comodidad",
+          "text": ["Una almohada cervical y ropa holgada facilitan el sueño a bordo."]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Transparencia: Fuseo no percibe actualmente ninguna comisión por estos equipos. Saber más"
+    }
+  ]
+}

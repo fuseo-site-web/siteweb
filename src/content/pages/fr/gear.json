@@ -1,0 +1,41 @@
+{
+  "title": "Équipement de voyage pour mieux dormir",
+  "lead": "Ce qui peut aider à suivre votre plan quand la lumière ou le calme manquent. Aucun de ces équipements n'est indispensable.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Lumière",
+          "text": [
+            "Quand votre plan demande de la lumière vive tôt le matin ou tard le soir, une lampe de luminothérapie peut remplacer le soleil. Préférez un modèle conforme aux normes médicales, à lumière blanche, filtrant les UV, et suivez sa notice pour la distance et la durée."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Obscurité",
+          "text": [
+            "Un masque de sommeil bien occultant aide à dormir en vol et à éviter la lumière aux moments indiqués. Des lunettes de soleil suffisent souvent en extérieur."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Bruit",
+          "text": [
+            "Bouchons d'oreilles en mousse ou casque à réduction de bruit pour les nuits en avion et à l'hôtel."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Confort",
+          "text": ["Un coussin de nuque et des vêtements amples facilitent le sommeil à bord."]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Transparence : Fuseo ne perçoit aujourd'hui aucune commission sur ces équipements. En savoir plus"
+    }
+  ]
+}

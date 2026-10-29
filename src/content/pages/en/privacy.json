@@ -1,0 +1,60 @@
+{
+  "title": "Privacy and cookies",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Data controller"
+    },
+    {
+      "type": "p",
+      "text": "SLEEPTECHNOLOGY, a French simplified joint-stock company (SAS) with share capital of €520, registered with the Nanterre Trade and Companies Register under number 933 908 196, whose registered office is at 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine, France. Contact: contact@fuseo.net."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Your plan data stays on your device"
+    },
+    {
+      "type": "p",
+      "text": "Your sleep times, flights and settings are stored only in your device's browser (local storage), so you can find your plan again. They are not sent to our servers. You can delete them at any time by clearing the site's data in your browser."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Payment"
+    },
+    {
+      "type": "p",
+      "text": "Payments are processed by Stripe, which collects the data needed for payment (email address, card information). Fuseo only receives payment confirmation and billing information, kept for the period required by accounting obligations (10 years)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Hosting and fonts"
+    },
+    {
+      "type": "p",
+      "text": "The site is hosted by Netlify, which may record technical connection data (IP address, date, page viewed) for security purposes. Fonts are loaded from Google Fonts, which transmits your IP address to Google."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Cookies and trackers"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo uses no advertising or tracking cookies. Local storage is used only for the service to work (your plan, your paid access) and does not require consent. If audience measurement is added, you will be informed and your consent will be requested where the law requires it."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Your rights"
+    },
+    {
+      "type": "p",
+      "text": "You have the right to access, rectify, erase, restrict, object to and port your data. To exercise these rights: contact@fuseo.net. You may also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr)."
+    }
+  ]
+}

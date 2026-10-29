@@ -1,0 +1,105 @@
+{
+  "title": "Terms and conditions of sale",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "1. Purpose"
+    },
+    {
+      "type": "p",
+      "text": "These terms and conditions govern the sale of the anti-jet lag plans offered on fuseo.net by SLEEPTECHNOLOGY, a French simplified joint-stock company (SAS) with share capital of €520, registered with the Nanterre Trade and Companies Register under number 933 908 196, whose registered office is at 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine, France (“Fuseo”), to any natural person acting in a personal capacity (“the Customer”)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "2. Services and prices"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<b>Discovery</b> : free. Preview of the first days of the plan.",
+        "<b>One trip</b> : €8.90 incl. VAT. Full plan for one round trip, connections included, with PDF export and calendar reminders.",
+        "<b>Frequent traveler</b> : €79.90 incl. VAT. Unlimited full plans for 12 months from payment, with no automatic renewal."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Prices are shown in euros, all taxes included. Fuseo may change them at any time; the applicable price is the one displayed at the time of ordering."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "3. Order and payment"
+    },
+    {
+      "type": "p",
+      "text": "Payment is made online, in a single instalment, via the secure Stripe platform. Fuseo never has access to full card details. A receipt is sent by email to the address given at payment."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "4. Access to the plan"
+    },
+    {
+      "type": "p",
+      "text": "The full plan is unlocked immediately after payment, on the device and browser used to place the order. The Customer is invited to download the plan as a PDF to keep it. In case of access difficulties, they may contact Fuseo with their payment receipt."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "5. Right of withdrawal"
+    },
+    {
+      "type": "p",
+      "text": "The plan is digital content supplied immediately after payment. In accordance with Article L221-28, 13° of the French Consumer Code, the Customer expressly requests immediate performance and waives their right of withdrawal by ticking the box provided for this purpose before payment."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "6. Nature of the service"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo plans are general lifestyle and chronobiology advice, calculated from the information entered by the Customer. They are not a consultation, a diagnosis or a treatment. The service is intended for healthy adults. If pregnant, with a chronic illness, bipolar disorder, an eye disease or ongoing treatment, the Customer must seek their doctor's advice. Melatonin and any medication should only be taken on medical advice."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "7. Liability"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo undertakes to provide a service that matches its description. It cannot be held liable for inaccurate information entered by the Customer, changes to flight times, or use of the plan contrary to the warnings above."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "8. Personal data"
+    },
+    {
+      "type": "p",
+      "text": "See the privacy policy."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "9. Complaints and mediation"
+    },
+    {
+      "type": "p",
+      "text": "Any complaint may be sent to contact@fuseo.net. In accordance with Articles L611-1 et seq. of the French Consumer Code, the Customer may then use the following consumer mediator free of charge: [mediator name and contact details to be completed]."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "10. Governing law"
+    },
+    {
+      "type": "p",
+      "text": "These terms are governed by French law. In the event of any discrepancy between translations, the French version prevails."
+    }
+  ]
+}

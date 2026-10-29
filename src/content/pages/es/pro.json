@@ -1,0 +1,32 @@
+{
+  "title": "Fuseo Pro",
+  "lead": "La cronobiología para quienes viajan mucho.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "¿Para quién?",
+          "text": [
+            "Empresas con empleados que viajan al extranjero",
+            "Clubes y organizaciones deportivas",
+            "Pilotos y tripulantes de cabina",
+            "Agencias y actores del viaje premium"
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Lo que ofrecemos",
+          "text": [
+            "Acceso multiusuario",
+            "Protocolos de viaje adaptados a sus desplazamientos",
+            "Preparación antes de la salida",
+            "Estrategias de luz y sueño",
+            "Acompañamiento del equipo del Institut Médical du Sommeil, según la oferta"
+          ]
+        }
+      ]
+    }
+  ]
+}

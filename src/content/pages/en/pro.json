@@ -1,0 +1,32 @@
+{
+  "title": "Fuseo Pro",
+  "lead": "Chronobiology for people who travel a lot.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Who is it for?",
+          "text": [
+            "Companies with employees who travel internationally",
+            "Clubs and sports organizations",
+            "Pilots and cabin crew",
+            "Agencies and premium travel businesses"
+          ]
+        },
+        {
+          "type": "card",
+          "title": "What we offer",
+          "text": [
+            "Multi-user access",
+            "Travel protocols tailored to your trips",
+            "Pre-departure preparation",
+            "Light and sleep strategies",
+            "Support from the Institut Médical du Sommeil team, depending on the package"
+          ]
+        }
+      ]
+    }
+  ]
+}

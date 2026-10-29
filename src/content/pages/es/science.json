@@ -1,0 +1,228 @@
+{
+  "title": "Por qué se siente cansado, o despierto en el momento equivocado, al cambiar de zona horaria",
+  "lead": "El jet lag no es falta de voluntad ni simple cansancio del viaje. Es un desajuste entre su reloj biológico y la hora del país en el que está. Así funciona, y así se corrige.",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Un reloj en el corazón del cerebro"
+    },
+    {
+      "type": "p",
+      "text": "En el centro del cerebro, en el hipotálamo, un pequeño grupo de neuronas llamado núcleo supraquiasmático actúa como director de orquesta. Impone al cuerpo un ritmo de unas 24 horas: el ritmo circadiano."
+    },
+    {
+      "type": "p",
+      "text": "Este reloj regula mucho más que el sueño: la temperatura corporal, la secreción de melatonina por la noche y de cortisol por la mañana, la vigilancia, el apetito, la digestión."
+    },
+    {
+      "type": "p",
+      "text": "Se pone en hora cada día, principalmente gracias a la luz que captan los ojos."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Por qué está agotado… y luego no puede dormirse"
+    },
+    {
+      "type": "p",
+      "text": "Dos mecanismos deciden sus ganas de dormir. El primero es una <b>presión de sueño</b> que se acumula con cada hora de vigilia y se vacía durante la noche. El segundo es la <b>señal de alerta del reloj</b>, que sube a lo largo del día y alcanza su máximo por la tarde-noche, justamente para compensar el cansancio acumulado, y luego se desploma por la noche."
+    },
+    {
+      "type": "p",
+      "text": "En casa, ambos están sincronizados: se aguanta todo el día y uno se duerme fácilmente por la noche. Tras un vuelo hacia el este, el reloj se ha quedado en la hora de salida. Resultado: un bajón a primera hora de la tarde local, que corresponde a la noche de su cuerpo, y luego un repunte de vigilia justo cuando querría dormir."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Cansancio del viaje",
+          "text": [
+            "Noche corta, esperas, cabina seca y ruidosa: desaparece tras una buena noche de sueño."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Jet lag",
+          "text": [
+            "Persiste mientras el reloj no se haya ajustado a la hora local, incluso después de dormir bien. Es lo que Fuseo aborda."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Todo el cuerpo está desfasado, y no al mismo ritmo"
+    },
+    {
+      "type": "p",
+      "text": "Cada órgano tiene sus propios relojes, sincronizados por el reloj central. Tras un cambio de zona horaria, no se ajustan todos a la misma velocidad. Durante unos días, el cerebro, el hígado o el intestino ya no se ponen de acuerdo sobre la hora."
+    },
+    {
+      "type": "p",
+      "text": "Por eso el jet lag no se limita al sueño:"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Sueño",
+          "text": ["dificultad para dormirse, despertares nocturnos o muy tempranos"]
+        },
+        {
+          "type": "card",
+          "title": "Vigilancia",
+          "text": ["somnolencia diurna, menos concentración y memoria"]
+        },
+        {
+          "type": "card",
+          "title": "Digestión",
+          "text": ["hambre a deshora, molestias digestivas"]
+        },
+        {
+          "type": "card",
+          "title": "Estado de ánimo",
+          "text": ["irritabilidad, ánimo bajo"]
+        },
+        {
+          "type": "card",
+          "title": "Rendimiento",
+          "text": ["reflejos y toma de decisiones menos seguros"]
+        },
+        {
+          "type": "card",
+          "title": "Inmunidad",
+          "text": ["la falta de sueño aumenta la vulnerabilidad a las infecciones"]
+        },
+        {
+          "type": "card",
+          "kicker": "17 h",
+          "title": "Vigilancia",
+          "text": [
+            "Tras 17 a 19 horas de vigilia, el rendimiento medido es comparable al de una alcoholemia de 0,5 g/L (Williamson &amp; Feyer, 2000)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "× 4,2",
+          "title": "Defensas inmunitarias",
+          "text": [
+            "Entre 164 voluntarios expuestos a un virus del resfriado, dormir menos de 6 horas multiplicaba por 4,2 el riesgo de enfermar (Prather et al., 2015)."
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Este",
+          "title": "Sentido del viaje",
+          "text": [
+            "Los viajes hacia el este suelen ser los más duros, porque exigen adelantar el reloj (Sack, 2010)."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "¿Cuánto se tarda en adaptarse?"
+    },
+    {
+      "type": "p",
+      "text": "No existe una regla única. Sin ayuda, el reloj solo se desplaza poco a poco, día tras día, y la velocidad de adaptación depende de:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "el número de zonas horarias atravesadas;",
+        "el sentido del viaje: hacia el este, el reloj debe adelantarse, lo que suele ser más difícil que retrasarlo hacia el oeste;",
+        "sus horarios de sueño antes y durante el viaje;",
+        "la luz que recibe en destino y, sobre todo, en qué momento;",
+        "las diferencias individuales, entre ellas la edad y el cronotipo."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "En un viaje de ida y vuelta, el desfase se paga dos veces: a la llegada y al regreso."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Ideas falsas"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "«Basta con hidratarse bien.»",
+          "text": ["Beber mejora la comodidad del vuelo, pero no ajusta el reloj."]
+        },
+        {
+          "type": "card",
+          "title": "«Una buena noche al llegar y listo.»",
+          "text": ["Borra el cansancio del viaje, no el desfase del reloj."]
+        },
+        {
+          "type": "card",
+          "title": "«Siempre hay que tomar el sol por la mañana.»",
+          "text": [
+            "Todo depende del sentido del viaje y de su hora biológica: en el momento equivocado, la luz desplaza el reloj en el sentido contrario."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "«La melatonina se toma cuando se quiere.»",
+          "text": [
+            "Su efecto depende de la hora de la toma y no conviene a todo el mundo: consulte a un médico."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "«Una siesta larga al llegar ayuda a recuperarse.»",
+          "text": [
+            "Una siesta larga retrasa el sueño nocturno. Mejor 20 a 30 minutos a primera hora de la tarde."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "«El jet lag está en la cabeza.»",
+          "text": [
+            "Es un fenómeno biológico medible: desfase de la melatonina, de la temperatura y de los ritmos de los órganos."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Lo que hace Fuseo"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo aplica estos principios a su viaje: a partir de sus vuelos y horarios habituales, estima cada día en qué punto está su reloj y deduce tres palancas."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Luz",
+          "text": ["Cuándo buscarla y cuándo evitarla, también a bordo."]
+        },
+        {
+          "type": "card",
+          "title": "Sueño",
+          "text": ["Horarios antes de la salida, en vuelo y en destino, siesta incluida."]
+        },
+        {
+          "type": "card",
+          "title": "Cafeína",
+          "text": ["La hora del último café para proteger la noche siguiente."]
+        }
+      ]
+    }
+  ]
+}

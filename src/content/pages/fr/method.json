@@ -1,0 +1,205 @@
+{
+  "title": "Notre méthode : un calcul, pas une règle toute faite",
+  "lead": "Chaque plan Fuseo est calculé pour vous par un moteur de chronobiologie : il simule votre horloge biologique heure par heure, teste des centaines de scénarios et ne retient que celui qui vous recale le plus vite, dans la vraie vie.",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Du vol au plan, en six étapes"
+    },
+    {
+      "type": "p",
+      "text": "Ce qui se passe entre le moment où vous saisissez vos vols et celui où votre plan s'affiche."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<b>Votre profil</b>Heures de coucher et de lever, chronotype, âge, sommeil, caféine : on estime l'heure de votre « nuit biologique ».",
+        "<b>Votre itinéraire</b>Chaque vol, escale et changement d'heure est converti à la minute près, ligne de changement de date comprise.",
+        "<b>Votre horloge simulée</b>Un modèle mathématique de l'horloge humaine calcule, toutes les 6 minutes, où en est votre corps.",
+        "<b>Des centaines de scénarios</b>Heure du coucher, lumière, obscurité : le moteur simule de 500 à 1 400 variantes et garde la meilleure.",
+        "<b>Le filtre de la vraie vie</b>Soleil réel à l'aéroport, temps de vol, correspondances, rendez-vous : ce qui est impossible est remplacé.",
+        "<b>Les contrôles de sécurité</b>Mélatonine seulement après questionnaire, jamais de somnifère, alerte somnolence au volant."
+      ]
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "6 min",
+          "text": ["pas de calcul de l'horloge biologique"]
+        },
+        {
+          "type": "card",
+          "title": "500 à 1 400",
+          "text": ["scénarios simulés pour un seul plan"]
+        },
+        {
+          "type": "card",
+          "title": "≈ 2 000",
+          "text": ["points de l'horloge calculés par voyage"]
+        },
+        {
+          "type": "card",
+          "title": "33",
+          "text": ["tests automatiques à chaque version du moteur"]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Sous le capot : quatre modèles scientifiques"
+    },
+    {
+      "type": "p",
+      "text": "Des modèles publiés dans des revues à comité de lecture, réécrits et assemblés par notre équipe. Aucune formule « maison » invérifiable."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "kicker": "01",
+          "title": "L'horloge biologique",
+          "text": [
+            "Un oscillateur mathématique qui reproduit l'horloge centrale du cerveau et sa réponse à la lumière, développé à Harvard par Kronauer, Jewett et Forger. C'est le cœur du calcul : il dit à chaque instant quelle heure il est « pour votre corps »."
+          ],
+          "ref": "Forger, Jewett &amp; Kronauer, J Biol Rhythms, 1999"
+        },
+        {
+          "type": "card",
+          "kicker": "02",
+          "title": "L'effet de la lumière",
+          "text": [
+            "La même lumière avance l'horloge après votre point le plus bas de température et la retarde avant. Le moteur tient compte de l'heure biologique, de l'intensité (dehors, lampe, cabine) et de la durée d'exposition."
+          ],
+          "ref": "Khalsa 2003 · Zeitzer 2000 · St Hilaire 2012 · Chang 2012"
+        },
+        {
+          "type": "card",
+          "kicker": "03",
+          "title": "Le sommeil et la vigilance",
+          "text": [
+            "Le modèle à deux processus : la pression de sommeil qui monte pendant l'éveil, et le rythme circadien qui la module. Il prédit vos coups de fatigue et place siestes et caféine."
+          ],
+          "ref": "Borbély 1982 · Daan, Beersma &amp; Borbély 1984"
+        },
+        {
+          "type": "card",
+          "kicker": "04",
+          "title": "La mélatonine, en option",
+          "text": [
+            "Deux effets calculés séparément : le recalage de l'horloge et l'effet sur l'endormissement. Proposée seulement si elle est utile, à faible dose, et après un questionnaire de sécurité."
+          ],
+          "ref": "Lewy 1998 · Burgess 2008, 2010"
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Des modèles issus de la médecine aéronautique et spatiale"
+    },
+    {
+      "type": "p",
+      "text": "Ces modèles n'ont pas été inventés pour une application de voyage. Ils viennent de la recherche sur la fatigue des personnes qui travaillent à contre-horloge : astronautes, équipages, travailleurs de nuit."
+    },
+    {
+      "type": "p",
+      "text": "Un logiciel de simulation fondé sur le modèle d'horloge de Kronauer a par exemple servi à estimer l'horloge biologique de 21 astronautes pendant leurs missions de longue durée à bord de la Station spatiale internationale. Le modèle à deux processus du sommeil est, lui, à la base des modèles biomathématiques de fatigue utilisés pour évaluer les plannings des équipages en aviation."
+    },
+    {
+      "type": "p",
+      "text": "Fuseo applique ces mêmes principes à votre voyage, sous le regard d'un médecin du sommeil qui est aussi <b>médecin aéronautique et spatial</b>."
+    },
+    {
+      "type": "p",
+      "text": "Fuseo n'est pas un outil de gestion de la fatigue des équipages en service, ni un dispositif médical."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Validé par notre comité scientifique"
+    },
+    {
+      "type": "p",
+      "text": "Les modèles, leurs paramètres, les règles de sécurité et la façon dont les conseils vous sont présentés ont été revus et validés par le comité scientifique de Fuseo, qui réunit un médecin du sommeil et un ingénieur chercheur en technologies du sommeil."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<b>Dr Jonathan Taieb</b> · médecin du sommeil, médecin aéronautique et spatial, fondateur de l'Institut Médical du Sommeil",
+        "<b>Dr Maxime Elbaz</b> · ingénieur, docteur en neurosciences, ancien directeur technique du Centre du sommeil et de la vigilance de l'Hôtel-Dieu de Paris (AP-HP), coordinateur e-santé"
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Ce que nous vérifions à chaque version"
+    },
+    {
+      "type": "p",
+      "text": "Avant chaque mise en ligne, le moteur est testé automatiquement sur des voyages réels et des cas difficiles."
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "8 trajets de référence",
+          "text": [
+            "Paris ⇄ New York, Tokyo, Los Angeles et Sydney, dans les deux sens, avec ou sans escale."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Les pièges du calendrier",
+          "text": [
+            "Changements d'heure (heures qui n'existent pas ou qui existent deux fois), ligne de changement de date, arrivée « la veille »."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Jamais à contre-sens",
+          "text": [
+            "Aucune lumière conseillée à un moment où elle aggraverait le décalage : c'est vérifié contre la simulation, sur tout le cycle de 24 h."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Rien d'impossible",
+          "text": [
+            "Pas de « sortez au soleil » en plein vol ou la nuit, pas de sieste pendant une correspondance, pas de sommeil pendant votre rendez-vous."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Tous les profils",
+          "text": [
+            "Séjours de 24 h, 48 h ou une semaine, retour immédiat, lève-tôt ou couche-tard, petits et gros dormeurs."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Si le plan déraille",
+          "text": [
+            "Vol retardé, lumière manquée, nuit écourtée : le plan se recalcule à partir de ce qui s'est vraiment passé."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Ce que nous ne prétendons pas"
+    },
+    {
+      "type": "p",
+      "text": "Votre horloge biologique est <b>estimée</b> à partir de vos réponses, sans prise de sang ni capteur : l'incertitude est d'environ une heure, et nous l'affichons. Les scores de vigilance sont des prédictions relatives, pas une mesure médicale ni une aptitude à conduire. Fuseo donne des informations générales sur la chronobiologie du voyage et ne remplace pas l'avis d'un professionnel de santé."
+    }
+  ]
+}

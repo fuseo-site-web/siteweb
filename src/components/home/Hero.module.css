@@ -1,0 +1,242 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  min-height: calc(100svh - var(--header-h));
+  display: grid;
+  align-items: center;
+  background:
+    radial-gradient(900px 520px at 85% -5%, rgb(60 192 240 / 28%), transparent 60%),
+    radial-gradient(700px 480px at 0% 105%, rgb(255 200 87 / 16%), transparent 60%),
+    linear-gradient(180deg, #061426 0%, #0b2f55 100%);
+}
+
+.stars,
+.arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star {
+  opacity: 0.7;
+  animation: twinkle 4.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.arcPath {
+  fill: none;
+  stroke: rgb(255 255 255 / 22%);
+  stroke-width: 2;
+  stroke-dasharray: 3 11;
+  stroke-linecap: round;
+}
+
+.plane {
+  offset-rotate: auto 90deg;
+  offset-distance: 0%;
+  animation: fly 14s cubic-bezier(0.45, 0.05, 0.4, 1) infinite;
+  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 40%));
+}
+
+@keyframes fly {
+  0% {
+    offset-distance: 2%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  86% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 98%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane {
+    animation: none;
+    offset-distance: 58%;
+  }
+
+  .star {
+    animation: none;
+  }
+}
+
+.inner {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 20px 88px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.copy h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6.2vw, 4.9rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  animation: rise 0.9s var(--ease-out) both;
+}
+
+.lead {
+  margin: 22px 0 30px;
+  max-width: 52ch;
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  color: #cfe3f4;
+  font-weight: 500;
+  animation: rise 0.9s 0.12s var(--ease-out) both;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  animation: rise 0.9s 0.22s var(--ease-out) both;
+}
+
+.primary,
+.ghost {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 15px 26px;
+  border-radius: 999px;
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s,
+    background 0.25s;
+}
+
+.primary {
+  background: var(--amber);
+  color: var(--amberInk);
+  box-shadow: 0 10px 30px rgb(255 200 87 / 25%);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgb(255 200 87 / 40%);
+}
+
+.ghost {
+  border: 2px solid rgb(255 255 255 / 40%);
+  color: #fff;
+}
+
+.ghost:hover {
+  background: var(--glass);
+  border-color: #fff;
+}
+
+.points {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 22px 0 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 14px;
+  color: #cfe3f4;
+  animation: rise 0.9s 0.3s var(--ease-out) both;
+}
+
+.points li::before {
+  content: '✓';
+  color: var(--amber);
+  margin-right: 7px;
+}
+
+.endorse {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 34px;
+  color: #cfe3f4;
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 52ch;
+  animation: rise 0.9s 0.38s var(--ease-out) both;
+}
+
+.chip {
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 10px;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.chip img {
+  height: 34px;
+  width: auto;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  width: 26px;
+  height: 42px;
+  margin-left: -13px;
+  border: 2px solid rgb(255 255 255 / 45%);
+  border-radius: 14px;
+}
+
+.cue span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #fff;
+  animation: cue 1.8s ease-in-out infinite;
+}
+
+@keyframes cue {
+  60% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 36px;
+    gap: 40px;
+  }
+
+  .cue {
+    display: none;
+  }
+}

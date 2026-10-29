@@ -1,0 +1,105 @@
+{
+  "title": "Condiciones generales de venta",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "1. Objeto"
+    },
+    {
+      "type": "p",
+      "text": "Las presentes condiciones generales de venta regulan la venta de los planes antijet lag ofrecidos en fuseo.net por SLEEPTECHNOLOGY, sociedad por acciones simplificada (SAS) francesa con un capital de 520 €, inscrita en el Registro Mercantil de Nanterre con el número 933 908 196, con domicilio social en 130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine, Francia («Fuseo»), a toda persona física que actúe a título personal («el Cliente»)."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "2. Servicios y precios"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<b>Descubrimiento</b> : gratuito. Vista previa de los primeros días del plan.",
+        "<b>Un viaje</b> : 8,90 € IVA incluido. Plan completo para un viaje de ida y vuelta, escalas incluidas, con exportación en PDF y recordatorios de calendario.",
+        "<b>Gran viajero</b> : 79,90 € IVA incluido. Planes completos ilimitados durante 12 meses desde el pago, sin renovación automática."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Los precios se indican en euros, impuestos incluidos. Fuseo puede modificarlos en cualquier momento; el precio aplicable es el que figura en el momento del pedido."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "3. Pedido y pago"
+    },
+    {
+      "type": "p",
+      "text": "El pago se realiza en línea, en una sola vez, a través de la plataforma segura Stripe. Fuseo nunca tiene acceso a los datos completos de la tarjeta. Se envía un recibo por correo electrónico a la dirección indicada durante el pago."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "4. Acceso al plan"
+    },
+    {
+      "type": "p",
+      "text": "El plan completo se desbloquea inmediatamente después del pago, en el dispositivo y el navegador utilizados para el pedido. Se invita al Cliente a descargar su plan en PDF para conservarlo. En caso de dificultad de acceso, puede contactar con Fuseo con su recibo de pago."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "5. Derecho de desistimiento"
+    },
+    {
+      "type": "p",
+      "text": "El plan es un contenido digital suministrado inmediatamente después del pago. De conformidad con el artículo L221-28, 13.° del Código de Consumo francés, el Cliente solicita expresamente la ejecución inmediata y renuncia a su derecho de desistimiento marcando la casilla prevista a tal efecto antes del pago."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "6. Naturaleza del servicio"
+    },
+    {
+      "type": "p",
+      "text": "Los planes Fuseo son consejos generales de hábitos de vida y de cronobiología, calculados a partir de la información introducida por el Cliente. No constituyen ni una consulta, ni un diagnóstico, ni un tratamiento. El servicio está dirigido a adultos sanos. En caso de embarazo, enfermedad crónica, trastorno bipolar, enfermedad ocular o tratamiento en curso, el Cliente debe consultar a su médico. La melatonina y cualquier medicamento solo deben tomarse por consejo médico."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "7. Responsabilidad"
+    },
+    {
+      "type": "p",
+      "text": "Fuseo se compromete a prestar un servicio conforme a su descripción. No se le podrá exigir responsabilidad en caso de información inexacta introducida por el Cliente, de modificación de los horarios de vuelo o de uso del plan contrario a las advertencias anteriores."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "8. Datos personales"
+    },
+    {
+      "type": "p",
+      "text": "Véase la política de privacidad."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "9. Reclamaciones y mediación"
+    },
+    {
+      "type": "p",
+      "text": "Cualquier reclamación puede dirigirse a contact@fuseo.net. De conformidad con los artículos L611-1 y siguientes del Código de Consumo francés, el Cliente puede recurrir gratuitamente al siguiente mediador de consumo: [nombre y datos del mediador por completar]."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "10. Derecho aplicable"
+    },
+    {
+      "type": "p",
+      "text": "Las presentes condiciones se rigen por el derecho francés. En caso de discrepancia entre traducciones, prevalece la versión francesa."
+    }
+  ]
+}

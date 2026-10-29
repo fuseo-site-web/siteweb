@@ -1,0 +1,41 @@
+{
+  "title": "Travel gear to sleep better",
+  "lead": "What can help you follow your plan when light or quiet are lacking. None of this equipment is essential.",
+  "blocks": [
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Light",
+          "text": [
+            "When your plan calls for bright light early in the morning or late in the evening, a light therapy lamp can replace the sun. Choose a model that meets medical standards, with white light and a UV filter, and follow its instructions for distance and duration."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Darkness",
+          "text": [
+            "A well-blocking sleep mask helps you sleep in flight and avoid light at the times indicated. Sunglasses are often enough outdoors."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Noise",
+          "text": [
+            "Foam earplugs or noise-cancelling headphones for nights on the plane and at the hotel."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Comfort",
+          "text": ["A neck pillow and loose clothing make it easier to sleep on board."]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Transparency: Fuseo currently receives no commission on this equipment. Learn more"
+    }
+  ]
+}

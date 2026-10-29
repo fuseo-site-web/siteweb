@@ -1,0 +1,213 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(700px 360px at 85% -20%, rgb(60 192 240 / 28%), transparent 65%),
+    radial-gradient(520px 260px at 0% 110%, rgb(255 200 87 / 14%), transparent 70%),
+    linear-gradient(180deg, #061426, #0b2f55);
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sky span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.85;
+    transform: scale(1.5);
+  }
+}
+
+.route {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(640px, 70%);
+  height: 100%;
+  opacity: 0.55;
+  color: var(--sky);
+}
+
+.route path:first-child {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.6;
+  stroke-dasharray: 3 9;
+  stroke-linecap: round;
+  animation: dash 40s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -480;
+  }
+}
+
+.plane {
+  color: #fff;
+}
+
+.inner {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 44px) 20px clamp(40px, 6vw, 72px);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin: 0 0 clamp(20px, 3vw, 34px);
+  padding: 0;
+  list-style: none;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.crumbs li + li::before {
+  content: '›';
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+.crumbs a {
+  color: #cfe3f4;
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.crumbs [aria-current] {
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  gap: clamp(16px, 3vw, 28px);
+  align-items: flex-start;
+}
+
+.badge {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(56px, 8vw, 72px);
+  aspect-ratio: 1;
+  border-radius: 22px;
+  color: var(--sky);
+  background: linear-gradient(145deg, rgb(255 255 255 / 14%), rgb(255 255 255 / 4%));
+  border: 1px solid rgb(255 255 255 / 22%);
+  box-shadow: 0 10px 40px rgb(0 0 0 / 30%);
+  animation: rise 0.8s var(--ease-out) both;
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--sky);
+  opacity: 0;
+  animation: ring 3.6s ease-out 1s infinite;
+}
+
+@keyframes ring {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.92);
+  }
+}
+
+.text {
+  min-width: 0;
+  animation: rise 0.8s var(--ease-out) 0.08s both;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0b2240;
+  background: var(--amber);
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 24ch;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 18px 0 0;
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 500;
+  color: #cfe3f4;
+}
+
+.actions {
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .route {
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky span,
+  .route path:first-child,
+  .badge,
+  .badge::after,
+  .text {
+    animation: none;
+  }
+
+  .plane {
+    display: none;
+  }
+}

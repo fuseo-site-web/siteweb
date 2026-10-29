@@ -1,0 +1,13 @@
+.next
+node_modules
+package-lock.json
+next-env.d.ts
+docs/PROMPT-AGENT-DEV.md
+docs/PLAN-REFONTE.md
+public/images
+.mcp.json
+.next-e2e
+test-results
+playwright-report
+tsconfig.json
+tests/golden/legacy

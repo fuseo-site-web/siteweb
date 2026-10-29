@@ -1,0 +1,45 @@
+{
+  "title": "Sources scientifiques",
+  "lead": "",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Les recommandations de Fuseo s'appuient sur les publications suivantes."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sack RL. Jet lag. <i>N Engl J Med</i>. 2010;362:440-447.",
+        "Eastman CI, Burgess HJ. How to travel the world without jet lag. <i>Sleep Med Clin</i>. 2009;4(2):241-255.",
+        "Revell VL, Eastman CI. How to trick mother nature into letting you fly around or stay up all night. <i>J Biol Rhythms</i>. 2005;20(4):353-365.",
+        "Burgess HJ et al. Preflight adjustment to eastward travel: 3 days of advancing sleep with and without morning bright light. <i>J Biol Rhythms</i>. 2003;18(4):318-328.",
+        "Khalsa SBS et al. A phase response curve to single bright light pulses in human subjects. <i>J Physiol</i>. 2003;549(3):945-952.",
+        "Herxheimer A, Petrie KJ. Melatonin for the prevention and treatment of jet lag. <i>Cochrane Database Syst Rev</i>. 2002.",
+        "Drake C et al. Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. <i>J Clin Sleep Med</i>. 2013;9(11):1195-1200.",
+        "Williamson AM, Feyer AM. Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication. <i>Occup Environ Med</i>. 2000;57(10):649-655.",
+        "Prather AA et al. Behaviorally assessed sleep and susceptibility to the common cold. <i>Sleep</i>. 2015;38(9):1353-1359.",
+        "Czeisler CA et al. Stability, precision, and near-24-hour period of the human circadian pacemaker. <i>Science</i>. 1999;284:2177-2181.",
+        "Berson DM et al. Phototransduction by retinal ganglion cells that set the circadian clock. <i>Science</i>. 2002;295:1070-1073.",
+        "Eastman CI et al. Advancing circadian rhythms before eastward flight. <i>Sleep</i>. 2005;28:33-44.",
+        "Waterhouse J et al. Jet lag: trends and coping strategies. <i>Lancet</i>. 2007;369:1117-1129.",
+        "Edinger JD et al. Behavioral and psychological treatments for chronic insomnia disorder in adults: an American Academy of Sleep Medicine clinical practice guideline. <i>J Clin Sleep Med</i>. 2021;17(2):255-262.",
+        "Youngstedt SD et al. Human circadian phase-response curves for exercise. <i>J Physiol</i>. 2019;597(8):2253-2268.",
+        "Brooks A, Lack L. A brief afternoon nap following nocturnal sleep restriction: which nap duration is most recuperative? <i>Sleep</i>. 2006;29(6):831-840.",
+        "Wehrens SMT et al. Meal timing regulates the human circadian system. <i>Curr Biol</i>. 2017;27(12):1768-1775.",
+        "Borbély AA. A two process model of sleep regulation. <i>Hum Neurobiol</i>. 1982;1:195-204.",
+        "Reppert SM, Weaver DR. Coordination of circadian timing in mammals. <i>Nature</i>. 2002;418:935-941.",
+        "Yamazaki S et al. Resetting central and peripheral circadian oscillators in transgenic rats. <i>Science</i>. 2000;288:682-685.",
+        "Forger DB, Jewett ME, Kronauer RE. A simpler model of the human circadian pacemaker. <i>J Biol Rhythms</i>. 1999;14(6):532-537.",
+        "Jewett ME, Forger DB, Kronauer RE. Revised limit cycle oscillator model of human circadian pacemaker. <i>J Biol Rhythms</i>. 1999;14(6):493-499.",
+        "Zeitzer JM et al. Sensitivity of the human circadian pacemaker to nocturnal light. <i>J Physiol</i>. 2000;526(3):695-702.",
+        "St Hilaire MA et al. Human phase response curve to a 1 h pulse of bright white light. <i>J Physiol</i>. 2012;590(13):3035-3045.",
+        "Chang AM et al. Human responses to bright light of different durations. <i>J Physiol</i>. 2012;590(13):3103-3112.",
+        "Daan S, Beersma DGM, Borbély AA. Timing of human sleep: recovery process gated by a circadian pacemaker. <i>Am J Physiol</i>. 1984;246:R161-R178.",
+        "Lewy AJ et al. The human phase response curve (PRC) to melatonin is about 12 hours out of phase with the PRC to light. <i>Chronobiol Int</i>. 1998;15(1):71-83.",
+        "Burgess HJ et al. Human phase response curves to three days of daily melatonin: 0.5 mg versus 3.0 mg. <i>J Clin Endocrinol Metab</i>. 2010;95(7):3325-3331.",
+        "Flynn-Evans EE et al. Circadian misalignment affects sleep and medication use before and during spaceflight. <i>npj Microgravity</i>. 2016;2:15019."
+      ]
+    }
+  ]
+}

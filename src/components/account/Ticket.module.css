@@ -1,0 +1,292 @@
+.ticket {
+  --notch: 11px;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s;
+}
+
+.ticket:hover {
+  transform: translateY(-2px);
+}
+
+.past {
+  filter: saturate(0.55);
+  opacity: 0.92;
+}
+
+.main {
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--t-bg);
+  color: var(--t-fg);
+}
+
+.mono {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  border-radius: 50%;
+  background: var(--t-fg);
+  color: var(--t-bg);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 0 3px var(--t-accent);
+}
+
+.airline {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flight {
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0.85;
+  padding-left: 10px;
+  border-left: 1.5px solid currentcolor;
+  white-space: nowrap;
+}
+
+.status {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--t-accent);
+  color: var(--t-accent-fg);
+  white-space: nowrap;
+}
+
+.route {
+  display: grid;
+  grid-template-columns: auto minmax(40px, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 18px 8px;
+}
+
+.end {
+  display: grid;
+  gap: 2px;
+}
+
+.endRight {
+  text-align: right;
+}
+
+.iata {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.city {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.when {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.path {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-text);
+}
+
+.path i {
+  flex: 1;
+  border-top: 2px dashed var(--line);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 18px 18px;
+}
+
+.chip {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 11px;
+}
+
+/* Talon détachable : ligne de perforation et encoches. */
+.stub {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 18px;
+  background: var(--surface2);
+  border-left: 2px dashed var(--line);
+}
+
+.stub::before,
+.stub::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--notch) / -1 - 1px);
+  width: calc(var(--notch) * 2);
+  height: calc(var(--notch) * 2);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.stub::before {
+  top: calc(var(--notch) / -1);
+}
+
+.stub::after {
+  bottom: calc(var(--notch) / -1);
+}
+
+.barcode {
+  height: 34px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 2px,
+    transparent 2px 4px,
+    var(--ink) 4px 5px,
+    transparent 5px 8px,
+    var(--ink) 8px 11px,
+    transparent 11px 13px
+  );
+  opacity: 0.75;
+}
+
+.ref {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.actions {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.open {
+  font-weight: 800;
+  color: #0b2240;
+  background: var(--amber);
+  border-radius: 999px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.linkBtn,
+.dangerBtn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--accent-text);
+}
+
+.dangerBtn {
+  color: var(--err);
+}
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--err);
+}
+
+@media (max-width: 720px) {
+  .ticket {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stub {
+    border-left: 0;
+    border-top: 2px dashed var(--line);
+  }
+
+  .stub::before,
+  .stub::after {
+    top: calc(var(--notch) / -1 - 1px);
+    bottom: auto;
+    left: auto;
+  }
+
+  .stub::before {
+    left: calc(var(--notch) / -1);
+  }
+
+  .stub::after {
+    right: calc(var(--notch) / -1);
+  }
+
+  .route {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket {
+    transition: none;
+  }
+
+  .ticket:hover {
+    transform: none;
+  }
+}
