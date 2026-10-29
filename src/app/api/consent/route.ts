@@ -29,6 +29,9 @@ export async function POST(req: Request) {
   }
   const parsed = body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: 'invalid_input' }, { status: 422 });
+  // Les essais faits en local ne polluent pas la base de production.
+  if (origin && /^https?:\/\/(localhost|127\.|\[::1\])/.test(origin))
+    return new NextResponse(null, { status: 204 });
   // Sans clé service role (développement local), il n'y a rien à enregistrer : la mesure reste décidée par le cookie.
   if (!env.SUPABASE_SERVICE_ROLE_KEY) return new NextResponse(null, { status: 204 });
 

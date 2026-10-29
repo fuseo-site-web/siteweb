@@ -56,6 +56,129 @@ export type Database = {
         };
         Relationships: [];
       };
+      events: {
+        Row: {
+          browser: string | null;
+          channel: string | null;
+          consent_version: string | null;
+          country: string | null;
+          device: string | null;
+          id: number;
+          is_entry: boolean;
+          label: string | null;
+          locale: string | null;
+          name: string;
+          path: string;
+          referrer_host: string | null;
+          session_id: string;
+          source: string | null;
+          target: string | null;
+          ts: string;
+          utm_campaign: string | null;
+          utm_medium: string | null;
+          utm_source: string | null;
+          visitor_id: string;
+        };
+        Insert: {
+          browser?: string | null;
+          channel?: string | null;
+          consent_version?: string | null;
+          country?: string | null;
+          device?: string | null;
+          id?: never;
+          is_entry?: boolean;
+          label?: string | null;
+          locale?: string | null;
+          name: string;
+          path: string;
+          referrer_host?: string | null;
+          session_id: string;
+          source?: string | null;
+          target?: string | null;
+          ts?: string;
+          utm_campaign?: string | null;
+          utm_medium?: string | null;
+          utm_source?: string | null;
+          visitor_id: string;
+        };
+        Update: {
+          browser?: string | null;
+          channel?: string | null;
+          consent_version?: string | null;
+          country?: string | null;
+          device?: string | null;
+          id?: never;
+          is_entry?: boolean;
+          label?: string | null;
+          locale?: string | null;
+          name?: string;
+          path?: string;
+          referrer_host?: string | null;
+          session_id?: string;
+          source?: string | null;
+          target?: string | null;
+          ts?: string;
+          utm_campaign?: string | null;
+          utm_medium?: string | null;
+          utm_source?: string | null;
+          visitor_id?: string;
+        };
+        Relationships: [];
+      };
+      blog_posts: {
+        Row: {
+          body_md: string;
+          cover_alt: string;
+          cover_url: string | null;
+          created_at: string;
+          excerpt: string;
+          id: string;
+          locale: string;
+          published_at: string | null;
+          seo_description: string | null;
+          seo_title: string | null;
+          slug: string;
+          status: string;
+          title: string;
+          topic: string;
+          updated_at: string;
+        };
+        Insert: {
+          body_md?: string;
+          cover_alt?: string;
+          cover_url?: string | null;
+          created_at?: string;
+          excerpt?: string;
+          id?: string;
+          locale?: string;
+          published_at?: string | null;
+          seo_description?: string | null;
+          seo_title?: string | null;
+          slug: string;
+          status?: string;
+          title: string;
+          topic?: string;
+          updated_at?: string;
+        };
+        Update: {
+          body_md?: string;
+          cover_alt?: string;
+          cover_url?: string | null;
+          created_at?: string;
+          excerpt?: string;
+          id?: string;
+          locale?: string;
+          published_at?: string | null;
+          seo_description?: string | null;
+          seo_title?: string | null;
+          slug?: string;
+          status?: string;
+          title?: string;
+          topic?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       consent_logs: {
         Row: {
           anon_id: string;
@@ -89,9 +212,12 @@ export type Database = {
           created_at: string;
           email: string;
           id: string;
+          kind: string;
           locale: string;
           message: string;
           name: string;
+          phone: string | null;
+          preferred_slot: string | null;
           status: string;
           subject: string;
         };
@@ -100,9 +226,12 @@ export type Database = {
           created_at?: string;
           email: string;
           id?: string;
+          kind?: string;
           locale?: string;
           message: string;
           name: string;
+          phone?: string | null;
+          preferred_slot?: string | null;
           status?: string;
           subject: string;
         };
@@ -111,9 +240,12 @@ export type Database = {
           created_at?: string;
           email?: string;
           id?: string;
+          kind?: string;
           locale?: string;
           message?: string;
           name?: string;
+          phone?: string | null;
+          preferred_slot?: string | null;
           status?: string;
           subject?: string;
         };
@@ -534,6 +666,61 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      admin_breakdown: {
+        Args: { p_dim: string; p_from: string; p_to: string };
+        Returns: { sessions: number; value: string }[];
+      };
+      admin_channels_daily: {
+        Args: { p_from: string; p_to: string };
+        Returns: { channel: string; day: string; sessions: number }[];
+      };
+      admin_daily: {
+        Args: { p_from: string; p_to: string };
+        Returns: {
+          clicks: number;
+          day: string;
+          page_views: number;
+          sessions: number;
+          visitors: number;
+        }[];
+      };
+      admin_entry_pages: {
+        Args: { p_from: string; p_limit?: number; p_to: string };
+        Returns: { path: string; sessions: number }[];
+      };
+      admin_journey: {
+        Args: { p_from: string; p_to: string };
+        Returns: {
+          clicked: number;
+          multi_page: number;
+          sessions: number;
+          viewed_login: number;
+          viewed_plan: number;
+          viewed_pricing: number;
+        }[];
+      };
+      admin_kpis: {
+        Args: { p_from: string; p_to: string };
+        Returns: { clicks: number; page_views: number; sessions: number; visitors: number }[];
+      };
+      admin_sources: {
+        Args: { p_from: string; p_to: string };
+        Returns: { channel: string; sessions: number; source: string; visitors: number }[];
+      };
+      admin_top_clicks: {
+        Args: { p_from: string; p_limit?: number; p_to: string };
+        Returns: {
+          clicks: number;
+          label: string;
+          path: string;
+          target: string | null;
+          visitors: number;
+        }[];
+      };
+      admin_top_pages: {
+        Args: { p_from: string; p_limit?: number; p_to: string };
+        Returns: { path: string; views: number; visitors: number }[];
+      };
       rate_limit_hit: {
         Args: { p_key_hash: string; p_limit: number; p_window_seconds: number };
         Returns: boolean;

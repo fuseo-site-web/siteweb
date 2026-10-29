@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { env } from '@/env';
 import { usePathname } from '@/i18n/navigation';
 import { clarityAllowed } from '@/lib/consent/consent';
+import { measurable } from '@/lib/consent/host';
 
 type Win = Window & {
   dataLayer?: unknown[];
@@ -12,15 +13,6 @@ type Win = Window & {
   __fuseoGa?: boolean;
   __fuseoClarity?: boolean;
 };
-
-const SITE_HOST = new URL(env.NEXT_PUBLIC_SITE_URL).hostname;
-const LOCAL_HOST = /^(localhost|127(\.\d+){3}|\[::1\]|.+\.localhost|.+\.local)$/;
-
-/** Mesure uniquement sur le vrai domaine : ni en local, ni sur les aperçus de déploiement. */
-function measurable() {
-  const h = location.hostname;
-  return !LOCAL_HOST.test(h) && (h === SITE_HOST || h === `www.${SITE_HOST}`);
-}
 
 const GA_ID = env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const CLARITY_ID = env.NEXT_PUBLIC_CLARITY_PROJECT_ID;

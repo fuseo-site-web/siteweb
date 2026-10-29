@@ -17,6 +17,7 @@ import {
   type Consent,
 } from '@/lib/consent/consent';
 import { AnalyticsLoader } from './AnalyticsLoader';
+import { AudienceTracker } from './AudienceTracker';
 import { ConsentBanner } from './ConsentBanner';
 
 type Ctx = {
@@ -89,6 +90,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     <ConsentContext.Provider value={value}>
       {children}
       <AnalyticsLoader analytics={consent?.analytics === true} />
+      <AudienceTracker analytics={consent?.analytics === true} visitorId={consent?.id ?? null} />
       <ConsentBanner />
     </ConsentContext.Provider>
   );

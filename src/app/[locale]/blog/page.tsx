@@ -4,7 +4,7 @@ import { BlogBrowser, BlogBrowserStatic } from '@/components/blog/BlogBrowser';
 import { CtaBand } from '@/components/content/CtaBand';
 import { PageHero } from '@/components/content/PageHero';
 import { RelatedLinks } from '@/components/content/RelatedLinks';
-import { coverOf, getPosts } from '@/content/blog';
+import { coverOfPost, getPosts } from '@/content/blog';
 import { norm, type PostItem } from '@/lib/blog-search';
 import { pageMetadata, summarize } from '@/lib/seo';
 
@@ -36,7 +36,7 @@ export default async function BlogPage({ params }: Props) {
     excerpt: p.excerpt,
     tag: p.tag,
     readTime: p.readTime,
-    cover: coverOf(p.id),
+    cover: coverOfPost(p),
     haystack: norm(
       [
         p.title,

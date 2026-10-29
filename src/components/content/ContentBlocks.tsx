@@ -89,6 +89,14 @@ export function ContentBlocks({
         return <Rich key={index} as="h3" html={b.text} />;
       case 'p':
         return <Rich key={index} as="p" html={b.text} />;
+      case 'img':
+        return (
+          <figure key={index} className={styles.figure}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={b.src} alt={b.alt} loading="lazy" decoding="async" />
+            {b.alt ? <figcaption>{b.alt}</figcaption> : null}
+          </figure>
+        );
       case 'list': {
         if (b.ordered) {
           const icons = meta?.steps?.[rank.get(index) ?? 0];

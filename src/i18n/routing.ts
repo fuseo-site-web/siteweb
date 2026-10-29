@@ -46,6 +46,7 @@ export const routing = defineRouting({
     '/cookies': '/cookies',
     '/accessibilite': { fr: '/accessibilite', en: '/accessibility', es: '/accesibilidad' },
     '/confidentialite': { fr: '/confidentialite', en: '/privacy', es: '/privacidad' },
+    '/contact': { fr: '/contact', en: '/contact', es: '/contacto' },
     '/plan-du-site': { fr: '/plan-du-site', en: '/site-map', es: '/mapa-del-sitio' },
   },
 });

@@ -376,3 +376,65 @@ test.describe('consentement aux traceurs', () => {
     await expect(page.getByRole('dialog')).toBeVisible();
   });
 });
+
+test.describe('espace administrateur et statistiques', () => {
+  test("l'espace admin est fermé aux visiteurs : redirection vers la connexion", async ({
+    page,
+  }) => {
+    await page.goto('/admin');
+    await expect(page).toHaveURL(/\/connexion\?next=(%2F|\/)admin$/);
+    await page.goto('/admin/blog');
+    await expect(page).toHaveURL(/\/connexion/);
+  });
+
+  test("les routes d'envoi d'image et d'événements refusent les accès non autorisés", async ({
+    request,
+  }) => {
+    const up = await request.post('/api/admin/upload', {
+      multipart: { file: { name: 'a.png', mimeType: 'image/png', buffer: Buffer.from('x') } },
+    });
+    expect(up.status()).toBe(403);
+    const ids = {
+      vid: '7b1f3c52-5d0e-4a8e-9a3b-2c6d1e4f8a90',
+      sid: '0e2c9d44-8a52-4f0c-b0b4-7d1a6f3c9e11',
+    };
+    // Sans cookie de consentement : accepté en silence mais rien n'est enregistré.
+    const ev = await request.post('/api/events', {
+      data: { ...ids, events: [{ name: 'page_view', path: '/' }] },
+      headers: {
+        'user-agent': 'Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/120 Safari/537.36',
+      },
+    });
+    expect(ev.status()).toBe(204);
+    const bad = await request.post('/api/events', { data: { nope: true } });
+    expect([204, 422]).toContain(bad.status());
+    const foreign = await request.post('/api/events', {
+      data: { ...ids, events: [{ name: 'page_view', path: '/' }] },
+      headers: { origin: 'https://evil.example' },
+    });
+    expect(foreign.status()).toBe(403);
+  });
+
+  test('le formulaire de contact refuse un envoi incomplet et un site tiers', async ({
+    request,
+  }) => {
+    const incomplete = await request.post('/api/contact', { data: { kind: 'contact', name: 'A' } });
+    expect(incomplete.status()).toBe(422);
+    const foreign = await request.post('/api/contact', {
+      data: {},
+      headers: { origin: 'https://evil.example' },
+    });
+    expect(foreign.status()).toBe(403);
+  });
+
+  test('la page contact est accessible', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/contact');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+});

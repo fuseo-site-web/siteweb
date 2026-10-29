@@ -9,7 +9,7 @@ import { PageHero } from '@/components/content/PageHero';
 import { RelatedLinks } from '@/components/content/RelatedLinks';
 import { Icon } from '@/components/ui/Icon';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { coverOf, getPost, getPosts, slugIn } from '@/content/blog';
+import { coverOfPost, getPost, getPosts, slugIn } from '@/content/blog';
 import { env } from '@/env';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -18,6 +18,8 @@ import { summarize } from '@/lib/seo';
 
 type Props = PageProps<'/[locale]/blog/[slug]'>;
 const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
+/** Les images téléversées dans l'admin ont déjà une adresse complète ; celles du site sont relatives. */
+const abs = (u: string) => (u.startsWith('http') ? u : base + u);
 const articleUrl = (locale: string, slug: string) =>
   base +
   getPathname({
@@ -43,9 +45,9 @@ export async function generateMetadata({ params }: Props) {
     const s = await slugIn(l, post.id);
     if (s) languages[l] = articleUrl(l, s);
   }
-  const description = summarize(post.lead);
+  const description = post.seoDescription || summarize(post.lead);
   return {
-    title: post.title,
+    title: post.seoTitle || post.title,
     description,
     alternates: {
       canonical: articleUrl(locale, slug),
@@ -61,15 +63,15 @@ export async function generateMetadata({ params }: Props) {
       url: articleUrl(locale, slug),
       siteName: 'Fuseo',
       locale,
-      ...(coverOf(post.id)
-        ? { images: [{ url: base + coverOf(post.id), width: 1200, height: 675, alt: post.title }] }
+      ...(coverOfPost(post)
+        ? { images: [{ url: abs(coverOfPost(post)!), width: 1200, height: 675, alt: post.title }] }
         : {}),
     },
     twitter: {
-      card: coverOf(post.id) ? 'summary_large_image' : 'summary',
+      card: coverOfPost(post) ? 'summary_large_image' : 'summary',
       title: post.title,
       description,
-      ...(coverOf(post.id) ? { images: [base + coverOf(post.id)] } : {}),
+      ...(coverOfPost(post) ? { images: [abs(coverOfPost(post)!)] } : {}),
     },
   };
 }
@@ -90,9 +92,9 @@ export default async function PostPage({ params }: Props) {
         headline: post.title,
         description: summarize(post.lead),
         inLanguage: locale,
-        ...(coverOf(post.id) ? { image: base + coverOf(post.id) } : {}),
-        datePublished: '2026-09',
-        dateModified: '2026-09',
+        ...(coverOfPost(post) ? { image: abs(coverOfPost(post)!) } : {}),
+        datePublished: post.publishedAt ?? '2026-09',
+        dateModified: post.publishedAt ?? '2026-09',
         mainEntityOfPage: articleUrl(locale, slug),
         author: { '@type': 'Organization', name: 'Fuseo' },
         publisher: { '@type': 'Organization', name: 'Fuseo', url: base },
@@ -133,7 +135,7 @@ export default async function PostPage({ params }: Props) {
     excerpt: p.excerpt,
     tag: p.tag,
     readTime: p.readTime,
-    cover: coverOf(p.id),
+    cover: coverOfPost(p),
     haystack: '',
   });
   // « À lire aussi » : d'abord les articles d'un autre thème, jamais l'article courant.
@@ -141,7 +143,7 @@ export default async function PostPage({ params }: Props) {
     .filter((p) => p.id !== post.id)
     .slice(0, 3)
     .map(asItem);
-  const cover = coverOf(post.id);
+  const cover = coverOfPost(post);
   const pages = await getTranslations({ locale, namespace: 'pages' });
 
   return (

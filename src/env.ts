@@ -8,6 +8,9 @@ export const env = createEnv({
     RESEND_API_KEY: z.string().min(1).optional(),
     HEALTH_ENCRYPTION_KEY: z.string().min(40).optional(),
     HEALTH_ENCRYPTION_KEY_ID: z.string().min(1).default('k1'),
+    // Espace administrateur : code d'ouverture et clé de signature de la session (absents = espace fermé).
+    ADMIN_ACCESS_CODE: z.string().min(4).optional(),
+    ADMIN_SESSION_SECRET: z.string().min(32).optional(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.url(),
@@ -32,6 +35,8 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     HEALTH_ENCRYPTION_KEY: process.env.HEALTH_ENCRYPTION_KEY,
     HEALTH_ENCRYPTION_KEY_ID: process.env.HEALTH_ENCRYPTION_KEY_ID,
+    ADMIN_ACCESS_CODE: process.env.ADMIN_ACCESS_CODE,
+    ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,

@@ -138,5 +138,88 @@ module.exports = [
       'Rellene todos los campos, con un aeropuerto y una fecha de nacimiento válidos.',
     ),
   ],
+  ['contact.title', 'Nous contacter', M('Contact us', 'Contáctenos')],
+  [
+    'contact.lead',
+    'Une question, une demande de rendez-vous ou un projet pour votre entreprise ? Écrivez-nous, nous vous répondons rapidement.',
+    M(
+      'A question, an appointment request or a project for your company? Write to us and we will reply quickly.',
+      '¿Una pregunta, una solicitud de cita o un proyecto para su empresa? Escríbanos y le responderemos pronto.',
+    ),
+  ],
+  ['contact.kindLabel', 'Votre demande', M('Your request', 'Su solicitud')],
+  ['contact.kind_contact', 'Une question', M('A question', 'Una pregunta')],
+  ['contact.kind_rdv', 'Prendre rendez-vous', M('Book an appointment', 'Pedir una cita')],
+  [
+    'contact.kind_pro',
+    'Fuseo Pro (entreprises)',
+    M('Fuseo Pro (companies)', 'Fuseo Pro (empresas)'),
+  ],
+  ['contact.name', 'Nom et prénom', M('Full name', 'Nombre y apellidos')],
+  ['contact.email', 'Adresse e-mail', M('Email address', 'Correo electrónico')],
+  ['contact.phone', 'Téléphone (facultatif)', M('Phone (optional)', 'Teléfono (opcional)')],
+  ['contact.slot', 'Créneau souhaité', M('Preferred time', 'Horario preferido')],
+  [
+    'contact.slotPh',
+    'Ex. : mardi après-midi',
+    M('E.g. Tuesday afternoon', 'Ej.: martes por la tarde'),
+  ],
+  ['contact.subject', 'Objet', M('Subject', 'Asunto')],
+  ['contact.message', 'Votre message', M('Your message', 'Su mensaje')],
+  [
+    'contact.noHealth',
+    "Merci de ne pas indiquer d'informations de santé dans ce message.",
+    M(
+      'Please do not include any health information in this message.',
+      'Por favor, no incluya información de salud en este mensaje.',
+    ),
+  ],
+  [
+    'contact.consent',
+    "J'accepte que Fuseo utilise ces informations pour répondre à ma demande. Elles ne sont ni revendues ni utilisées pour de la publicité.",
+    M(
+      'I agree that Fuseo uses this information to reply to my request. It is neither resold nor used for advertising.',
+      'Acepto que Fuseo utilice esta información para responder a mi solicitud. No se revende ni se usa para publicidad.',
+    ),
+  ],
+  ['contact.send', 'Envoyer', M('Send', 'Enviar')],
+  ['contact.sending', 'Envoi…', M('Sending…', 'Enviando…')],
+  [
+    'contact.thanksTitle',
+    'Merci, votre message est bien reçu',
+    M('Thank you, your message has been received', 'Gracias, hemos recibido su mensaje'),
+  ],
+  [
+    'contact.thanksText',
+    'Nous vous répondons par e-mail dans les meilleurs délais.',
+    M(
+      'We will reply by email as soon as possible.',
+      'Le responderemos por correo electrónico lo antes posible.',
+    ),
+  ],
+  [
+    'contact.invalid',
+    "Vérifiez les champs : adresse e-mail valide, message d'au moins 10 caractères et case cochée.",
+    M(
+      'Please check the fields: a valid email, a message of at least 10 characters and the box ticked.',
+      'Revise los campos: correo válido, mensaje de al menos 10 caracteres y casilla marcada.',
+    ),
+  ],
+  [
+    'contact.limit',
+    'Trop de messages envoyés. Réessayez plus tard.',
+    M(
+      'Too many messages sent. Please try again later.',
+      'Demasiados mensajes enviados. Inténtelo más tarde.',
+    ),
+  ],
+  [
+    'contact.error',
+    "L'envoi a échoué. Réessayez dans un instant.",
+    M(
+      'Sending failed. Please try again shortly.',
+      'No se pudo enviar. Inténtelo de nuevo en un momento.',
+    ),
+  ],
   ['blog.minRead', 'Lecture', M('Read', 'Lectura')],
 ];

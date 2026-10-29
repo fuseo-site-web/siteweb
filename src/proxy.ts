@@ -26,7 +26,9 @@ export default async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const response = intl(request);
+  // L'espace admin n'a pas de langue : on ne fait que rafraîchir la session.
+  const isAdmin = pathname === '/admin' || pathname.startsWith('/admin/');
+  const response = isAdmin ? NextResponse.next({ request }) : intl(request);
   if (hasSession) {
     // Rafraîchit la session (jeton Auth) et reporte les cookies mis à jour sur la réponse.
     const supabase = createServerClient(
@@ -46,5 +48,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|auth|_next|_vercel|admin|.*\\..*).*)'],
+  matcher: ['/((?!api|auth|_next|_vercel|.*\\..*).*)'],
 };

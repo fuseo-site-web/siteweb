@@ -655,3 +655,22 @@
     transform: none;
   }
 }
+
+.figure {
+  margin: 8px 0;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.figure figcaption {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--muted);
+  text-align: center;
+}

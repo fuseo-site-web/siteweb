@@ -22,6 +22,7 @@ export function SiteFooter() {
           </a>
         </p>
         <nav className={styles.links} aria-label={t('footer.legal')}>
+          <Link href="/contact">{t('contact.title')}</Link>
           <Link href="/plan-du-site">{t('footer.sitemap')}</Link>
           <Link href="/mentions-legales">{t('pages.mentions')}</Link>
           <Link href="/cgv">{t('footer.cgv')}</Link>

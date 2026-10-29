@@ -19,6 +19,7 @@ const PAGES: AppPathname[] = [
   '/transparence',
   '/equipement',
   '/pro',
+  '/contact',
   '/plan-du-site',
 ];
 

@@ -1,6 +1,7 @@
 export type Block =
   | { type: 'h'; level: 1 | 2 | 3; text: string }
   | { type: 'p'; text: string }
+  | { type: 'img'; src: string; alt: string }
   | { type: 'list'; ordered: boolean; items: string[] }
   | {
       type: 'cards';
