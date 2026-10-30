@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { env } from '@/env';
-import { getAirport } from '@/lib/airports';
-import { pickFlight, type ProviderFlight } from '@/lib/flight-lookup';
+import { cityName, getAirport } from '@/lib/airports';
+import { flightFacts, pickFlight, type ProviderFlight } from '@/lib/flight-lookup';
 import { rateLimit } from '@/lib/rate-limit';
 
 const query = z.object({
@@ -11,6 +11,7 @@ const query = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
+  locale: z.enum(['fr', 'en', 'es']).default('fr'),
 });
 
 interface ProviderBody {
@@ -26,6 +27,7 @@ export async function GET(req: Request) {
   const parsed = query.safeParse({
     number: url.searchParams.get('number'),
     date: url.searchParams.get('date') ?? undefined,
+    locale: url.searchParams.get('locale') ?? undefined,
   });
   if (!parsed.success) return NextResponse.json({ error: 'invalid_input' }, { status: 422 });
   if (!env.AVIATIONSTACK_API_KEY)
@@ -46,9 +48,15 @@ export async function GET(req: Request) {
     const hit = pickFlight(body.data ?? [], parsed.data.date, today);
     if (!hit) return NextResponse.json({ error: 'not_found' }, { status: 404 });
     // Les deux aéroports doivent exister dans notre liste (fuseau horaire, nom de la ville).
-    if (!getAirport(hit.from) || !getAirport(hit.to))
-      return NextResponse.json({ error: 'unknown_airport' }, { status: 404 });
-    return NextResponse.json(hit);
+    const from = getAirport(hit.from);
+    const to = getAirport(hit.to);
+    if (!from || !to) return NextResponse.json({ error: 'unknown_airport' }, { status: 404 });
+    return NextResponse.json({
+      ...hit,
+      ...flightFacts(hit, from.tz, to.tz),
+      fromCity: cityName(from, parsed.data.locale),
+      toCity: cityName(to, parsed.data.locale),
+    });
   } catch {
     return NextResponse.json({ error: 'upstream' }, { status: 502 });
   }

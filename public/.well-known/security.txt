@@ -1,0 +1,5 @@
+# Signaler une faille de sécurité sur fuseo.net (RFC 9116)
+Contact: mailto:contact@fuseo.net
+Expires: 2027-10-30T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://fuseo.net/.well-known/security.txt

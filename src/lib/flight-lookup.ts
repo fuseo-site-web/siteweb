@@ -75,3 +75,43 @@ export function pickFlight(
     approx,
   };
 }
+
+/** Décalage (minutes) d'un fuseau IANA par rapport à UTC à l'instant `ms`. */
+export function tzOffsetMin(tz: string, ms: number): number {
+  const p = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hourCycle: 'h23',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).formatToParts(new Date(ms));
+  const g = (t: string) => Number(p.find((x) => x.type === t)!.value);
+  return Math.round(
+    (Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute'), g('second')) - ms) /
+      60_000,
+  );
+}
+
+/** Instant UTC d'une date et d'une heure locales dans un fuseau (deux passes pour tenir compte des changements d'heure). */
+export function localToUtc(date: string, time: string, tz: string): number {
+  const guess = Date.parse(`${date}T${time}:00Z`);
+  const first = guess - tzOffsetMin(tz, guess) * 60_000;
+  return guess - tzOffsetMin(tz, first) * 60_000;
+}
+
+/** Durée réelle du vol et décalage horaire entre les deux aéroports (positif vers l'est). */
+export function flightFacts(
+  m: Pick<FlightMatch, 'depDate' | 'depTime' | 'arrDate' | 'arrTime'>,
+  fromTz: string,
+  toTz: string,
+): { durationMin: number; shiftHours: number } {
+  const dep = localToUtc(m.depDate, m.depTime, fromTz);
+  const arr = localToUtc(m.arrDate, m.arrTime, toTz);
+  return {
+    durationMin: Math.round((arr - dep) / 60_000),
+    shiftHours: (tzOffsetMin(toTz, arr) - tzOffsetMin(fromTz, dep)) / 60,
+  };
+}

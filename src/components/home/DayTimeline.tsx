@@ -36,11 +36,16 @@ export function DayTimeline({
 
   return (
     <div>
-      <div className={styles.bar}>
+      <div
+        className={`${styles.bar} ${day.segs.some((s) => s.t === 'flight') ? styles.hasFlight : ''}`}
+      >
         {day.segs.map((s, i) => (
           <span
             key={i}
             className={`${styles.seg} ${styles[s.t] ?? ''}`}
+            // Un vol qui commence avant cette journée « entre » par la gauche : le trait s'estompe pour le montrer.
+            data-seg={s.t}
+            data-cont={s.t === 'flight' && s.a < 0.005 ? 'true' : undefined}
             style={{
               left: `${s.a * 100}%`,
               width: `${Math.max((s.b - s.a) * 100, 0.8)}%`,

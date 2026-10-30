@@ -14,7 +14,7 @@ import { env } from '@/env';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import type { PostItem } from '@/lib/blog-search';
-import { summarize } from '@/lib/seo';
+import { OG_LOCALE, summarize } from '@/lib/seo';
 
 type Props = PageProps<'/[locale]/blog/[slug]'>;
 const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: Props) {
       description,
       url: articleUrl(locale, slug),
       siteName: 'Fuseo',
-      locale,
+      locale: OG_LOCALE[locale] ?? locale,
       ...(coverOfPost(post)
         ? { images: [{ url: abs(coverOfPost(post)!), width: 1200, height: 675, alt: post.title }] }
         : {}),
@@ -82,7 +82,6 @@ export default async function PostPage({ params }: Props) {
   const post = await getPost(locale, slug);
   if (!post) notFound();
   const t = await getTranslations({ locale, namespace: 'blog' });
-  const common = await getTranslations({ locale, namespace: 'common' });
 
   const ld = {
     '@context': 'https://schema.org',
@@ -99,27 +98,6 @@ export default async function PostPage({ params }: Props) {
         author: { '@type': 'Organization', name: 'Fuseo' },
         publisher: { '@type': 'Organization', name: 'Fuseo', url: base },
         citation: post.refs,
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: common('home'),
-            item:
-              base + getPathname({ href: '/', locale: locale as (typeof routing.locales)[number] }),
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: t('title'),
-            item:
-              base +
-              getPathname({ href: '/blog', locale: locale as (typeof routing.locales)[number] }),
-          },
-          { '@type': 'ListItem', position: 3, name: post.title },
-        ],
       },
     ],
   };
@@ -160,7 +138,7 @@ export default async function PostPage({ params }: Props) {
         <div className={styles.cover}>
           <Image
             src={cover}
-            alt=""
+            alt={post.title}
             width={1200}
             height={675}
             sizes="(max-width: 1000px) 100vw, 960px"

@@ -1,9 +1,16 @@
 .card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-areas:
+    'head head'
+    'viz notes';
+  gap: 4px 44px;
+  align-items: start;
   background: var(--glass);
   border: 1px solid var(--glass-line);
   backdrop-filter: blur(18px);
   border-radius: var(--radius-lg);
-  padding: 26px;
+  padding: clamp(22px, 3vw, 34px);
   box-shadow: 0 30px 80px rgb(0 0 0 / 30%);
   animation: float-in 1s 0.25s var(--ease-out) both;
 }
@@ -15,6 +22,14 @@
   }
 }
 
+.head {
+  grid-area: head;
+}
+
+.viz {
+  grid-area: viz;
+}
+
 .card h2 {
   margin: 0 0 4px;
   font-size: 15px;
@@ -23,8 +38,8 @@
 }
 
 .big {
-  margin: 0 0 14px;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin: 0 0 6px;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
   font-weight: 800;
   line-height: 1.25;
 }
@@ -38,7 +53,7 @@
 
 .bar {
   position: relative;
-  height: 36px;
+  height: 42px;
   border-radius: 10px;
   background: rgb(255 255 255 / 8%);
   overflow: hidden;
@@ -95,10 +110,11 @@
 }
 
 .notes {
+  grid-area: notes;
   margin: 18px 0 0;
   padding-left: 18px;
   color: #dbeaf7;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -109,6 +125,16 @@
 
 .notes b {
   color: #fff;
+}
+
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'head'
+      'viz'
+      'notes';
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

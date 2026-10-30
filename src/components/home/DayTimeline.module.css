@@ -63,12 +63,40 @@
   border-radius: 50%;
 }
 
-.flight {
-  top: -6px;
+/* Le vol : un trait ciel posé au-dessus de la frise (hors du cadre), qui se termine par un avion à l'atterrissage. */
+.hasFlight {
+  margin-top: 30px;
+}
+
+.seg.flight {
+  top: -16px;
   bottom: auto;
-  height: 6px;
+  height: 7px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sky), #7fd8f7);
+  box-shadow: 0 0 0 1px rgb(60 192 240 / 18%);
+}
+
+.seg.flight[data-cont='true'] {
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(90deg, rgb(60 192 240 / 0%), var(--sky) 22%, #7fd8f7);
+}
+
+.seg.flight::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
   background: var(--sky);
-  border-radius: 3px;
+  transform: translateY(-50%) rotate(90deg);
+  filter: drop-shadow(0 0 2px var(--surface)) drop-shadow(0 0 1px var(--surface));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
 }
 
 .mark {
@@ -131,9 +159,9 @@
 }
 
 .dot.flight {
-  top: auto;
   height: 12px;
   border-radius: 4px;
+  background: var(--sky);
 }
 
 @media (prefers-reduced-motion: reduce) {

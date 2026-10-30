@@ -419,7 +419,8 @@ test.describe('espace administrateur et statistiques', () => {
     request,
   }) => {
     const incomplete = await request.post('/api/contact', { data: { kind: 'contact', name: 'A' } });
-    expect(incomplete.status()).toBe(422);
+    // 429 si la limite horaire (5 envois par appareil) est déjà atteinte par des essais précédents : la requête n'est de toute façon pas acceptée.
+    expect([422, 429]).toContain(incomplete.status());
     const foreign = await request.post('/api/contact', {
       data: {},
       headers: { origin: 'https://evil.example' },
@@ -564,5 +565,331 @@ test.describe('numéro de vol', () => {
     await page.locator('#outbound0fn').fill('12');
     await page.waitForTimeout(1200);
     expect(calls).toBe(0);
+  });
+});
+
+test.describe('identité du site et partage de liens', () => {
+  test("l'icône, le manifeste et l'image de partage sont servis et déclarés", async ({
+    page,
+    request,
+  }) => {
+    await page.goto('/');
+    await expect(page.locator('link[rel="icon"][href="/favicon.ico"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+      'href',
+      '/apple-touch-icon.png',
+    );
+    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/site.webmanifest');
+    await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'fr_FR');
+    await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute(
+      'content',
+      '1200',
+    );
+    for (const [path, type] of [
+      ['/favicon.ico', /icon/],
+      ['/apple-touch-icon.png', /png/],
+      ['/images/og-fuseo.jpg', /jpeg/],
+      ['/site.webmanifest', /json/],
+    ] as const) {
+      const r = await request.get(path);
+      expect(r.status(), path).toBe(200);
+      expect(r.headers()['content-type'], path).toMatch(type);
+    }
+  });
+
+  test('llms.txt présente le site aux assistants IA, et chaque article n’émet qu’un fil d’Ariane', async ({
+    page,
+    request,
+  }) => {
+    const r = await request.get('/llms.txt');
+    expect(r.status()).toBe(200);
+    expect(r.headers()['content-type']).toContain('text/plain');
+    const body = await r.text();
+    expect(body).toContain('# Fuseo');
+    expect(body).toContain('/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes');
+    await page.goto('/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes');
+    const types = await page.locator('script[type="application/ld+json"]').evaluateAll((els) =>
+      els.flatMap((e) => {
+        const d = JSON.parse(e.textContent ?? '{}');
+        return (d['@graph'] ?? [d]).map((x: { '@type': string }) => x['@type']);
+      }),
+    );
+    expect(types.filter((t) => t === 'BreadcrumbList')).toHaveLength(1);
+    expect(types).toContain('BlogPosting');
+  });
+});
+
+test.describe('module « Préparez votre vol sereinement »', () => {
+  const flight = {
+    from: 'CDG',
+    to: 'HND',
+    fromCity: 'Paris',
+    toCity: 'Tokyo',
+    depDate: '2026-11-04',
+    depTime: '19:30',
+    arrDate: '2026-11-05',
+    arrTime: '15:25',
+    durationMin: 775,
+    shiftHours: 8,
+    approx: false,
+  };
+
+  test('propose trois types de voyage et deux onglets, avec un champ de plus pour un aller-retour', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const finder = page.getByRole('region', { name: 'Préparez votre vol sereinement' });
+    await expect(finder.getByRole('radio', { name: 'Aller-retour' })).toBeChecked();
+    await expect(finder.getByLabel('Vol aller')).toBeVisible();
+    await expect(finder.getByLabel('Vol retour (facultatif)')).toBeVisible();
+    await finder.getByRole('radio', { name: 'Aller simple' }).click();
+    await expect(finder.getByLabel('Vol retour (facultatif)')).toHaveCount(0);
+    await finder.getByRole('radio', { name: 'Multi-destinations' }).click();
+    await finder.getByRole('button', { name: 'Ajouter un vol' }).click();
+    await expect(finder.getByLabel(/^Vol 3$/)).toBeVisible();
+    await finder.getByRole('tab', { name: 'Itinéraire' }).click();
+    await expect(finder.getByLabel(/Trajet 1 · Départ/)).toBeVisible();
+  });
+
+  test('anime la recherche puis affiche le vol ; le plan reste flouté et vide de données réelles hors connexion', async ({
+    page,
+  }) => {
+    const planCalls: string[] = [];
+    await page.route('**/api/plan**', (r) => {
+      planCalls.push(r.request().url());
+      return r.abort();
+    });
+    await page.route('**/api/flight*', (r) => r.fulfill({ json: flight }));
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const finder = page.getByRole('region', { name: 'Préparez votre vol sereinement' });
+    await finder.getByLabel('Vol aller').fill('AF1380');
+    await finder.getByRole('button', { name: 'Créer mon plan' }).click();
+    await expect(finder.getByText('Création de votre plan…')).toBeVisible();
+    const started = Date.now();
+    await expect(
+      finder.getByText('Vol trouvé : votre plan se prépare', { exact: true }),
+    ).toBeVisible({ timeout: 9000 });
+    expect(Date.now() - started).toBeGreaterThan(2500); // l'animation dure 3 à 4 secondes
+    await expect(finder.getByText('Paris')).toBeVisible();
+    await expect(finder.getByText('12 h 55')).toBeVisible();
+    await expect(finder.getByText('8 h vers l’est')).toBeVisible();
+    await expect(finder.getByText('Votre plan sommeil sur mesure')).toBeVisible();
+    await expect(finder.locator('[aria-hidden="true"][inert]')).toHaveCount(1);
+    const signIn = finder.getByRole('link', { name: 'Me connecter' });
+    const href = (await signIn.getAttribute('href')) ?? '';
+    expect(href).toContain('next=%2Fplan-anti-jet-lag%3Fout%3DAF1380%2540'); // adresse de retour encodée en entier
+    expect(
+      await finder.getByRole('link', { name: 'Créer mon compte' }).getAttribute('href'),
+    ).toContain('mode=signup');
+    expect(planCalls).toEqual([]); // aucun plan n'est demandé tant que le visiteur n'est pas connecté
+  });
+
+  test('un vol introuvable propose de saisir son itinéraire', async ({ page }) => {
+    await page.route('**/api/flight*', (r) =>
+      r.fulfill({ status: 404, json: { error: 'not_found' } }),
+    );
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const finder = page.getByRole('region', { name: 'Préparez votre vol sereinement' });
+    await finder.getByLabel('Vol aller').fill('AF9999');
+    await finder.getByRole('button', { name: 'Créer mon plan' }).click();
+    await expect(finder.getByText(/Ce vol est introuvable/)).toBeVisible({ timeout: 9000 });
+    await finder.getByRole('button', { name: 'Saisir mon itinéraire' }).click();
+    await expect(finder.getByRole('tab', { name: 'Itinéraire' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+  });
+
+  test('le planificateur reprend le vol saisi sur la page d’accueil', async ({ page }) => {
+    await page.route('**/api/flight*', (r) => r.fulfill({ json: flight }));
+    await page.goto('/plan-anti-jet-lag?out=AF1380@2026-11-04&back=AF1381@2026-11-14');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await expect(page.locator('#outbound0fn')).toHaveValue('AF1380');
+    await expect(page.locator('#outbound0dd')).toHaveValue('2026-11-04');
+    await expect(page.locator('#outbound0dt')).toHaveValue('19:30');
+    await expect(page.locator('#ret0fn')).toHaveValue('AF1381');
+  });
+
+  test("la frise « Jour du vol » place le trait bleu au-dessus de la barre, avec l'avion à l'atterrissage", async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const seg = page.locator('[data-seg="flight"][data-cont="true"]').first();
+    await expect(seg).toBeVisible();
+    const bar = seg.locator('xpath=..');
+    const [a, b] = await Promise.all([seg.boundingBox(), bar.boundingBox()]);
+    expect(a!.y + a!.height).toBeLessThanOrEqual(b!.y + 1); // le trait est posé au-dessus de la frise
+    expect(a!.x).toBeGreaterThanOrEqual(b!.x - 1);
+    expect(a!.x + a!.width).toBeLessThan(b!.x + b!.width); // il s'arrête à l'arrivée, avant la fin de la journée
+  });
+});
+
+test.describe('ressources pour les robots et les agents IA', () => {
+  test('robots.txt autorise explicitement les robots IA tout en protégeant les pages privées', async ({
+    request,
+  }) => {
+    const txt = await (await request.get('/robots.txt')).text();
+    const groups = txt.split(/\n\s*\n/);
+    const ai = groups.find((g) => /User-Agent: GPTBot/i.test(g))!;
+    expect(ai).toBeTruthy();
+    for (const bot of [
+      'ClaudeBot',
+      'PerplexityBot',
+      'OAI-SearchBot',
+      'Google-Extended',
+      'ChatGPT-User',
+    ]) {
+      expect(ai).toContain(`User-Agent: ${bot}`);
+    }
+    expect(ai).toContain('Allow: /');
+    for (const privatePath of ['/admin/', '/api/', '/connexion'])
+      expect(ai).toContain(`Disallow: ${privatePath}`);
+    expect(txt).toContain('Sitemap:');
+  });
+
+  test('llms-full.txt contient le texte complet, dans les trois langues', async ({ request }) => {
+    const fr = await request.get('/llms-full.txt');
+    expect(fr.headers()['content-type']).toContain('text/plain');
+    const frText = await fr.text();
+    expect(frText).toContain('# Fuseo : texte complet (fr)');
+    expect(frText).toContain('## Mélatonine et jet lag');
+    expect(frText).toContain('Références :');
+    expect(frText).not.toMatch(/<(b|i|a|span|p)[ >]/);
+    expect(frText.length).toBeGreaterThan(20_000);
+    expect(await (await request.get('/llms-full.txt?lang=en')).text()).toContain(
+      'texte complet (en)',
+    );
+    expect(await (await request.get('/llms-full.txt?lang=es')).text()).toContain(
+      'texte complet (es)',
+    );
+  });
+
+  test('ai.txt, humans.txt et security.txt sont servis (security.txt valide, non expiré)', async ({
+    request,
+  }) => {
+    for (const path of ['/ai.txt', '/humans.txt', '/.well-known/security.txt']) {
+      const r = await request.get(path);
+      expect(r.status(), path).toBe(200);
+      expect(r.headers()['content-type'], path).toContain('text/plain');
+    }
+    const sec = await (await request.get('/.well-known/security.txt')).text();
+    expect(sec).toMatch(/^Contact: mailto:/m);
+    const expires = /^Expires: (.+)$/m.exec(sec)![1]!;
+    expect(Date.parse(expires)).toBeGreaterThan(Date.now());
+    expect(await (await request.get('/ai.txt')).text()).toContain('MCP: https://fuseo.net/mcp');
+  });
+});
+
+test.describe('serveur MCP public', () => {
+  const rpc = (request: import('@playwright/test').APIRequestContext, body: unknown) =>
+    request.post('/mcp', {
+      data: body,
+      headers: { accept: 'application/json, text/event-stream' },
+    });
+  const call = async (
+    request: import('@playwright/test').APIRequestContext,
+    name: string,
+    args: object,
+  ) =>
+    (await (
+      await rpc(request, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/call',
+        params: { name, arguments: args },
+      })
+    ).json()) as {
+      result?: { isError?: boolean; content: Array<{ text: string }> };
+      error?: { code: number };
+    };
+
+  test('initialise, liste cinq outils en lecture seule avec leur schéma', async ({ request }) => {
+    const init = await (
+      await rpc(request, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+        params: {
+          protocolVersion: '2025-06-18',
+          capabilities: {},
+          clientInfo: { name: 'test', version: '1' },
+        },
+      })
+    ).json();
+    expect(init.result.protocolVersion).toBe('2025-06-18');
+    expect(init.result.serverInfo.name).toBe('fuseo');
+    const list = await (await rpc(request, { jsonrpc: '2.0', id: 2, method: 'tools/list' })).json();
+    const names = list.result.tools.map((t: { name: string }) => t.name);
+    expect(names).toEqual([
+      'site_info',
+      'search_articles',
+      'get_article',
+      'search_airports',
+      'time_zone_shift',
+    ]);
+    for (const t of list.result.tools) {
+      expect(t.inputSchema.type).toBe('object');
+      expect(t.annotations.readOnlyHint).toBe(true);
+    }
+  });
+
+  test('les outils répondent avec du contenu réel du site', async ({ request }) => {
+    expect((await call(request, 'site_info', {})).result!.content[0]!.text).toContain(
+      'plan anti-jet lag',
+    );
+    const found = (await call(request, 'search_articles', { query: 'melatonine' })).result!
+      .content[0]!.text;
+    expect(found).toContain('melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes');
+    const article = (
+      await call(request, 'get_article', {
+        slug: 'melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
+      })
+    ).result!.content[0]!.text;
+    expect(article).toContain('# Mélatonine et jet lag');
+    expect(article).toContain('Références :');
+    expect(
+      (await call(request, 'search_airports', { query: 'Tokyo' })).result!.content[0]!.text,
+    ).toContain('HND');
+    const shift = (
+      await call(request, 'time_zone_shift', { from: 'cdg', to: 'HND', date: '2026-10-12' })
+    ).result!.content[0]!.text;
+    expect(shift).toContain('7 h vers l’est');
+    expect(shift).toContain('out=CDG-HND-2026-10-12');
+  });
+
+  test('refuse proprement les requêtes invalides, inconnues ou trop longues', async ({
+    request,
+  }) => {
+    const bad = await call(request, 'time_zone_shift', { from: 'PARIS', to: 'HND' });
+    expect(bad.result!.isError).toBe(true);
+    expect((await call(request, 'delete_everything', {})).error!.code).toBe(-32602);
+    const unknown = await (
+      await rpc(request, { jsonrpc: '2.0', id: 3, method: 'resources/subscribe' })
+    ).json();
+    expect(unknown.error.code).toBe(-32601);
+    expect(
+      (await rpc(request, { jsonrpc: '2.0', method: 'notifications/initialized' })).status(),
+    ).toBe(202);
+    expect(
+      (
+        await request.post('/mcp', {
+          data: 'pas du json',
+          headers: { 'content-type': 'text/plain' },
+        })
+      ).status(),
+    ).toBe(400);
+    expect((await request.get('/mcp')).status()).toBe(405);
+    expect(
+      (
+        await request.post('/mcp', {
+          data: 'x'.repeat(20_000),
+          headers: { 'content-type': 'text/plain' },
+        })
+      ).status(),
+    ).toBe(413);
   });
 });

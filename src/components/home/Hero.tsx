@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { PLANE_PATH } from '@/components/brand/FuseoMark';
 import { Link } from '@/i18n/navigation';
 import { ClocksCard } from './ClocksCard';
+import { FlightFinder } from './FlightFinder';
 import styles from './Hero.module.css';
 
 // Étoiles déterministes (pas de Math.random : rendu statique identique à chaque build).
@@ -76,6 +77,9 @@ export function Hero() {
             <span>{t('hero.endorse')}</span>
           </div>
         </div>
+        <FlightFinder />
+      </div>
+      <div className={styles.below}>
         <ClocksCard />
       </div>
       <a href="#apercu" className={styles.cue} aria-label={t('hero.example')}>

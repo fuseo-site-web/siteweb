@@ -9,6 +9,8 @@ export const env = createEnv({
     HEALTH_ENCRYPTION_KEY: z.string().min(40).optional(),
     HEALTH_ENCRYPTION_KEY_ID: z.string().min(1).default('k1'),
     // Espace administrateur : code d'ouverture et clé de signature de la session (absents = espace fermé).
+    // Expéditeur des e-mails (domaine vérifié dans Resend). Par défaut : Fuseo <contact@fuseo.net>.
+    EMAIL_FROM: z.string().min(5).optional(),
     ADMIN_ACCESS_CODE: z.string().min(4).optional(),
     ADMIN_SESSION_SECRET: z.string().min(32).optional(),
   },
@@ -35,6 +37,7 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     HEALTH_ENCRYPTION_KEY: process.env.HEALTH_ENCRYPTION_KEY,
     HEALTH_ENCRYPTION_KEY_ID: process.env.HEALTH_ENCRYPTION_KEY_ID,
+    EMAIL_FROM: process.env.EMAIL_FROM,
     ADMIN_ACCESS_CODE: process.env.ADMIN_ACCESS_CODE,
     ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,

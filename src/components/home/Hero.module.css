@@ -6,6 +6,7 @@
   min-height: calc(100svh - var(--header-h));
   display: grid;
   align-items: center;
+  align-content: center;
   background:
     radial-gradient(900px 520px at 85% -5%, rgb(60 192 240 / 28%), transparent 60%),
     radial-gradient(700px 480px at 0% 105%, rgb(255 200 87 / 16%), transparent 60%),
@@ -80,11 +81,23 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 56px 20px 88px;
+  padding: 56px 20px 40px;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 56px;
-  align-items: center;
+  align-items: start;
+}
+
+/* Carte « Paris → Tokyo » : sous le module de création de plan, centrée. */
+.below {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 72px;
+}
+
+.copy {
+  padding-top: clamp(0px, 3vw, 28px);
 }
 
 .copy h1 {

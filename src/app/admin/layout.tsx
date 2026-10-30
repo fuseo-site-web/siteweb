@@ -7,6 +7,7 @@ import { CodeGate } from '@/components/admin/CodeGate';
 import { getAdminSession, getAdminUser } from '@/lib/admin/access';
 import { getBadgeCounts } from '@/lib/admin/data';
 import { getCurrentUser } from '@/lib/auth';
+import { SITE_ICONS } from '@/lib/seo';
 import '@/styles/globals.css';
 
 const montserrat = Montserrat({
@@ -17,6 +18,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  ...SITE_ICONS,
   title: 'Administration · Fuseo',
   robots: { index: false, follow: false },
 };

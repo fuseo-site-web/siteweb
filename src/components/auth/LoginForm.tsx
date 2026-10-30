@@ -10,11 +10,17 @@ import styles from './Auth.module.css';
 type Mode = 'login' | 'signup' | 'forgot';
 type State = 'idle' | 'sending' | 'sent' | 'signupSent' | 'resetSent' | 'bad' | 'weak' | 'error';
 
-export function LoginForm({ next }: { next?: string }) {
+export function LoginForm({
+  next,
+  initialMode = 'login',
+}: {
+  next?: string;
+  initialMode?: 'login' | 'signup';
+}) {
   const t = useTranslations('auth');
   const footer = useTranslations('footer');
   const locale = useLocale() as (typeof routing.locales)[number];
-  const [mode, setMode] = useState<Mode>('login');
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [state, setState] = useState<State>('idle');

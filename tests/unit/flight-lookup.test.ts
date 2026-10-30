@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, pickFlight, type ProviderFlight } from '@/lib/flight-lookup';
+import {
+  addDays,
+  flightFacts,
+  localToUtc,
+  pickFlight,
+  tzOffsetMin,
+  type ProviderFlight,
+} from '@/lib/flight-lookup';
 
 // Le fournisseur donne l'heure locale avec un faux suffixe +00:00.
 const f = (date: string, dep: string, arr: string, from = 'JFK', to = 'CDG'): ProviderFlight => ({
@@ -66,5 +73,26 @@ describe('recherche de vol par numéro', () => {
   it('additionne les jours sans décalage lié aux changements d’heure', () => {
     expect(addDays('2026-10-24', 3)).toBe('2026-10-27');
     expect(addDays('2026-12-31', 1)).toBe('2027-01-01');
+  });
+
+  it('calcule la durée réelle et le décalage horaire entre deux fuseaux', () => {
+    // Paris → Tokyo en octobre (Paris en UTC+2) : 19:30 → 15:25 le lendemain (Tokyo en UTC+9).
+    const f = flightFacts(
+      { depDate: '2026-10-12', depTime: '19:30', arrDate: '2026-10-13', arrTime: '15:25' },
+      'Europe/Paris',
+      'Asia/Tokyo',
+    );
+    expect(f.shiftHours).toBe(7);
+    expect(f.durationMin).toBe(12 * 60 + 55);
+    // New York → Paris avant le changement d'heure de fin octobre : 6 h vers l'est.
+    const w = flightFacts(
+      { depDate: '2026-10-20', depTime: '17:30', arrDate: '2026-10-21', arrTime: '05:45' },
+      'America/New_York',
+      'Europe/Paris',
+    );
+    expect(w.shiftHours).toBe(6);
+    expect(w.durationMin).toBe(6 * 60 + 15);
+    expect(tzOffsetMin('Asia/Tokyo', Date.UTC(2026, 0, 1))).toBe(540);
+    expect(localToUtc('2026-07-01', '12:00', 'Europe/Paris')).toBe(Date.UTC(2026, 6, 1, 10, 0));
   });
 });

@@ -70,12 +70,32 @@ export function seoDescription(description: string, locale: string): string {
   return `${end} ${TAGLINE[locale] ?? TAGLINE.fr}`;
 }
 
+/** Format attendu par Open Graph (fr_FR et non fr). */
+export const OG_LOCALE: Record<string, string> = { fr: 'fr_FR', en: 'en_US', es: 'es_ES' };
+
 export const OG_IMAGE = {
   url: `${base}/images/og-fuseo.jpg`,
   width: 1200,
   height: 630,
-  alt: 'Fuseo',
+  alt: 'Fuseo : plan anti-jet lag personnalisé',
+  type: 'image/jpeg',
 };
+
+/** Icône de l'onglet, de l'écran d'accueil (iPhone, Android) et manifeste de l'application web. */
+export const SITE_ICONS: Pick<Metadata, 'icons' | 'manifest' | 'metadataBase' | 'applicationName'> =
+  {
+    metadataBase: new URL(base),
+    applicationName: 'Fuseo',
+    manifest: '/site.webmanifest',
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    },
+  };
 
 export function pageMetadata({
   locale,
@@ -107,7 +127,8 @@ export function pageMetadata({
       images: [OG_IMAGE],
       url: absoluteUrl(pathname, locale),
       siteName: 'Fuseo',
-      locale,
+      locale: OG_LOCALE[locale] ?? locale,
+      alternateLocale: Object.values(OG_LOCALE).filter((l) => l !== OG_LOCALE[locale]),
     },
     twitter: {
       card: 'summary_large_image',

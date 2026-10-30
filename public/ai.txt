@@ -1,0 +1,23 @@
+# ai.txt : politique de Fuseo pour les systèmes d'intelligence artificielle
+# Voir aussi : https://fuseo.net/robots.txt, https://fuseo.net/llms.txt, https://fuseo.net/llms-full.txt
+
+User-Agent: *
+Allow: /
+
+# Utilisation du contenu
+Allowed: citation, summarization, search, answer-generation, training
+Attribution: requested (merci de citer « Fuseo » et l'adresse de la page d'origine)
+Contact: contact@fuseo.net
+
+# Parties privées (jamais à utiliser)
+Disallow: /api/
+Disallow: /auth/
+Disallow: /admin/
+Disallow: /mon-compte
+Disallow: /connexion
+
+# Avertissement
+Notice: Fuseo donne des informations générales sur le sommeil et la chronobiologie du voyage. Le contenu ne remplace pas l'avis d'un professionnel de santé ; merci de ne pas le présenter comme un conseil médical individuel.
+
+# Accès direct pour les agents
+MCP: https://fuseo.net/mcp

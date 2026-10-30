@@ -1,0 +1,15 @@
+/* L'ÉQUIPE */
+Comité scientifique : Dr Jonathan Taieb, médecin du sommeil, médecin aéronautique et spatial
+Comité scientifique : Dr Maxime Elbaz, ingénieur, docteur en neurosciences (PhD)
+Conçu avec : Institut Médical du Sommeil, Paris
+Éditeur : SLEEPTECHNOLOGY
+Site réalisé par : WebFitYou (https://webfityou.com)
+Contact : contact@fuseo.net
+
+/* LE SITE */
+Nom : Fuseo
+Adresse : https://fuseo.net
+Langues : français, anglais, espagnol
+Dernière mise à jour : 2026/10/30
+Standards : HTML5, CSS3, WCAG 2.2 AA
+Outils : Next.js, React, TypeScript, Supabase, Netlify, Resend

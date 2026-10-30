@@ -124,6 +124,27 @@ const inputToForm = (i: PlanInput): Form => ({
   coffee: i.coffee,
 });
 
+/** Pré-remplissage depuis l'accueil : `AF1380@2026-11-04` (vol) ou `CDG-HND-2026-11-04` (itinéraire), séparés par des virgules. */
+interface Spec {
+  fn?: string;
+  from?: string;
+  to?: string;
+  dd: string;
+}
+function parseSpecs(v: string | null): Spec[] {
+  return (v ?? '')
+    .split(',')
+    .map((x) => x.trim())
+    .filter(Boolean)
+    .slice(0, 4)
+    .flatMap((x): Spec[] => {
+      const f = /^([A-Za-z0-9]{2}\s?\d{1,4}[A-Za-z]?)(?:@(\d{4}-\d{2}-\d{2}))?$/.exec(x);
+      if (f) return [{ fn: f[1]!.toUpperCase().replace(/\s/g, ''), dd: f[2] ?? '' }];
+      const r = /^([A-Z]{3})-([A-Z]{3})(?:-(\d{4}-\d{2}-\d{2}))?$/.exec(x);
+      return r ? [{ from: r[1]!, to: r[2]!, dd: r[3] ?? '' }] : [];
+    });
+}
+
 type LookupKind = 'busy' | 'ok' | 'approx' | 'fail' | 'quota' | 'airport';
 const FLIGHT_RE = /^[A-Za-z0-9]{2}\s?\d{1,4}[A-Za-z]?$/;
 
@@ -134,7 +155,10 @@ export function PlannerApp() {
   const account = useTranslations('account');
   const nav = useTranslations('nav');
   const locale = useLocale();
-  const tripId = useSearchParams().get('trip');
+  const params = useSearchParams();
+  const tripId = params.get('trip');
+  const outSpecs = parseSpecs(params.get('out'));
+  const backSpecs = parseSpecs(params.get('back'));
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [consent, setConsent] = useState(false);
   const [form, setForm] = useState<Form | null>(null);
@@ -145,6 +169,8 @@ export function PlannerApp() {
   const [lookups, setLookups] = useState<Record<string, LookupKind>>({});
   const lookupTimers = useRef<Record<string, number>>({});
   const lookupKeys = useRef<Record<string, string>>({});
+  // Recherches à lancer dès que le formulaire pré-rempli est affiché (numéros de vol venus de l'accueil).
+  const pendingLookups = useRef<Array<['outbound' | 'ret', number, string, string]>>([]);
   const top = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -154,7 +180,25 @@ export function PlannerApp() {
     } catch {
       /* brouillon illisible */
     }
-    const base = saved?.outbound?.length ? saved : exampleForm();
+    let base = saved?.outbound?.length ? saved : exampleForm();
+    // Venu de l'accueil (vol ou itinéraire déjà saisi) : on repart de là, le profil de sommeil du brouillon est conservé.
+    if (outSpecs.length && !tripId) {
+      const toLeg = (sp: Spec): Leg => ({
+        ...emptyLeg(sp.from, sp.to),
+        dd: sp.dd,
+        ad: sp.dd,
+        fn: sp.fn ?? '',
+      });
+      base = { ...base, outbound: outSpecs.map(toLeg), ret: backSpecs.map(toLeg) };
+      pendingLookups.current = [
+        ...outSpecs.flatMap((sp, i) =>
+          sp.fn ? [['outbound', i, sp.fn, sp.dd] as ['outbound', number, string, string]] : [],
+        ),
+        ...backSpecs.flatMap((sp, i) =>
+          sp.fn ? [['ret', i, sp.fn, sp.dd] as ['ret', number, string, string]] : [],
+        ),
+      ];
+    }
     setForm(base);
 
     void (async () => {
@@ -173,6 +217,14 @@ export function PlannerApp() {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!form || !pendingLookups.current.length) return;
+    const todo = pendingLookups.current;
+    pendingLookups.current = [];
+    todo.forEach(([g, i, fn, dd]) => void lookup(g, i, { fn, dd, force: true }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form]);
 
   useEffect(() => {
     if (!form) return;

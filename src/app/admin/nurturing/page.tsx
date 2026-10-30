@@ -10,12 +10,33 @@ import {
 } from 'lucide-react';
 import { BarList, Card, Kpi, PageHead } from '@/components/admin/parts';
 import styles from '@/components/admin/Admin.module.css';
+import Link from 'next/link';
+import { NurturingLab } from '@/components/admin/NurturingLab';
+import { ADMIN_EMAIL } from '@/lib/admin/access';
 import { getNurturing } from '@/lib/admin/data';
+import { articlesFor } from '@/lib/email/articles';
+import { buildNurturing, SEQUENCES } from '@/lib/email/nurturing';
 
-export default async function Nurturing() {
+export default async function Nurturing({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string }>;
+}) {
   // Données du jour : jamais prérendues.
   await connection();
+  const q = await searchParams;
+  const lang = q.lang === 'en' || q.lang === 'es' ? q.lang : 'fr';
   const n = await getNurturing();
+  const items = await Promise.all(
+    SEQUENCES.map(async (seq) => {
+      const mail = buildNurturing(seq.id, lang, {
+        firstName: 'Camille',
+        articles: await articlesFor(seq.id, lang),
+        unsubscribeUrl: '#',
+      });
+      return { ...seq, subject: mail.subject, html: mail.html };
+    }),
+  );
   const sent = n.emails.get('email.sent') ?? n.emails.get('sent') ?? 0;
   const delivered = n.emails.get('email.delivered') ?? n.emails.get('delivered') ?? 0;
   const opened = n.emails.get('email.opened') ?? n.emails.get('opened') ?? 0;
@@ -118,6 +139,33 @@ export default async function Nurturing() {
           ]}
           unit=" comptes"
         />
+      </Card>
+
+      <Card
+        title="Séquences d'e-mails"
+        icon={Mail}
+        hint="Les e-mails de nurturing prêts à l'emploi, aux couleurs de Fuseo. Aperçu fidèle ci-dessous ; envoyez un exemple à votre adresse pour le voir dans votre boîte."
+        info="Chaque séquence répond à un moment du parcours : bienvenue, relance d'un compte sans voyage, rappel avant le départ, avis après l'arrivée, et nouveautés du blog. Les liens contiennent un repère (utm) : les visites qu'ils apportent apparaissent dans « Statistiques & visibilité », canal « E-mail »."
+        example="Un compte sans voyage reçoit « Un vol en vue ? » trois jours après l'inscription ; s'il clique, la visite est comptée dans le canal E-mail."
+      >
+        <div className={styles.toolbar} style={{ marginBottom: 14 }}>
+          {(['fr', 'en', 'es'] as const).map((l) => (
+            <Link
+              key={l}
+              href={`/admin/nurturing?lang=${l}`}
+              scroll={false}
+              className={l === lang ? styles.btn : styles.btnGhost}
+            >
+              {l === 'fr' ? 'Français' : l === 'en' ? 'English' : 'Español'}
+            </Link>
+          ))}
+        </div>
+        <p style={{ margin: '0 0 14px', fontSize: 13.5, color: 'var(--muted)', lineHeight: 1.55 }}>
+          <b>Envois automatiques : non activés.</b> Pour l&apos;instant, seuls les envois de test à
+          votre adresse partent d&apos;ici. Les envois réels aux clients seront branchés après
+          validation des textes et du consentement.
+        </p>
+        <NurturingLab items={items} lang={lang} admin={ADMIN_EMAIL} />
       </Card>
     </>
   );
