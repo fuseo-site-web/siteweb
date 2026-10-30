@@ -8,6 +8,8 @@ export interface OutgoingEmail {
   text: string;
   /** E-mails commerciaux : en-têtes de désinscription en un clic (RFC 8058), exigés par Gmail et Yahoo. */
   unsubscribeUrl?: string;
+  /** Adresse à laquelle part la réponse (ex. le visiteur d'un formulaire de contact). */
+  replyTo?: string;
 }
 
 export type SendResult = { ok: true; id: string } | { ok: false; error: string };
@@ -29,6 +31,7 @@ export async function sendEmail(mail: OutgoingEmail): Promise<SendResult> {
         subject: mail.subject,
         html: mail.html,
         text: mail.text,
+        ...(mail.replyTo ? { reply_to: mail.replyTo } : {}),
         ...(mail.unsubscribeUrl
           ? {
               headers: {

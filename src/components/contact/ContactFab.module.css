@@ -1,0 +1,219 @@
+.fab {
+  position: fixed;
+  z-index: 55;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 0;
+  border-radius: 50%;
+  color: #4a3500;
+  background: var(--amber);
+  box-shadow:
+    0 10px 30px rgb(11 47 85 / 35%),
+    0 0 0 4px rgb(255 255 255 / 85%);
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s;
+  animation: fab-in 0.7s 1.2s var(--ease-out) both;
+}
+
+/* Un halo discret attire l'œil sans gêner la lecture. */
+.fab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  animation: ring 3.2s ease-out 3s infinite;
+  pointer-events: none;
+}
+
+.fab[data-open='true']::after {
+  animation: none;
+  opacity: 0;
+}
+
+.fab:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 16px 38px rgb(11 47 85 / 42%),
+    0 0 0 4px rgb(255 255 255 / 95%);
+}
+
+.fab:focus-visible,
+.close:focus-visible,
+.page:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.6);
+  }
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.panel {
+  position: fixed;
+  z-index: 55;
+  right: 20px;
+  bottom: 96px;
+  width: min(404px, calc(100vw - 24px));
+  max-height: calc(100dvh - 96px - var(--header-h) - 12px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgb(6 20 38 / 45%);
+  transform-origin: 100% 100%;
+  animation: panel-in 0.35s var(--ease-out) both;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.94);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  color: #fff;
+  background:
+    radial-gradient(260px 120px at 100% 0%, rgb(60 192 240 / 30%), transparent 70%),
+    linear-gradient(160deg, var(--night-2), var(--night));
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--sky), var(--amber)) 1;
+}
+
+.head h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.head p {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #cfe3f4;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: rgb(255 255 255 / 20%);
+}
+
+.body {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.page {
+  width: fit-content;
+  color: var(--accent-text);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
+.loading {
+  height: 260px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--surface2), var(--line), var(--surface2));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .fab {
+    right: 14px;
+    bottom: 14px;
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Le bandeau de cookies occupe toute la largeur en bas : le bouton attend le choix du visiteur. */
+  .fab[data-consent='true'] {
+    display: none;
+  }
+
+  .panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 82px;
+    max-height: calc(100dvh - 82px - var(--header-h) - 12px);
+  }
+}
+
+@media print {
+  .fab,
+  .panel {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .fab::after,
+  .panel,
+  .loading {
+    animation: none;
+  }
+
+  .fab {
+    transition: none;
+  }
+}

@@ -379,5 +379,98 @@ module.exports = [
   ['finder.openPlan', 'Ouvrir mon plan complet', M('Open my full plan', 'Abrir mi plan completo')],
   ['finder.removeFlight', 'Retirer le vol {n}', M('Remove flight {n}', 'Quitar el vuelo {n}')],
   ['finder.removeLeg', 'Retirer le trajet {n}', M('Remove leg {n}', 'Quitar el trayecto {n}')],
+  [
+    'home2.articlesTitle',
+    'Nos derniers conseils',
+    M('Our latest tips', 'Nuestros últimos consejos'),
+  ],
+  ['home2.articlesAll', 'Voir tous les articles', M('See all articles', 'Ver todos los artículos')],
+  [
+    'home2.teamTitle',
+    'Une équipe de spécialistes du sommeil',
+    M('A team of sleep specialists', 'Un equipo de especialistas del sueño'),
+  ],
+  [
+    'home2.teamMeet',
+    'Rencontrer l’équipe médicale',
+    M('Meet the medical team', 'Conocer al equipo médico'),
+  ],
+  ['home2.mapTitle', 'Nous trouver', M('Find us', 'Dónde estamos')],
+  [
+    'home2.mapSub',
+    'Fuseo est né à l’Institut Médical du Sommeil. Retrouvez l’équipe à Paris 16e et à Neuilly-sur-Seine.',
+    M(
+      'Fuseo was born at the Institut Médical du Sommeil. Meet the team in Paris 16th and in Neuilly-sur-Seine.',
+      'Fuseo nació en el Institut Médical du Sommeil. Encuentre al equipo en París 16 y en Neuilly-sur-Seine.',
+    ),
+  ],
+  ['home2.mapParis', 'Paris 16e', M('Paris 16th', 'París 16')],
+  ['home2.mapNeuilly', 'Neuilly-sur-Seine', M('Neuilly-sur-Seine', 'Neuilly-sur-Seine')],
+  [
+    'home2.addrParis',
+    '77 avenue Paul Doumer, 75016 Paris',
+    M('77 avenue Paul Doumer, 75016 Paris', '77 avenue Paul Doumer, 75016 París'),
+  ],
+  [
+    'home2.addrNeuilly',
+    '130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine',
+    M(
+      '130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine',
+      '130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine',
+    ),
+  ],
+  ['home2.mapShow', 'Afficher la carte', M('Show the map', 'Mostrar el mapa')],
+  [
+    'home2.mapPrivacy',
+    'L’affichage de la carte charge OpenStreetMap, un service tiers : des données de connexion lui sont transmises.',
+    M(
+      'Showing the map loads OpenStreetMap, a third-party service: connection data is sent to it.',
+      'Al mostrar el mapa se carga OpenStreetMap, un servicio de terceros: se le transmiten datos de conexión.',
+    ),
+  ],
+  ['home2.mapDirections', 'Itinéraire', M('Directions', 'Cómo llegar')],
+  [
+    'home2.mapAlt',
+    'Carte stylisée du quartier',
+    M('Stylised map of the area', 'Mapa estilizado de la zona'),
+  ],
+  ['contact.nextTitle', 'Ce qui se passe ensuite', M('What happens next', 'Qué ocurre después')],
+  [
+    'contact.next1',
+    'Vous recevez tout de suite un e-mail de confirmation.',
+    M(
+      'You immediately receive a confirmation email.',
+      'Recibe enseguida un correo de confirmación.',
+    ),
+  ],
+  [
+    'contact.next2',
+    'Notre équipe lit votre message.',
+    M('Our team reads your message.', 'Nuestro equipo lee su mensaje.'),
+  ],
+  [
+    'contact.next3',
+    'Nous revenons vers vous dans les plus brefs délais.',
+    M('We get back to you as soon as possible.', 'Le respondemos lo antes posible.'),
+  ],
+  ['nav.contact', 'Contact', M('Contact', 'Contacto')],
+  ['fab.open', 'Nous écrire', M('Write to us', 'Escríbanos')],
+  ['fab.title', 'Écrivez-nous', M('Write to us', 'Escríbanos')],
+  [
+    'fab.sub',
+    'Notre équipe vous répond dans les plus brefs délais.',
+    M(
+      'Our team will get back to you as soon as possible.',
+      'Nuestro equipo le responderá lo antes posible.',
+    ),
+  ],
+  ['fab.close', 'Fermer', M('Close', 'Cerrar')],
+  [
+    'fab.page',
+    'Ouvrir la page de contact',
+    M('Open the contact page', 'Abrir la página de contacto'),
+  ],
+  ['nav.openMenu', 'Ouvrir le menu', M('Open the menu', 'Abrir el menú')],
+  ['nav.closeMenu', 'Fermer le menu', M('Close the menu', 'Cerrar el menú')],
   ['blog.minRead', 'Lecture', M('Read', 'Lectura')],
 ];

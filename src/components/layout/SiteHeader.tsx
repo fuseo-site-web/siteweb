@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { AuthButton } from '@/components/auth/AuthButton';
 import type { SlugMap } from '@/content/blog';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { MobileMenu } from './MobileMenu';
 import styles from './SiteHeader.module.css';
 
 export function SiteHeader({ slugs }: { slugs: SlugMap }) {
@@ -23,6 +24,7 @@ export function SiteHeader({ slugs }: { slugs: SlugMap }) {
           <Link href="/equipe">{t('team')}</Link>
           <Link href="/blog">{t('blog')}</Link>
           <Link href="/tarifs">{t('pricing')}</Link>
+          <Link href="/contact">{t('contact')}</Link>
         </nav>
         <div className={styles.actions}>
           <LanguageSwitcher slugs={slugs} />
@@ -30,6 +32,19 @@ export function SiteHeader({ slugs }: { slugs: SlugMap }) {
           <Link href="/plan" className={styles.cta}>
             {t('cta')}
           </Link>
+          <MobileMenu
+            openLabel={t('openMenu')}
+            closeLabel={t('closeMenu')}
+            menuLabel={t('menu')}
+            items={[
+              { href: '/la-science', label: t('science') },
+              { href: '/methode', label: t('method') },
+              { href: '/equipe', label: t('team') },
+              { href: '/blog', label: t('blog') },
+              { href: '/tarifs', label: t('pricing') },
+              { href: '/contact', label: t('contact') },
+            ]}
+          />
         </div>
       </div>
     </header>

@@ -19,7 +19,10 @@
     "blog": "Blog",
     "pricing": "Tarifs",
     "login": "Se connecter",
-    "account": "Mon espace"
+    "account": "Mon espace",
+    "contact": "Contact",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "hero": {
     "title": "Arrivez à l'heure. Votre corps aussi.",
@@ -254,7 +257,11 @@
     "thanksText": "Nous vous répondons par e-mail dans les meilleurs délais.",
     "invalid": "Vérifiez les champs : adresse e-mail valide, message d'au moins 10 caractères et case cochée.",
     "limit": "Trop de messages envoyés. Réessayez plus tard.",
-    "error": "L'envoi a échoué. Réessayez dans un instant."
+    "error": "L'envoi a échoué. Réessayez dans un instant.",
+    "nextTitle": "Ce qui se passe ensuite",
+    "next1": "Vous recevez tout de suite un e-mail de confirmation.",
+    "next2": "Notre équipe lit votre message.",
+    "next3": "Nous revenons vers vous dans les plus brefs délais."
   },
   "blog": {
     "title": "Le blog Fuseo",
@@ -596,5 +603,28 @@
     "openPlan": "Ouvrir mon plan complet",
     "removeFlight": "Retirer le vol {n}",
     "removeLeg": "Retirer le trajet {n}"
+  },
+  "home2": {
+    "articlesTitle": "Nos derniers conseils",
+    "articlesAll": "Voir tous les articles",
+    "teamTitle": "Une équipe de spécialistes du sommeil",
+    "teamMeet": "Rencontrer l’équipe médicale",
+    "mapTitle": "Nous trouver",
+    "mapSub": "Fuseo est né à l’Institut Médical du Sommeil. Retrouvez l’équipe à Paris 16e et à Neuilly-sur-Seine.",
+    "mapParis": "Paris 16e",
+    "mapNeuilly": "Neuilly-sur-Seine",
+    "addrParis": "77 avenue Paul Doumer, 75016 Paris",
+    "addrNeuilly": "130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine",
+    "mapShow": "Afficher la carte",
+    "mapPrivacy": "L’affichage de la carte charge OpenStreetMap, un service tiers : des données de connexion lui sont transmises.",
+    "mapDirections": "Itinéraire",
+    "mapAlt": "Carte stylisée du quartier"
+  },
+  "fab": {
+    "open": "Nous écrire",
+    "title": "Écrivez-nous",
+    "sub": "Notre équipe vous répond dans les plus brefs délais.",
+    "close": "Fermer",
+    "page": "Ouvrir la page de contact"
   }
 }

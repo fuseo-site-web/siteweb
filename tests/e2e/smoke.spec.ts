@@ -893,3 +893,163 @@ test.describe('serveur MCP public', () => {
     ).toBe(413);
   });
 });
+
+test.describe('fin de page d’accueil et contact', () => {
+  test("l'accueil se termine par les derniers articles, l'équipe médicale et la carte", async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const articles = page.getByRole('region', { name: 'Nos derniers conseils' });
+    await expect(articles.getByRole('listitem')).toHaveCount(3);
+    await expect(articles.getByRole('link', { name: /Voir tous les articles/ })).toHaveAttribute(
+      'href',
+      '/blog',
+    );
+    const team = page.getByRole('region', { name: 'Une équipe de spécialistes du sommeil' });
+    await expect(team.getByRole('heading', { name: 'Dr Jonathan Taieb' })).toBeVisible();
+    await expect(team.getByRole('heading', { name: 'Dr Maxime Elbaz' })).toBeVisible();
+    await expect(team.getByRole('link', { name: 'Rencontrer l’équipe médicale' })).toHaveAttribute(
+      'href',
+      '/equipe-medicale',
+    );
+    await expect(
+      page
+        .getByRole('region', { name: 'Nous trouver' })
+        .getByRole('link', { name: 'Nous contacter' }),
+    ).toHaveAttribute('href', '/contact');
+  });
+
+  test('la carte ne contacte aucun service tiers avant le clic, puis charge OpenStreetMap', async ({
+    page,
+  }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+      const u = r.url();
+      if (!u.startsWith('http://localhost') && !u.startsWith('data:') && !u.startsWith('blob:'))
+        external.push(u);
+    });
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    const map = page.getByRole('region', { name: 'Nous trouver' });
+    await map.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(800);
+    expect(external).toEqual([]);
+    await map.getByRole('tab', { name: 'Neuilly-sur-Seine' }).click();
+    await expect(
+      map.getByText('130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine'),
+    ).toBeVisible();
+    await map.getByRole('button', { name: 'Afficher la carte' }).click();
+    const frame = map.locator('iframe');
+    await expect(frame).toHaveAttribute(
+      'src',
+      /openstreetmap\.org\/export\/embed\.html.*marker=48\.883,2\.2663/,
+    );
+    await expect(frame).toHaveAttribute('referrerpolicy', 'no-referrer');
+  });
+
+  test("la page contact explique la suite, affiche la carte et confirme l'envoi", async ({
+    page,
+  }) => {
+    await page.route('**/api/contact', (r) => r.fulfill({ status: 204 }));
+    await page.goto('/contact');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await expect(page.getByRole('heading', { name: 'Ce qui se passe ensuite' })).toBeVisible();
+    await expect(
+      page.getByText('Vous recevez tout de suite un e-mail de confirmation.'),
+    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Nous trouver' })).toBeVisible();
+    await page.getByLabel('Nom et prénom').fill('Camille Durand');
+    await page.getByLabel('Adresse e-mail').fill('camille@example.com');
+    await page.getByLabel('Objet').fill('Question sur mon vol');
+    await page.getByLabel('Votre message').fill('Bonjour, je voudrais préparer mon voyage.');
+    await page.getByRole('checkbox').check();
+    await page.getByRole('button', { name: 'Envoyer' }).click();
+    await expect(
+      page.getByRole('heading', { name: 'Merci, votre message est bien reçu' }),
+    ).toBeVisible();
+  });
+});
+
+test.describe('accès au contact depuis toutes les pages', () => {
+  test('la barre de navigation propose un lien Contact', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await expect(
+      page
+        .getByRole('navigation', { name: 'Menu principal' })
+        .getByRole('link', { name: 'Contact' }),
+    ).toHaveAttribute('href', '/contact');
+    await page.goto('/en/pricing');
+    await expect(
+      page.getByRole('navigation', { name: 'Main menu' }).getByRole('link', { name: 'Contact' }),
+    ).toHaveAttribute('href', '/en/contact');
+  });
+
+  test('le bouton rond est présent partout et ouvre un formulaire qui envoie la demande', async ({
+    page,
+  }) => {
+    let sent: Record<string, unknown> | null = null;
+    await page.route('**/api/contact', async (r) => {
+      sent = r.request().postDataJSON();
+      await r.fulfill({ status: 204 });
+    });
+    for (const path of ['/', '/blog', '/tarifs', '/plan-anti-jet-lag', '/en', '/es/blog']) {
+      await page.goto(path);
+      // Le choix sur les cookies est mémorisé : le bandeau n'apparaît qu'à la première page.
+      const reject = page.getByRole('button', { name: /Tout refuser|Reject all|Rechazar todo/ });
+      if (await reject.count()) await reject.click();
+      await expect(
+        page.getByRole('button', { name: /Nous écrire|Write to us|Escríbanos/ }),
+        path,
+      ).toBeVisible();
+    }
+    await page.goto('/blog');
+    await page.getByRole('button', { name: 'Nous écrire' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Écrivez-nous' });
+    await expect(dialog).toBeVisible();
+    await expect(
+      dialog.getByText('Notre équipe vous répond dans les plus brefs délais.'),
+    ).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await page.getByRole('button', { name: 'Nous écrire' }).click();
+    await dialog.getByLabel('Nom et prénom').fill('Camille Durand');
+    await dialog.getByLabel('Adresse e-mail').fill('camille@example.com');
+    await dialog.getByLabel('Objet').fill('Question sur mon vol');
+    await dialog.getByLabel('Votre message').fill('Bonjour, je voudrais préparer mon voyage.');
+    await dialog.getByRole('checkbox').check();
+    await dialog.getByRole('button', { name: 'Envoyer' }).click();
+    await expect(
+      dialog.getByRole('heading', { name: 'Merci, votre message est bien reçu' }),
+    ).toBeVisible();
+    expect(sent).toMatchObject({
+      kind: 'contact',
+      name: 'Camille Durand',
+      email: 'camille@example.com',
+      locale: 'fr',
+      consent: true,
+    });
+    await expect(dialog.getByLabel('Téléphone (facultatif)')).toHaveCount(0);
+  });
+
+  test('sur mobile, le menu reprend les liens (dont Contact) et le bouton attend le choix des cookies', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 780 });
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: 'Nous écrire' })).toBeHidden(); // bandeau de cookies affiché
+    await page.getByRole('button', { name: 'Tout refuser' }).click();
+    await expect(page.getByRole('button', { name: 'Nous écrire' })).toBeVisible();
+    await page.getByRole('button', { name: 'Ouvrir le menu' }).click();
+    const menu = page.locator('#mobile-nav');
+    await expect(menu.getByRole('link', { name: 'Contact' })).toBeVisible();
+    await expect(menu.getByRole('link')).toHaveCount(6);
+    await menu.getByRole('link', { name: 'Tarifs' }).click();
+    await expect(page).toHaveURL(/\/tarifs$/);
+    await expect(page.locator('#mobile-nav')).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
+      false,
+    );
+  });
+});

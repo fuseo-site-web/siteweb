@@ -19,7 +19,10 @@
     "blog": "Blog",
     "pricing": "Precios",
     "login": "Iniciar sesión",
-    "account": "Mi espacio"
+    "account": "Mi espacio",
+    "contact": "Contacto",
+    "openMenu": "Abrir el menú",
+    "closeMenu": "Cerrar el menú"
   },
   "hero": {
     "title": "Llegue a tiempo. Su cuerpo también.",
@@ -254,7 +257,11 @@
     "thanksText": "Le responderemos por correo electrónico lo antes posible.",
     "invalid": "Revise los campos: correo válido, mensaje de al menos 10 caracteres y casilla marcada.",
     "limit": "Demasiados mensajes enviados. Inténtelo más tarde.",
-    "error": "No se pudo enviar. Inténtelo de nuevo en un momento."
+    "error": "No se pudo enviar. Inténtelo de nuevo en un momento.",
+    "nextTitle": "Qué ocurre después",
+    "next1": "Recibe enseguida un correo de confirmación.",
+    "next2": "Nuestro equipo lee su mensaje.",
+    "next3": "Le respondemos lo antes posible."
   },
   "blog": {
     "title": "El blog de Fuseo",
@@ -596,5 +603,28 @@
     "openPlan": "Abrir mi plan completo",
     "removeFlight": "Quitar el vuelo {n}",
     "removeLeg": "Quitar el trayecto {n}"
+  },
+  "home2": {
+    "articlesTitle": "Nuestros últimos consejos",
+    "articlesAll": "Ver todos los artículos",
+    "teamTitle": "Un equipo de especialistas del sueño",
+    "teamMeet": "Conocer al equipo médico",
+    "mapTitle": "Dónde estamos",
+    "mapSub": "Fuseo nació en el Institut Médical du Sommeil. Encuentre al equipo en París 16 y en Neuilly-sur-Seine.",
+    "mapParis": "París 16",
+    "mapNeuilly": "Neuilly-sur-Seine",
+    "addrParis": "77 avenue Paul Doumer, 75016 París",
+    "addrNeuilly": "130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine",
+    "mapShow": "Mostrar el mapa",
+    "mapPrivacy": "Al mostrar el mapa se carga OpenStreetMap, un servicio de terceros: se le transmiten datos de conexión.",
+    "mapDirections": "Cómo llegar",
+    "mapAlt": "Mapa estilizado de la zona"
+  },
+  "fab": {
+    "open": "Escríbanos",
+    "title": "Escríbanos",
+    "sub": "Nuestro equipo le responderá lo antes posible.",
+    "close": "Cerrar",
+    "page": "Abrir la página de contacto"
   }
 }

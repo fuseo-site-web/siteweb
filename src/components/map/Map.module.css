@@ -1,0 +1,115 @@
+.map {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tabs {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab[aria-selected='true'] {
+  color: #fff;
+  background: var(--navy);
+}
+
+.tab:focus-visible,
+.show:focus-visible,
+.dir:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.addr {
+  margin: 0;
+  font-weight: 700;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 34vw, 380px);
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface2);
+}
+
+.frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.placeholder,
+.placeholder svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: end center;
+  justify-items: center;
+  gap: 8px;
+  padding: 18px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent 35%, rgb(6 20 38 / 72%));
+}
+
+.cover small {
+  max-width: 460px;
+  color: #e7f0f9;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.show {
+  min-height: 46px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 999px;
+  color: #4a3500;
+  background: var(--amber);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.show:hover {
+  transform: translateY(-2px);
+}
+
+.dir {
+  width: fit-content;
+  color: var(--accent-text);
+  font-weight: 800;
+  text-underline-offset: 3px;
+}

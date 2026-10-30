@@ -1,6 +1,81 @@
-.card {
-  max-width: 760px;
+.layout {
+  max-width: 1240px;
   margin: clamp(24px, 5vw, 56px) auto;
+  padding: 0 20px;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.aside {
+  display: grid;
+  gap: 22px;
+}
+
+.next {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  background:
+    radial-gradient(420px 220px at 100% 0%, rgb(60 192 240 / 26%), transparent 70%),
+    linear-gradient(160deg, var(--night-2), var(--night));
+}
+
+.next h2 {
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.next ol {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: s;
+}
+
+.next li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  counter-increment: s;
+}
+
+.next li::before {
+  content: counter(s);
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #4a3500;
+  background: var(--amber);
+  font-weight: 800;
+}
+
+.mapCard {
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.mapCard h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.card {
+  max-width: none;
+  margin: 0;
   padding: clamp(20px, 4vw, 34px);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -186,6 +261,12 @@
   }
 }
 
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
@@ -196,4 +277,40 @@
   .card {
     animation: none;
   }
+}
+
+/* Version du panneau flottant */
+.compact {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  gap: 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  animation: none;
+}
+
+.compact .grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.compact .kind {
+  padding: 8px 13px;
+  font-size: 13px;
+}
+
+.compact .field input,
+.compact .field textarea {
+  padding: 10px 12px;
+}
+
+.compact .consent {
+  font-size: 12.5px;
+}
+
+.compact .send {
+  padding: 12px 22px;
 }

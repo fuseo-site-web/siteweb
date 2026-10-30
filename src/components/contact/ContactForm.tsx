@@ -7,7 +7,14 @@ import styles from './Contact.module.css';
 
 type Kind = 'contact' | 'rdv' | 'pro';
 
-export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind }) {
+export function ContactForm({
+  initialKind = 'contact',
+  compact = false,
+}: {
+  initialKind?: Kind;
+  /** Version réduite pour le panneau flottant : sans téléphone, sur une colonne. */
+  compact?: boolean;
+}) {
   const t = useTranslations('contact');
   const locale = useLocale();
   const uid = useId();
@@ -18,7 +25,9 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
+    // `e.currentTarget` n'existe plus après un `await` : on garde le formulaire.
+    const form = e.currentTarget;
+    const f = new FormData(form);
     setState('sending');
     try {
       const r = await fetch('/api/contact', {
@@ -46,7 +55,7 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
               ? 'limit'
               : 'error',
       );
-      if (r.status === 204) e.currentTarget.reset();
+      if (r.status === 204) form.reset();
     } catch {
       setState('error');
     }
@@ -54,7 +63,7 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
 
   if (state === 'sent') {
     return (
-      <div className={styles.card} role="status">
+      <div className={`${styles.card} ${compact ? styles.compact : ''}`} role="status">
         <h2>{t('thanksTitle')}</h2>
         <p>{t('thanksText')}</p>
       </div>
@@ -62,7 +71,11 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
   }
 
   return (
-    <form className={styles.card} onSubmit={submit} noValidate={false}>
+    <form
+      className={`${styles.card} ${compact ? styles.compact : ''}`}
+      onSubmit={submit}
+      noValidate={false}
+    >
       <fieldset className={styles.kinds}>
         <legend>{t('kindLabel')}</legend>
         {(['contact', 'rdv', 'pro'] as const).map((k) => (
@@ -96,10 +109,12 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
             autoComplete="email"
           />
         </div>
-        <div className={styles.field}>
-          <label htmlFor={`${uid}-p`}>{t('phone')}</label>
-          <input id={`${uid}-p`} name="phone" type="tel" maxLength={40} autoComplete="tel" />
-        </div>
+        {compact ? null : (
+          <div className={styles.field}>
+            <label htmlFor={`${uid}-p`}>{t('phone')}</label>
+            <input id={`${uid}-p`} name="phone" type="tel" maxLength={40} autoComplete="tel" />
+          </div>
+        )}
         {kind === 'rdv' ? (
           <div className={styles.field}>
             <label htmlFor={`${uid}-s`}>
@@ -120,7 +135,7 @@ export function ContactForm({ initialKind = 'contact' }: { initialKind?: Kind })
             required
             minLength={10}
             maxLength={5000}
-            rows={6}
+            rows={compact ? 4 : 6}
           />
           <small>{t('noHealth')}</small>
         </div>

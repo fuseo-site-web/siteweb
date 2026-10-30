@@ -19,7 +19,10 @@
     "blog": "Blog",
     "pricing": "Pricing",
     "login": "Sign in",
-    "account": "My account"
+    "account": "My account",
+    "contact": "Contact",
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu"
   },
   "hero": {
     "title": "Arrive on time. Your body too.",
@@ -254,7 +257,11 @@
     "thanksText": "We will reply by email as soon as possible.",
     "invalid": "Please check the fields: a valid email, a message of at least 10 characters and the box ticked.",
     "limit": "Too many messages sent. Please try again later.",
-    "error": "Sending failed. Please try again shortly."
+    "error": "Sending failed. Please try again shortly.",
+    "nextTitle": "What happens next",
+    "next1": "You immediately receive a confirmation email.",
+    "next2": "Our team reads your message.",
+    "next3": "We get back to you as soon as possible."
   },
   "blog": {
     "title": "The Fuseo blog",
@@ -596,5 +603,28 @@
     "openPlan": "Open my full plan",
     "removeFlight": "Remove flight {n}",
     "removeLeg": "Remove leg {n}"
+  },
+  "home2": {
+    "articlesTitle": "Our latest tips",
+    "articlesAll": "See all articles",
+    "teamTitle": "A team of sleep specialists",
+    "teamMeet": "Meet the medical team",
+    "mapTitle": "Find us",
+    "mapSub": "Fuseo was born at the Institut Médical du Sommeil. Meet the team in Paris 16th and in Neuilly-sur-Seine.",
+    "mapParis": "Paris 16th",
+    "mapNeuilly": "Neuilly-sur-Seine",
+    "addrParis": "77 avenue Paul Doumer, 75016 Paris",
+    "addrNeuilly": "130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine",
+    "mapShow": "Show the map",
+    "mapPrivacy": "Showing the map loads OpenStreetMap, a third-party service: connection data is sent to it.",
+    "mapDirections": "Directions",
+    "mapAlt": "Stylised map of the area"
+  },
+  "fab": {
+    "open": "Write to us",
+    "title": "Write to us",
+    "sub": "Our team will get back to you as soon as possible.",
+    "close": "Close",
+    "page": "Open the contact page"
   }
 }

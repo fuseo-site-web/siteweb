@@ -3,6 +3,7 @@ import { use } from 'react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Audience } from '@/components/home/Audience';
 import { Hero } from '@/components/home/Hero';
+import { HomeFinale } from '@/components/home/HomeFinale';
 import { PlanPreview } from '@/components/home/PlanPreview';
 import { PressStrip } from '@/components/home/PressStrip';
 import { Science } from '@/components/home/Science';
@@ -43,6 +44,7 @@ export default function HomePage({ params }: PageProps<'/[locale]'>) {
       <Steps />
       <Science />
       <Audience />
+      <HomeFinale locale={locale} />
     </>
   );
 }

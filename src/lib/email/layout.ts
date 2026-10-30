@@ -12,6 +12,10 @@ export interface EmailContent {
   intro: string[];
   steps?: Array<{ title: string; text: string }>;
   note?: string;
+  /** Fiche d'informations : libellé / valeur (la valeur est affichée telle quelle, sans HTML). */
+  facts?: Array<{ label: string; value: string; href?: string }>;
+  /** Message cité (texte brut, retours à la ligne conservés). */
+  quote?: { label: string; text: string };
   articles?: Array<{ title: string; excerpt: string; url: string; label: string }>;
   cta: { label: string; url: string };
   secondary?: { label: string; url: string };
@@ -24,6 +28,8 @@ export interface RenderOptions {
   email?: string;
   /** Présent pour les e-mails commerciaux : lien de désinscription obligatoire. */
   unsubscribeUrl?: string;
+  /** Remplace la phrase « Vous recevez cet e-mail car… » du pied de message. */
+  why?: string;
 }
 
 const FOOT: Record<
@@ -107,6 +113,21 @@ export function renderEmail(
         .join('')}</table>`
     : '';
 
+  const facts = c.facts?.length
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="box rule" style="margin:4px 0 20px;background:#f5f9fc;border:1px solid #d5e1ec;border-radius:14px;">${c.facts
+        .map(
+          (f) => `
+  <tr><td style="padding:10px 16px 4px;font-family:${F};font-size:12px;line-height:16px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:#51647d;" class="muted">${esc(f.label)}</td></tr>
+  <tr><td style="padding:0 16px 10px;font-family:${F};font-size:15.5px;line-height:22px;font-weight:600;color:#0b2240;" class="ink">${f.href ? `<a class="lnk" href="${esc(f.href)}" style="color:#0d6f96;">${esc(f.value)}</a>` : esc(f.value)}</td></tr>`,
+        )
+        .join('')}</table>`
+    : '';
+
+  const quote = c.quote
+    ? `<p class="muted" style="margin:0 0 6px;font-family:${F};font-size:12px;line-height:16px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:#51647d;">${esc(c.quote.label)}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px;"><tr><td class="box" style="background:#fff8e6;border-left:4px solid #ffc857;border-radius:12px;padding:14px 16px;font-family:${F};font-size:15px;line-height:23px;color:#0b2240;white-space:pre-wrap;">${esc(c.quote.text)}</td></tr></table>`
+    : '';
+
   const note = c.note
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px;"><tr><td class="box" style="background:#f5f9fc;border-left:4px solid #3cc0f0;border-radius:12px;padding:14px 16px;font-family:${F};">
     <p class="ink" style="margin:0;font-size:14.5px;line-height:22px;color:#0b2240;">${esc(c.note)}</p></td></tr></table>`
@@ -175,7 +196,7 @@ export function renderEmail(
         <tr><td height="4" style="height:4px;line-height:4px;font-size:0;background:#3cc0f0;background-image:linear-gradient(90deg,#3cc0f0,#ffc857);">&nbsp;</td></tr>
         <tr><td class="px" style="padding:36px 36px 10px;font-family:${F};">
           <h1 class="h1 ink" style="margin:0 0 16px;font-size:27px;line-height:33px;font-weight:800;color:#0b2240;letter-spacing:-0.4px;">${esc(c.title)}</h1>
-          ${intro}${steps}${note}${articles}
+          ${intro}${facts}${quote}${steps}${note}${articles}
           ${button(c.cta.label, c.cta.url)}
           ${secondary}
           <p class="muted" style="margin:0 0 26px;font-size:15px;line-height:23px;color:#51647d;">${esc(c.signature).replace(/\n/g, '<br>')}</p>
@@ -184,7 +205,7 @@ export function renderEmail(
     </td></tr>
     <tr><td class="px" align="center" style="padding:24px 20px 0;font-family:${F};">
       <p class="muted" style="margin:0 0 8px;font-size:13px;line-height:20px;color:#51647d;">${esc(f.tagline)}</p>
-      <p class="muted" style="margin:0 0 8px;font-size:12px;line-height:18px;color:#7c8aa0;">${esc(o.unsubscribeUrl ? f.whyMarketing : f.why)}${o.email ? ` (${esc(o.email)})` : ''}${unsub}</p>
+      <p class="muted" style="margin:0 0 8px;font-size:12px;line-height:18px;color:#7c8aa0;">${esc(o.why ?? (o.unsubscribeUrl ? f.whyMarketing : f.why))}${o.email ? ` (${esc(o.email)})` : ''}${unsub}</p>
       <p class="muted" style="margin:0 0 6px;font-size:11.5px;line-height:17px;color:#7c8aa0;">${esc(f.disclaimer)}</p>
       <p class="muted" style="margin:0;font-size:11.5px;line-height:17px;color:#7c8aa0;">${esc(f.by)} · <a class="lnk" href="${SITE}" style="color:#0d6f96;">fuseo.net</a></p>
     </td></tr>
@@ -200,6 +221,8 @@ export function renderEmail(
     '',
     ...c.intro.map((p) => p.replace(/<[^>]+>/g, '')),
     ...(c.steps ?? []).map((s, i) => `${i + 1}. ${s.title} — ${s.text}`),
+    ...(c.facts ?? []).map((f) => `${f.label} : ${f.value}`),
+    ...(c.quote ? ['', `${c.quote.label} :`, c.quote.text] : []),
     ...(c.note ? ['', c.note] : []),
     ...(c.articles ?? []).flatMap((a) => ['', a.title, a.excerpt, `${a.label} : ${a.url}`]),
     '',

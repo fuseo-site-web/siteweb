@@ -1,0 +1,95 @@
+.more {
+  display: inline-block;
+  margin-top: 26px;
+  color: var(--accent-text);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-underline-offset: 4px;
+}
+
+.doctors {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  margin: 0 0 28px;
+}
+
+.doctor {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s;
+}
+
+.doctor:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.doctor img {
+  flex: none;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--sky);
+}
+
+.doctor h3 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.doctor p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.doctor .role {
+  margin-bottom: 6px;
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.ims {
+  max-width: 70ch;
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.findUs {
+  display: grid;
+  gap: 36px 56px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .findUs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .doctor {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doctor {
+    transition: none;
+  }
+}
