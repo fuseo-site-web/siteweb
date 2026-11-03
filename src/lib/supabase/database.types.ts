@@ -8,6 +8,45 @@ export type Database = {
   };
   public: {
     Tables: {
+      account_deletion_requests: {
+        Row: {
+          comment: string | null;
+          created_at: string;
+          email: string;
+          id: string;
+          locale: string;
+          processed_at: string | null;
+          processed_by: string | null;
+          reason: string;
+          status: string;
+          user_id: string | null;
+        };
+        Insert: {
+          comment?: string | null;
+          created_at?: string;
+          email: string;
+          id?: string;
+          locale?: string;
+          processed_at?: string | null;
+          processed_by?: string | null;
+          reason: string;
+          status?: string;
+          user_id?: string | null;
+        };
+        Update: {
+          comment?: string | null;
+          created_at?: string;
+          email?: string;
+          id?: string;
+          locale?: string;
+          processed_at?: string | null;
+          processed_by?: string | null;
+          reason?: string;
+          status?: string;
+          user_id?: string | null;
+        };
+        Relationships: [];
+      };
       admin_users: {
         Row: {
           created_at: string;

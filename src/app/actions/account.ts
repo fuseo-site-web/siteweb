@@ -1,6 +1,12 @@
 'use server';
 
+import { z } from 'zod';
+import { DELETION_REASONS } from '@/lib/account/deletion';
+import { ADMIN_EMAIL } from '@/lib/admin/access';
 import { getCurrentUser, HEALTH_POLICY_VERSION } from '@/lib/auth';
+import { buildDeletionAck, buildDeletionAdmin } from '@/lib/email/deletion';
+import type { Lang } from '@/lib/email/layout';
+import { sendEmail } from '@/lib/email/send';
 import { profileSchema } from '@/lib/profile-schema';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
@@ -43,15 +49,68 @@ export async function deleteTrip(id: string): Promise<Result> {
 }
 
 /** Suppression du compte : cascade sur les données de santé ; les accès payés sont conservés sans lien d'identité sanitaire. */
-export async function deleteAccount(): Promise<Result> {
-  const { supabase, user } = await getCurrentUser();
-  if (!user) return { ok: false };
+/**
+ * Demande de suppression de compte : le motif et un commentaire facultatif sont transmis à l'équipe, qui supprime
+ * le compte depuis l'espace admin (au plus tard sous un mois, RGPD). Le client et l'équipe reçoivent un e-mail.
+ */
+export async function requestAccountDeletion(input: unknown): Promise<Result> {
+  const { user } = await getCurrentUser();
+  if (!user?.email) return { ok: false };
+  const parsed = z
+    .object({
+      reason: z.enum(DELETION_REASONS),
+      comment: z.string().trim().max(1000).optional(),
+      locale: z.enum(['fr', 'en', 'es']).optional(),
+    })
+    .safeParse(input);
+  if (!parsed.success) return { ok: false };
   const admin = createSupabaseAdminClient();
-  await admin.from('audit_log').insert({ actor: null, action: 'account_deleted', target: user.id });
-  const { error } = await admin.auth.admin.deleteUser(user.id);
-  if (error) return { ok: false };
-  await supabase.auth.signOut();
+  const { data: profile } = await admin
+    .from('user_profiles')
+    .select('first_name, last_name, preferred_locale')
+    .eq('user_id', user.id)
+    .maybeSingle();
+  const lang = (profile?.preferred_locale ?? parsed.data.locale ?? 'fr') as Lang;
+  const { error } = await admin.from('account_deletion_requests').insert({
+    user_id: user.id,
+    email: user.email,
+    reason: parsed.data.reason,
+    comment: parsed.data.comment || null,
+    locale: lang,
+  });
+  // Une demande déjà en cours (index unique) : on ne renvoie pas les e-mails.
+  if (error) return { ok: error.code === '23505' };
+  const name = [profile?.first_name, profile?.last_name].filter(Boolean).join(' ') || null;
+  const ack = buildDeletionAck(lang, user.email);
+  const notif = buildDeletionAdmin({
+    email: user.email,
+    name,
+    reason: parsed.data.reason,
+    comment: parsed.data.comment,
+  });
+  await Promise.allSettled([
+    sendEmail({ to: user.email, subject: ack.subject, html: ack.html, text: ack.text }),
+    sendEmail({
+      to: ADMIN_EMAIL,
+      subject: notif.subject,
+      html: notif.html,
+      text: notif.text,
+      replyTo: user.email,
+    }),
+  ]);
   return { ok: true };
+}
+
+/** Le client annule sa demande tant qu'elle n'a pas été traitée. */
+export async function cancelAccountDeletion(): Promise<Result> {
+  const { user } = await getCurrentUser();
+  if (!user) return { ok: false };
+  const { error } = await createSupabaseAdminClient()
+    .from('account_deletion_requests')
+    .update({ status: 'cancelled', processed_at: new Date().toISOString() })
+    .eq('user_id', user.id)
+    .eq('status', 'pending');
+  return { ok: !error };
 }
 
 export async function signOutAction(): Promise<Result> {

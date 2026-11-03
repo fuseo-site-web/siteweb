@@ -635,7 +635,7 @@
     "export": "Download my data (JSON)",
     "profileSaved": "Sleep profile saved on {date}",
     "danger": "Delete my account",
-    "dangerText": "Deletes your account and health data. Invoices are kept without health data, as required by law.",
+    "dangerText": "You can request the deletion of your account and your health data. Your invoices are kept without health data, as required by law.",
     "deleteAccount": "Permanently delete my account",
     "error": "The operation failed. Please try again.",
     "pdf": "PDF",
@@ -731,7 +731,22 @@
       "refunded": "Refunded"
     },
     "preferredLocale": "Communication language",
-    "preferredLocaleHint": "Language of our emails and support replies."
+    "preferredLocaleHint": "Language of our emails and support replies.",
+    "deletionQuestion": "Why do you want to delete your account?",
+    "deletionReason": {
+      "not_useful": "Fuseo is no longer useful to me",
+      "no_trip": "No trip planned",
+      "privacy": "Concern about my data",
+      "too_many_emails": "Too many emails",
+      "other_service": "I use another solution",
+      "other": "Other reason"
+    },
+    "deletionComment": "Would you like to tell us more? (optional)",
+    "deletionCommentPh": "Your feedback helps us improve Fuseo…",
+    "deletionInfo": "Your request is sent to our team, which deletes your account and data within one month at the latest. You will receive a confirmation by email.",
+    "deletionSend": "Send my deletion request",
+    "deletionPending": "Your deletion request of {date} is being processed. You will receive an email as soon as your account is deleted.",
+    "deletionCancel": "Cancel my request"
   },
   "consent": {
     "title": "Your privacy, your choice",

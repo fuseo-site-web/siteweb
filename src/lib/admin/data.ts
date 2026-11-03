@@ -165,7 +165,7 @@ export async function getBusiness() {
 
 export async function getBadgeCounts() {
   const d = db();
-  const [a, b, c] = await Promise.all([
+  const [a, b, c, d2] = await Promise.all([
     d
       .from('contact_messages')
       .select('id', { count: 'exact', head: true })
@@ -177,8 +177,17 @@ export async function getBadgeCounts() {
       .in('kind', ['rdv', 'pro'])
       .eq('status', 'new'),
     d.from('support_tickets').select('id', { count: 'exact', head: true }).eq('unread_admin', true),
+    d
+      .from('account_deletion_requests')
+      .select('id', { count: 'exact', head: true })
+      .eq('status', 'pending'),
   ]);
-  return { demandes: a.count ?? 0, leads: b.count ?? 0, support: c.count ?? 0 };
+  return {
+    demandes: a.count ?? 0,
+    leads: b.count ?? 0,
+    support: c.count ?? 0,
+    clients: d2.count ?? 0,
+  };
 }
 
 // ------------------------------------------------------------------ clients
@@ -405,6 +414,17 @@ export async function getSupportThread(ticketId: string) {
     .from('support_messages')
     .select('id, author, body, created_at')
     .eq('ticket_id', ticketId)
+    .order('created_at', { ascending: true });
+  return data ?? [];
+}
+
+// ------------------------------------------------------------------ demandes de suppression
+/** Demandes de suppression de compte en attente, de la plus ancienne à la plus récente (délai RGPD : un mois). */
+export async function getDeletionRequests() {
+  const { data } = await db()
+    .from('account_deletion_requests')
+    .select('id, user_id, email, reason, comment, created_at')
+    .eq('status', 'pending')
     .order('created_at', { ascending: true });
   return data ?? [];
 }

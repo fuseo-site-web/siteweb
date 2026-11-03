@@ -291,3 +291,73 @@
   align-items: center;
   gap: 8px;
 }
+
+/* Demande de suppression de compte : motif en sélection rapide + commentaire. */
+.deletionForm {
+  display: grid;
+  gap: 10px;
+}
+
+.deletionForm fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.deletionForm legend,
+.deletionForm > label {
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chips label {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chips label:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.chips label[data-on] {
+  color: var(--err);
+  border-color: var(--err);
+  background: var(--errbg);
+}
+
+.chips input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.deletionForm textarea {
+  min-height: 90px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface2);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
+}
+
+.pendingNote {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  background: #fff6dd;
+  color: #6b4e00;
+}

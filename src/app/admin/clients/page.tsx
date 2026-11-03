@@ -8,7 +8,8 @@ import { RoleSelect } from '@/components/admin/RoleSelect';
 import styles from '@/components/admin/Admin.module.css';
 import { getAdminSession } from '@/lib/admin/access';
 import { OWNER_EMAIL } from '@/lib/access';
-import { getClients } from '@/lib/admin/data';
+import { getClients, getDeletionRequests } from '@/lib/admin/data';
+import { DELETION_REASON_FR, type DeletionReason } from '@/lib/account/deletion';
 
 const regions = new Intl.DisplayNames(['fr'], { type: 'region' });
 const day = (iso: string | null) =>
@@ -22,7 +23,12 @@ export default async function Clients({ searchParams }: { searchParams: Promise<
   // Données du jour : jamais prérendues.
   await connection();
   const { q } = await searchParams;
-  const [{ rows, total }, me] = await Promise.all([getClients(q), getAdminSession()]);
+  const [{ rows, total }, me, deletions] = await Promise.all([
+    getClients(q),
+    getAdminSession(),
+    getDeletionRequests(),
+  ]);
+  const pendingDeletion = new Set(deletions.map((d) => d.user_id));
   const testers = rows.filter((r) => r.role === 'tester').length;
   const admins = rows.filter((r) => r.role === 'admin').length;
   const complete = rows.filter((r) => r.profileComplete).length;
@@ -75,6 +81,46 @@ export default async function Clients({ searchParams }: { searchParams: Promise<
           example="contact.fuseo@gmail.com est toujours admin."
         />
       </section>
+      {deletions.length ? (
+        <Card
+          title={`Demandes de suppression de compte (${deletions.length})`}
+          info="Les clients qui ont demandé la suppression de leur compte depuis leur espace, avec leur motif. Le RGPD impose de traiter la demande sous un mois. La corbeille supprime le compte et ses données ; le client reçoit un e-mail de confirmation."
+          example="Marc · « Pas de voyage prévu » · 2 nov. : vous cliquez sur la corbeille, puis « Supprimer »."
+        >
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Demandé le</th>
+                  <th>Motif</th>
+                  <th>Commentaire</th>
+                  <th>
+                    <span className={styles.srOnly}>Supprimer</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {deletions.map((d) => (
+                  <tr key={d.id}>
+                    <td>{d.email}</td>
+                    <td>{day(d.created_at)}</td>
+                    <td>
+                      <span className={`${styles.pill} ${styles.warn}`}>
+                        {DELETION_REASON_FR[d.reason as DeletionReason] ?? d.reason}
+                      </span>
+                    </td>
+                    <td style={{ whiteSpace: 'normal', maxWidth: 360 }}>{d.comment || '—'}</td>
+                    <td>
+                      {d.user_id ? <DeleteClientButton id={d.user_id} email={d.email} /> : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      ) : null}
       <Card
         title="Liste des clients"
         info="Chaque ligne est un compte. La corbeille supprime le compte et toutes ses données (profil, voyages, données de santé, demandes de contact) après confirmation ; les paiements sont conservés sans nom pour la comptabilité. « Offre » : l'offre que vous accordez à la main (« offert »), en plus des achats, qui s'affichent en « Payé » et ne sont jamais modifiés ici. « Rôle » : Client (accès selon son forfait, gratuit ou payant), Testeur (pilote : plan complet sans payer, pas d'admin) ou Admin (plan complet + cet espace, avec le code d'ouverture). Le changement est enregistré immédiatement. « Voyages » est le nombre de voyages enregistrés. « Santé » indique si le client a autorisé l'enregistrement de ses données de sommeil. La date de naissance n'est volontairement pas affichée."
@@ -120,6 +166,14 @@ export default async function Clients({ searchParams }: { searchParams: Promise<
                   <tr key={r.id}>
                     <td>
                       <b>{r.name || '—'}</b>
+                      {pendingDeletion.has(r.id) ? (
+                        <>
+                          {' '}
+                          <span className={`${styles.pill} ${styles.warn}`}>
+                            Suppression demandée
+                          </span>
+                        </>
+                      ) : null}
                       <br />
                       <span style={{ color: 'var(--muted)', fontSize: 13 }}>
                         {r.email} · {r.provider === 'google' ? 'Google' : 'E-mail'}

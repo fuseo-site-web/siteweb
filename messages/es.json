@@ -635,7 +635,7 @@
     "export": "Descargar mis datos (JSON)",
     "profileSaved": "Perfil de sueño guardado el {date}",
     "danger": "Eliminar mi cuenta",
-    "dangerText": "Elimina su cuenta y sus datos de salud. Las facturas se conservan sin datos de salud, como exige la ley.",
+    "dangerText": "Puede solicitar la eliminación de su cuenta y de sus datos de salud. Sus facturas se conservan sin datos de salud, como exige la ley.",
     "deleteAccount": "Eliminar definitivamente mi cuenta",
     "error": "La operación ha fallado. Inténtelo de nuevo.",
     "pdf": "PDF",
@@ -731,7 +731,22 @@
       "refunded": "Reembolsado"
     },
     "preferredLocale": "Idioma de comunicación",
-    "preferredLocaleHint": "Idioma de nuestros correos y respuestas del soporte."
+    "preferredLocaleHint": "Idioma de nuestros correos y respuestas del soporte.",
+    "deletionQuestion": "¿Por qué desea eliminar su cuenta?",
+    "deletionReason": {
+      "not_useful": "Fuseo ya no me sirve",
+      "no_trip": "No tengo viajes previstos",
+      "privacy": "Preocupación por mis datos",
+      "too_many_emails": "Demasiados correos",
+      "other_service": "Uso otra solución",
+      "other": "Otro motivo"
+    },
+    "deletionComment": "¿Quiere contarnos más? (opcional)",
+    "deletionCommentPh": "Su opinión nos ayuda a mejorar Fuseo…",
+    "deletionInfo": "Su solicitud se envía a nuestro equipo, que elimina su cuenta y sus datos en un mes como máximo. Recibirá una confirmación por correo.",
+    "deletionSend": "Enviar mi solicitud de eliminación",
+    "deletionPending": "Su solicitud de eliminación del {date} está en trámite. Recibirá un correo en cuanto su cuenta sea eliminada.",
+    "deletionCancel": "Cancelar mi solicitud"
   },
   "consent": {
     "title": "Su privacidad, su decisión",

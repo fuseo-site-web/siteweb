@@ -2,14 +2,16 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import {
-  deleteAccount,
+  cancelAccountDeletion,
   deleteTrip,
   grantHealthConsent,
+  requestAccountDeletion,
   signOutAction,
   withdrawHealthConsent,
 } from '@/app/actions/account';
+import { DELETION_REASONS, type DeletionReason } from '@/lib/account/deletion';
 import styles from './Account.module.css';
 
 function useAction() {
@@ -118,37 +120,99 @@ export function HealthConsent({ granted }: { granted: boolean }) {
   );
 }
 
-export function DeleteAccount() {
+/**
+ * « Supprimer mon compte » ouvre une demande : un motif (sélection rapide) et un commentaire facultatif.
+ * L'équipe supprime ensuite le compte depuis l'espace admin ; tant que ce n'est pas fait, la demande s'annule ici.
+ */
+export function DeleteAccount({ pendingSince }: { pendingSince: string | null }) {
   const t = useTranslations('account');
-  const router = useRouter();
+  const locale = useLocale();
   const { run, pending, error } = useAction();
-  const [confirm, setConfirm] = useState(false);
-  return (
-    <div className={styles.actions}>
-      {confirm ? (
-        <>
+  const [open, setOpen] = useState(false);
+  const [reason, setReason] = useState<DeletionReason | null>(null);
+  const [comment, setComment] = useState('');
+
+  if (pendingSince)
+    return (
+      <div>
+        <p role="status" className={styles.pendingNote}>
+          {t('deletionPending', { date: pendingSince })}
+        </p>
+        <div className={styles.actions}>
           <button
             type="button"
-            className={styles.danger}
+            className={styles.ghost}
             disabled={pending}
-            onClick={() => run(deleteAccount, () => router.push('/'))}
+            onClick={() => run(cancelAccountDeletion)}
           >
-            {t('deleteAccount')}
+            {t('deletionCancel')}
           </button>
-          <button type="button" className={styles.ghost} onClick={() => setConfirm(false)}>
-            {t('cancel')}
-          </button>
-        </>
-      ) : (
-        <button type="button" className={styles.dangerGhost} onClick={() => setConfirm(true)}>
+        </div>
+        {error ? (
+          <p role="alert" className={styles.err}>
+            {error}
+          </p>
+        ) : null}
+      </div>
+    );
+
+  if (!open)
+    return (
+      <div className={styles.actions}>
+        <button type="button" className={styles.dangerGhost} onClick={() => setOpen(true)}>
           {t('danger')}
         </button>
-      )}
+      </div>
+    );
+
+  return (
+    <form
+      className={styles.deletionForm}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!reason) return;
+        run(() => requestAccountDeletion({ reason, comment: comment.trim() || undefined, locale }));
+      }}
+    >
+      <fieldset>
+        <legend>{t('deletionQuestion')}</legend>
+        <div className={styles.chips}>
+          {DELETION_REASONS.map((r) => (
+            <label key={r} data-on={reason === r || undefined}>
+              <input
+                type="radio"
+                name="deletion-reason"
+                value={r}
+                checked={reason === r}
+                onChange={() => setReason(r)}
+              />
+              {t(`deletionReason.${r}`)}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <label htmlFor="deletion-comment">{t('deletionComment')}</label>
+      <textarea
+        id="deletion-comment"
+        value={comment}
+        maxLength={1000}
+        placeholder={t('deletionCommentPh')}
+        onChange={(e) => setComment(e.target.value)}
+      />
+      <p className={styles.hint}>{t('deletionInfo')}</p>
+      <div className={styles.actions}>
+        <button type="submit" className={styles.danger} disabled={!reason || pending}>
+          {t('deletionSend')}
+        </button>
+        <button type="button" className={styles.ghost} onClick={() => setOpen(false)}>
+          {t('cancel')}
+        </button>
+      </div>
       {error ? (
         <p role="alert" className={styles.err}>
           {error}
         </p>
       ) : null}
-    </div>
+    </form>
   );
 }

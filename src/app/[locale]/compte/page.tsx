@@ -66,25 +66,31 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
   const format = await getFormatter({ locale });
   const date = (iso: string) => format.dateTime(new Date(iso), { dateStyle: 'long' });
 
-  const [entitlements, trips, consent, sleep, profile, payments, customer] = await Promise.all([
-    supabase
-      .from('entitlements')
-      .select('id, offer, status, expires_at, trip_credits')
-      .order('created_at', { ascending: false }),
-    supabase.from('trips').select('id, inputs_enc'),
-    supabase.from('health_consents').select('granted_at').is('withdrawn_at', null).maybeSingle(),
-    supabase.from('sleep_profiles').select('updated_at').maybeSingle(),
-    supabase
-      .from('user_profiles')
-      .select('first_name, last_name, birth_date, country, home_airport, preferred_locale')
-      .maybeSingle(),
-    supabase
-      .from('payments')
-      .select('id, offer, amount_cents, currency, status, created_at, receipt_url, invoice_url')
-      .order('created_at', { ascending: false })
-      .limit(50),
-    supabase.from('billing_customers').select('user_id').maybeSingle(),
-  ]);
+  const [entitlements, trips, consent, sleep, profile, payments, customer, deletion] =
+    await Promise.all([
+      supabase
+        .from('entitlements')
+        .select('id, offer, status, expires_at, trip_credits')
+        .order('created_at', { ascending: false }),
+      supabase.from('trips').select('id, inputs_enc'),
+      supabase.from('health_consents').select('granted_at').is('withdrawn_at', null).maybeSingle(),
+      supabase.from('sleep_profiles').select('updated_at').maybeSingle(),
+      supabase
+        .from('user_profiles')
+        .select('first_name, last_name, birth_date, country, home_airport, preferred_locale')
+        .maybeSingle(),
+      supabase
+        .from('payments')
+        .select('id, offer, amount_cents, currency, status, created_at, receipt_url, invoice_url')
+        .order('created_at', { ascending: false })
+        .limit(50),
+      supabase.from('billing_customers').select('user_id').maybeSingle(),
+      supabase
+        .from('account_deletion_requests')
+        .select('created_at')
+        .eq('status', 'pending')
+        .maybeSingle(),
+    ]);
 
   // Les voyages sont chiffrés : déchiffrés ici, côté serveur, pour leur seul propriétaire.
   const tickets: TicketView[] = [];
@@ -345,7 +351,7 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
       <section className={styles.card}>
         <h2>{t('danger')}</h2>
         <p>{t('dangerText')}</p>
-        <DeleteAccount />
+        <DeleteAccount pendingSince={deletion.data ? date(deletion.data.created_at) : null} />
       </section>
     </div>
   );

@@ -14,7 +14,7 @@ export function MobileFrame({
 }: {
   brand: React.ReactNode;
   footer: React.ReactNode;
-  badges: { demandes: number; leads: number; support: number };
+  badges: { demandes: number; leads: number; support: number; clients: number };
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);

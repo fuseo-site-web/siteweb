@@ -635,7 +635,7 @@
     "export": "Télécharger mes données (JSON)",
     "profileSaved": "Profil de sommeil enregistré le {date}",
     "danger": "Supprimer mon compte",
-    "dangerText": "Supprime votre compte et vos données de santé. Vos factures sont conservées sans données de santé, comme l'exige la loi.",
+    "dangerText": "Vous pouvez demander la suppression de votre compte et de vos données de santé. Vos factures sont conservées sans données de santé, comme l'exige la loi.",
     "deleteAccount": "Supprimer définitivement mon compte",
     "error": "L'opération a échoué. Réessayez.",
     "pdf": "PDF",
@@ -731,7 +731,22 @@
       "refunded": "Remboursé"
     },
     "preferredLocale": "Langue de communication",
-    "preferredLocaleHint": "Langue de nos e-mails et de nos réponses au support."
+    "preferredLocaleHint": "Langue de nos e-mails et de nos réponses au support.",
+    "deletionQuestion": "Pourquoi souhaitez-vous supprimer votre compte ?",
+    "deletionReason": {
+      "not_useful": "Fuseo ne me sert plus",
+      "no_trip": "Pas de voyage prévu",
+      "privacy": "Inquiétude pour mes données",
+      "too_many_emails": "Trop d'e-mails",
+      "other_service": "J'utilise une autre solution",
+      "other": "Autre raison"
+    },
+    "deletionComment": "Vous souhaitez nous en dire plus ? (facultatif)",
+    "deletionCommentPh": "Votre avis nous aide à améliorer Fuseo…",
+    "deletionInfo": "Votre demande est transmise à notre équipe, qui supprime votre compte et vos données sous un mois au plus tard. Vous recevrez une confirmation par e-mail.",
+    "deletionSend": "Envoyer ma demande de suppression",
+    "deletionPending": "Votre demande de suppression du {date} est en cours de traitement. Vous recevrez un e-mail dès que votre compte sera supprimé.",
+    "deletionCancel": "Annuler ma demande"
   },
   "consent": {
     "title": "Votre vie privée, votre choix",

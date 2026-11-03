@@ -11,7 +11,7 @@ export function AdminShell({
   children,
 }: {
   email: string;
-  badges: { demandes: number; leads: number; support: number };
+  badges: { demandes: number; leads: number; support: number; clients: number };
   children: React.ReactNode;
 }) {
   return (

@@ -613,4 +613,67 @@ module.exports = [
       'Idioma de nuestros correos y respuestas del soporte.',
     ),
   ],
+  [
+    'account.deletionQuestion',
+    'Pourquoi souhaitez-vous supprimer votre compte ?',
+    M('Why do you want to delete your account?', '¿Por qué desea eliminar su cuenta?'),
+  ],
+  [
+    'account.deletionReason.not_useful',
+    'Fuseo ne me sert plus',
+    M('Fuseo is no longer useful to me', 'Fuseo ya no me sirve'),
+  ],
+  [
+    'account.deletionReason.no_trip',
+    'Pas de voyage prévu',
+    M('No trip planned', 'No tengo viajes previstos'),
+  ],
+  [
+    'account.deletionReason.privacy',
+    'Inquiétude pour mes données',
+    M('Concern about my data', 'Preocupación por mis datos'),
+  ],
+  [
+    'account.deletionReason.too_many_emails',
+    "Trop d'e-mails",
+    M('Too many emails', 'Demasiados correos'),
+  ],
+  [
+    'account.deletionReason.other_service',
+    "J'utilise une autre solution",
+    M('I use another solution', 'Uso otra solución'),
+  ],
+  ['account.deletionReason.other', 'Autre raison', M('Other reason', 'Otro motivo')],
+  [
+    'account.deletionComment',
+    'Vous souhaitez nous en dire plus ? (facultatif)',
+    M('Would you like to tell us more? (optional)', '¿Quiere contarnos más? (opcional)'),
+  ],
+  [
+    'account.deletionCommentPh',
+    'Votre avis nous aide à améliorer Fuseo…',
+    M('Your feedback helps us improve Fuseo…', 'Su opinión nos ayuda a mejorar Fuseo…'),
+  ],
+  [
+    'account.deletionInfo',
+    'Votre demande est transmise à notre équipe, qui supprime votre compte et vos données sous un mois au plus tard. Vous recevrez une confirmation par e-mail.',
+    M(
+      'Your request is sent to our team, which deletes your account and data within one month at the latest. You will receive a confirmation by email.',
+      'Su solicitud se envía a nuestro equipo, que elimina su cuenta y sus datos en un mes como máximo. Recibirá una confirmación por correo.',
+    ),
+  ],
+  [
+    'account.deletionSend',
+    'Envoyer ma demande de suppression',
+    M('Send my deletion request', 'Enviar mi solicitud de eliminación'),
+  ],
+  [
+    'account.deletionPending',
+    'Votre demande de suppression du {date} est en cours de traitement. Vous recevrez un e-mail dès que votre compte sera supprimé.',
+    M(
+      'Your deletion request of {date} is being processed. You will receive an email as soon as your account is deleted.',
+      'Su solicitud de eliminación del {date} está en trámite. Recibirá un correo en cuanto su cuenta sea eliminada.',
+    ),
+  ],
+  ['account.deletionCancel', 'Annuler ma demande', M('Cancel my request', 'Cancelar mi solicitud')],
 ];
