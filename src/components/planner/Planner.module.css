@@ -481,10 +481,94 @@
   font-weight: 600;
 }
 
+.actionsTop {
+  margin: 20px 0 4px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .shareRow {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
+}
+
+.shareRow > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shareRow > button svg {
+  flex-shrink: 0;
+  color: var(--accent-text);
+}
+
+/* Messages d'état (PDF, agenda) : pas d'espace vide quand ils sont muets. */
+.shareRow > span:empty {
+  display: none;
+}
+
+.shareRow > span {
+  flex-basis: 100%;
+  font-size: 14px;
+}
+
+/* Mobile : les quatre actions en grille 2 × 2, compactes. */
+@media (max-width: 560px) {
+  .shareRow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .shareRow > button {
+    justify-content: center;
+    padding-inline: 10px;
+    font-size: 13.5px;
+    text-align: center;
+  }
+
+  .shareRow > span {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Paramètres de santé (facultatifs) dans « Affiner mon profil ». */
+.healthSet {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+}
+
+.healthSet legend {
+  padding: 0 6px;
+  font-weight: 800;
+}
+
+.rules ul {
+  margin: 8px 0 6px;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.rules small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Fin du plan : l'horloge est recalée, plus de consigne à suivre. */
+.adaptedEnd {
+  margin: 18px 0 0;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  color: #0f5a3a;
+  background: #dff5ea;
+  border: 1px solid #a8dfc3;
 }

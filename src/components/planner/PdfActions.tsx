@@ -1,5 +1,6 @@
 'use client';
 
+import { FileDown, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -75,6 +76,7 @@ export function PdfActions({
         disabled={state === 'busy'}
         onClick={() => void run(false)}
       >
+        <FileDown size={18} aria-hidden="true" />
         {state === 'busy' ? t('pdfBusy') : compact ? account('pdf') : t('pdf')}
       </button>
       <button
@@ -83,6 +85,7 @@ export function PdfActions({
         disabled={state === 'busy'}
         onClick={() => void run(true)}
       >
+        <Share2 size={18} aria-hidden="true" />
         {compact ? account('share') : t('share')}
       </button>
       <span role="status" aria-live="polite">

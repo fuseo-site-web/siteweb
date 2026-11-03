@@ -13,6 +13,11 @@ export const env = createEnv({
     EMAIL_FROM: z.string().min(5).optional(),
     ADMIN_ACCESS_CODE: z.string().min(4).optional(),
     ADMIN_SESSION_SECRET: z.string().min(32).optional(),
+    // Paiement Stripe (absents = paiement en ligne désactivé, l'onglet Paiement l'indique).
+    STRIPE_SECRET_KEY: z.string().startsWith('sk_').optional(),
+    STRIPE_WEBHOOK_SECRET: z.string().startsWith('whsec_').optional(),
+    // Tâche planifiée (nurturing) : secret partagé avec la fonction Netlify planifiée.
+    CRON_SECRET: z.string().min(24).optional(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.url(),
@@ -40,6 +45,9 @@ export const env = createEnv({
     EMAIL_FROM: process.env.EMAIL_FROM,
     ADMIN_ACCESS_CODE: process.env.ADMIN_ACCESS_CODE,
     ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    CRON_SECRET: process.env.CRON_SECRET,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,

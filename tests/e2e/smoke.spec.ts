@@ -139,6 +139,43 @@ test('sitemap.xml et robots.txt', async ({ request }) => {
 });
 
 test.describe('planificateur', () => {
+  test('un brouillon enregistré avant les nouvelles options (santé, repas…) ne bloque pas la création du plan', async ({
+    page,
+  }) => {
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto('/');
+    const day = (n: number) => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
+    await page.evaluate(
+      ([d, d2]) =>
+        localStorage.setItem(
+          'fuseo-plan-draft-v1',
+          JSON.stringify({
+            bed: '23:00',
+            wake: '07:00',
+            chrono: 'intermediate',
+            age: '',
+            caf: 'moderate',
+            nap: 'sometimes',
+            sq: 'good',
+            outbound: [{ from: 'CDG', to: 'HND', dd: d, dt: '19:30', ad: d2, at: '15:25', fn: '' }],
+            ret: [],
+            pre: 1,
+            strategy: 'AUTO',
+            lamp: false,
+            coffee: true,
+          }),
+        ),
+      [day(30), day(31)],
+    );
+    await page.goto('/plan-anti-jet-lag');
+    const consent = page.getByRole('button', { name: 'Tout refuser' });
+    if (await consent.isVisible().catch(() => false)) await consent.click();
+    await page.locator('form button[type=submit]').last().click();
+    await expect(page.getByText('Horloge biologique').first()).toBeVisible({ timeout: 15_000 });
+    expect(errors).toEqual([]);
+  });
+
   test('génère un plan, ne renvoie que les jours gratuits et verrouille le reste', async ({
     page,
   }) => {
@@ -732,7 +769,7 @@ test.describe('module « Préparez votre vol sereinement »', () => {
     await expect(page.locator('#ret0fn')).toHaveValue('AF1381');
   });
 
-  test("la frise « Jour du vol » place le trait bleu au-dessus de la barre, avec l'avion à l'atterrissage", async ({
+  test("la frise « Pendant le vol » place le trait bleu au-dessus de la barre, avec l'avion à l'atterrissage", async ({
     page,
   }) => {
     await page.goto('/');

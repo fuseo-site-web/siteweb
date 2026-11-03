@@ -2,12 +2,13 @@ import 'server-only';
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { cookies, headers } from 'next/headers';
 import { env } from '@/env';
+import { getRole, OWNER_EMAIL } from '@/lib/access';
 import { getCurrentUser } from '@/lib/auth';
 import { rateLimit } from '@/lib/rate-limit';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-/** Seul compte autorisé à ouvrir l'espace administrateur. */
-export const ADMIN_EMAIL = 'contact.fuseo@gmail.com';
+/** Compte propriétaire (toujours admin). Les autres comptes deviennent admin via leur rôle (onglet Clients). */
+export const ADMIN_EMAIL = OWNER_EMAIL;
 export const ADMIN_COOKIE = 'fuseo_admin';
 const SESSION_HOURS = 2;
 
@@ -59,25 +60,21 @@ export function verifyAdminSession(
   }
 }
 
-/** Ce compte est-il l'administrateur ? (sans appel réseau : pour décider d'afficher le bouton d'accès) */
-export function isAdminAccount(user: {
+/** Ce compte peut-il ouvrir l'espace administrateur ? (rôle admin, adresse confirmée, espace configuré) */
+export async function canOpenAdmin(user: {
+  id: string;
   email?: string | null;
   email_confirmed_at?: string | null;
-}): boolean {
-  return (
-    !!env.ADMIN_ACCESS_CODE &&
-    !!env.ADMIN_SESSION_SECRET &&
-    !!user.email_confirmed_at &&
-    user.email?.toLowerCase() === ADMIN_EMAIL
-  );
+}): Promise<boolean> {
+  if (!env.ADMIN_ACCESS_CODE || !env.ADMIN_SESSION_SECRET || !user.email_confirmed_at) return false;
+  return (await getRole(user)) === 'admin';
 }
 
-/** Compte administrateur : bonne adresse e-mail, confirmée. Retourne null sinon (l'espace n'existe pas pour les autres). */
+/** Compte administrateur (rôle admin, adresse confirmée). Retourne null sinon (l'espace n'existe pas pour les autres). */
 export async function getAdminUser() {
-  if (!env.ADMIN_ACCESS_CODE || !env.ADMIN_SESSION_SECRET) return null;
   const { user } = await getCurrentUser();
-  if (!user || !user.email_confirmed_at) return null;
-  return user.email?.toLowerCase() === ADMIN_EMAIL ? user : null;
+  if (!user) return null;
+  return (await canOpenAdmin(user)) ? user : null;
 }
 
 /** Accès complet : compte administrateur ET code saisi (session valide). À appeler dans chaque action et route. */

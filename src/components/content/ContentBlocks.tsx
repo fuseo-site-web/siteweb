@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Block } from '@/content/pages';
 import type { PageMeta } from '@/content/page-meta';
 import { Icon, type IconName } from '@/components/ui/Icon';
@@ -63,10 +64,12 @@ export function ContentBlocks({
   blocks,
   meta,
   toc = false,
+  page,
 }: {
   blocks: Block[];
   meta?: Pick<PageMeta, 'headings' | 'cards' | 'steps' | 'refs'>;
   toc?: boolean;
+  page?: 'method';
 }) {
   const sections = toSections(blocks, meta?.headings);
   const items: TocItem[] = sections
@@ -96,6 +99,38 @@ export function ContentBlocks({
             <img src={b.src} alt={b.alt} loading="lazy" decoding="async" />
             {b.alt ? <figcaption>{b.alt}</figcaption> : null}
           </figure>
+        );
+      case 'gallery':
+        return (
+          <div key={index} className={styles.gallery}>
+            {b.items.map((item) => (
+              <figure key={item.src} className={styles.galleryItem}>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 980px) 30vw, (max-width: 1600px) 25vw, 320px"
+                />
+                <figcaption>
+                  <strong>{item.caption}</strong>
+                  {item.description ? <span>{item.description}</span> : null}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        );
+      case 'trustBand':
+        return (
+          <aside key={index} className={styles.trustBand} aria-label={b.title}>
+            <span className={styles.trustLogo}>
+              <Image src={b.logo} alt={b.logoAlt} width={351} height={120} sizes="176px" />
+            </span>
+            <div>
+              <strong>{b.title}</strong>
+              <p>{b.text}</p>
+            </div>
+          </aside>
         );
       case 'list': {
         if (b.ordered) {
@@ -188,7 +223,7 @@ export function ContentBlocks({
 
   // L'id doit être sur le titre pour que le sommaire le retrouve.
   const withIds = (
-    <div className={showToc ? styles.layout : styles.layoutSolo}>
+    <div className={showToc ? styles.layout : styles.layoutSolo} data-page={page}>
       {showToc ? <Toc items={items} /> : null}
       {body}
     </div>

@@ -31,7 +31,21 @@ export function MobileMenu({
       }
     };
     document.addEventListener('keydown', esc);
-    return () => document.removeEventListener('keydown', esc);
+    // Menu ouvert : la page derrière ne défile plus (y compris sur iOS, où overflow seul ne suffit pas).
+    const y = window.scrollY;
+    const body = document.body.style;
+    const prev = {
+      position: body.position,
+      top: body.top,
+      width: body.width,
+      overflow: body.overflow,
+    };
+    Object.assign(body, { position: 'fixed', top: `-${y}px`, width: '100%', overflow: 'hidden' });
+    return () => {
+      document.removeEventListener('keydown', esc);
+      Object.assign(body, prev);
+      window.scrollTo(0, y);
+    };
   }, [open]);
 
   return (
@@ -47,6 +61,9 @@ export function MobileMenu({
       >
         {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
       </button>
+      {open ? (
+        <div className={styles.backdrop} aria-hidden="true" onClick={() => setOpen(false)} />
+      ) : null}
       {open ? (
         <nav id="mobile-nav" className={styles.drawer} aria-label={menuLabel}>
           {items.map((i) => (

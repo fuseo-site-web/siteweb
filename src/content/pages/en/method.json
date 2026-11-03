@@ -123,6 +123,29 @@
       ]
     },
     {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/recherche-sommeil-capteurs.webp",
+          "alt": "Sleep technician placing sensors on a participant in a research laboratory",
+          "caption": "Sleep research in the laboratory",
+          "description": "Measuring sleep and alertness helps us understand biological rhythms."
+        },
+        {
+          "src": "/images/method/rythmes-biologiques-espace.webp",
+          "alt": "Astronaut looking at Earth through a space station window",
+          "caption": "Rhythms in space",
+          "description": "Research on space missions informs the simulation of the body clock."
+        },
+        {
+          "src": "/images/method/vigilance-cockpit-aviation.webp",
+          "alt": "Two pilots in an aircraft cockpit at sunrise",
+          "caption": "Schedules and alertness in aviation",
+          "description": "Fatigue models help assess the effects of disrupted schedules."
+        }
+      ]
+    },
+    {
       "type": "h",
       "level": 2,
       "text": "Models derived from aerospace medicine"
@@ -142,6 +165,50 @@
     {
       "type": "p",
       "text": "Fuseo is not a fatigue-management tool for on-duty aircrew, nor a medical device."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Medical and scientific expertise"
+    },
+    {
+      "type": "trustBand",
+      "logo": "/images/institut-medical-du-sommeil.png",
+      "logoAlt": "Institut Médical du Sommeil",
+      "title": "A method reviewed by sleep experts",
+      "text": "Dr Jonathan Taieb, founder of the Institut Médical du Sommeil and an aerospace medicine physician, and Dr Maxime Elbaz, a neuroscientist, serve on Fuseo’s scientific committee."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Journeys where every hour matters"
+    },
+    {
+      "type": "p",
+      "text": "These situations show how a plan that considers sleep, light and schedules can help you prepare for arrival."
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/sport-haut-niveau.webp",
+          "alt": "Elite athlete stretching on a running track at sunrise",
+          "caption": "Elite sport",
+          "description": "Prepare for a training session or competition after a long-haul flight."
+        },
+        {
+          "src": "/images/method/medecine-aeronautique.webp",
+          "alt": "Aerospace medicine physician discussing sleep and flight schedules with a pilot",
+          "caption": "Aerospace medicine",
+          "description": "Bring knowledge about fatigue and alertness into travel preparation."
+        },
+        {
+          "src": "/images/method/missions-internationales.webp",
+          "alt": "Travelers entering a Parisian institutional building beneath a French flag",
+          "caption": "International missions",
+          "description": "Prepare for demanding schedules, including travel related to foreign affairs."
+        }
+      ]
     },
     {
       "type": "h",

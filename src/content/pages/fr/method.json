@@ -123,6 +123,29 @@
       ]
     },
     {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/recherche-sommeil-capteurs.webp",
+          "alt": "Technicienne posant des capteurs de sommeil sur un participant dans un laboratoire",
+          "caption": "Sommeil en laboratoire",
+          "description": "Mesurer le sommeil et la vigilance permet de mieux comprendre les rythmes biologiques."
+        },
+        {
+          "src": "/images/method/rythmes-biologiques-espace.webp",
+          "alt": "Astronaute observant la Terre depuis un hublot de station spatiale",
+          "caption": "Rythmes en environnement spatial",
+          "description": "La recherche sur les missions spatiales éclaire la simulation de l’horloge interne."
+        },
+        {
+          "src": "/images/method/vigilance-cockpit-aviation.webp",
+          "alt": "Deux pilotes dans un cockpit d’avion au lever du soleil",
+          "caption": "Horaires et vigilance en aviation",
+          "description": "Les modèles de fatigue aident à analyser les effets des horaires décalés."
+        }
+      ]
+    },
+    {
       "type": "h",
       "level": 2,
       "text": "Des modèles issus de la médecine aéronautique et spatiale"
@@ -142,6 +165,50 @@
     {
       "type": "p",
       "text": "Fuseo n'est pas un outil de gestion de la fatigue des équipages en service, ni un dispositif médical."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Une expertise médicale et scientifique"
+    },
+    {
+      "type": "trustBand",
+      "logo": "/images/institut-medical-du-sommeil.png",
+      "logoAlt": "Institut Médical du Sommeil",
+      "title": "Une méthode examinée par des experts du sommeil",
+      "text": "Le Dr Jonathan Taieb, fondateur de l’Institut Médical du Sommeil et médecin aéronautique, et le Dr Maxime Elbaz, docteur en neurosciences, participent au comité scientifique de Fuseo."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Des voyages où chaque heure compte"
+    },
+    {
+      "type": "p",
+      "text": "Ces situations montrent comment un plan tenant compte du sommeil, de la lumière et des horaires peut aider à préparer l’arrivée."
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/sport-haut-niveau.webp",
+          "alt": "Athlète de haut niveau s’étirant sur une piste d’athlétisme au lever du soleil",
+          "caption": "Sport de haut niveau",
+          "description": "Anticiper l’heure d’entraînement ou de compétition après un vol transcontinental."
+        },
+        {
+          "src": "/images/method/medecine-aeronautique.webp",
+          "alt": "Médecin aéronautique échangeant avec un pilote devant un planning de sommeil et de vols",
+          "caption": "Médecine aéronautique",
+          "description": "Intégrer les connaissances sur la fatigue et la vigilance à la préparation d’un voyage."
+        },
+        {
+          "src": "/images/method/missions-internationales.webp",
+          "alt": "Voyageurs entrant dans un bâtiment institutionnel parisien sous un drapeau français",
+          "caption": "Missions internationales",
+          "description": "Préparer des agendas exigeants, comme les déplacements liés aux affaires étrangères."
+        }
+      ]
     },
     {
       "type": "h",

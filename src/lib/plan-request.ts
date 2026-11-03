@@ -26,12 +26,13 @@ export async function readPlanRequest(
   const parsed = planInputSchema.safeParse(json);
   if (!parsed.success) return fail('invalid_input', 422);
 
-  // Fenêtre de dates plausible : de -1 jour à +18 mois.
+  // Fenêtre de dates plausible : jusqu'à 13 mois dans le passé (rouvrir un voyage enregistré, même terminé)
+  // et 18 mois dans le futur.
   const now = Date.now();
   const times = [...parsed.data.outbound, ...parsed.data.return].map((l) =>
     Date.parse(`${l.departure}:00Z`),
   );
-  if (times.some((t) => !(t > now - 2 * 864e5 && t < now + 550 * 864e5)))
+  if (times.some((t) => !(t > now - 400 * 864e5 && t < now + 550 * 864e5)))
     return fail('date_out_of_range', 422);
   return { input: parsed.data };
 }

@@ -123,6 +123,29 @@
       ]
     },
     {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/recherche-sommeil-capteurs.webp",
+          "alt": "Técnica colocando sensores del sueño a un participante en un laboratorio",
+          "caption": "Sueño en el laboratorio",
+          "description": "Medir el sueño y la vigilancia ayuda a comprender los ritmos biológicos."
+        },
+        {
+          "src": "/images/method/rythmes-biologiques-espace.webp",
+          "alt": "Astronauta observando la Tierra desde una ventana de una estación espacial",
+          "caption": "Ritmos en el espacio",
+          "description": "La investigación sobre las misiones espaciales contribuye a simular el reloj interno."
+        },
+        {
+          "src": "/images/method/vigilance-cockpit-aviation.webp",
+          "alt": "Dos pilotos en la cabina de un avión al amanecer",
+          "caption": "Horarios y vigilancia en aviación",
+          "description": "Los modelos de fatiga ayudan a evaluar los efectos de los horarios desplazados."
+        }
+      ]
+    },
+    {
       "type": "h",
       "level": 2,
       "text": "Modelos procedentes de la medicina aeroespacial"
@@ -142,6 +165,50 @@
     {
       "type": "p",
       "text": "Fuseo no es una herramienta de gestión de la fatiga de tripulaciones en servicio, ni un producto sanitario."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Experiencia médica y científica"
+    },
+    {
+      "type": "trustBand",
+      "logo": "/images/institut-medical-du-sommeil.png",
+      "logoAlt": "Institut Médical du Sommeil",
+      "title": "Un método revisado por especialistas del sueño",
+      "text": "El Dr. Jonathan Taieb, fundador del Institut Médical du Sommeil y médico aeroespacial, y el Dr. Maxime Elbaz, doctor en neurociencias, forman parte del comité científico de Fuseo."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Viajes en los que cada hora cuenta"
+    },
+    {
+      "type": "p",
+      "text": "Estas situaciones muestran cómo un plan que tiene en cuenta el sueño, la luz y los horarios puede ayudar a preparar la llegada."
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "/images/method/sport-haut-niveau.webp",
+          "alt": "Atleta de alto nivel estirando en una pista de atletismo al amanecer",
+          "caption": "Deporte de alto nivel",
+          "description": "Preparar una sesión de entrenamiento o competición después de un vuelo de larga distancia."
+        },
+        {
+          "src": "/images/method/medecine-aeronautique.webp",
+          "alt": "Médico aeroespacial conversando con un piloto sobre un horario de sueño y vuelos",
+          "caption": "Medicina aeroespacial",
+          "description": "Aplicar los conocimientos sobre fatiga y vigilancia a la preparación de un viaje."
+        },
+        {
+          "src": "/images/method/missions-internationales.webp",
+          "alt": "Viajeros entrando en un edificio institucional parisino bajo una bandera francesa",
+          "caption": "Misiones internacionales",
+          "description": "Preparar agendas exigentes, incluidos los desplazamientos relacionados con asuntos exteriores."
+        }
+      ]
     },
     {
       "type": "h",

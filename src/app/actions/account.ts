@@ -83,6 +83,7 @@ export async function saveProfile(
     birth_date: v.birthDate,
     country: v.country,
     home_airport: v.homeAirport,
+    preferred_locale: v.preferredLocale,
   };
   const updated = await supabase
     .from('user_profiles')

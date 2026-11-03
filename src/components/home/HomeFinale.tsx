@@ -29,15 +29,18 @@ export async function HomeFinale({ locale }: { locale: string }) {
               width={351}
               height={120}
             />
+            {/* Portraits déjà en WebP (240 px) : servis tels quels, sans conversion à la volée. */}
             <div className={styles.doctors}>
               <Image
-                src="/images/dr-jonathan-taieb.jpg"
+                src="/images/dr-jonathan-taieb.webp"
+                unoptimized
                 alt="Dr Jonathan Taieb"
                 width={88}
                 height={88}
               />
               <Image
-                src="/images/dr-maxime-elbaz.jpg"
+                src="/images/dr-maxime-elbaz.webp"
+                unoptimized
                 alt="Dr Maxime Elbaz"
                 width={88}
                 height={88}

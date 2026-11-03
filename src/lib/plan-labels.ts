@@ -14,6 +14,19 @@ export function makePlanLabels(t: Translate) {
     avoid: t('itemAvoid'),
     caf: t('itemCaf'),
     cafok: t('itemCafOk'),
+    alc: t('itemAlc'),
+    alcno: t('itemAlcNo'),
+    alcnone: t('itemAlcNone'),
+    smoke: t('itemSmoke'),
+    sport: t('itemSport'),
+    sportcut: t('itemSportCut'),
+    breakfast: t('itemBreakfast'),
+    breakfast1: t('itemBreakfast1'),
+    lunch: t('itemLunch'),
+    dinner: t('itemDinner'),
+    mealf: t('itemMealF'),
+    meal1: t('itemMeal1'),
+    meal: t('itemMeal'),
   };
   const labelFor = (it: DayItem) =>
     it.t === 'nap'

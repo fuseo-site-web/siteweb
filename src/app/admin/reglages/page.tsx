@@ -45,6 +45,11 @@ const ACTIONS: Record<string, string> = {
   'blog.update': 'Article modifié',
   'blog.delete': 'Article supprimé',
   'blog.upload': 'Image ajoutée',
+  'user.role': 'Changement de rôle d’un compte',
+  'user.offer': 'Offre accordée manuellement',
+  'user.delete': 'Compte supprimé (avec ses données)',
+  'support.reply': 'Réponse envoyée au support',
+  'support.status': 'État d’un dossier de support modifié',
 };
 
 export default async function Settings() {

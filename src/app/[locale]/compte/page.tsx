@@ -6,14 +6,19 @@ import { Suspense } from 'react';
 import { DeleteAccount, HealthConsent, SignOutButton } from '@/components/account/AccountClient';
 import styles from '@/components/account/Account.module.css';
 import dash from '@/components/account/Dashboard.module.css';
+import { BillingActions } from '@/components/account/BillingActions';
 import { PasswordAccess } from '@/components/account/PasswordAccess';
 import { ProfileForm } from '@/components/account/ProfileForm';
+import { ViewAsSelect } from '@/components/account/ViewAsSelect';
 import { Tabs } from '@/components/account/Tabs';
 import { Welcome } from '@/components/account/Welcome';
 import { Ticket } from '@/components/account/Ticket';
 import { PageHero } from '@/components/content/PageHero';
 import { Link, redirect } from '@/i18n/navigation';
-import { isAdminAccount } from '@/lib/admin/access';
+import { canOpenAdmin } from '@/lib/admin/access';
+import { getRole, getViewOffer, OFFERS } from '@/lib/access';
+import { BILLING_OFFERS } from '@/lib/billing/offers';
+import { billingEnabled } from '@/lib/billing/stripe';
 import { getCurrentUser } from '@/lib/auth';
 import { decryptJson } from '@/lib/crypto/health';
 import type { PlanInput } from '@/lib/plan-schema';
@@ -55,12 +60,13 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
   const { supabase, user } = await getCurrentUser();
   if (!user) return redirect({ href: '/connexion', locale: locale as 'fr' | 'en' | 'es' });
 
+  const role = await getRole(user);
+  const viewAs = await getViewOffer(role);
   const t = await getTranslations({ locale, namespace: 'account' });
-  const planner = await getTranslations({ locale, namespace: 'planner' });
   const format = await getFormatter({ locale });
   const date = (iso: string) => format.dateTime(new Date(iso), { dateStyle: 'long' });
 
-  const [entitlements, trips, consent, sleep, profile] = await Promise.all([
+  const [entitlements, trips, consent, sleep, profile, payments, customer] = await Promise.all([
     supabase
       .from('entitlements')
       .select('id, offer, status, expires_at, trip_credits')
@@ -70,8 +76,14 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
     supabase.from('sleep_profiles').select('updated_at').maybeSingle(),
     supabase
       .from('user_profiles')
-      .select('first_name, last_name, birth_date, country, home_airport')
+      .select('first_name, last_name, birth_date, country, home_airport, preferred_locale')
       .maybeSingle(),
+    supabase
+      .from('payments')
+      .select('id, offer, amount_cents, currency, status, created_at, receipt_url, invoice_url')
+      .order('created_at', { ascending: false })
+      .limit(50),
+    supabase.from('billing_customers').select('user_id').maybeSingle(),
   ]);
 
   // Les voyages sont chiffrés : déchiffrés ici, côté serveur, pour leur seul propriétaire.
@@ -111,6 +123,7 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
           birthDate: p?.birth_date ?? '',
           country: p?.country ?? '',
           homeAirport: p?.home_airport ?? '',
+          preferredLocale: p?.preferred_locale ?? locale,
         }}
       />
     );
@@ -129,6 +142,7 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
     ami: 'Accès invité',
     pro: 'Fuseo Pro',
   };
+  const viewLabel = (v: string) => (v === 'free' ? t('viewAsFree') : (offerName[v] ?? v));
   const zones = tickets.reduce((n, x) => n + x.zonesCrossed, 0);
 
   const renderTickets = (list: TicketView[], empty: string, withCta: boolean) =>
@@ -179,10 +193,12 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
     </>
   );
 
-  const dataPanel = (
-    <div className={styles.grid}>
+  const money = (cents: number, currency = 'eur') =>
+    format.number(cents / 100, { style: 'currency', currency: currency.toUpperCase() });
+  const paymentPanel = (
+    <div className={styles.payGrid}>
       <section className={styles.card}>
-        <h2>{t('access')}</h2>
+        <h2>{t('payTitle')}</h2>
         {active.length ? (
           active.map((e) => (
             <p key={e.id}>
@@ -193,13 +209,119 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
             </p>
           ))
         ) : (
-          <>
-            <p>{t('free')}</p>
-            <Link href="/tarifs" className={styles.ghost}>
-              {planner('lockedCta')}
-            </Link>
-          </>
+          <p>{t('free')}</p>
         )}
+        <BillingActions
+          mode="buy"
+          enabled={billingEnabled()}
+          hasCustomer={!!customer.data}
+          prices={{
+            voyage: money(BILLING_OFFERS.voyage.amountCents),
+            annuel: money(BILLING_OFFERS.annuel.amountCents),
+          }}
+        />
+        {billingEnabled() ? null : <p className={styles.hint}>{t('paySoon')}</p>}
+        <Link href="/tarifs" className={styles.linkAccent}>
+          {t('paySeeOffers')}
+        </Link>
+      </section>
+      <section className={styles.card}>
+        <h2>{t('payMethods')}</h2>
+        <p>{t('payMethodsText')}</p>
+        <BillingActions
+          mode="portal"
+          enabled={billingEnabled()}
+          hasCustomer={!!customer.data}
+          prices={{ voyage: '', annuel: '' }}
+        />
+        {customer.data ? null : <p className={styles.hint}>{t('payManageNone')}</p>}
+      </section>
+      <section className={`${styles.card} ${styles.wide}`}>
+        <h2>{t('payHistory')}</h2>
+        {payments.data?.length ? (
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('payDate')}</th>
+                  <th>{t('payOffer')}</th>
+                  <th>{t('payAmount')}</th>
+                  <th>{t('payStatus')}</th>
+                  <th>{t('payReceipt')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.data.map((pay) => (
+                  <tr key={pay.id}>
+                    <td>{date(pay.created_at)}</td>
+                    <td>{offerName[pay.offer] ?? pay.offer}</td>
+                    <td>{money(pay.amount_cents, pay.currency)}</td>
+                    <td>
+                      <span className={styles.badge} data-status={pay.status}>
+                        {t(`payState.${pay.status}`)}
+                      </span>
+                    </td>
+                    <td>
+                      {pay.receipt_url || pay.invoice_url ? (
+                        <a
+                          href={(pay.invoice_url || pay.receipt_url)!}
+                          target="_blank"
+                          rel="noopener"
+                          className={styles.linkAccent}
+                        >
+                          {t('payReceiptLink')}
+                        </a>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p>{t('payEmpty')}</p>
+        )}
+      </section>
+    </div>
+  );
+
+  const dataPanel = (
+    <div className={styles.grid}>
+      <section className={styles.card}>
+        <h2>{t('access')}</h2>
+        {role === 'admin' ? (
+          <ViewAsSelect
+            value={viewAs ?? 'full'}
+            options={[
+              { value: 'full', label: t('viewAsFull') },
+              ...(['free', ...OFFERS] as const).map((v) => ({ value: v, label: viewLabel(v) })),
+            ]}
+          />
+        ) : null}
+        {viewAs ? (
+          viewAs === 'free' ? (
+            <p>{t('free')}</p>
+          ) : (
+            <p>
+              <span className={styles.badge}>{viewLabel(viewAs)}</span>
+            </p>
+          )
+        ) : active.length ? (
+          active.map((e) => (
+            <p key={e.id}>
+              <span className={styles.badge}>{offerName[e.offer] ?? e.offer}</span>
+              <br />
+              {e.expires_at ? t('accessUntil', { date: date(e.expires_at) }) : null}
+              {e.trip_credits > 0 ? ` · ${t('credits', { n: e.trip_credits })}` : null}
+            </p>
+          ))
+        ) : (
+          <p>{t('free')}</p>
+        )}
+        {/* Seuls les administrateurs modifient leur accès ici (simulation d'offre) ; les clients passent par Paiement. */}
+        {role !== 'admin' ? <p className={styles.hint}>{t('accessReadonly')}</p> : null}
       </section>
       <section className={styles.card}>
         <h2>{t('passwordTitle')}</h2>
@@ -241,6 +363,7 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
           birthDate: p?.birth_date ?? '',
           country: p?.country ?? '',
           homeAirport: p?.home_airport ?? '',
+          preferredLocale: p?.preferred_locale ?? locale,
         }}
       />
     </section>
@@ -267,10 +390,16 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
             ) : null}
           </div>
           <div className={dash.topSide}>
-            {active[0] ? (
+            {viewAs ? (
+              <span className={dash.badge}>{t('viewAsBadge', { offer: viewLabel(viewAs) })}</span>
+            ) : role !== 'client' ? (
+              <span className={dash.badge}>
+                {role === 'admin' ? t('roleAdmin') : t('roleTester')}
+              </span>
+            ) : active[0] ? (
               <span className={dash.badge}>{offerName[active[0].offer] ?? active[0].offer}</span>
             ) : null}
-            {isAdminAccount(user) ? (
+            {(await canOpenAdmin(user)) ? (
               // Réservé au compte administrateur : l'espace /admin demande ensuite son code d'ouverture.
               <NextLink href="/admin" className={dash.adminBtn}>
                 <ShieldCheck size={16} aria-hidden="true" /> Espace administrateur
@@ -307,6 +436,7 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
             { id: 'trips', label: t('tabTrips'), count: tickets.length, content: tripsPanel },
             { id: 'profile', label: t('tabProfile'), content: profilePanel },
             { id: 'data', label: t('tabData'), content: dataPanel },
+            { id: 'payment', label: t('tabPayment'), content: paymentPanel },
           ]}
         />
       </div>

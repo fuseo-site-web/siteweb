@@ -8,6 +8,8 @@ import type { PlanInput } from '@/lib/plan-schema';
 import type { PlanResponse } from '@/lib/plan-view';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { AirportField } from './AirportField';
+import { BookmarkPlus } from 'lucide-react';
+import { CalendarExport } from './CalendarExport';
 import { PdfActions } from './PdfActions';
 import { ResultView } from './ResultView';
 import styles from './Planner.module.css';
@@ -35,9 +37,26 @@ interface Form {
   strategy: 'AUTO' | 'FULL_ADAPTATION' | 'PARTIAL_ADAPTATION' | 'HOME_TIME_MAINTENANCE';
   lamp: boolean;
   coffee: boolean;
+  alcohol: boolean;
+  sport: boolean;
+  smoker: boolean;
+  meals: boolean;
+  health: Health;
 }
 
+type Health = NonNullable<PlanInput['health']>;
+const HEALTH_KEYS = [
+  'pregnant',
+  'oralContraceptive',
+  'sleepApnea',
+  'heartCondition',
+  'bipolar',
+  'eyeCondition',
+] as const;
+
 const DRAFT_KEY = 'fuseo-plan-draft-v1';
+/** Une étape est complète quand aéroports, dates et heures sont renseignés (fonction de module : disponible partout). */
+const complete = (l: Leg) => !!(l.from && l.to && l.dd && l.dt && l.ad && l.at);
 const emptyLeg = (from = '', to = ''): Leg => ({
   from,
   to,
@@ -70,6 +89,11 @@ const exampleForm = (): Form => ({
   strategy: 'AUTO',
   lamp: false,
   coffee: true,
+  alcohol: true,
+  sport: true,
+  smoker: false,
+  meals: true,
+  health: {},
 });
 
 const toLeg = (l: Leg) => ({
@@ -95,6 +119,11 @@ const buildInput = (f: Form) => ({
   strategy: f.strategy,
   lamp: f.lamp,
   coffee: f.coffee,
+  alcohol: f.alcohol,
+  sport: f.sport,
+  smoker: f.smoker,
+  meals: f.meals,
+  health: f.health,
 });
 const fromLeg = (l: PlanInput['outbound'][number]): Leg => ({
   from: l.from,
@@ -122,6 +151,11 @@ const inputToForm = (i: PlanInput): Form => ({
   strategy: i.strategy,
   lamp: i.lamp,
   coffee: i.coffee,
+  alcohol: i.alcohol ?? true,
+  sport: i.sport ?? true,
+  smoker: i.smoker ?? false,
+  meals: i.meals ?? true,
+  health: i.health ?? {},
 });
 
 /** Pré-remplissage depuis l'accueil : `AF1380@2026-11-04` (vol) ou `CDG-HND-2026-11-04` (itinéraire), séparés par des virgules. */
@@ -180,7 +214,10 @@ export function PlannerApp() {
     } catch {
       /* brouillon illisible */
     }
-    let base = saved?.outbound?.length ? saved : exampleForm();
+    // Un brouillon enregistré avant l'ajout de nouvelles options (santé, repas…) reçoit leurs valeurs par défaut.
+    let base: Form = saved?.outbound?.length
+      ? { ...exampleForm(), ...saved, health: saved.health ?? {} }
+      : exampleForm();
     // Venu de l'accueil (vol ou itinéraire déjà saisi) : on repart de là, le profil de sommeil du brouillon est conservé.
     if (outSpecs.length && !tripId) {
       const toLeg = (sp: Spec): Leg => ({
@@ -253,8 +290,6 @@ export function PlannerApp() {
     });
   const removeLeg = (g: 'outbound' | 'ret', i: number) =>
     setForm((f) => (f ? { ...f, [g]: f[g].filter((_, j) => j !== i) } : f));
-
-  const complete = (l: Leg) => l.from && l.to && l.dd && l.dt && l.ad && l.at;
 
   /** Remplit l'étape (aéroports, dates et heures) à partir du numéro de vol. */
   async function lookup(
@@ -477,68 +512,76 @@ export function PlannerApp() {
     <div className={styles.app} ref={top}>
       {plan ? (
         <>
-          <ResultView plan={plan} onEdit={() => setPlan(null)} />
-          <div className={styles.savebox}>
-            <div className={styles.shareRow}>
-              <PdfActions
-                source={{ kind: 'input', input: buildInput(form) }}
-                buttonClass={styles.ghost}
-              />
-            </div>
-            {saveState === 'saved' ? (
-              <p role="status">
-                {t('saved')}{' '}
-                <Link href="/compte" className={styles.link}>
-                  {account('title')}
-                </Link>
-              </p>
-            ) : saveState === 'login' ? (
-              <p role="status">
-                {t('needLogin')}{' '}
-                <Link
-                  href={{ pathname: '/connexion', query: { next: '/plan' } }}
-                  className={styles.link}
-                >
-                  {nav('login')}
-                </Link>
-              </p>
-            ) : saveState === 'consent' ? (
-              <div>
-                <label className={styles.check2}>
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                  />{' '}
-                  {account('consentText')}
-                </label>
-                <button
-                  type="button"
-                  className={styles.submit}
-                  disabled={!consent}
-                  onClick={() => void grantAndSave()}
-                >
-                  {account('grant')}
-                </button>
-              </div>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className={styles.ghost}
-                  disabled={saveState === 'saving'}
-                  onClick={() => void save()}
-                >
-                  {t('save')}
-                </button>
-                {saveState === 'error' ? (
+          {/* Actions sous l'en-tête du plan, centrées : enregistrer, PDF, partager, agenda. */}
+          <ResultView
+            plan={plan}
+            onEdit={() => setPlan(null)}
+            actions={
+              <div className={styles.actionsTop}>
+                <div className={styles.shareRow}>
+                  {saveState === 'saved' ||
+                  saveState === 'login' ||
+                  saveState === 'consent' ? null : (
+                    <button
+                      type="button"
+                      className={styles.ghost}
+                      disabled={saveState === 'saving'}
+                      onClick={() => void save()}
+                    >
+                      <BookmarkPlus size={18} aria-hidden="true" />
+                      {t('save')}
+                    </button>
+                  )}
+                  <PdfActions
+                    source={{ kind: 'input', input: buildInput(form) }}
+                    buttonClass={styles.ghost}
+                  />
+                  <CalendarExport plan={plan} buttonClass={styles.ghost} />
+                </div>
+                {saveState === 'saved' ? (
+                  <p role="status">
+                    {t('saved')}{' '}
+                    <Link href="/compte" className={styles.link}>
+                      {account('title')}
+                    </Link>
+                  </p>
+                ) : saveState === 'login' ? (
+                  <p role="status">
+                    {t('needLogin')}{' '}
+                    <Link
+                      href={{ pathname: '/connexion', query: { next: '/plan' } }}
+                      className={styles.link}
+                    >
+                      {nav('login')}
+                    </Link>
+                  </p>
+                ) : saveState === 'consent' ? (
+                  <div>
+                    <label className={styles.check2}>
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                      />{' '}
+                      {account('consentText')}
+                    </label>
+                    <button
+                      type="button"
+                      className={styles.submit}
+                      disabled={!consent}
+                      onClick={() => void grantAndSave()}
+                    >
+                      {account('grant')}
+                    </button>
+                  </div>
+                ) : saveState === 'error' ? (
                   <p role="alert" className={styles.error}>
                     {t('saveError')}
                   </p>
                 ) : null}
-              </>
-            )}
-          </div>
+              </div>
+            }
+          />
         </>
       ) : (
         <form
@@ -635,6 +678,25 @@ export function PlannerApp() {
                   (v) => set('sq', v as Form['sq']),
                 )}
               </div>
+              <fieldset className={styles.healthSet}>
+                <legend>{t('healthTitle')}</legend>
+                {HEALTH_KEYS.map((k) => (
+                  <label key={k} className={styles.check2}>
+                    <input
+                      type="checkbox"
+                      checked={!!form.health?.[k]}
+                      onChange={(e) =>
+                        set('health', {
+                          ...(form.health ?? {}),
+                          [k]: e.target.checked || undefined,
+                        })
+                      }
+                    />{' '}
+                    {t(`health.${k}`)}
+                  </label>
+                ))}
+                <p className={styles.small}>{t('healthHint')}</p>
+              </fieldset>
               <p className={styles.small}>{t('profileHint')}</p>
             </details>
           </section>
@@ -703,6 +765,40 @@ export function PlannerApp() {
               />{' '}
               {t('coffee')}
             </label>
+            <label className={styles.check2}>
+              <input
+                type="checkbox"
+                checked={form.alcohol}
+                onChange={(e) => set('alcohol', e.target.checked)}
+              />{' '}
+              {t('alcohol')}
+            </label>
+            <label className={styles.check2}>
+              <input
+                type="checkbox"
+                checked={form.sport}
+                onChange={(e) => set('sport', e.target.checked)}
+              />{' '}
+              {t('sport')}
+            </label>
+            <label className={styles.check2}>
+              <input
+                type="checkbox"
+                checked={form.smoker}
+                onChange={(e) => set('smoker', e.target.checked)}
+              />{' '}
+              {t('smoker')}
+            </label>
+            <label className={styles.check2}>
+              <input
+                type="checkbox"
+                checked={form.meals}
+                onChange={(e) => set('meals', e.target.checked)}
+              />{' '}
+              {t('meals')}
+            </label>
+            <p className={styles.small}>{t('lifestyleNote')}</p>
+            <p className={styles.small}>{t('mealNote')}</p>
           </section>
 
           {error ? (

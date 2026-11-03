@@ -192,4 +192,277 @@ module.exports = [
     'planner.disclaimer',
     "Estimation individuelle à partir d'un modèle publié de l'horloge circadienne, sans mesure biologique. Fuseo ne recommande jamais de somnifère.",
   ],
+  [
+    'planner.itemAlc',
+    "Dernier verre d'alcool",
+    { en: 'Last alcoholic drink', es: 'Última bebida alcohólica' },
+  ],
+  [
+    'planner.itemAlcNo',
+    "Jour de vol : évitez l'alcool",
+    { en: 'Flight day: avoid alcohol', es: 'Día de vuelo: evite el alcohol' },
+  ],
+  [
+    'planner.itemSmoke',
+    'Dernière cigarette ou vapotage',
+    { en: 'Last cigarette or vape', es: 'Último cigarrillo o vapeo' },
+  ],
+  [
+    'planner.itemSport',
+    'Activité physique conseillée',
+    { en: 'Recommended physical activity', es: 'Actividad física recomendada' },
+  ],
+  [
+    'planner.itemSportCut',
+    'Fin du sport intense',
+    { en: 'End of intense exercise', es: 'Fin del deporte intenso' },
+  ],
+  [
+    'planner.alcohol',
+    "Me donner une heure limite pour l'alcool",
+    { en: 'Give me a cut-off time for alcohol', es: 'Darme una hora límite para el alcohol' },
+  ],
+  [
+    'planner.sport',
+    'Me conseiller les meilleurs moments pour le sport',
+    {
+      en: 'Suggest the best times for exercise',
+      es: 'Aconsejarme los mejores momentos para el deporte',
+    },
+  ],
+  [
+    'planner.smoker',
+    'Je fume ou je vapote (heure de la dernière cigarette)',
+    {
+      en: 'I smoke or vape (time of the last cigarette)',
+      es: 'Fumo o vapeo (hora del último cigarrillo)',
+    },
+  ],
+  [
+    'planner.lifestyleNote',
+    'Alcool : rien dans les 4 heures avant le coucher, et pas à bord. Tabac : rien dans les 2 heures avant le coucher ; pour un long vol, parlez à votre pharmacien des substituts nicotiniques (Tabac Info Service : 39 89). Sport intense : terminé au moins 2 heures avant le coucher.',
+    {
+      en: 'Alcohol: none in the 4 hours before bed, and none on board. Smoking: nothing in the 2 hours before bed; for a long flight, ask your pharmacist about nicotine replacement. Intense exercise: finished at least 2 hours before bed.',
+      es: 'Alcohol: nada en las 4 horas antes de acostarse, ni a bordo. Tabaco: nada en las 2 horas antes de acostarse; para un vuelo largo, consulte a su farmacéutico sobre los sustitutos de nicotina. Deporte intenso: terminado al menos 2 horas antes de acostarse.',
+    },
+  ],
+  [
+    'planner.itemBreakfast',
+    'Petit-déjeuner, avec des protéines',
+    { en: 'Breakfast, with some protein', es: 'Desayuno, con proteínas' },
+  ],
+  [
+    'planner.itemBreakfast1',
+    "Premier petit-déjeuner à l'heure locale : il aide votre corps à se recaler",
+    {
+      en: 'First breakfast on local time: it helps your body reset',
+      es: 'Primer desayuno a la hora local: ayuda a su cuerpo a ajustarse',
+    },
+  ],
+  ['planner.itemLunch', 'Déjeuner', { en: 'Lunch', es: 'Almuerzo' }],
+  [
+    'planner.itemDinner',
+    'Dîner léger, au moins 3 h avant le coucher',
+    {
+      en: 'Light dinner, at least 3 h before bed',
+      es: 'Cena ligera, al menos 3 h antes de acostarse',
+    },
+  ],
+  [
+    'planner.itemMealF',
+    "Repas à bord, à l'heure de la destination",
+    { en: 'Meal on board, on destination time', es: 'Comida a bordo, a la hora del destino' },
+  ],
+  [
+    'planner.meals',
+    'Me conseiller les horaires de repas',
+    { en: 'Suggest meal times', es: 'Aconsejarme los horarios de comida' },
+  ],
+  [
+    'planner.mealNote',
+    "Repas : mangez à l'heure de la destination dès le vol ; si le service à bord tombe pendant votre sommeil, dormez plutôt. Dîner léger (peu gras, peu épicé) au moins 3 h avant le coucher ; un en-cas léger reste possible. Buvez de l'eau régulièrement en cabine.",
+    {
+      en: 'Meals: eat on destination time from the flight onwards; if the onboard service falls during your sleep, sleep instead. Have a light dinner (not too fatty or spicy) at least 3 h before bed; a light snack is fine. Drink water regularly in the cabin.',
+      es: 'Comidas: coma a la hora del destino desde el vuelo; si el servicio a bordo coincide con su sueño, duerma. Cena ligera (poco grasa y poco picante) al menos 3 h antes de acostarse; un tentempié ligero es posible. Beba agua con regularidad en cabina.',
+    },
+  ],
+  [
+    'planner.itemMeal1',
+    'Premier repas de la journée',
+    { en: 'First meal of the day', es: 'Primera comida del día' },
+  ],
+  [
+    'planner.itemMeal',
+    'Repas du milieu de journée',
+    { en: 'Midday meal', es: 'Comida de media jornada' },
+  ],
+  [
+    'planner.healthTitle',
+    'Santé (facultatif)',
+    { en: 'Health (optional)', es: 'Salud (opcional)' },
+  ],
+  [
+    'planner.healthHint',
+    "Ces réponses adaptent le café, l'alcool, la lumière et les conseils. Elles restent sur votre appareil, ou sont chiffrées si vous enregistrez le voyage. Elles ne remplacent pas l'avis de votre médecin.",
+    {
+      en: "These answers adapt caffeine, alcohol, light and advice. They stay on your device, or are encrypted if you save the trip. They do not replace your doctor's advice.",
+      es: 'Estas respuestas adaptan el café, el alcohol, la luz y los consejos. Se quedan en su dispositivo, o se cifran si guarda el viaje. No sustituyen la opinión de su médico.',
+    },
+  ],
+  ['planner.health.pregnant', 'Je suis enceinte', { en: 'I am pregnant', es: 'Estoy embarazada' }],
+  [
+    'planner.health.oralContraceptive',
+    'Je prends une pilule contraceptive',
+    { en: 'I take a contraceptive pill', es: 'Tomo una píldora anticonceptiva' },
+  ],
+  [
+    'planner.health.sleepApnea',
+    "J'ai une apnée du sommeil",
+    { en: 'I have sleep apnoea', es: 'Tengo apnea del sueño' },
+  ],
+  [
+    'planner.health.heartCondition',
+    "J'ai un trouble du rythme cardiaque ou de l'hypertension",
+    {
+      en: 'I have a heart rhythm disorder or high blood pressure',
+      es: 'Tengo un trastorno del ritmo cardíaco o hipertensión',
+    },
+  ],
+  [
+    'planner.health.bipolar',
+    "J'ai un trouble bipolaire",
+    { en: 'I have bipolar disorder', es: 'Tengo un trastorno bipolar' },
+  ],
+  [
+    'planner.health.eyeCondition',
+    "J'ai une maladie des yeux ou je prends un médicament qui rend sensible à la lumière",
+    {
+      en: 'I have an eye condition or take a medicine that makes me sensitive to light',
+      es: 'Tengo una enfermedad ocular o tomo un medicamento que me hace sensible a la luz',
+    },
+  ],
+  [
+    'planner.adviceTitle',
+    'Conseils adaptés à votre profil',
+    { en: 'Advice tailored to your profile', es: 'Consejos adaptados a su perfil' },
+  ],
+  [
+    'planner.adviceNote',
+    "Informations générales : elles ne remplacent pas l'avis de votre médecin.",
+    {
+      en: "General information: it does not replace your doctor's advice.",
+      es: 'Información general: no sustituye la opinión de su médico.',
+    },
+  ],
+  [
+    'planner.advice.pregnant',
+    "Grossesse : pas d'alcool ni de mélatonine ; café limité à 2 tasses par jour et arrêté tôt (10 h avant le coucher). En vol, marchez toutes les 1 à 2 heures et buvez de l'eau. Avant un long vol, demandez l'avis de votre sage-femme ou de votre médecin.",
+    {
+      en: 'Pregnancy: no alcohol or melatonin; coffee limited to 2 cups a day and stopped early (10 h before bed). On the flight, walk every 1 to 2 hours and drink water. Before a long flight, ask your midwife or doctor.',
+      es: 'Embarazo: nada de alcohol ni melatonina; café limitado a 2 tazas al día y suspendido pronto (10 h antes de acostarse). En el vuelo, camine cada 1 o 2 horas y beba agua. Antes de un vuelo largo, consulte a su matrona o médico.',
+    },
+  ],
+  [
+    'planner.advice.minor',
+    "Moins de 18 ans : pas d'alcool, pas de café « coup de pouce », pas de mélatonine sans avis médical.",
+    {
+      en: "Under 18: no alcohol, no coffee 'boost', no melatonin without medical advice.",
+      es: 'Menos de 18 años: nada de alcohol, ni café «de refuerzo», ni melatonina sin consejo médico.',
+    },
+  ],
+  [
+    'planner.advice.heart',
+    "Trouble du rythme cardiaque ou hypertension : le plan ne propose pas de café « coup de pouce ». En vol, levez-vous régulièrement et hydratez-vous ; demandez l'avis de votre médecin avant un long voyage.",
+    {
+      en: "Heart rhythm disorder or high blood pressure: the plan does not suggest coffee 'boosts'. On the flight, stand up regularly and stay hydrated; ask your doctor before a long trip.",
+      es: 'Trastorno del ritmo cardíaco o hipertensión: el plan no propone café «de refuerzo». En el vuelo, levántese con regularidad e hidrátese; consulte a su médico antes de un viaje largo.',
+    },
+  ],
+  [
+    'planner.advice.apnea',
+    "Apnée du sommeil : pas d'alcool le soir (au moins 6 h avant le coucher) ni de somnifère. Si vous avez un appareil de PPC, emportez-le en cabine et vérifiez auprès de la compagnie s'il peut être utilisé à bord.",
+    {
+      en: 'Sleep apnoea: no alcohol in the evening (at least 6 h before bed) and no sleeping pills. If you use a CPAP machine, carry it in the cabin and check with the airline whether it can be used on board.',
+      es: 'Apnea del sueño: nada de alcohol por la noche (al menos 6 h antes de acostarse) ni somníferos. Si usa un aparato de CPAP, llévelo en cabina y consulte a la aerolínea si puede usarse a bordo.',
+    },
+  ],
+  [
+    'planner.advice.bipolar',
+    "Trouble bipolaire : le décalage horaire et la lumière vive peuvent déstabiliser l'humeur. Pas de lampe de luminothérapie sans avis médical ; prévenez votre psychiatre avant le voyage et gardez des horaires de sommeil réguliers.",
+    {
+      en: 'Bipolar disorder: jet lag and bright light can destabilise mood. No light-therapy lamp without medical advice; tell your psychiatrist before the trip and keep regular sleep times.',
+      es: 'Trastorno bipolar: el desfase horario y la luz intensa pueden desestabilizar el estado de ánimo. Nada de lámpara de luminoterapia sin consejo médico; avise a su psiquiatra antes del viaje y mantenga horarios de sueño regulares.',
+    },
+  ],
+  [
+    'planner.advice.eye',
+    'Maladie des yeux ou médicament photosensibilisant : pas de lampe de luminothérapie sans avis médical. Préférez la lumière du jour, avec vos protections habituelles.',
+    {
+      en: 'Eye condition or light-sensitising medicine: no light-therapy lamp without medical advice. Prefer daylight, with your usual protection.',
+      es: 'Enfermedad ocular o medicamento fotosensibilizante: nada de lámpara de luminoterapia sin consejo médico. Prefiera la luz del día, con su protección habitual.',
+    },
+  ],
+  [
+    'planner.advice.pill',
+    "Pilule contraceptive : la caféine s'élimine plus lentement, l'heure limite du café est avancée de 2 h. Pensez aussi à l'heure de votre comprimé avec le décalage : suivez la notice ou demandez à votre pharmacien.",
+    {
+      en: 'Contraceptive pill: caffeine is cleared more slowly, so the coffee cut-off is 2 h earlier. Also think about your pill time across time zones: follow the leaflet or ask your pharmacist.',
+      es: 'Píldora anticonceptiva: la cafeína se elimina más despacio, la hora límite del café se adelanta 2 h. Piense también en la hora de su comprimido con el desfase: siga el prospecto o consulte a su farmacéutico.',
+    },
+  ],
+  [
+    'planner.advice.senior',
+    '65 ans et plus : votre horloge est souvent plus matinale et un peu moins sensible à la lumière ; le plan en tient compte. Recherchez une vraie lumière du jour (dehors) et gardez des siestes courtes (20 minutes). Le café est arrêté 1 h plus tôt.',
+    {
+      en: '65 and over: your clock is often earlier and slightly less sensitive to light; the plan takes this into account. Seek real daylight (outdoors) and keep naps short (20 minutes). Coffee stops 1 h earlier.',
+      es: '65 años o más: su reloj suele ser más madrugador y algo menos sensible a la luz; el plan lo tiene en cuenta. Busque luz natural de verdad (al aire libre) y haga siestas cortas (20 minutos). El café se suspende 1 h antes.',
+    },
+  ],
+  [
+    'planner.advice.fifty',
+    "50 ans et plus : le sommeil devient plus sensible au café du soir ; l'heure limite est avancée d'1 h.",
+    {
+      en: '50 and over: sleep becomes more sensitive to evening coffee; the cut-off is 1 h earlier.',
+      es: '50 años o más: el sueño se vuelve más sensible al café de la tarde; la hora límite se adelanta 1 h.',
+    },
+  ],
+  [
+    'planner.advice.smoker',
+    'Tabac : il est interdit de fumer à bord et dans la plupart des aéroports, et le manque de nicotine peut fragmenter le sommeil en vol. Parlez des substituts nicotiniques à votre pharmacien.',
+    {
+      en: 'Smoking: it is forbidden on board and in most airports, and nicotine withdrawal can fragment sleep on the flight. Ask your pharmacist about nicotine replacement.',
+      es: 'Tabaco: está prohibido fumar a bordo y en la mayoría de los aeropuertos, y la abstinencia de nicotina puede fragmentar el sueño en el vuelo. Consulte a su farmacéutico sobre los sustitutos de nicotina.',
+    },
+  ],
+  [
+    'planner.itemAlcNone',
+    "Pas d'alcool aujourd'hui",
+    { en: 'No alcohol today', es: 'Nada de alcohol hoy' },
+  ],
+  [
+    'planner.icsButton',
+    'Ajouter à mon agenda',
+    { en: 'Add to my calendar', es: 'Añadir a mi agenda' },
+  ],
+  [
+    'planner.icsTitle',
+    'Plan Fuseo {from} → {to}',
+    { en: 'Fuseo plan {from} → {to}', es: 'Plan Fuseo {from} → {to}' },
+  ],
+  [
+    'planner.icsDone',
+    'Ouvrez le fichier pour ajouter les rappels à votre agenda (iPhone, Android, Outlook).',
+    {
+      en: 'Open the file to add the reminders to your calendar (iPhone, Android, Outlook).',
+      es: 'Abra el archivo para añadir los recordatorios a su agenda (iPhone, Android, Outlook).',
+    },
+  ],
+  [
+    'planner.adaptedEnd',
+    'Fin du programme le {date} : votre horloge est recalée sur votre destination. Reprenez simplement vos horaires habituels de coucher et de lever.',
+    {
+      en: 'End of the plan on {date}: your body clock is in sync with your destination. Simply return to your usual bed and wake times.',
+      es: 'Fin del programa el {date}: su reloj biológico está ajustado a su destino. Retome simplemente sus horarios habituales de acostarse y levantarse.',
+    },
+  ],
 ];

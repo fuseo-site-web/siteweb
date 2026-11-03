@@ -73,6 +73,36 @@ function screenCaffeine(profile, medical = {}) {
     maxServingsPerDay: profile.caffeineUse === 'high' ? 4 : 3,
   };
 }
+/**
+ * Caféine adaptée à l'âge et à la santé (préférence `health`, transmise par le site). Contrairement à
+ * `screenCaffeine`, l'heure limite est conservée même quand les prises « coup de pouce » sont déconseillées.
+ * - grossesse : élimination très ralentie (demi-vie jusqu'à ~15 h au 3e trimestre) et limite de 200 mg/j (EFSA 2015) ;
+ * - contraception orale œstroprogestative : demi-vie environ doublée (Abernethy & Todd 1985) ;
+ * - 50 ans et plus : sommeil plus sensible à la caféine du soir (Drapeau et al. 2006) ;
+ * - moins de 18 ans, trouble du rythme cardiaque ou hypertension : pas de café conseillé, seulement l'heure limite.
+ */
+function screenCaffeineHealth(profile, health = {}) {
+  if (!profile || profile.caffeineUse === 'none')
+    return { allowed: false, reason: 'NO_CAFFEINE_USER' };
+  let cutoff = profile.caffeineUse === 'high' || profile.sleepQuality === 'poor' ? 8 : 6;
+  let maxServingsPerDay = profile.caffeineUse === 'high' ? 4 : 3;
+  let noBoost = false;
+  if (health.pregnant) {
+    cutoff = Math.max(cutoff, 10);
+    maxServingsPerDay = 2;
+    noBoost = true;
+  }
+  if (health.oralContraceptive) cutoff += 2;
+  if (health.heartCondition) noBoost = true;
+  if (profile.age != null && profile.age >= 50) cutoff += 1;
+  if (profile.age != null && profile.age < 18) noBoost = true;
+  return {
+    allowed: true,
+    cutoffBeforeSleepH: Math.min(cutoff, 12),
+    maxServingsPerDay,
+    noBoost,
+  };
+}
 /** Avertissements génériques ajoutés à tout plan. */
 function globalSafetyNotes({ itinerary, trace }) {
   const notes = [
@@ -104,4 +134,10 @@ function globalSafetyNotes({ itinerary, trace }) {
   return notes;
 }
 
-export { MELATONIN_CONTRAINDICATIONS, screenMelatonin, screenCaffeine, globalSafetyNotes };
+export {
+  MELATONIN_CONTRAINDICATIONS,
+  screenMelatonin,
+  screenCaffeine,
+  screenCaffeineHealth,
+  globalSafetyNotes,
+};

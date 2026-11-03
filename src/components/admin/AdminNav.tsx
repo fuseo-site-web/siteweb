@@ -5,6 +5,7 @@ import {
   CalendarClock,
   Inbox,
   LayoutDashboard,
+  LifeBuoy,
   LineChart,
   Mail,
   Newspaper,
@@ -20,7 +21,7 @@ interface Item {
   href: string;
   label: string;
   icon: LucideIcon;
-  badge?: 'demandes' | 'leads';
+  badge?: 'demandes' | 'leads' | 'support';
 }
 
 const GROUPS: Array<{ title: string; items: Item[] }> = [
@@ -35,6 +36,7 @@ const GROUPS: Array<{ title: string; items: Item[] }> = [
     title: 'Relation client',
     items: [
       { href: '/admin/clients', label: 'Clients', icon: Users },
+      { href: '/admin/support', label: 'Support', icon: LifeBuoy, badge: 'support' },
       { href: '/admin/demandes', label: 'Demandes', icon: Inbox, badge: 'demandes' },
       { href: '/admin/leads', label: 'Leads & rendez-vous', icon: CalendarClock, badge: 'leads' },
       { href: '/admin/nurturing', label: 'Nurturing', icon: Mail },
@@ -57,7 +59,7 @@ export function AdminNav({
   badges,
   onNavigate,
 }: {
-  badges: { demandes: number; leads: number };
+  badges: { demandes: number; leads: number; support: number };
   onNavigate?: () => void;
 }) {
   const path = usePathname();

@@ -22,6 +22,31 @@
     #061426;
 }
 
+.hero[data-visual='pricing'] {
+  background:
+    linear-gradient(
+      90deg,
+      rgb(3 18 35 / 92%) 0%,
+      rgb(3 18 35 / 76%) 30%,
+      rgb(3 18 35 / 18%) 63%,
+      rgb(3 18 35 / 4%) 100%
+    ),
+    url('/images/pricing/hero-airport.webp') center 33% / cover no-repeat,
+    #061426;
+}
+
+.hero[data-visual='pricing'] h1 {
+  max-width: 19ch;
+}
+
+.hero[data-visual='pricing'] .lead {
+  max-width: 56ch;
+}
+
+.hero[data-visual='pricing'] .inner {
+  max-width: 1440px;
+}
+
 .sky {
   position: absolute;
   inset: 0;
@@ -43,35 +68,6 @@
     opacity: 0.85;
     transform: scale(1.5);
   }
-}
-
-.route {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: min(640px, 70%);
-  height: 100%;
-  opacity: 0.55;
-  color: var(--sky);
-}
-
-.route path:first-child {
-  fill: none;
-  stroke: currentcolor;
-  stroke-width: 1.6;
-  stroke-dasharray: 3 9;
-  stroke-linecap: round;
-  animation: dash 40s linear infinite;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: -480;
-  }
-}
-
-.plane {
-  color: #fff;
 }
 
 .inner {
@@ -206,22 +202,13 @@
   .row {
     flex-direction: column;
   }
-
-  .route {
-    opacity: 0.3;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sky span,
-  .route path:first-child,
   .badge,
   .badge::after,
   .text {
     animation: none;
-  }
-
-  .plane {
-    display: none;
   }
 }

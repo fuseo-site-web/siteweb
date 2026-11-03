@@ -498,4 +498,119 @@ module.exports = [
     'Recevoir plutôt un lien par e-mail',
     M('Receive a link by email instead', 'Recibir un enlace por correo'),
   ],
+  [
+    'account.roleTester',
+    'Testeur · accès complet',
+    M('Tester · full access', 'Probador · acceso completo'),
+  ],
+  [
+    'account.roleAdmin',
+    'Administrateur · accès complet',
+    M('Administrator · full access', 'Administrador · acceso completo'),
+  ],
+  [
+    'account.viewAsLabel',
+    "Voir le site avec l'offre",
+    M('View the site with the plan', 'Ver el sitio con la oferta'),
+  ],
+  [
+    'account.viewAsFull',
+    'Accès complet (admin)',
+    M('Full access (admin)', 'Acceso completo (admin)'),
+  ],
+  ['account.viewAsFree', 'Offre gratuite', M('Free plan', 'Oferta gratuita')],
+  [
+    'account.viewAsHint',
+    "Réservé aux administrateurs : votre plan, le PDF et votre espace s'affichent comme pour un client ayant cette offre.",
+    M(
+      'Administrators only: your plan, the PDF and your account are shown as for a customer with this plan.',
+      'Solo para administradores: su plan, el PDF y su espacio se muestran como para un cliente con esta oferta.',
+    ),
+  ],
+  ['account.viewAsBadge', 'Simulation : {offer}', M('Preview: {offer}', 'Simulación: {offer}')],
+  ['account.tabPayment', 'Paiement', M('Payment', 'Pago')],
+  [
+    'account.accessReadonly',
+    "Votre accès dépend de votre offre. Pour en changer, rendez-vous dans l'onglet Paiement.",
+    M(
+      'Your access depends on your plan. To change it, go to the Payment tab.',
+      'Su acceso depende de su oferta. Para cambiarla, vaya a la pestaña Pago.',
+    ),
+  ],
+  ['account.payTitle', 'Mon offre', M('My plan', 'Mi oferta')],
+  [
+    'account.payBuyTrip',
+    'Acheter « Un voyage » · {price}',
+    M('Buy “One trip” · {price}', 'Comprar «Un viaje» · {price}'),
+  ],
+  [
+    'account.payBuyYear',
+    'Passer à « Grand voyageur » · {price}',
+    M('Upgrade to “Frequent traveller” · {price}', 'Pasar a «Gran viajero» · {price}'),
+  ],
+  [
+    'account.paySoon',
+    'Le paiement en ligne sécurisé (Stripe) arrive bientôt. En attendant, découvrez les offres sur la page Tarifs.',
+    M(
+      'Secure online payment (Stripe) is coming soon. Meanwhile, see the plans on the Pricing page.',
+      'El pago en línea seguro (Stripe) llegará pronto. Mientras tanto, consulte las ofertas en la página Precios.',
+    ),
+  ],
+  ['account.paySeeOffers', 'Comparer les offres →', M('Compare plans →', 'Comparar las ofertas →')],
+  [
+    'account.payMethods',
+    'Moyens de paiement et factures',
+    M('Payment methods and invoices', 'Medios de pago y facturas'),
+  ],
+  [
+    'account.payMethodsText',
+    "Gérez votre carte bancaire et téléchargez vos factures dans l'espace sécurisé Stripe. Fuseo ne stocke jamais vos coordonnées bancaires.",
+    M(
+      'Manage your card and download your invoices in the secure Stripe area. Fuseo never stores your card details.',
+      'Gestione su tarjeta y descargue sus facturas en el espacio seguro de Stripe. Fuseo nunca almacena sus datos bancarios.',
+    ),
+  ],
+  ['account.payManage', 'Gérer mes paiements', M('Manage my payments', 'Gestionar mis pagos')],
+  [
+    'account.payManageNone',
+    'Disponible après votre premier paiement.',
+    M('Available after your first payment.', 'Disponible después de su primer pago.'),
+  ],
+  ['account.payHistory', 'Historique des paiements', M('Payment history', 'Historial de pagos')],
+  [
+    'account.payEmpty',
+    'Aucun paiement pour le moment.',
+    M('No payments yet.', 'Ningún pago por el momento.'),
+  ],
+  ['account.payDate', 'Date', M('Date', 'Fecha')],
+  ['account.payOffer', 'Offre', M('Plan', 'Oferta')],
+  ['account.payAmount', 'Montant', M('Amount', 'Importe')],
+  ['account.payStatus', 'Statut', M('Status', 'Estado')],
+  ['account.payReceipt', 'Reçu', M('Receipt', 'Recibo')],
+  ['account.payReceiptLink', 'Voir le reçu', M('View receipt', 'Ver el recibo')],
+  [
+    'account.payError',
+    "Le paiement n'a pas pu démarrer. Réessayez dans un instant.",
+    M(
+      'Payment could not start. Please try again shortly.',
+      'No se pudo iniciar el pago. Inténtelo de nuevo en un momento.',
+    ),
+  ],
+  ['account.payState.succeeded', 'Payé', M('Paid', 'Pagado')],
+  ['account.payState.pending', 'En cours', M('Pending', 'En curso')],
+  ['account.payState.failed', 'Échoué', M('Failed', 'Fallido')],
+  ['account.payState.refunded', 'Remboursé', M('Refunded', 'Reembolsado')],
+  [
+    'account.preferredLocale',
+    'Langue de communication',
+    M('Communication language', 'Idioma de comunicación'),
+  ],
+  [
+    'account.preferredLocaleHint',
+    'Langue de nos e-mails et de nos réponses au support.',
+    M(
+      'Language of our emails and support replies.',
+      'Idioma de nuestros correos y respuestas del soporte.',
+    ),
+  ],
 ];

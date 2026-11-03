@@ -33,6 +33,24 @@ export const planInputSchema = z
     strategy: z.enum(['AUTO', 'FULL_ADAPTATION', 'PARTIAL_ADAPTATION', 'HOME_TIME_MAINTENANCE']),
     lamp: z.boolean(),
     coffee: z.boolean(),
+    // Hygiène de vie (facultatif : les voyages enregistrés avant ces options restent valides).
+    // Absent = valeur par défaut : conseils alcool et sport affichés, pas de conseil tabac.
+    alcohol: z.boolean().optional(),
+    sport: z.boolean().optional(),
+    smoker: z.boolean().optional(),
+    meals: z.boolean().optional(),
+    // Paramètres de santé (facultatifs, données sensibles : chiffrées si le voyage est enregistré).
+    health: z
+      .object({
+        pregnant: z.boolean().optional(),
+        oralContraceptive: z.boolean().optional(),
+        sleepApnea: z.boolean().optional(),
+        heartCondition: z.boolean().optional(),
+        bipolar: z.boolean().optional(),
+        eyeCondition: z.boolean().optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .refine((v) => v.outbound.length + v.return.length <= 8, { message: 'too_many_legs' });

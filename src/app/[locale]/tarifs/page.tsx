@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import Image from 'next/image';
 import content from '@/components/content/Content.module.css';
 import { PageHero } from '@/components/content/PageHero';
 import styles from '@/components/content/Pages.module.css';
@@ -35,7 +36,16 @@ export default async function PricingPage({ params }: Props) {
 
   const icons: Record<string, IconName> = { free: 'sparkles', trip: 'plane', year: 'globe' };
   const offers = [
-    { key: 'free', price: 0, unit: '', bullets: 3, fine: '', cta: 'free.cta', hot: false },
+    {
+      key: 'free',
+      price: 0,
+      unit: '',
+      bullets: 3,
+      fine: '',
+      cta: 'free.cta',
+      hot: false,
+      image: '/images/pricing/decouverte-passeport.webp',
+    },
     {
       key: 'trip',
       price: 8.9,
@@ -44,6 +54,7 @@ export default async function PricingPage({ params }: Props) {
       fine: 'trip.fine',
       cta: 'trip.cta',
       hot: true,
+      image: '/images/pricing/un-voyage-aile.webp',
     },
     {
       key: 'year',
@@ -53,6 +64,7 @@ export default async function PricingPage({ params }: Props) {
       fine: '',
       cta: 'year.cta',
       hot: false,
+      image: '/images/pricing/grand-voyageur-terre.webp',
     },
   ];
 
@@ -64,9 +76,9 @@ export default async function PricingPage({ params }: Props) {
         icon="tag"
         eyebrow={pages('sectionsMain')}
         crumbs={[{ label: pages('pricing') }]}
-        visual="airport"
+        visual="pricing"
       />
-      <div className={styles.wrap}>
+      <div className={`${styles.wrap} ${styles.pricingWrap}`}>
         <div className={styles.prices}>
           {offers.map((o, i) => (
             <Reveal
@@ -88,7 +100,15 @@ export default async function PricingPage({ params }: Props) {
                 ))}
               </ul>
               {o.fine ? <p className={styles.fine}>{t(o.fine)}</p> : null}
-              <div className={styles.pricePhoto} data-offer={o.key} aria-hidden="true" />
+              <div className={styles.pricePhoto}>
+                <Image
+                  src={o.image}
+                  alt={t(`${o.key}.imageAlt`)}
+                  width={1100}
+                  height={734}
+                  sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1320px) 30vw, 390px"
+                />
+              </div>
               <Link href="/plan" className={`${styles.btn} ${o.hot ? '' : styles.navy}`}>
                 {t(o.cta)}
                 <Icon name="arrow-right" size={18} />

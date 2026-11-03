@@ -60,7 +60,12 @@ export async function ContentPage({ params, name }: { params: Params; name: Page
         crumbs={[{ label: pages(name === 'transparency' ? 'transparency' : name) }]}
         visual={name === 'method' ? 'cabin' : undefined}
       />
-      <ContentBlocks blocks={page.blocks} meta={meta} toc={meta.toc} />
+      <ContentBlocks
+        blocks={page.blocks}
+        meta={meta}
+        toc={meta.toc}
+        page={name === 'method' ? 'method' : undefined}
+      />
       {meta.cta ? <CtaBand locale={locale} /> : null}
       <RelatedLinks keys={meta.related} locale={locale} />
     </div>

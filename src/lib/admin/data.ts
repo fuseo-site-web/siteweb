@@ -1,5 +1,6 @@
 import 'server-only';
 import { env } from '@/env';
+import { isRole, OWNER_EMAIL } from '@/lib/access';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
 const db = () => createSupabaseAdminClient();
@@ -164,7 +165,7 @@ export async function getBusiness() {
 
 export async function getBadgeCounts() {
   const d = db();
-  const [a, b] = await Promise.all([
+  const [a, b, c] = await Promise.all([
     d
       .from('contact_messages')
       .select('id', { count: 'exact', head: true })
@@ -175,8 +176,9 @@ export async function getBadgeCounts() {
       .select('id', { count: 'exact', head: true })
       .in('kind', ['rdv', 'pro'])
       .eq('status', 'new'),
+    d.from('support_tickets').select('id', { count: 'exact', head: true }).eq('unread_admin', true),
   ]);
-  return { demandes: a.count ?? 0, leads: b.count ?? 0 };
+  return { demandes: a.count ?? 0, leads: b.count ?? 0, support: c.count ?? 0 };
 }
 
 // ------------------------------------------------------------------ clients
@@ -188,7 +190,10 @@ export interface ClientRow {
   createdAt: string;
   lastSignIn: string | null;
   provider: string;
-  offer: string | null;
+  /** Offre active : manuelle (accordée par un admin) et/ou payée (achat). */
+  manualOffer: string | null;
+  paidOffer: string | null;
+  role: 'client' | 'tester' | 'admin';
   trips: number;
   profileComplete: boolean;
   healthConsent: boolean;
@@ -200,25 +205,34 @@ export async function getClients(q?: string): Promise<{ rows: ClientRow[]; total
   const users = list.data?.users ?? [];
   const ids = users.map((u) => u.id);
   if (!ids.length) return { rows: [], total: 0 };
-  const [profiles, ents, trips, consents] = await Promise.all([
+  const [profiles, ents, trips, consents, roles] = await Promise.all([
     d
       .from('user_profiles')
       .select('user_id, first_name, last_name, country, birth_date, home_airport')
       .in('user_id', ids),
     d
       .from('entitlements')
-      .select('user_id, offer, status, expires_at')
+      .select('user_id, offer, status, expires_at, source')
       .in('user_id', ids)
       .eq('status', 'active'),
     // Uniquement l'identifiant : le contenu des voyages (données de santé, chiffré) n'est jamais lu ici.
     d.from('trips').select('user_id').in('user_id', ids),
     d.from('health_consents').select('user_id').in('user_id', ids).is('withdrawn_at', null),
+    d.from('user_roles').select('user_id, role').in('user_id', ids),
   ]);
   const prof = new Map((profiles.data ?? []).map((p) => [p.user_id, p]));
   const tripCount = new Map<string, number>();
   for (const t of trips.data ?? []) tripCount.set(t.user_id, (tripCount.get(t.user_id) ?? 0) + 1);
-  const offers = new Map((ents.data ?? []).map((e) => [e.user_id ?? '', e.offer]));
+  const now = new Date().toISOString();
+  const live = (ents.data ?? []).filter((e) => !e.expires_at || e.expires_at > now);
+  const manual = new Map(
+    live.filter((e) => e.source === 'manual').map((e) => [e.user_id ?? '', e.offer]),
+  );
+  const paid = new Map(
+    live.filter((e) => e.source !== 'manual').map((e) => [e.user_id ?? '', e.offer]),
+  );
   const consent = new Set((consents.data ?? []).map((c) => c.user_id));
+  const roleOf = new Map((roles.data ?? []).map((r) => [r.user_id, r.role]));
 
   let rows: ClientRow[] = users.map((u) => {
     const p = prof.get(u.id);
@@ -230,7 +244,15 @@ export async function getClients(q?: string): Promise<{ rows: ClientRow[]; total
       createdAt: u.created_at,
       lastSignIn: u.last_sign_in_at ?? null,
       provider: (u.app_metadata?.provider as string | undefined) ?? 'email',
-      offer: offers.get(u.id) ?? null,
+      manualOffer: manual.get(u.id) ?? null,
+      paidOffer: paid.get(u.id) ?? null,
+      // Le propriétaire est toujours admin ; sans ligne dans user_roles, un compte est client.
+      role:
+        u.email?.toLowerCase() === OWNER_EMAIL && u.email_confirmed_at
+          ? 'admin'
+          : isRole(roleOf.get(u.id))
+            ? (roleOf.get(u.id) as 'client' | 'tester' | 'admin')
+            : 'client',
       trips: tripCount.get(u.id) ?? 0,
       profileComplete: !!(
         p?.first_name &&
@@ -328,4 +350,61 @@ export async function getBlogPosts() {
 export async function getBlogPost(id: string) {
   const { data } = await db().from('blog_posts').select('*').eq('id', id).maybeSingle();
   return data;
+}
+
+// ------------------------------------------------------------------ support
+export interface SupportTicketRow {
+  id: string;
+  ref: string;
+  reason: string;
+  status: string;
+  email: string;
+  name: string | null;
+  locale: string;
+  unreadAdmin: boolean;
+  createdAt: string;
+  lastMessageAt: string;
+  preview: string;
+}
+
+/** Dossiers de support, du plus récent au plus ancien, avec un extrait du dernier message. */
+export async function getSupportTickets(): Promise<SupportTicketRow[]> {
+  const { data } = await db()
+    .from('support_tickets')
+    .select(
+      'id, ref, reason, status, email, name, locale, unread_admin, created_at, last_message_at, support_messages(body, created_at)',
+    )
+    .order('last_message_at', { ascending: false })
+    .limit(200);
+  type Row = NonNullable<typeof data>[number] & {
+    support_messages: Array<{ body: string; created_at: string }> | null;
+  };
+  return ((data ?? []) as unknown as Row[]).map((t) => {
+    const msgs = [...(t.support_messages ?? [])].sort((x, y) =>
+      y.created_at.localeCompare(x.created_at),
+    );
+    return {
+      id: t.id,
+      ref: t.ref,
+      reason: t.reason,
+      status: t.status,
+      email: t.email,
+      name: t.name,
+      locale: t.locale,
+      unreadAdmin: t.unread_admin,
+      createdAt: t.created_at,
+      lastMessageAt: t.last_message_at,
+      preview: (msgs[0]?.body ?? '').replace(/\s+/g, ' ').slice(0, 120),
+    };
+  });
+}
+
+/** Conversation d'un dossier, dans l'ordre chronologique. */
+export async function getSupportThread(ticketId: string) {
+  const { data } = await db()
+    .from('support_messages')
+    .select('id, author, body, created_at')
+    .eq('ticket_id', ticketId)
+    .order('created_at', { ascending: true });
+  return data ?? [];
 }

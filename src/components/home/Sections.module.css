@@ -385,3 +385,62 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Exemple de programme : faits du billet, ligne d'arrivée, détail repliable de chaque journée. */
+.ticketFacts {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.arrivalLine {
+  margin: 16px 0 4px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--amber) 18%, var(--surface));
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.more {
+  margin-top: 12px;
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+}
+
+.more summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent-text);
+}
+
+.more summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.more ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+}
+
+.more li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.more li svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.more li b {
+  min-width: 92px;
+}

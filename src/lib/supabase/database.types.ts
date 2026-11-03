@@ -125,6 +125,24 @@ export type Database = {
         };
         Relationships: [];
       };
+      billing_customers: {
+        Row: {
+          created_at: string;
+          stripe_customer_id: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          stripe_customer_id: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          stripe_customer_id?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       blog_posts: {
         Row: {
           body_md: string;
@@ -281,8 +299,10 @@ export type Database = {
           currency: string | null;
           email: string;
           expires_at: string | null;
+          granted_by: string | null;
           id: string;
           offer: string;
+          source: string;
           starts_at: string | null;
           status: string;
           stripe_payment_intent: string | null;
@@ -299,8 +319,10 @@ export type Database = {
           currency?: string | null;
           email: string;
           expires_at?: string | null;
+          granted_by?: string | null;
           id?: string;
           offer: string;
+          source?: string;
           starts_at?: string | null;
           status?: string;
           stripe_payment_intent?: string | null;
@@ -317,8 +339,10 @@ export type Database = {
           currency?: string | null;
           email?: string;
           expires_at?: string | null;
+          granted_by?: string | null;
           id?: string;
           offer?: string;
+          source?: string;
           starts_at?: string | null;
           status?: string;
           stripe_payment_intent?: string | null;
@@ -560,6 +584,180 @@ export type Database = {
         };
         Relationships: [];
       };
+      user_roles: {
+        Row: {
+          role: string;
+          updated_at: string;
+          updated_by: string | null;
+          user_id: string;
+        };
+        Insert: {
+          role?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+          user_id: string;
+        };
+        Update: {
+          role?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      nurturing_sends: {
+        Row: {
+          email_id: string | null;
+          id: string;
+          sent_at: string;
+          sequence: string;
+          trip_id: string | null;
+          user_id: string;
+        };
+        Insert: {
+          email_id?: string | null;
+          id?: string;
+          sent_at?: string;
+          sequence: string;
+          trip_id?: string | null;
+          user_id: string;
+        };
+        Update: {
+          email_id?: string | null;
+          id?: string;
+          sent_at?: string;
+          sequence?: string;
+          trip_id?: string | null;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      payments: {
+        Row: {
+          amount_cents: number;
+          created_at: string;
+          currency: string;
+          description: string | null;
+          entitlement_id: string | null;
+          id: string;
+          invoice_url: string | null;
+          offer: string;
+          receipt_url: string | null;
+          status: string;
+          stripe_checkout_session: string | null;
+          stripe_payment_intent: string | null;
+          updated_at: string;
+          user_id: string | null;
+        };
+        Insert: {
+          amount_cents: number;
+          created_at?: string;
+          currency?: string;
+          description?: string | null;
+          entitlement_id?: string | null;
+          id?: string;
+          invoice_url?: string | null;
+          offer: string;
+          receipt_url?: string | null;
+          status?: string;
+          stripe_checkout_session?: string | null;
+          stripe_payment_intent?: string | null;
+          updated_at?: string;
+          user_id?: string | null;
+        };
+        Update: {
+          amount_cents?: number;
+          created_at?: string;
+          currency?: string;
+          description?: string | null;
+          entitlement_id?: string | null;
+          id?: string;
+          invoice_url?: string | null;
+          offer?: string;
+          receipt_url?: string | null;
+          status?: string;
+          stripe_checkout_session?: string | null;
+          stripe_payment_intent?: string | null;
+          updated_at?: string;
+          user_id?: string | null;
+        };
+        Relationships: [];
+      };
+      support_messages: {
+        Row: {
+          author: string;
+          author_id: string | null;
+          body: string;
+          created_at: string;
+          email_id: string | null;
+          id: string;
+          ticket_id: string;
+        };
+        Insert: {
+          author: string;
+          author_id?: string | null;
+          body: string;
+          created_at?: string;
+          email_id?: string | null;
+          id?: string;
+          ticket_id: string;
+        };
+        Update: {
+          author?: string;
+          author_id?: string | null;
+          body?: string;
+          created_at?: string;
+          email_id?: string | null;
+          id?: string;
+          ticket_id?: string;
+        };
+        Relationships: [];
+      };
+      support_tickets: {
+        Row: {
+          created_at: string;
+          email: string;
+          id: string;
+          last_message_at: string;
+          locale: string;
+          name: string | null;
+          reason: string;
+          ref: string;
+          status: string;
+          unread_admin: boolean;
+          unread_user: boolean;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          email: string;
+          id?: string;
+          last_message_at?: string;
+          locale?: string;
+          name?: string | null;
+          reason: string;
+          ref: string;
+          status?: string;
+          unread_admin?: boolean;
+          unread_user?: boolean;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          id?: string;
+          last_message_at?: string;
+          locale?: string;
+          name?: string | null;
+          reason?: string;
+          ref?: string;
+          status?: string;
+          unread_admin?: boolean;
+          unread_user?: boolean;
+          user_id?: string | null;
+        };
+        Relationships: [];
+      };
       user_profiles: {
         Row: {
           birth_date: string | null;
@@ -567,6 +765,7 @@ export type Database = {
           created_at: string;
           first_name: string | null;
           home_airport: string | null;
+          preferred_locale: string | null;
           last_name: string | null;
           updated_at: string;
           user_id: string;
@@ -577,6 +776,7 @@ export type Database = {
           created_at?: string;
           first_name?: string | null;
           home_airport?: string | null;
+          preferred_locale?: string | null;
           last_name?: string | null;
           updated_at?: string;
           user_id: string;
@@ -587,6 +787,7 @@ export type Database = {
           created_at?: string;
           first_name?: string | null;
           home_airport?: string | null;
+          preferred_locale?: string | null;
           last_name?: string | null;
           updated_at?: string;
           user_id?: string;

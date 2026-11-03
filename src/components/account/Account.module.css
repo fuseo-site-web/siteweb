@@ -212,3 +212,82 @@
   font-size: 13px;
   font-weight: 500;
 }
+
+/* Onglet Paiement : deux cartes larges et centrées, historique en dessous sur toute la largeur. */
+.payGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.payGrid .card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.payGrid .card p {
+  margin: 0;
+}
+
+.linkAccent {
+  font-weight: 800;
+  color: var(--accent-text);
+}
+
+@media (max-width: 760px) {
+  .payGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Historique sur toute la largeur, tableau lisible sur mobile. */
+.wide {
+  grid-column: 1 / -1;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.table th {
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.badge[data-status='succeeded'] {
+  background: #dff5ea;
+  color: #0f5a3a;
+}
+
+.badge[data-status='refunded'],
+.badge[data-status='failed'] {
+  background: var(--errbg);
+  color: var(--err);
+}
+
+.actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

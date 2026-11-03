@@ -76,7 +76,17 @@ export const PAGE_META: Record<PageName, PageMeta> = {
   },
   method: {
     icon: 'cpu',
-    headings: ['sparkles', 'route', 'cpu', 'rocket', 'badge-check', 'checklist', 'info'],
+    headings: [
+      'sparkles',
+      'route',
+      'cpu',
+      'rocket',
+      'stethoscope',
+      'globe',
+      'badge-check',
+      'checklist',
+      'info',
+    ],
     cards: [
       ['book', 'cpu'],
       [],

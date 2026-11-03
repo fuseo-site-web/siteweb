@@ -2,6 +2,11 @@ export type Block =
   | { type: 'h'; level: 1 | 2 | 3; text: string }
   | { type: 'p'; text: string }
   | { type: 'img'; src: string; alt: string }
+  | {
+      type: 'gallery';
+      items: Array<{ src: string; alt: string; caption: string; description?: string }>;
+    }
+  | { type: 'trustBand'; logo: string; logoAlt: string; title: string; text: string }
   | { type: 'list'; ordered: boolean; items: string[] }
   | {
       type: 'cards';

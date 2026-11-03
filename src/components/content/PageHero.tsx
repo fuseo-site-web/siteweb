@@ -27,7 +27,7 @@ const STARS = [
   [49, 8, 1.4],
 ] as const;
 
-/** En-tête de page : ciel étoilé animé, pastille d'icône, fil d'Ariane (avec données structurées) et appel éventuel. */
+/** En-tête de page : ciel étoilé, pastille d'icône, fil d'Ariane (avec données structurées) et appel éventuel. */
 export async function PageHero({
   title,
   lead,
@@ -43,7 +43,7 @@ export async function PageHero({
   eyebrow?: string;
   crumbs?: Crumb[];
   children?: ReactNode;
-  visual?: 'airport' | 'cabin';
+  visual?: 'airport' | 'cabin' | 'pricing';
 }) {
   const locale = await getLocale();
   const common = await getTranslations({ locale, namespace: 'common' });
@@ -70,28 +70,6 @@ export async function PageHero({
         {STARS.map(([x, y, d], i) => (
           <span key={i} style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${d}s` }} />
         ))}
-        <svg className={styles.route} viewBox="0 0 600 240" preserveAspectRatio="xMaxYMid meet">
-          <path id="hero-route" d="M10 220 C 150 40, 360 10, 590 110" />
-          <g className={styles.plane}>
-            <g transform="translate(-11 -11) rotate(90 11 11)">
-              <path
-                fill="currentColor"
-                transform="scale(.92)"
-                d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
-              />
-            </g>
-            <animateMotion
-              dur="9s"
-              repeatCount="indefinite"
-              rotate="auto"
-              keyPoints="0;1"
-              keyTimes="0;1"
-              calcMode="linear"
-            >
-              <mpath href="#hero-route" />
-            </animateMotion>
-          </g>
-        </svg>
       </div>
 
       <div className={styles.inner}>

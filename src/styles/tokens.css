@@ -15,6 +15,10 @@
   --avoid: #7c8aa0;
   --mel: #7b5cd6;
   --caf: #8a5a2b;
+  --alc: #9b2c4a;
+  --smoke: #5b6576;
+  --sport: #1f7a52;
+  --meal: #b86e0c;
   --err: #b42318;
   --errbg: #fdecea;
   --focus: #1c7fd6;
@@ -54,6 +58,14 @@
     --avoid: #8594ab;
     --mel: #a48bf0;
     --caf: #c68a4e;
+    --alc: #e07a96;
+    --smoke: #a3aec0;
+    --sport: #4cc38a;
+    --meal: #f0a640;
+    --meal: #f0a640;
+    --alc: #e07a96;
+    --smoke: #a3aec0;
+    --sport: #4cc38a;
     --err: #ff8a80;
     --errbg: #3a1414;
     --focus: #7cc7ff;

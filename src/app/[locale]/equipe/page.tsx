@@ -11,6 +11,14 @@ import { Reveal } from '@/components/ui/Reveal';
 import { Link } from '@/i18n/navigation';
 import { absoluteUrl, pageMetadata, summarize } from '@/lib/seo';
 
+/** « Notre histoire » en quatre temps ; les numéros renvoient aux paragraphes team.storyN. */
+const STORY_CHAPTERS = [
+  { icon: 'stethoscope', parts: [1, 2] },
+  { icon: 'bulb', parts: [3, 4] },
+  { icon: 'brain', parts: [5, 6, 7] },
+  { icon: 'plane', parts: [8] },
+] as const;
+
 type Props = PageProps<'/[locale]/equipe'>;
 const IMS_URL = 'https://institut-medical-sommeil.fr';
 
@@ -36,13 +44,13 @@ export default async function TeamPage({ params }: Props) {
     {
       key: 'taieb',
       name: 'Dr Jonathan Taieb',
-      img: '/images/dr-jonathan-taieb.jpg',
+      img: '/images/dr-jonathan-taieb.webp',
       bullets: 4,
     },
     {
       key: 'elbaz',
       name: 'Dr Maxime Elbaz',
-      img: '/images/dr-maxime-elbaz.jpg',
+      img: '/images/dr-maxime-elbaz.webp',
       bullets: 3,
     },
   ];
@@ -85,19 +93,40 @@ export default async function TeamPage({ params }: Props) {
         eyebrow={pages('sectionsMain')}
         crumbs={[{ label: pages('team') }]}
       />
-      <div className={styles.wrap}>
-        <section className={styles.story} aria-labelledby="team-story">
-          <Reveal>
-            <h2 id="team-story">{t('storyTitle')}</h2>
-            <p className={styles.storyLead}>{t('storyLead')}</p>
+      {/* Bandeau pleine largeur, comme les sections de l'accueil ; contenu aligné sur la largeur du site. */}
+      <section className={styles.story} aria-labelledby="team-story">
+        <div className={styles.storyInner}>
+          <Reveal className={styles.sectionHead}>
+            <span className={content.h2icon}>
+              <Icon name="book" size={22} />
+            </span>
+            <div>
+              <h2 id="team-story">{t('storyTitle')}</h2>
+              <p className={styles.sub}>{t('storyLead')}</p>
+            </div>
           </Reveal>
-          {Array.from({ length: 10 }, (_, i) => (
-            <Reveal key={i}>
-              <p>{t(`story${i + 1}`)}</p>
-            </Reveal>
-          ))}
-        </section>
-
+          {/* Le récit en quatre temps, comme les étapes de l'accueil : point de départ, constat, méthode, Fuseo. */}
+          <ol className={styles.chapters}>
+            {STORY_CHAPTERS.map((c, i) => (
+              <Reveal as="li" key={c.icon} delay={i * 90} className={styles.chapter}>
+                <span className={styles.chapterIcon} aria-hidden="true">
+                  <Icon name={c.icon} size={22} />
+                  <b>{i + 1}</b>
+                </span>
+                <h3>{t(`chapter${i + 1}`)}</h3>
+                {c.parts.map((n) => (
+                  <p key={n}>{t(`story${n}`)}</p>
+                ))}
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal className={styles.storyQuote}>
+            <p>{t('story9')}</p>
+            <strong>{t('story10')}</strong>
+          </Reveal>
+        </div>
+      </section>
+      <div className={styles.wrap}>
         <Reveal className={styles.sectionHead}>
           <span className={content.h2icon}>
             <Icon name="badge-check" size={22} />
@@ -110,7 +139,7 @@ export default async function TeamPage({ params }: Props) {
         <div className={styles.people}>
           {people.map((p) => (
             <Reveal key={p.key} className={styles.person}>
-              <Image src={p.img} alt={p.name} width={240} height={240} />
+              <Image src={p.img} alt={p.name} width={240} height={240} unoptimized />
               <div>
                 <h3>{p.name}</h3>
                 <p className={styles.role}>{t(`${p.key}.role`)}</p>

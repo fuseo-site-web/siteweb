@@ -41,6 +41,12 @@ export const profileSchema = z
     birthDate: opt(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)),
     country: opt(z.string().regex(/^[A-Z]{2}$/)),
     homeAirport: opt(z.string().regex(/^[A-Z]{3}$/)),
+    // Langue des e-mails, du support et du nurturing (facultatif ; vide = langue du site).
+    preferredLocale: z
+      .enum(['fr', 'en', 'es'])
+      .or(z.literal(''))
+      .optional()
+      .transform((v) => v || null),
   })
   .strict()
   .refine((v) => v.country === null || COUNTRY_CODES.includes(v.country), { path: ['country'] })

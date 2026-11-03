@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { FuseoMark } from '@/components/brand/FuseoMark';
 import { Link } from '@/i18n/navigation';
 import { AuthButton } from '@/components/auth/AuthButton';
+import { SupportWidget } from '@/components/support/SupportWidget';
 import type { SlugMap } from '@/content/blog';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MobileMenu } from './MobileMenu';
@@ -28,6 +29,8 @@ export function SiteHeader({ slugs }: { slugs: SlugMap }) {
         </nav>
         <div className={styles.actions}>
           <LanguageSwitcher slugs={slugs} />
+          {/* Support (« ? ») : visible une fois connecté. */}
+          <SupportWidget />
           <AuthButton className={styles.login} />
           <Link href="/plan" className={styles.cta}>
             {t('cta')}

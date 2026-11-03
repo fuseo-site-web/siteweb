@@ -8,6 +8,7 @@ import {
   LIGHT_REC,
   INTERVENTION,
   CATEGORY_OF,
+  LIFESTYLE,
   STRATEGY,
   MODE,
   wrap24,
@@ -20,7 +21,7 @@ import { hhmm, isoLocal, hoursToHHMM, localParts, utcIso } from './itinerary/tz'
 import { prepareContext, optimize, traceRun } from './optimizer';
 import { calculateLightEffect } from './light';
 import { isRecommendationFeasible } from './practicality';
-import { screenCaffeine, globalSafetyNotes } from './safety';
+import { screenCaffeine, screenCaffeineHealth, globalSafetyNotes } from './safety';
 import { adaptationDashboard, confidenceAt, adaptationPercentage, formatDuration } from './scoring';
 
 const ENGINE_VERSION = '2.0.0';
@@ -179,7 +180,11 @@ function buildInterventions(ctx, run, trace, sleepsAll) {
       },
     });
   const caf =
-    prefs.caffeine === false ? { allowed: false } : screenCaffeine(profile, prefs.medical || {});
+    prefs.caffeine === false
+      ? { allowed: false }
+      : prefs.health
+        ? screenCaffeineHealth(profile, prefs.health)
+        : screenCaffeine(profile, prefs.medical || {});
   const wakeEpisodes = [];
   for (let i = 0; i + 1 < episodes.length; i++)
     wakeEpisodes.push({ a: episodes[i].b, b: episodes[i + 1].a });
@@ -205,7 +210,7 @@ function buildInterventions(ctx, run, trace, sleepsAll) {
             p.predictedAlertness != null &&
             p.predictedAlertness < 50,
         );
-        if (dip && !(perfEv && dip.t > perfEv.start - 3 * MS_H))
+        if (dip && !caf.noBoost && !(perfEv && dip.t > perfEv.start - 3 * MS_H))
           add(INTERVENTION.CAFFEINE, dip.t, dip.t, {
             priority: 3,
             optional: true,
@@ -218,7 +223,7 @@ function buildInterventions(ctx, run, trace, sleepsAll) {
       for (const ev of it.events)
         if (ev.start > w.a && ev.start < w.b) {
           const t = ev.start - 45 * MS_MIN;
-          if (t > w.a + 0.5 * MS_H && t <= cutoff)
+          if (t > w.a + 0.5 * MS_H && t <= cutoff && !caf.noBoost)
             add(INTERVENTION.CAFFEINE, t, t, {
               priority: 2,
               optional: true,
@@ -229,6 +234,65 @@ function buildInterventions(ctx, run, trace, sleepsAll) {
               },
             });
         }
+    }
+    // Hygiène de vie (options du voyageur ; absentes = non calculées) : alcool, tabac, sport intense.
+    const flightToday = it.legs.some((l) => l.depUtc < w.b && l.arrUtc > w.a);
+    const health = prefs.health || {};
+    const noAlcohol = health.pregnant
+      ? 'PREGNANCY'
+      : profile.age != null && profile.age < 18
+        ? 'MINOR'
+        : null;
+    if (prefs.alcohol && noAlcohol)
+      // Grossesse (« zéro alcool », Santé publique France) ou mineur : pas d'heure limite, pas d'alcool du tout.
+      add(INTERVENTION.ALCOHOL_CUTOFF, w.a, w.a, {
+        priority: 2,
+        recommendation: 'AVOID',
+        rationale: { code: noAlcohol },
+      });
+    else if (prefs.alcohol) {
+      // Apnée du sommeil : l'alcool relâche les voies aériennes et aggrave les apnées → pas d'alcool le soir.
+      const alcH = health.sleepApnea ? 6 : LIFESTYLE.alcoholCutoffBeforeSleepH;
+      if (flightToday)
+        // Jour de vol : l'alcool en cabine aggrave la déshydratation et fragmente le sommeil, en plein décalage.
+        add(INTERVENTION.ALCOHOL_CUTOFF, w.a, w.a, {
+          priority: 2,
+          recommendation: 'AVOID',
+          rationale: { code: 'FLIGHT_DAY' },
+        });
+      else {
+        const t = w.b - alcH * MS_H;
+        if (t > w.a + MS_H)
+          add(INTERVENTION.ALCOHOL_CUTOFF, t, t, {
+            priority: 3,
+            rationale: {
+              code: health.sleepApnea ? 'SLEEP_APNEA' : 'SLEEP_QUALITY',
+              beforeSleepH: alcH,
+            },
+          });
+      }
+    }
+    if (prefs.smoker) {
+      const t = w.b - LIFESTYLE.nicotineCutoffBeforeSleepH * MS_H;
+      if (t > w.a + MS_H)
+        add(INTERVENTION.NICOTINE_CUTOFF, t, t, {
+          priority: 3,
+          rationale: {
+            code: 'NICOTINE_STIMULANT',
+            beforeSleepH: LIFESTYLE.nicotineCutoffBeforeSleepH,
+          },
+        });
+    }
+    if (prefs.exercise) {
+      const t = w.b - LIFESTYLE.vigorousExerciseCutoffBeforeSleepH * MS_H;
+      if (t > w.a + 2 * MS_H && !locationAt(it, t).inFlight)
+        add(INTERVENTION.EXERCISE_CUTOFF, t, t, {
+          priority: 3,
+          rationale: {
+            code: 'VIGOROUS_EXERCISE',
+            beforeSleepH: LIFESTYLE.vigorousExerciseCutoffBeforeSleepH,
+          },
+        });
     }
     const inF = (t) => locationAt(it, t).inFlight;
     add(INTERVENTION.MEAL, w.a + 0.5 * MS_H, w.a + 0.5 * MS_H, {
@@ -584,7 +648,9 @@ function generateCircadianPlan(profileInput, itineraryInput, preferences = {}, o
       caffeine:
         prefs.caffeine === false
           ? { allowed: false, reason: 'USER_DISABLED' }
-          : screenCaffeine(profile, prefs.medical || {}),
+          : prefs.health
+            ? screenCaffeineHealth(profile, prefs.health)
+            : screenCaffeine(profile, prefs.medical || {}),
       notes: globalSafetyNotes({ itinerary: it, trace }),
     },
     behavior: {

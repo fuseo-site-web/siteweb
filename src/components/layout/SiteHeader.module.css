@@ -93,15 +93,29 @@
   outline-offset: 2px;
 }
 
+/* Fond assombri derrière le menu mobile : un toucher le ferme, la page ne défile pas. */
+.backdrop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100svh;
+  background: rgb(3 18 35 / 60%);
+  touch-action: none;
+}
+
 .drawer {
   position: absolute;
   left: 0;
   right: 0;
   top: 100%;
+  max-height: calc(100svh - var(--header-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   display: grid;
   gap: 4px;
   padding: 12px 20px 20px;
-  background: rgb(6 20 38 / 98%);
+  background: #061426;
   border-bottom: 1px solid var(--glass-line);
   box-shadow: 0 24px 50px rgb(0 0 0 / 40%);
   animation: drop 0.25s var(--ease-out) both;

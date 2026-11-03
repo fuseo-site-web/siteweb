@@ -62,7 +62,7 @@
   },
   "preview": {
     "title": "Your jet lag plan, day by day.",
-    "sub": "An illustrative Paris to Tokyo trip: see the format before creating your own plan.",
+    "sub": "A real example, calculated by the Fuseo engine for a Paris → Tokyo trip: the essentials of each day first, then the details if you wish.",
     "sleep": "Bed 11 pm · up 7 am",
     "note": "Illustrative example: your own schedule will depend on your flights and habits.",
     "cta": "Calculate my own plan",
@@ -74,7 +74,52 @@
     "avoid": "Avoid bright light",
     "caf": "Last coffee or tea",
     "flightItem": "Flight",
-    "ticket": "Illustrative flight ticket"
+    "ticket": "Boarding pass",
+    "facts": "{hours} h time shift eastwards · plan covering {days} days after arrival, until you have adapted.",
+    "arrival": "On landing, your body thinks it is {body} in {home}, while it is {local} in {dest}. The plan closes this gap day after day.",
+    "more": "The full day plan ({n} tips: meals, exercise, alcohol…)",
+    "depDay": "Departure day · evening flight",
+    "arrDay": "Night on board and arrival in Tokyo",
+    "pass": {
+      "passenger": "Passenger",
+      "passengerName": "FUSEO TRAVELLER",
+      "date": "Date",
+      "seat": "Seat",
+      "flight": "Flight",
+      "boarding": "Boarding",
+      "gate": "Gate",
+      "departure": "dep.",
+      "arrival": "arr.",
+      "gateCloses": "Gate closes 20 minutes before departure"
+    },
+    "titleRich": "Your anti‑jet‑lag plan, day <hl>after day.</hl>",
+    "subtitle": "A personalised plan that tells you when to sleep, seek light and adapt your habits, before, during and after your flight.",
+    "cardBefore": "Before departure",
+    "cardFlight": "During the flight",
+    "cardDest": "At your destination",
+    "legendTitle": "Key",
+    "legend": {
+      "sleep": {
+        "t": "Sleep",
+        "d": "rest, sleep"
+      },
+      "seek": {
+        "t": "Light",
+        "d": "get daylight"
+      },
+      "avoid": {
+        "t": "Avoid light",
+        "d": "screens, bright light"
+      },
+      "caf": {
+        "t": "Caffeine",
+        "d": "last coffee or tea"
+      },
+      "flight": {
+        "t": "Flight",
+        "d": "your flight times"
+      }
+    }
   },
   "steps": {
     "title": "How does Fuseo work?",
@@ -88,13 +133,52 @@
     },
     "s3": {
       "t": "Your plan",
-      "p": "Get a personal program with guidance on sleep, light and caffeine."
+      "p": "Get a personalised plan for before, during and after the flight: sleep, light, coffee, meals, exercise and alcohol."
     },
     "bed": "I go to bed around",
     "wake": "I get up around",
     "paris": "Paris",
     "tokyo": "Tokyo",
-    "note": "Three steps to prepare your trip."
+    "note": "Three steps to prepare your trip.",
+    "phase": {
+      "before": {
+        "title": "Before",
+        "i1": "Bright light in the morning",
+        "i2": "Last coffee in the early afternoon",
+        "i3": "Exercise in the morning",
+        "s1": "Light",
+        "s2": "Early coffee",
+        "s3": "Exercise"
+      },
+      "during": {
+        "title": "During",
+        "i1": "Sleep on board, on Tokyo time",
+        "i2": "Meals on destination time",
+        "i3": "No alcohol on board",
+        "s1": "Sleep",
+        "s2": "Meals",
+        "s3": "No alcohol"
+      },
+      "after": {
+        "title": "After",
+        "i1": "Breakfast on local time",
+        "i2": "Bright light during the day",
+        "i3": "Last drink 4 h before bed",
+        "s1": "Breakfast",
+        "s2": "Light",
+        "s3": "Last drink"
+      }
+    },
+    "eyebrow": "3 steps · 2 minutes",
+    "benefit1": "Your plan in 2 minutes",
+    "benefit2": "Based on chronobiology",
+    "benefit3": "Designed with the Institut Médical du Sommeil",
+    "benefit4": "Reminders in your calendar and PDF",
+    "search": {
+      "placeholder": "Flight number",
+      "departures": "Departures",
+      "cities": "New York|Dubai|Tokyo|Montreal"
+    }
   },
   "science": {
     "title": "Chronobiology applied to your trip",
@@ -200,7 +284,7 @@
     "address": "Paris 16th, 77 avenue Paul Doumer · Neuilly-sur-Seine, 130B avenue Charles de Gaulle",
     "cta": "See all our sources",
     "storyTitle": "Our story",
-    "storyLead": "Medical expertise, now accessible to all travelers.",
+    "storyLead": "Sleep expertise, now accessible to all travelers.",
     "story1": "It all began at the Institut Médical du Sommeil in Paris.",
     "story2": "In our practice, we worked with people facing exceptional demands: elite athletes, executives, frequent international travelers, and patients for whom jet lag was a real difficulty.",
     "story3": "They all asked the same question: how can I arrive feeling well instead of spending the first days recovering?",
@@ -214,7 +298,11 @@
     "scienceBehind": "The science behind Fuseo",
     "scienceBehindText": "Our method explains the scientific models and chronobiology principles behind each plan.",
     "scienceBehindLink": "Explore our method",
-    "imsTitle": "Born at the Institut Médical du Sommeil"
+    "imsTitle": "Born at the Institut Médical du Sommeil",
+    "chapter1": "Where it began",
+    "chapter2": "What we saw",
+    "chapter3": "The method",
+    "chapter4": "For every traveller"
   },
   "pricing": {
     "title": "Simple pricing, no surprises",
@@ -224,6 +312,7 @@
       "b1": "Personalized preview of your plan",
       "b2": "Preparation before departure",
       "b3": "Tips for flight day",
+      "imageAlt": "Passport and boarding pass on an airport lounge table",
       "cta": "Create my plan for free"
     },
     "trip": {
@@ -233,6 +322,7 @@
       "b2": "All connections",
       "b3": "Until full adaptation",
       "b4": "Printable PDF",
+      "imageAlt": "Aircraft wing above the clouds at sunrise",
       "fine": "One-time payment · No subscription",
       "cta": "Unlock one trip"
     },
@@ -243,6 +333,7 @@
       "b1": "Unlimited personal trips for 12 months",
       "b2": "No automatic renewal",
       "b3": "Pays for itself from 9 trips a year",
+      "imageAlt": "Earth seen from space with city lights at dusk",
       "cta": "Choose Frequent traveler"
     },
     "pro": "Companies, clubs, crews:",
@@ -435,7 +526,54 @@
     "share": "Share the PDF",
     "pdfBusy": "Preparing the PDF…",
     "pdfError": "The PDF could not be generated. Please try again.",
-    "shareFallback": "PDF downloaded: attach it to your WhatsApp message, email or text."
+    "shareFallback": "PDF downloaded: attach it to your WhatsApp message, email or text.",
+    "itemAlc": "Last alcoholic drink",
+    "itemAlcNo": "Flight day: avoid alcohol",
+    "itemSmoke": "Last cigarette or vape",
+    "itemSport": "Recommended physical activity",
+    "itemSportCut": "End of intense exercise",
+    "alcohol": "Give me a cut-off time for alcohol",
+    "sport": "Suggest the best times for exercise",
+    "smoker": "I smoke or vape (time of the last cigarette)",
+    "lifestyleNote": "Alcohol: none in the 4 hours before bed, and none on board. Smoking: nothing in the 2 hours before bed; for a long flight, ask your pharmacist about nicotine replacement. Intense exercise: finished at least 2 hours before bed.",
+    "itemBreakfast": "Breakfast, with some protein",
+    "itemBreakfast1": "First breakfast on local time: it helps your body reset",
+    "itemLunch": "Lunch",
+    "itemDinner": "Light dinner, at least 3 h before bed",
+    "itemMealF": "Meal on board, on destination time",
+    "meals": "Suggest meal times",
+    "mealNote": "Meals: eat on destination time from the flight onwards; if the onboard service falls during your sleep, sleep instead. Have a light dinner (not too fatty or spicy) at least 3 h before bed; a light snack is fine. Drink water regularly in the cabin.",
+    "itemMeal1": "First meal of the day",
+    "itemMeal": "Midday meal",
+    "healthTitle": "Health (optional)",
+    "healthHint": "These answers adapt caffeine, alcohol, light and advice. They stay on your device, or are encrypted if you save the trip. They do not replace your doctor's advice.",
+    "health": {
+      "pregnant": "I am pregnant",
+      "oralContraceptive": "I take a contraceptive pill",
+      "sleepApnea": "I have sleep apnoea",
+      "heartCondition": "I have a heart rhythm disorder or high blood pressure",
+      "bipolar": "I have bipolar disorder",
+      "eyeCondition": "I have an eye condition or take a medicine that makes me sensitive to light"
+    },
+    "adviceTitle": "Advice tailored to your profile",
+    "adviceNote": "General information: it does not replace your doctor's advice.",
+    "advice": {
+      "pregnant": "Pregnancy: no alcohol or melatonin; coffee limited to 2 cups a day and stopped early (10 h before bed). On the flight, walk every 1 to 2 hours and drink water. Before a long flight, ask your midwife or doctor.",
+      "minor": "Under 18: no alcohol, no coffee 'boost', no melatonin without medical advice.",
+      "heart": "Heart rhythm disorder or high blood pressure: the plan does not suggest coffee 'boosts'. On the flight, stand up regularly and stay hydrated; ask your doctor before a long trip.",
+      "apnea": "Sleep apnoea: no alcohol in the evening (at least 6 h before bed) and no sleeping pills. If you use a CPAP machine, carry it in the cabin and check with the airline whether it can be used on board.",
+      "bipolar": "Bipolar disorder: jet lag and bright light can destabilise mood. No light-therapy lamp without medical advice; tell your psychiatrist before the trip and keep regular sleep times.",
+      "eye": "Eye condition or light-sensitising medicine: no light-therapy lamp without medical advice. Prefer daylight, with your usual protection.",
+      "pill": "Contraceptive pill: caffeine is cleared more slowly, so the coffee cut-off is 2 h earlier. Also think about your pill time across time zones: follow the leaflet or ask your pharmacist.",
+      "senior": "65 and over: your clock is often earlier and slightly less sensitive to light; the plan takes this into account. Seek real daylight (outdoors) and keep naps short (20 minutes). Coffee stops 1 h earlier.",
+      "fifty": "50 and over: sleep becomes more sensitive to evening coffee; the cut-off is 1 h earlier.",
+      "smoker": "Smoking: it is forbidden on board and in most airports, and nicotine withdrawal can fragment sleep on the flight. Ask your pharmacist about nicotine replacement."
+    },
+    "itemAlcNone": "No alcohol today",
+    "icsButton": "Add to my calendar",
+    "icsTitle": "Fuseo plan {from} → {to}",
+    "icsDone": "Open the file to add the reminders to your calendar (iPhone, Android, Outlook).",
+    "adaptedEnd": "End of the plan on {date}: your body clock is in sync with your destination. Simply return to your usual bed and wake times."
   },
   "auth": {
     "title": "Sign in",
@@ -558,7 +696,42 @@
     "passwordCode": "Code received by email",
     "passwordCodeSent": "For security, enter the code sent to {email}, then confirm again.",
     "passwordCodeBad": "Incorrect or expired code. Check it or request a link by email.",
-    "passwordByEmail": "Receive a link by email instead"
+    "passwordByEmail": "Receive a link by email instead",
+    "roleTester": "Tester · full access",
+    "roleAdmin": "Administrator · full access",
+    "viewAsLabel": "View the site with the plan",
+    "viewAsFull": "Full access (admin)",
+    "viewAsFree": "Free plan",
+    "viewAsHint": "Administrators only: your plan, the PDF and your account are shown as for a customer with this plan.",
+    "viewAsBadge": "Preview: {offer}",
+    "tabPayment": "Payment",
+    "accessReadonly": "Your access depends on your plan. To change it, go to the Payment tab.",
+    "payTitle": "My plan",
+    "payBuyTrip": "Buy “One trip” · {price}",
+    "payBuyYear": "Upgrade to “Frequent traveller” · {price}",
+    "paySoon": "Secure online payment (Stripe) is coming soon. Meanwhile, see the plans on the Pricing page.",
+    "paySeeOffers": "Compare plans →",
+    "payMethods": "Payment methods and invoices",
+    "payMethodsText": "Manage your card and download your invoices in the secure Stripe area. Fuseo never stores your card details.",
+    "payManage": "Manage my payments",
+    "payManageNone": "Available after your first payment.",
+    "payHistory": "Payment history",
+    "payEmpty": "No payments yet.",
+    "payDate": "Date",
+    "payOffer": "Plan",
+    "payAmount": "Amount",
+    "payStatus": "Status",
+    "payReceipt": "Receipt",
+    "payReceiptLink": "View receipt",
+    "payError": "Payment could not start. Please try again shortly.",
+    "payState": {
+      "succeeded": "Paid",
+      "pending": "Pending",
+      "failed": "Failed",
+      "refunded": "Refunded"
+    },
+    "preferredLocale": "Communication language",
+    "preferredLocaleHint": "Language of our emails and support replies."
   },
   "consent": {
     "title": "Your privacy, your choice",
@@ -692,6 +865,45 @@
       "title": "Important events",
       "text": "Fatigue that keeps you from enjoying the moment.",
       "alt": "Couple at a destination wedding"
+    }
+  },
+  "support": {
+    "open": "Contact support",
+    "title": "Fuseo support",
+    "close": "Close",
+    "tabNew": "New request",
+    "tabList": "My requests",
+    "unread": "New reply",
+    "reasonLabel": "What is your request about?",
+    "reason": {
+      "plan": "My plan",
+      "account": "My account",
+      "payment": "Payment",
+      "technical": "Technical problem",
+      "health": "Sleep and health",
+      "other": "Other"
+    },
+    "healthNote": "We answer general questions about sleep and jet lag. For personal medical advice, please see your doctor.",
+    "messageLabel": "Your message",
+    "messagePh": "Describe your question in a few lines…",
+    "send": "Send",
+    "sending": "Sending…",
+    "sent": "Your request has been sent.",
+    "refLabel": "Case number:",
+    "sentNote": "You will receive a confirmation by email. We usually reply within 24 to 48 working hours.",
+    "another": "Make another request",
+    "error": "Sending failed. Please try again shortly.",
+    "limit": "You have sent several requests recently. Please try again in an hour.",
+    "back": "My requests",
+    "team": "Fuseo team",
+    "you": "You",
+    "closed": "This case is closed. For a new question, make a new request.",
+    "replyLabel": "Your reply…",
+    "empty": "You have no requests yet.",
+    "status": {
+      "open": "Awaiting reply",
+      "answered": "Answered",
+      "closed": "Closed"
     }
   }
 }

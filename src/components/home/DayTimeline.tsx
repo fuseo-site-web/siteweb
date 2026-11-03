@@ -25,10 +25,16 @@ export function DayTimeline({
   day,
   labels,
   labelFor,
+  showList = true,
+  flightInline = false,
 }: {
   day: PreviewDay;
   labels: TimelineLabels;
   labelFor?: (item: PreviewDay['list'][number]) => string;
+  /** false : la frise seule (la liste est affichée ailleurs, ex. exemple de l'accueil). */
+  showList?: boolean;
+  /** true : le vol est un segment de la frise (couleur « Vol » de la légende) au lieu d'un trait au-dessus. */
+  flightInline?: boolean;
 }) {
   const ticks: number[] = [];
   for (let h = Math.ceil(day.startH / 6) * 6; h < day.startH + day.lenH - 0.5; h += 6)
@@ -37,7 +43,7 @@ export function DayTimeline({
   return (
     <div>
       <div
-        className={`${styles.bar} ${day.segs.some((s) => s.t === 'flight') ? styles.hasFlight : ''}`}
+        className={`${styles.bar} ${flightInline ? styles.inline : day.segs.some((s) => s.t === 'flight') ? styles.hasFlight : ''}`}
       >
         {day.segs.map((s, i) => (
           <span
@@ -70,18 +76,20 @@ export function DayTimeline({
           </span>
         ))}
       </div>
-      <ul className={styles.list}>
-        {day.list.map((it, i) => (
-          <li key={i}>
-            <span className={`${styles.dot} ${styles[it.t] ?? ''}`} aria-hidden="true" />
-            <b>
-              {it.at}
-              {it.end ? `–${it.end}` : ''}
-            </b>
-            <span>{labelFor ? labelFor(it) : labels[it.t]}</span>
-          </li>
-        ))}
-      </ul>
+      {showList ? (
+        <ul className={styles.list}>
+          {day.list.map((it, i) => (
+            <li key={i}>
+              <span className={`${styles.dot} ${styles[it.t] ?? ''}`} aria-hidden="true" />
+              <b>
+                {it.at}
+                {it.end ? `–${it.end}` : ''}
+              </b>
+              <span>{labelFor ? labelFor(it) : labels[it.t]}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }

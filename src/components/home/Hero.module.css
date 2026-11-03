@@ -26,7 +26,13 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgb(3 18 35 / 55%) 0%, rgb(3 18 35 / 35%) 100%);
+  /* Mobile : le texte passe sur la photo, voile plus sombre pour le contraste. */
+  background: linear-gradient(
+    180deg,
+    rgb(3 18 35 / 78%) 0%,
+    rgb(3 18 35 / 66%) 55%,
+    rgb(3 18 35 / 74%) 100%
+  );
 }
 
 @media (min-width: 961px) {
@@ -39,8 +45,13 @@
     padding-block: clamp(72px, 8vw, 128px);
   }
 
-  .lead {
+  .copy .lead {
     margin: 28px 0 36px;
+    max-width: 40ch;
+  }
+
+  .copy .endorse {
+    max-width: 48ch;
   }
 
   .endorse {
@@ -52,19 +63,19 @@
   }
 
   /*
-   * Photo dézoomée : presque toute la largeur, décalée de 9 % vers la droite pour que le visage tombe
-   * entre le texte et la carte. `cover` sur la hauteur de la section : jamais de vide, quelle que soit la taille.
+   * Photo dézoomée : presque toute la largeur, calée à gauche (jusqu'à 80 px de décalage sur les écrans
+   * moyens) pour que le visage et le hublot restent visibles entre le texte et la carte. `cover` sur la hauteur de la section : jamais de vide, quelle que soit la taille.
    */
   .bg {
     top: 0 !important;
     right: auto !important;
     bottom: auto !important;
-    left: 9% !important;
+    left: clamp(-80px, calc((100vw - 1920px) / 6), 0px) !important;
     width: 104% !important;
     height: 100% !important;
     object-fit: cover;
-    object-position: 30% 50%;
-    mask-image: linear-gradient(90deg, transparent 0, #000 14%);
+    object-position: 50% 45%;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%);
   }
 
   .hero::before {
@@ -122,8 +133,12 @@
   .copy h1 {
     font-size: clamp(
       2rem,
-      calc(
-        (100vw - 2 * var(--gutter) - 56px - min(544px, 0.475 * (100vw - 2 * var(--gutter)))) / 14.5
+      min(
+        calc(
+          (100vw - 2 * var(--gutter) - 56px - min(544px, 0.475 * (100vw - 2 * var(--gutter)))) /
+            14.5
+        ),
+        3.1vw
       ),
       3.7rem
     );

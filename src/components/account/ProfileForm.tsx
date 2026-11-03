@@ -15,6 +15,8 @@ export interface ProfileInitial {
   birthDate: string;
   country: string;
   homeAirport: string;
+  /** Langue de communication (e-mails, support). */
+  preferredLocale: string;
 }
 
 export function ProfileForm({
@@ -122,6 +124,20 @@ export function ProfileForm({
             value={v.homeAirport}
             onChange={set('homeAirport')}
           />
+        </div>
+        <div className={planner.field}>
+          <label htmlFor={`${uid}-lang`}>{t('preferredLocale')}</label>
+          <select
+            id={`${uid}-lang`}
+            value={v.preferredLocale}
+            aria-describedby={`${uid}-lang-hint`}
+            onChange={(e) => set('preferredLocale')(e.target.value)}
+          >
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+          <small id={`${uid}-lang-hint`}>{t('preferredLocaleHint')}</small>
         </div>
       </div>
 

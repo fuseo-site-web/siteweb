@@ -1,0 +1,371 @@
+/* Bouton « ? » du support, dans la barre de navigation (utilisateurs connectés), et son panneau. */
+.trigger {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--glass-line);
+  border-radius: 50%;
+  color: #fff;
+  background: var(--glass);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.trigger:hover {
+  background: rgb(255 255 255 / 16%);
+}
+
+.trigger:focus-visible,
+.panel button:focus-visible,
+.panel textarea:focus-visible,
+.reasons label:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--night);
+  background: var(--amber);
+}
+
+.panel {
+  position: fixed;
+  z-index: 57;
+  top: calc(var(--header-h) + 10px);
+  right: 20px;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  width: min(400px, calc(100vw - 32px));
+  max-height: min(620px, calc(100svh - var(--header-h) - 30px));
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgb(11 47 85 / 30%);
+  overflow: hidden;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--night), var(--night-2));
+}
+
+.head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: rgb(255 255 255 / 12%);
+  cursor: pointer;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs button {
+  padding: 11px 8px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tabs button[aria-selected='true'] {
+  color: var(--navy);
+  border-bottom-color: var(--sky);
+}
+
+.inlineDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--sky);
+  vertical-align: middle;
+}
+
+.body {
+  overflow-y: auto;
+  padding: 14px 16px 16px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.form fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form legend,
+.form > label {
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  font-weight: 800;
+}
+
+.reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reasons label {
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reasons label[data-on] {
+  color: var(--navy);
+  border-color: var(--sky);
+  background: color-mix(in srgb, var(--sky) 16%, var(--surface));
+}
+
+.reasons input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form textarea,
+.replyForm textarea {
+  min-height: 110px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface2);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
+}
+
+.primary,
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  color: var(--amberInk);
+  background: var(--amber);
+}
+
+.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ghost {
+  border: 1.5px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.err {
+  margin: 0;
+  color: var(--err);
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.done {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.done svg {
+  color: #1a9f6b;
+}
+
+.done p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ref b {
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+.done small {
+  color: var(--muted);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.list button {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.list small {
+  color: var(--muted);
+}
+
+.thread {
+  display: grid;
+  gap: 10px;
+}
+
+.back {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.threadHead {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.bubbles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.bubbles li {
+  max-width: 86%;
+  padding: 9px 12px;
+  border-radius: 16px 16px 16px 6px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+}
+
+.bubbles li[data-author='user'] {
+  justify-self: end;
+  border-radius: 16px 16px 6px 16px;
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.bubbles p {
+  margin: 0 0 3px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.bubbles small {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.replyForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.replyForm textarea {
+  min-height: 60px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+}

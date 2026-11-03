@@ -7,7 +7,16 @@ import { makePlanLabels, type Translate } from '@/lib/plan-labels';
 import type { PlanResponse } from '@/lib/plan-view';
 import styles from './Planner.module.css';
 
-export function ResultView({ plan, onEdit }: { plan: PlanResponse; onEdit: () => void }) {
+export function ResultView({
+  plan,
+  onEdit,
+  actions,
+}: {
+  plan: PlanResponse;
+  onEdit: () => void;
+  /** Actions du plan (enregistrer, PDF, partager, agenda), affichées sous l'en-tête. */
+  actions?: React.ReactNode;
+}) {
   const t = useTranslations('planner');
   const pricing = useTranslations('pricing');
   const format = useFormatter();
@@ -58,6 +67,18 @@ export function ResultView({ plan, onEdit }: { plan: PlanResponse; onEdit: () =>
         ) : null}
       </div>
 
+      {actions}
+      {plan.advice?.length ? (
+        <section className={styles.rules} aria-labelledby="advice-title">
+          <h3 id="advice-title">{t('adviceTitle')}</h3>
+          <ul>
+            {plan.advice.map((code) => (
+              <li key={code}>{t(`advice.${code}`)}</li>
+            ))}
+          </ul>
+          <small>{t('adviceNote')}</small>
+        </section>
+      ) : null}
       <section className={styles.rules} aria-label={t('rules')}>
         <h3>{t('rules')}</h3>
         <ol>
@@ -102,6 +123,18 @@ export function ResultView({ plan, onEdit }: { plan: PlanResponse; onEdit: () =>
         ))}
       </div>
 
+      {plan.lockedDays === 0 && plan.days.length ? (
+        <p className={styles.adaptedEnd} role="note">
+          {t('adaptedEnd', {
+            date: format.dateTime(new Date(`${plan.days[plan.days.length - 1]!.date}T12:00:00Z`), {
+              weekday: 'long',
+              day: 'numeric',
+              month: 'long',
+              timeZone: 'UTC',
+            }),
+          })}
+        </p>
+      ) : null}
       {plan.lockedDays > 0 ? (
         <section className={styles.locked}>
           <h3>{t('lockedTitle', { n: plan.lockedDays })}</h3>

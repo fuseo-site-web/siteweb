@@ -11,11 +11,23 @@ vi.mock('@/env', () => ({
 
 import {
   ADMIN_EMAIL,
+  canOpenAdmin,
   checkAdminCode,
-  isAdminAccount,
   signAdminSession,
   verifyAdminSession,
 } from '@/lib/admin/access';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+
+/** Simule la lecture du rôle dans `user_roles` (null = aucune ligne). */
+function roleInDb(role: string | null) {
+  const chain = {
+    from: () => chain,
+    select: () => chain,
+    eq: () => chain,
+    maybeSingle: async () => ({ data: role ? { role } : null }),
+  };
+  vi.mocked(createSupabaseAdminClient).mockReturnValue(chain as never);
+}
 
 const SECRET = 's'.repeat(40);
 const USER = '11111111-2222-4333-8444-555555555555';
@@ -55,11 +67,31 @@ describe("accès à l'espace administrateur", () => {
     expect(verifyAdminSession(token, USER, now, 'x'.repeat(40))).toBe(false);
   });
 
-  it("n'affiche le bouton d'accès qu'au compte administrateur, avec une adresse confirmée", () => {
-    const ok = { email: 'Contact.Fuseo@gmail.com', email_confirmed_at: '2026-10-01T00:00:00Z' };
-    expect(isAdminAccount(ok)).toBe(true);
-    expect(isAdminAccount({ ...ok, email_confirmed_at: null })).toBe(false);
-    expect(isAdminAccount({ ...ok, email: 'autre@gmail.com' })).toBe(false);
-    expect(isAdminAccount({ email: null })).toBe(false);
+  it('le compte propriétaire est toujours admin, avec une adresse confirmée', async () => {
+    roleInDb(null);
+    const ok = {
+      id: USER,
+      email: 'Contact.Fuseo@gmail.com',
+      email_confirmed_at: '2026-10-01T00:00:00Z',
+    };
+    expect(await canOpenAdmin(ok)).toBe(true);
+    expect(await canOpenAdmin({ ...ok, email_confirmed_at: null })).toBe(false);
+  });
+
+  it("un autre compte n'ouvre l'admin qu'avec le rôle admin (ni client, ni testeur)", async () => {
+    const other = {
+      id: USER,
+      email: 'autre@gmail.com',
+      email_confirmed_at: '2026-10-01T00:00:00Z',
+    };
+    roleInDb(null);
+    expect(await canOpenAdmin(other)).toBe(false);
+    roleInDb('client');
+    expect(await canOpenAdmin(other)).toBe(false);
+    roleInDb('tester');
+    expect(await canOpenAdmin(other)).toBe(false);
+    roleInDb('admin');
+    expect(await canOpenAdmin(other)).toBe(true);
+    expect(await canOpenAdmin({ ...other, email_confirmed_at: null })).toBe(false);
   });
 });

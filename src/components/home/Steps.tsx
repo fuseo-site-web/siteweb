@@ -1,44 +1,49 @@
 import { useTranslations } from 'next-intl';
-import preview from '@/content/home-preview.json';
-import { Reveal } from '@/components/ui/Reveal';
-import type { PreviewDay } from './DayTimeline';
-import { ScrollySteps } from './ScrollySteps';
+import { HowItWorks } from './HowItWorks';
+import how from './HowItWorks.module.css';
 import styles from './Sections.module.css';
+
+/** Icône de chaque conseil de l'étape 3 (le texte vient des traductions). */
+const PHASE_ITEMS = {
+  before: ['light', 'coffee', 'sport'],
+  during: ['sleep', 'meal', 'alcohol'],
+  after: ['meal', 'light', 'alcohol'],
+} as const;
 
 export function Steps() {
   const t = useTranslations();
-  const day = (preview.days as PreviewDay[]).find((d) => d.key === 'first')!;
 
   return (
-    <section id="methode" className={`${styles.sec} ${styles.band}`} aria-labelledby="steps-title">
+    <section id="methode" className={how.section} aria-labelledby="steps-title">
       <div className={styles.wrap}>
-        <Reveal>
-          <h2 id="steps-title" className={styles.title}>
-            {t('steps.title')}
-          </h2>
-        </Reveal>
-        <ScrollySteps
+        <HowItWorks
           text={{
             title: t('steps.title'),
             note: t('steps.note'),
+            eyebrow: t('steps.eyebrow'),
+            search: {
+              placeholder: t('steps.search.placeholder'),
+              departures: t('steps.search.departures'),
+              cities: t('steps.search.cities').split('|'),
+              paris: t('steps.paris'),
+              tokyo: t('steps.tokyo'),
+            },
+            benefits: [1, 2, 3, 4].map((n) => t(`steps.benefit${n}`)),
             bed: t('steps.bed'),
             wake: t('steps.wake'),
             paris: t('steps.paris'),
             tokyo: t('steps.tokyo'),
+            phases: (['before', 'during', 'after'] as const).map((ph) => ({
+              title: t(`steps.phase.${ph}.title`),
+              items: PHASE_ITEMS[ph].map((icon, i) => ({
+                icon,
+                text: t(`steps.phase.${ph}.i${i + 1}`),
+                short: t(`steps.phase.${ph}.s${i + 1}`),
+              })),
+            })),
             steps: [1, 2, 3].map((n) => ({ title: t(`steps.s${n}.t`), text: t(`steps.s${n}.p`) })),
           }}
-          day={day}
-          labels={{
-            sleep: t('preview.sleepItem'),
-            seek: t('preview.seek'),
-            avoid: t('preview.avoid'),
-            caf: t('preview.caf'),
-            flight: t('preview.flightItem'),
-          }}
         />
-        <p className={styles.note} style={{ textAlign: 'center' }}>
-          {t('steps.note')}
-        </p>
       </div>
     </section>
   );

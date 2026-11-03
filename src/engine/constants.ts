@@ -25,6 +25,9 @@ const INTERVENTION = Object.freeze({
   HYDRATION: 'HYDRATION',
   EXERCISE: 'EXERCISE',
   WIND_DOWN: 'WIND_DOWN',
+  ALCOHOL_CUTOFF: 'ALCOHOL_CUTOFF',
+  NICOTINE_CUTOFF: 'NICOTINE_CUTOFF',
+  EXERCISE_CUTOFF: 'EXERCISE_CUTOFF',
 });
 const CATEGORY_OF = Object.freeze({
   LIGHT: 'CIRCADIAN',
@@ -39,6 +42,27 @@ const CATEGORY_OF = Object.freeze({
   MEAL: 'SYMPTOMATIC',
   HYDRATION: 'SYMPTOMATIC',
   EXERCISE: 'SYMPTOMATIC',
+  ALCOHOL_CUTOFF: 'SYMPTOMATIC',
+  NICOTINE_CUTOFF: 'SYMPTOMATIC',
+  EXERCISE_CUTOFF: 'SYMPTOMATIC',
+});
+/**
+ * Hygiène du sommeil : heures limites avant le coucher prévu (h). Valeurs prudentes, issues de :
+ * - alcool : Ebrahim et al., Alcohol Clin Exp Res 2013 (sommeil fragmenté en 2e partie de nuit, REM réduit) ;
+ *   élimination ≈ 1 verre standard par heure → 4 h couvrent 2 à 3 verres ; les recommandations d'hygiène
+ *   du sommeil (AASM, NHS) conseillent d'éviter l'alcool dans les heures précédant le coucher ;
+ * - nicotine : Jaehne et al., Sleep Med Rev 2009 (latence d'endormissement allongée, sommeil plus léger) ;
+ *   demi-vie de la nicotine ≈ 2 h (Benowitz, Handb Exp Pharmacol 2009) ;
+ * - sport intense : Stutz et al., Sports Med 2019 (méta-analyse : le sport du soir ne nuit pas au sommeil,
+ *   sauf exercice intense terminé moins d'1 h avant le coucher) → marge de 2 h, l'heure de coucher étant
+ *   elle-même incertaine en voyage.
+ * Le moment conseillé pour l'activité physique suit la courbe de réponse de phase à l'exercice
+ * (Youngstedt et al., J Physiol 2019 : matin et début d'après-midi avancent l'horloge, soir la retardent).
+ */
+const LIFESTYLE = Object.freeze({
+  alcoholCutoffBeforeSleepH: 4,
+  nicotineCutoffBeforeSleepH: 2,
+  vigorousExerciseCutoffBeforeSleepH: 2,
 });
 const STRATEGY = Object.freeze({
   FULL_ADAPTATION: 'FULL_ADAPTATION',
@@ -64,6 +88,7 @@ export {
   LIGHT_REC,
   INTERVENTION,
   CATEGORY_OF,
+  LIFESTYLE,
   STRATEGY,
   MODE,
   wrap24,

@@ -99,6 +99,30 @@
     center / contain no-repeat;
 }
 
+/* Variante « vol dans la frise » : une bande « Vol » (couleur de la légende) en bas de la frise,
+   par-dessus le sommeil et la lumière pris à bord, terminée par un avion à l'atterrissage. */
+.inline .seg.flight {
+  z-index: 2;
+  top: auto;
+  bottom: 3px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--sky);
+  box-shadow: 0 0 0 1.5px var(--surface);
+}
+
+.inline .seg.flight[data-cont='true'] {
+  border-radius: 0 999px 999px 0;
+  background: var(--sky);
+}
+
+.inline .seg.flight::after {
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  background: var(--sky);
+}
+
 .mark {
   position: absolute;
   top: 50%;
@@ -111,6 +135,31 @@
 
 .caf {
   background: var(--caf);
+}
+
+.alc,
+.alcno,
+.alcnone {
+  background: var(--alc);
+}
+
+.smoke {
+  background: var(--smoke);
+}
+
+.sport,
+.sportcut {
+  background: var(--sport);
+}
+
+.breakfast,
+.breakfast1,
+.lunch,
+.dinner,
+.mealf,
+.meal1,
+.meal {
+  background: var(--meal);
 }
 
 .tick {
@@ -154,7 +203,17 @@
   flex-shrink: 0;
 }
 
-.dot.caf {
+.dot.caf,
+.dot.breakfast,
+.dot.breakfast1,
+.dot.lunch,
+.dot.dinner,
+.dot.mealf,
+.dot.meal1,
+.dot.meal,
+.dot.alc,
+.dot.smoke,
+.dot.sportcut {
   border-radius: 50%;
 }
 

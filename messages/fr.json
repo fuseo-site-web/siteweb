@@ -62,7 +62,7 @@
   },
   "preview": {
     "title": "Votre programme anti-jet-lag, jour après jour.",
-    "sub": "Un exemple illustratif de trajet Paris → Tokyo : découvrez la forme du programme avant de créer le vôtre.",
+    "sub": "Un exemple réel, calculé par le moteur Fuseo pour un Paris → Tokyo : d'abord l'essentiel de chaque journée, puis le détail si vous le souhaitez.",
     "sleep": "Coucher 23 h · lever 7 h",
     "note": "Exemple illustratif : les horaires de votre propre plan dépendront de vos vols et de vos habitudes.",
     "cta": "Calculer mon propre plan",
@@ -74,7 +74,52 @@
     "avoid": "Éviter la lumière vive",
     "caf": "Dernier café ou thé",
     "flightItem": "Vol",
-    "ticket": "Billet de vol illustratif"
+    "ticket": "Billet de vol",
+    "facts": "Décalage de {hours} h vers l'est · programme sur {days} jours après l'arrivée, jusqu'à l'adaptation.",
+    "arrival": "À l'atterrissage, votre corps croit qu'il est {body} à {home}, alors qu'il est {local} à {dest}. Le programme réduit cet écart jour après jour.",
+    "more": "Tout le programme du jour ({n} conseils : repas, sport, alcool…)",
+    "depDay": "Jour du départ · vol le soir",
+    "arrDay": "Nuit à bord et arrivée à Tokyo",
+    "pass": {
+      "passenger": "Passager",
+      "passengerName": "VOYAGEUR FUSEO",
+      "date": "Date",
+      "seat": "Siège",
+      "flight": "Vol",
+      "boarding": "Embarquement",
+      "gate": "Porte",
+      "departure": "départ",
+      "arrival": "arrivée",
+      "gateCloses": "Fermeture de la porte 20 minutes avant le départ"
+    },
+    "titleRich": "Votre programme anti‑jet‑lag, jour <hl>après jour.</hl>",
+    "subtitle": "Un plan personnalisé qui vous indique quand dormir, vous exposer à la lumière et adapter vos habitudes, avant, pendant et après votre vol.",
+    "cardBefore": "Avant le départ",
+    "cardFlight": "Pendant le vol",
+    "cardDest": "À destination",
+    "legendTitle": "Légende",
+    "legend": {
+      "sleep": {
+        "t": "Dormir",
+        "d": "repos, sommeil"
+      },
+      "seek": {
+        "t": "Lumière",
+        "d": "s'exposer à la lumière du jour"
+      },
+      "avoid": {
+        "t": "Éviter la lumière",
+        "d": "écrans, lumière vive"
+      },
+      "caf": {
+        "t": "Caféine",
+        "d": "dernier café ou thé"
+      },
+      "flight": {
+        "t": "Vol",
+        "d": "horaire de votre vol"
+      }
+    }
   },
   "steps": {
     "title": "Comment fonctionne Fuseo ?",
@@ -88,13 +133,52 @@
     },
     "s3": {
       "t": "Votre plan",
-      "p": "Recevez un programme personnalisé et suivez vos conseils de sommeil, de lumière et de caféine."
+      "p": "Recevez un programme personnalisé avant, pendant et après le vol : sommeil, lumière, café, repas, sport et alcool."
     },
     "bed": "Je me couche vers",
     "wake": "Je me lève vers",
     "paris": "Paris",
     "tokyo": "Tokyo",
-    "note": "Trois étapes pour préparer votre voyage."
+    "note": "Trois étapes pour préparer votre voyage.",
+    "phase": {
+      "before": {
+        "title": "Avant",
+        "i1": "Lumière vive le matin",
+        "i2": "Dernier café en début d'après-midi",
+        "i3": "Sport le matin",
+        "s1": "Lumière",
+        "s2": "Café tôt",
+        "s3": "Sport"
+      },
+      "during": {
+        "title": "Pendant",
+        "i1": "Dormir à bord, à l'heure de Tokyo",
+        "i2": "Repas à l'heure de la destination",
+        "i3": "Pas d'alcool à bord",
+        "s1": "Dormir",
+        "s2": "Repas",
+        "s3": "Sans alcool"
+      },
+      "after": {
+        "title": "Après",
+        "i1": "Petit-déjeuner à l'heure locale",
+        "i2": "Lumière vive en journée",
+        "i3": "Dernier verre 4 h avant le coucher",
+        "s1": "Petit-déj.",
+        "s2": "Lumière",
+        "s3": "Dernier verre"
+      }
+    },
+    "eyebrow": "3 étapes · 2 minutes",
+    "benefit1": "Votre plan en 2 minutes",
+    "benefit2": "Fondé sur la chronobiologie",
+    "benefit3": "Conçu avec l'Institut Médical du Sommeil",
+    "benefit4": "Rappels dans votre agenda et PDF",
+    "search": {
+      "placeholder": "Numéro de vol",
+      "departures": "Départs",
+      "cities": "New York|Dubaï|Tokyo|Montréal"
+    }
   },
   "science": {
     "title": "La chronobiologie appliquée à votre voyage",
@@ -200,7 +284,7 @@
     "address": "Paris 16e, 77 avenue Paul Doumer · Neuilly-sur-Seine, 130B avenue Charles de Gaulle",
     "cta": "Voir toutes nos sources",
     "storyTitle": "Notre histoire",
-    "storyLead": "Une expertise médicale, désormais accessible à tous les voyageurs.",
+    "storyLead": "Une expertise du sommeil, désormais accessible à tous les voyageurs.",
     "story1": "Tout a commencé à l’Institut Médical du Sommeil, à Paris.",
     "story2": "Au fil de notre pratique, nous avons été amenés à accompagner des profils aux exigences particulières : sportifs de haut niveau, dirigeants, personnalités en déplacement international, mais aussi des patients pour qui le décalage horaire représentait une véritable difficulté.",
     "story3": "Tous partageaient la même préoccupation : comment arriver à destination en pleine forme, sans perdre les premiers jours de leur voyage à récupérer ?",
@@ -214,7 +298,11 @@
     "scienceBehind": "La science derrière Fuseo",
     "scienceBehindText": "Notre méthode présente les modèles scientifiques et les principes de chronobiologie qui guident le calcul de chaque plan.",
     "scienceBehindLink": "Découvrir notre méthode",
-    "imsTitle": "Né à l’Institut Médical du Sommeil"
+    "imsTitle": "Né à l’Institut Médical du Sommeil",
+    "chapter1": "Le point de départ",
+    "chapter2": "Le constat",
+    "chapter3": "La méthode",
+    "chapter4": "Pour tous les voyageurs"
   },
   "pricing": {
     "title": "Des tarifs simples, sans surprise",
@@ -224,6 +312,7 @@
       "b1": "Aperçu personnalisé de votre plan",
       "b2": "Préparation avant le départ",
       "b3": "Conseils pour le jour du vol",
+      "imageAlt": "Passeport et carte d’embarquement posés sur une table d’aéroport",
       "cta": "Créer mon plan gratuitement"
     },
     "trip": {
@@ -233,6 +322,7 @@
       "b2": "Toutes les escales",
       "b3": "Jusqu'à l'adaptation complète",
       "b4": "PDF à imprimer",
+      "imageAlt": "Aile d’avion au-dessus des nuages au lever du soleil",
       "fine": "Paiement unique · Aucun abonnement",
       "cta": "Débloquer un voyage"
     },
@@ -243,6 +333,7 @@
       "b1": "Voyages personnels illimités pendant 12 mois",
       "b2": "Sans reconduction automatique",
       "b3": "Rentabilisé dès 9 voyages dans l'année",
+      "imageAlt": "Terre vue depuis l’espace, avec les lumières des villes à la tombée de la nuit",
       "cta": "Choisir Grand voyageur"
     },
     "pro": "Entreprises, clubs, équipages :",
@@ -435,7 +526,54 @@
     "share": "Partager le PDF",
     "pdfBusy": "Préparation du PDF…",
     "pdfError": "Le PDF n’a pas pu être généré. Réessayez.",
-    "shareFallback": "PDF téléchargé : joignez-le à votre message WhatsApp, e-mail ou SMS."
+    "shareFallback": "PDF téléchargé : joignez-le à votre message WhatsApp, e-mail ou SMS.",
+    "itemAlc": "Dernier verre d'alcool",
+    "itemAlcNo": "Jour de vol : évitez l'alcool",
+    "itemSmoke": "Dernière cigarette ou vapotage",
+    "itemSport": "Activité physique conseillée",
+    "itemSportCut": "Fin du sport intense",
+    "alcohol": "Me donner une heure limite pour l'alcool",
+    "sport": "Me conseiller les meilleurs moments pour le sport",
+    "smoker": "Je fume ou je vapote (heure de la dernière cigarette)",
+    "lifestyleNote": "Alcool : rien dans les 4 heures avant le coucher, et pas à bord. Tabac : rien dans les 2 heures avant le coucher ; pour un long vol, parlez à votre pharmacien des substituts nicotiniques (Tabac Info Service : 39 89). Sport intense : terminé au moins 2 heures avant le coucher.",
+    "itemBreakfast": "Petit-déjeuner, avec des protéines",
+    "itemBreakfast1": "Premier petit-déjeuner à l'heure locale : il aide votre corps à se recaler",
+    "itemLunch": "Déjeuner",
+    "itemDinner": "Dîner léger, au moins 3 h avant le coucher",
+    "itemMealF": "Repas à bord, à l'heure de la destination",
+    "meals": "Me conseiller les horaires de repas",
+    "mealNote": "Repas : mangez à l'heure de la destination dès le vol ; si le service à bord tombe pendant votre sommeil, dormez plutôt. Dîner léger (peu gras, peu épicé) au moins 3 h avant le coucher ; un en-cas léger reste possible. Buvez de l'eau régulièrement en cabine.",
+    "itemMeal1": "Premier repas de la journée",
+    "itemMeal": "Repas du milieu de journée",
+    "healthTitle": "Santé (facultatif)",
+    "healthHint": "Ces réponses adaptent le café, l'alcool, la lumière et les conseils. Elles restent sur votre appareil, ou sont chiffrées si vous enregistrez le voyage. Elles ne remplacent pas l'avis de votre médecin.",
+    "health": {
+      "pregnant": "Je suis enceinte",
+      "oralContraceptive": "Je prends une pilule contraceptive",
+      "sleepApnea": "J'ai une apnée du sommeil",
+      "heartCondition": "J'ai un trouble du rythme cardiaque ou de l'hypertension",
+      "bipolar": "J'ai un trouble bipolaire",
+      "eyeCondition": "J'ai une maladie des yeux ou je prends un médicament qui rend sensible à la lumière"
+    },
+    "adviceTitle": "Conseils adaptés à votre profil",
+    "adviceNote": "Informations générales : elles ne remplacent pas l'avis de votre médecin.",
+    "advice": {
+      "pregnant": "Grossesse : pas d'alcool ni de mélatonine ; café limité à 2 tasses par jour et arrêté tôt (10 h avant le coucher). En vol, marchez toutes les 1 à 2 heures et buvez de l'eau. Avant un long vol, demandez l'avis de votre sage-femme ou de votre médecin.",
+      "minor": "Moins de 18 ans : pas d'alcool, pas de café « coup de pouce », pas de mélatonine sans avis médical.",
+      "heart": "Trouble du rythme cardiaque ou hypertension : le plan ne propose pas de café « coup de pouce ». En vol, levez-vous régulièrement et hydratez-vous ; demandez l'avis de votre médecin avant un long voyage.",
+      "apnea": "Apnée du sommeil : pas d'alcool le soir (au moins 6 h avant le coucher) ni de somnifère. Si vous avez un appareil de PPC, emportez-le en cabine et vérifiez auprès de la compagnie s'il peut être utilisé à bord.",
+      "bipolar": "Trouble bipolaire : le décalage horaire et la lumière vive peuvent déstabiliser l'humeur. Pas de lampe de luminothérapie sans avis médical ; prévenez votre psychiatre avant le voyage et gardez des horaires de sommeil réguliers.",
+      "eye": "Maladie des yeux ou médicament photosensibilisant : pas de lampe de luminothérapie sans avis médical. Préférez la lumière du jour, avec vos protections habituelles.",
+      "pill": "Pilule contraceptive : la caféine s'élimine plus lentement, l'heure limite du café est avancée de 2 h. Pensez aussi à l'heure de votre comprimé avec le décalage : suivez la notice ou demandez à votre pharmacien.",
+      "senior": "65 ans et plus : votre horloge est souvent plus matinale et un peu moins sensible à la lumière ; le plan en tient compte. Recherchez une vraie lumière du jour (dehors) et gardez des siestes courtes (20 minutes). Le café est arrêté 1 h plus tôt.",
+      "fifty": "50 ans et plus : le sommeil devient plus sensible au café du soir ; l'heure limite est avancée d'1 h.",
+      "smoker": "Tabac : il est interdit de fumer à bord et dans la plupart des aéroports, et le manque de nicotine peut fragmenter le sommeil en vol. Parlez des substituts nicotiniques à votre pharmacien."
+    },
+    "itemAlcNone": "Pas d'alcool aujourd'hui",
+    "icsButton": "Ajouter à mon agenda",
+    "icsTitle": "Plan Fuseo {from} → {to}",
+    "icsDone": "Ouvrez le fichier pour ajouter les rappels à votre agenda (iPhone, Android, Outlook).",
+    "adaptedEnd": "Fin du programme le {date} : votre horloge est recalée sur votre destination. Reprenez simplement vos horaires habituels de coucher et de lever."
   },
   "auth": {
     "title": "Se connecter",
@@ -558,7 +696,42 @@
     "passwordCode": "Code reçu par e-mail",
     "passwordCodeSent": "Par sécurité, saisissez le code envoyé à {email}, puis validez à nouveau.",
     "passwordCodeBad": "Code incorrect ou expiré. Vérifiez-le ou demandez un lien par e-mail.",
-    "passwordByEmail": "Recevoir plutôt un lien par e-mail"
+    "passwordByEmail": "Recevoir plutôt un lien par e-mail",
+    "roleTester": "Testeur · accès complet",
+    "roleAdmin": "Administrateur · accès complet",
+    "viewAsLabel": "Voir le site avec l'offre",
+    "viewAsFull": "Accès complet (admin)",
+    "viewAsFree": "Offre gratuite",
+    "viewAsHint": "Réservé aux administrateurs : votre plan, le PDF et votre espace s'affichent comme pour un client ayant cette offre.",
+    "viewAsBadge": "Simulation : {offer}",
+    "tabPayment": "Paiement",
+    "accessReadonly": "Votre accès dépend de votre offre. Pour en changer, rendez-vous dans l'onglet Paiement.",
+    "payTitle": "Mon offre",
+    "payBuyTrip": "Acheter « Un voyage » · {price}",
+    "payBuyYear": "Passer à « Grand voyageur » · {price}",
+    "paySoon": "Le paiement en ligne sécurisé (Stripe) arrive bientôt. En attendant, découvrez les offres sur la page Tarifs.",
+    "paySeeOffers": "Comparer les offres →",
+    "payMethods": "Moyens de paiement et factures",
+    "payMethodsText": "Gérez votre carte bancaire et téléchargez vos factures dans l'espace sécurisé Stripe. Fuseo ne stocke jamais vos coordonnées bancaires.",
+    "payManage": "Gérer mes paiements",
+    "payManageNone": "Disponible après votre premier paiement.",
+    "payHistory": "Historique des paiements",
+    "payEmpty": "Aucun paiement pour le moment.",
+    "payDate": "Date",
+    "payOffer": "Offre",
+    "payAmount": "Montant",
+    "payStatus": "Statut",
+    "payReceipt": "Reçu",
+    "payReceiptLink": "Voir le reçu",
+    "payError": "Le paiement n'a pas pu démarrer. Réessayez dans un instant.",
+    "payState": {
+      "succeeded": "Payé",
+      "pending": "En cours",
+      "failed": "Échoué",
+      "refunded": "Remboursé"
+    },
+    "preferredLocale": "Langue de communication",
+    "preferredLocaleHint": "Langue de nos e-mails et de nos réponses au support."
   },
   "consent": {
     "title": "Votre vie privée, votre choix",
@@ -692,6 +865,45 @@
       "title": "Événement important",
       "text": "Une fatigue qui vous empêche de profiter pleinement du moment.",
       "alt": "Couple lors d’un mariage à destination"
+    }
+  },
+  "support": {
+    "open": "Contacter le support",
+    "title": "Support Fuseo",
+    "close": "Fermer",
+    "tabNew": "Nouvelle demande",
+    "tabList": "Mes demandes",
+    "unread": "Nouvelle réponse",
+    "reasonLabel": "Quel est le motif de votre demande ?",
+    "reason": {
+      "plan": "Mon plan",
+      "account": "Mon compte",
+      "payment": "Paiement",
+      "technical": "Problème technique",
+      "health": "Sommeil et santé",
+      "other": "Autre"
+    },
+    "healthNote": "Nous répondons aux questions générales sur le sommeil et le décalage horaire. Pour un avis médical personnalisé, consultez votre médecin.",
+    "messageLabel": "Votre message",
+    "messagePh": "Décrivez votre question en quelques lignes…",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "sent": "Votre demande est bien envoyée.",
+    "refLabel": "Numéro de dossier :",
+    "sentNote": "Vous allez recevoir une confirmation par e-mail. Nous vous répondons en général sous 24 à 48 heures ouvrées.",
+    "another": "Faire une autre demande",
+    "error": "L'envoi a échoué. Réessayez dans un instant.",
+    "limit": "Vous avez envoyé plusieurs demandes récemment. Réessayez dans une heure.",
+    "back": "Mes demandes",
+    "team": "Équipe Fuseo",
+    "you": "Vous",
+    "closed": "Ce dossier est clos. Pour une nouvelle question, faites une nouvelle demande.",
+    "replyLabel": "Votre réponse…",
+    "empty": "Vous n'avez pas encore de demande.",
+    "status": {
+      "open": "En attente de réponse",
+      "answered": "Répondu",
+      "closed": "Clos"
     }
   }
 }
