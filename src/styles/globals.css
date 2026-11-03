@@ -78,3 +78,23 @@ h3 {
 .skip-link:focus {
   top: 12px;
 }
+
+/*
+ * Champs date et heure sur iPhone (Safari iOS) : leur largeur minimale native ignore `width: 100%`
+ * et ils dépassent de leur carte. On retire l'apparence native (le sélecteur iOS reste disponible au toucher).
+ */
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+input[type='date']::-webkit-date-and-time-value,
+input[type='time']::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.4em;
+}

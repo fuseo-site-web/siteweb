@@ -1195,3 +1195,58 @@
     max-width: 92%;
   }
 }
+
+/* Écran d'attente des pages de l'admin (loading.tsx). */
+.loading {
+  display: grid;
+  gap: 16px;
+}
+
+.skelTitle,
+.skelLine,
+.skelCard,
+.skelBlock {
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--surface2), var(--line), var(--surface2));
+  background-size: 200% 100%;
+  animation: skel 1.4s ease-in-out infinite;
+}
+
+.skelTitle {
+  width: min(360px, 70%);
+  height: 34px;
+}
+
+.skelLine {
+  width: min(560px, 90%);
+  height: 16px;
+}
+
+.skelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.skelCard {
+  height: 110px;
+}
+
+.skelBlock {
+  height: 320px;
+}
+
+@keyframes skel {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skelTitle,
+  .skelLine,
+  .skelCard,
+  .skelBlock {
+    animation: none;
+  }
+}
