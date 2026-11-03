@@ -394,18 +394,18 @@ module.exports = [
   ['account.passwordTitle', 'Mot de passe', M('Password', 'Contraseña')],
   [
     'account.passwordNone',
-    'Vous vous connectez avec Google. Ajoutez un mot de passe pour pouvoir aussi vous connecter avec votre adresse e-mail : nous vous envoyons un lien sécurisé par e-mail.',
+    'Vous vous connectez avec Google. Ajoutez un mot de passe pour pouvoir aussi vous connecter avec votre adresse e-mail.',
     M(
-      'You sign in with Google. Add a password so you can also sign in with your email address: we will send you a secure link by email.',
-      'Inicia sesión con Google. Añada una contraseña para poder iniciar sesión también con su correo electrónico: le enviaremos un enlace seguro por correo.',
+      'You sign in with Google. Add a password so you can also sign in with your email address.',
+      'Inicia sesión con Google. Añada una contraseña para poder iniciar sesión también con su correo electrónico.',
     ),
   ],
   [
     'account.passwordSet',
-    'Vous pouvez vous connecter avec votre adresse e-mail et votre mot de passe. Pour le modifier, nous vous envoyons un lien sécurisé par e-mail.',
+    'Vous pouvez vous connecter avec votre adresse e-mail et votre mot de passe. Pour le modifier, choisissez-en un nouveau.',
     M(
-      'You can sign in with your email address and password. To change it, we will send you a secure link by email.',
-      'Puede iniciar sesión con su correo electrónico y su contraseña. Para cambiarla, le enviaremos un enlace seguro por correo.',
+      'You can sign in with your email address and password. To change it, choose a new one.',
+      'Puede iniciar sesión con su correo electrónico y su contraseña. Para cambiarla, elija una nueva.',
     ),
   ],
   ['account.passwordAdd', 'Ajouter un mot de passe', M('Add a password', 'Añadir una contraseña')],
@@ -421,5 +421,81 @@ module.exports = [
       'Email sent to {email}: open the link to choose your password.',
       'Correo enviado a {email}: abra el enlace para elegir su contraseña.',
     ),
+  ],
+  [
+    'account.passwordWait',
+    "Un e-mail vient déjà d'être envoyé à {email}. Vérifiez votre boîte de réception (et les spams), ou patientez une minute avant d'en demander un nouveau.",
+    M(
+      'An email has just been sent to {email}. Check your inbox (and spam), or wait a minute before requesting a new one.',
+      'Acabamos de enviar un correo a {email}. Revise su bandeja de entrada (y el correo no deseado) o espere un minuto antes de pedir otro.',
+    ),
+  ],
+  ['account.passwordNew', 'Nouveau mot de passe', M('New password', 'Nueva contraseña')],
+  [
+    'account.passwordConfirm',
+    'Confirmer le mot de passe',
+    M('Confirm password', 'Confirmar la contraseña'),
+  ],
+  [
+    'account.passwordHint',
+    '10 caractères minimum.',
+    M('At least 10 characters.', 'Mínimo 10 caracteres.'),
+  ],
+  [
+    'account.passwordShow',
+    'Afficher les mots de passe',
+    M('Show passwords', 'Mostrar las contraseñas'),
+  ],
+  [
+    'account.passwordMismatch',
+    'Les deux mots de passe ne correspondent pas.',
+    M('The two passwords do not match.', 'Las dos contraseñas no coinciden.'),
+  ],
+  [
+    'account.passwordWeak',
+    "Choisissez un mot de passe d'au moins 10 caractères, plus difficile à deviner.",
+    M(
+      'Choose a password of at least 10 characters that is harder to guess.',
+      'Elija una contraseña de al menos 10 caracteres, más difícil de adivinar.',
+    ),
+  ],
+  [
+    'account.passwordSame',
+    "Ce mot de passe est identique à l'actuel.",
+    M('This password is the same as the current one.', 'Esta contraseña es igual a la actual.'),
+  ],
+  [
+    'account.passwordSaved',
+    'Mot de passe enregistré. Vous pouvez désormais vous connecter avec {email} et ce mot de passe.',
+    M(
+      'Password saved. You can now sign in with {email} and this password.',
+      'Contraseña guardada. Ahora puede iniciar sesión con {email} y esta contraseña.',
+    ),
+  ],
+  [
+    'account.passwordCode',
+    'Code reçu par e-mail',
+    M('Code received by email', 'Código recibido por correo'),
+  ],
+  [
+    'account.passwordCodeSent',
+    'Par sécurité, saisissez le code envoyé à {email}, puis validez à nouveau.',
+    M(
+      'For security, enter the code sent to {email}, then confirm again.',
+      'Por seguridad, introduzca el código enviado a {email} y confirme de nuevo.',
+    ),
+  ],
+  [
+    'account.passwordCodeBad',
+    'Code incorrect ou expiré. Vérifiez-le ou demandez un lien par e-mail.',
+    M(
+      'Incorrect or expired code. Check it or request a link by email.',
+      'Código incorrecto o caducado. Compruébelo o pida un enlace por correo.',
+    ),
+  ],
+  [
+    'account.passwordByEmail',
+    'Recevoir plutôt un lien par e-mail',
+    M('Receive a link by email instead', 'Recibir un enlace por correo'),
   ],
 ];

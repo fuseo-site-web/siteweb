@@ -199,3 +199,16 @@
 .row {
   flex-wrap: wrap;
 }
+
+/* Ajout / modification du mot de passe dans l'espace. */
+.pwForm {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+}
