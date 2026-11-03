@@ -639,8 +639,9 @@ function Preview({ md }: { md: string }) {
           );
         if (b.type === 'p') return <p key={i} dangerouslySetInnerHTML={{ __html: b.text }} />;
         if (b.type === 'img')
-          // eslint-disable-next-line @next/next/no-img-element
           return (
+            // Aperçu de l'éditeur : l'image peut venir de n'importe quelle adresse, sans optimisation possible.
+            // eslint-disable-next-line @next/next/no-img-element
             <img key={i} src={b.src} alt={b.alt} style={{ maxWidth: '100%', borderRadius: 12 }} />
           );
         if (b.type === 'list') {

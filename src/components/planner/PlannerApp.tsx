@@ -343,7 +343,8 @@ export function PlannerApp() {
     window.clearTimeout(lookupTimers.current[id]);
     if (!FLIGHT_RE.test(fn)) {
       setLookups((m) => {
-        const { [id]: _drop, ...rest } = m;
+        const rest = { ...m };
+        delete rest[id];
         return rest;
       });
       return;
