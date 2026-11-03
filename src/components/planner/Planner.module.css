@@ -572,3 +572,29 @@
   background: #dff5ea;
   border: 1px solid #a8dfc3;
 }
+
+/* Numéro de vol + « Remplir depuis le numéro de vol » : côte à côte, puis l'un sous l'autre sur mobile. */
+.fnRow > input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fnRow > button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .fnRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .fnRow > button {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14.5px;
+    text-align: center;
+  }
+}

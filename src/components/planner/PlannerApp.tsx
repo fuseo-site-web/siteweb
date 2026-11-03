@@ -409,7 +409,7 @@ export function PlannerApp() {
       <div className={styles.legGrid}>
         <div className={`${styles.field} ${styles.wide}`}>
           <label htmlFor={`${g}${i}fn`}>{t('flightNumber')}</label>
-          <div className={styles.inline}>
+          <div className={`${styles.inline} ${styles.fnRow}`}>
             <input
               id={`${g}${i}fn`}
               value={l.fn}
