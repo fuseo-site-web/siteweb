@@ -1,0 +1,2 @@
+# Même exception, ciblée sur le commit déjà poussé (clé IndexNow publique, voir .gitleaks.toml)
+31b241ba74cae94f5770af4f9d5342178ff06c8e:scripts/indexnow.mjs:generic-api-key:4

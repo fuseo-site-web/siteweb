@@ -1,0 +1,9 @@
+# Règles par défaut de Gitleaks, plus une exception documentée.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Clé IndexNow : publique par conception"
+# IndexNow exige de publier la clé à l'adresse https://fuseo.net/<clé>.txt pour prouver la propriété du site.
+# Ce n'est pas un secret (voir scripts/indexnow.mjs et public/<clé>.txt).
+regexes = ['''0fda496fde6c411d0929797bd816dba2''']
