@@ -129,7 +129,12 @@ const spec = [
 const extra = { 'hero.price': ['8,90 €', '€8.90', '8,90 €'] };
 
 const extraSpec = require('./messages-extra.cjs');
-spec.push(...extraSpec, ...require('./messages-planner.cjs'), ...require('./messages-account.cjs'), ...require('./messages-site.cjs'));
+spec.push(
+  ...extraSpec,
+  ...require('./messages-planner.cjs'),
+  ...require('./messages-account.cjs'),
+  ...require('./messages-site.cjs'),
+);
 const out = { fr: {}, en: {}, es: {} };
 const set = (lang, key, v) => {
   const parts = key.split('.');

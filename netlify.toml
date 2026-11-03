@@ -10,3 +10,16 @@
 
 [context.production.environment]
   NEXT_PUBLIC_SITE_URL = "https://fuseo.net"
+
+# Une seule redirection vers l'adresse principale, quel que soit le protocole d'origine.
+[[redirects]]
+  from = "http://www.fuseo.net/*"
+  to = "https://fuseo.net/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.fuseo.net/*"
+  to = "https://fuseo.net/:splat"
+  status = 301
+  force = true

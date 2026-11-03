@@ -11,3 +11,7 @@ test-results
 playwright-report
 tsconfig.json
 tests/golden/legacy
+
+# Contenus à garder tels quels : fichier de vérification Google, modèles d’e-mails collés dans Supabase.
+public/google*.html
+supabase/templates

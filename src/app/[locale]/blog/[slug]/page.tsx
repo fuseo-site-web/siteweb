@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { ArticleCard } from '@/components/blog/ArticleCard';
@@ -10,11 +10,12 @@ import { RelatedLinks } from '@/components/content/RelatedLinks';
 import { Icon } from '@/components/ui/Icon';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { coverOfPost, getPost, getPosts, slugIn } from '@/content/blog';
+import { POST_DESCRIPTIONS } from '@/content/seo-descriptions';
 import { env } from '@/env';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import type { PostItem } from '@/lib/blog-search';
-import { OG_LOCALE, summarize } from '@/lib/seo';
+import { OG_LOCALE, summarize, withBrand } from '@/lib/seo';
 
 type Props = PageProps<'/[locale]/blog/[slug]'>;
 const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
@@ -45,9 +46,10 @@ export async function generateMetadata({ params }: Props) {
     const s = await slugIn(l, post.id);
     if (s) languages[l] = articleUrl(l, s);
   }
-  const description = post.seoDescription || summarize(post.lead);
+  const description =
+    post.seoDescription || POST_DESCRIPTIONS[post.id]?.[locale] || summarize(post.lead);
   return {
-    title: post.seoTitle || post.title,
+    title: post.seoTitle || withBrand(post.title),
     description,
     alternates: {
       canonical: articleUrl(locale, slug),
@@ -80,7 +82,20 @@ export default async function PostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const post = await getPost(locale, slug);
-  if (!post) notFound();
+  if (!post) {
+    // Slug d'une autre langue (ex. /en/blog/<slug français>) : redirection permanente vers le même article
+    // dans la langue demandée, avec son propre slug.
+    for (const l of routing.locales) {
+      if (l === locale) continue;
+      const other = await getPost(l, slug);
+      const own = other ? await slugIn(locale, other.id) : undefined;
+      if (own)
+        permanentRedirect(
+          getPathname({ href: { pathname: '/blog/[slug]', params: { slug: own } }, locale }),
+        );
+    }
+    notFound();
+  }
   const t = await getTranslations({ locale, namespace: 'blog' });
 
   const ld = {

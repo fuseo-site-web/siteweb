@@ -15,14 +15,16 @@ env:
 
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    # Version d'Ubuntu épinglée : pas de changement de comportement lors des migrations de ubuntu-latest.
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+      # `typecheck` génère d'abord les types de routes de Next.js (PageProps, RouteContext…) : `next typegen`.
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format:check

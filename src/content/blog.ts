@@ -45,7 +45,8 @@ const BYLINE: Record<string, string> = { fr: 'Équipe Fuseo', en: 'Fuseo team', 
 async function getDbPosts(locale: string): Promise<Post[]> {
   'use cache';
   cacheTag('blog-posts');
-  cacheLife('hours');
+  // Chaque modification dans l'admin invalide ce cache ; une durée courte régénérerait les pages pour rien.
+  cacheLife('days');
   try {
     const { data } = await createClient(
       env.NEXT_PUBLIC_SUPABASE_URL,

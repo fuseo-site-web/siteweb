@@ -12,6 +12,7 @@ import {
   Wine,
   type LucideIcon,
 } from 'lucide-react';
+import { cacheLife } from 'next/cache';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Reveal } from '@/components/ui/Reveal';
@@ -25,6 +26,8 @@ import styles from './Sections.module.css';
 /** Exemple réel calculé par le moteur : Paris → Tokyo, départ le soir, coucher 23 h, lever 7 h. */
 async function examplePlan(locale: string): Promise<PlanResponse | null> {
   'use cache';
+  // Dates fixes : le résultat ne change qu'avec le code. Sans durée, ce cache limiterait l'accueil à 15 min.
+  cacheLife('max');
   const plan = runPlan(
     {
       profile: {

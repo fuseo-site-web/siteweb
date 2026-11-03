@@ -6,6 +6,10 @@ export const routing = defineRouting({
   localePrefix: 'as-needed',
   // `/` est toujours en français (SEO, rendu statique) ; aucun cookie de langue avant consentement.
   localeDetection: false,
+  // Pas d'en-tête HTTP `Link` hreflang automatique : il recopie le slug de la page dans les autres langues
+  // (ex. /en/blog/<slug français>) et crée des URL fantômes en 404. Les hreflang corrects (slug traduit)
+  // sont dans le <head> de chaque page et dans le sitemap.
+  alternateLinks: false,
   localeCookie: false,
   // Adresses de pages lisibles et traduites par langue (pas d'ancres #).
   pathnames: {

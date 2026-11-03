@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { env } from '@/env';
+import { PAGE_DESCRIPTIONS } from '@/content/seo-descriptions';
 import { getPathname } from '@/i18n/navigation';
 import { routing, type StaticPathname as AppPathname } from '@/i18n/routing';
 
@@ -45,7 +46,26 @@ const SEO_TITLE: Partial<Record<AppPathname, Record<string, string>>> = {
     en: 'The science of jet lag · Fuseo',
     es: 'La ciencia del jet lag · Fuseo',
   },
+  '/methode': {
+    fr: 'Un algorithme scientifique contre le jet lag · Fuseo',
+    es: 'Un algoritmo científico contra el jet lag · Fuseo',
+  },
+  // Documents juridiques : le texte fait foi en français, mais le titre suit la langue de l'adresse.
+  '/cookies': { en: 'Cookie policy · Fuseo', es: 'Política de cookies · Fuseo' },
+  '/confidentialite': { en: 'Privacy policy · Fuseo', es: 'Política de privacidad · Fuseo' },
+  '/cgu': { en: 'Terms of use · Fuseo', es: 'Condiciones de uso · Fuseo' },
+  '/cgv': { en: 'Terms of sale · Fuseo', es: 'Condiciones de venta · Fuseo' },
+  '/accessibilite': {
+    en: 'Accessibility statement · Fuseo',
+    es: 'Declaración de accesibilidad · Fuseo',
+  },
 };
+const BRAND = ' · Fuseo';
+
+/** Ajoute la marque en fin de titre d'article, si elle n'y est pas et que le tout tient en 60 caractères. */
+export function withBrand(title: string): string {
+  return /fuseo/i.test(title) || title.length + BRAND.length > 60 ? title : title + BRAND;
+}
 
 /** Titre d'onglet et de résultat Google : entre 20 et 60 caractères. */
 export function seoTitle(title: string, pathname: AppPathname, locale: string): string {
@@ -55,11 +75,11 @@ export function seoTitle(title: string, pathname: AppPathname, locale: string): 
   if (title.length < 20) {
     return `${title} · ${/fuseo/i.test(title) ? short : `Fuseo · ${short}`}`;
   }
-  if (title.length > 60) {
-    const cut = title.slice(0, 58);
-    return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:·-]$/, '')}…`;
-  }
-  return title;
+  const suffix = /fuseo/i.test(title) ? '' : BRAND;
+  const room = 60 - suffix.length;
+  if (title.length <= room) return title + suffix;
+  const cut = title.slice(0, room - 2);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:·-]$/, '')}…${suffix}`;
 }
 
 /** Description de 70 à 155 caractères : trop courte, on la complète avec la phrase de présentation du site. */
@@ -112,7 +132,8 @@ export function pageMetadata({
 }): Metadata {
   const languages = Object.fromEntries(routing.locales.map((l) => [l, absoluteUrl(pathname, l)]));
   const fullTitle = seoTitle(title, pathname, locale);
-  const fullDescription = seoDescription(description, locale);
+  const fullDescription =
+    PAGE_DESCRIPTIONS[pathname]?.[locale] ?? seoDescription(description, locale);
   return {
     title: fullTitle,
     description: fullDescription,

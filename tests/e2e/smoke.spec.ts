@@ -63,6 +63,43 @@ for (const { path, lang } of locales) {
   });
 }
 
+test("les articles n'annoncent pas d'URL fantôme (en-tête Link) et leurs hreflang pointent vers des pages en 200", async ({
+  request,
+}) => {
+  const r = await request.get('/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes');
+  expect(r.status()).toBe(200);
+  expect(r.headers()['link'] ?? '').not.toContain('hreflang');
+  const html = await r.text();
+  const hrefs = [...html.matchAll(/<link rel="alternate" hrefLang="[a-z-]+" href="([^"]+)"/g)].map(
+    (m) => new URL(m[1]!).pathname,
+  );
+  expect(hrefs).toContain('/en/blog/melatonin-and-jet-lag-what-the-studies-really-say');
+  expect(hrefs).toContain('/es/blog/melatonina-y-jet-lag-lo-que-dicen-realmente-los-estudios');
+  for (const h of new Set(hrefs)) expect((await request.get(h)).status()).toBe(200);
+});
+
+test('un slug d’une autre langue redirige vers le même article dans la langue demandée', async ({
+  request,
+}) => {
+  for (const [from, to] of [
+    [
+      '/en/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
+      '/en/blog/melatonin-and-jet-lag-what-the-studies-really-say',
+    ],
+    [
+      '/blog/melatonin-and-jet-lag-what-the-studies-really-say',
+      '/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
+    ],
+    ['/es/blog/preparer-son-horloge-avant-de-partir', '/es/blog/preparar-el-reloj-antes-de-partir'],
+  ]) {
+    const r = await request.get(from!, { maxRedirects: 0 });
+    expect([301, 308]).toContain(r.status());
+    // Next répète parfois l'en-tête Location (même valeur) : on lit la première.
+    const location = r.headers()['location']!.split(',')[0]!.trim();
+    expect(new URL(location, 'http://x').pathname).toBe(to);
+  }
+});
+
 test('une URL inconnue renvoie 404', async ({ request }) => {
   const response = await request.get('/page-inexistante');
   expect(response.status()).toBe(404);
@@ -497,15 +534,67 @@ test.describe('espace administrateur et statistiques', () => {
 });
 
 test.describe('référencement', () => {
-  test('une adresse inconnue renvoie une vraie 404, y compris pour un article dans la mauvaise langue', async ({
-    request,
-  }) => {
+  test('un article inconnu renvoie une vraie 404 dans toutes les langues', async ({ request }) => {
     for (const path of [
       '/blog/article-qui-nexiste-pas',
-      '/en/blog/melatonine-et-jet-lag-ce-que-disent-vraiment-les-etudes',
-      '/es/blog/melatonin-and-jet-lag-what-the-studies-really-say',
+      '/en/blog/article-qui-nexiste-pas',
+      '/es/blog/article-qui-nexiste-pas',
     ]) {
       expect((await request.get(path)).status(), path).toBe(404);
+    }
+  });
+
+  test('toutes les pages du sitemap ont une description de 140 à 155 caractères et la marque dans le titre', async ({
+    page,
+    request,
+  }) => {
+    const sitemap = await (await request.get('/sitemap.xml')).text();
+    const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]!).pathname);
+    expect(paths.length).toBeGreaterThan(50);
+    for (const path of paths) {
+      await page.goto(path);
+      const desc = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
+      expect(desc.length).toBeGreaterThanOrEqual(140);
+      expect(desc.length).toBeLessThanOrEqual(155);
+    }
+  });
+
+  test('les pages signalées par l’audit ont « · Fuseo » dans le titre', async ({ page }) => {
+    for (const path of [
+      '/equipe-medicale',
+      '/la-science-du-jet-lag',
+      '/plan-anti-jet-lag',
+      '/en/site-map',
+      '/es/equipo-medico',
+      '/en/medical-team',
+      '/sources-scientifiques',
+      '/es/fuentes-cientificas',
+      '/en/blog/sleeping-well-on-a-plane-what-really-helps',
+      '/transparence-commerciale',
+      '/es/transparencia-comercial',
+      '/en/commercial-transparency',
+    ]) {
+      await page.goto(path);
+      expect(await page.title(), path).toContain('· Fuseo');
+    }
+  });
+
+  test('les pages légales ont un titre traduit et restent hors index', async ({ page }) => {
+    for (const [path, title] of [
+      ['/en/cookies', 'Cookie policy · Fuseo'],
+      ['/es/cookies', 'Política de cookies · Fuseo'],
+      ['/en/privacy', 'Privacy policy · Fuseo'],
+      ['/es/privacidad', 'Política de privacidad · Fuseo'],
+      ['/en/terms-of-use', 'Terms of use · Fuseo'],
+      ['/es/condiciones-de-uso', 'Condiciones de uso · Fuseo'],
+      ['/en/terms-of-sale', 'Terms of sale · Fuseo'],
+      ['/es/condiciones-de-venta', 'Condiciones de venta · Fuseo'],
+      ['/en/accessibility', 'Accessibility statement · Fuseo'],
+      ['/es/accesibilidad', 'Declaración de accesibilidad · Fuseo'],
+    ] as const) {
+      await page.goto(path);
+      expect(await page.title(), path).toBe(title);
+      await expect(page.locator('meta[name="robots"]'), path).toHaveAttribute('content', /noindex/);
     }
   });
 
