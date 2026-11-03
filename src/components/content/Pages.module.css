@@ -1,7 +1,7 @@
 .wrap {
-  max-width: 1100px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 80px) 20px clamp(56px, 8vw, 110px);
+  padding: clamp(40px, 6vw, 80px) var(--gutter) clamp(56px, 8vw, 110px);
 }
 
 .wrap h2 {
@@ -9,6 +9,49 @@
   font-size: clamp(1.6rem, 3.4vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
+}
+
+.story {
+  max-width: 820px;
+  margin: 0 auto 76px;
+}
+
+.story h2 {
+  margin-bottom: 14px;
+}
+
+.story p {
+  margin: 0 0 16px;
+  line-height: 1.7;
+  font-size: 1.04rem;
+}
+
+.story .storyLead {
+  margin-bottom: 28px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.scienceLink {
+  max-width: 760px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.scienceLink p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.scienceLink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--accent-text);
 }
 
 .sub {
@@ -350,6 +393,26 @@
 
 .price .btn {
   text-align: center;
+}
+
+.pricePhoto {
+  height: 118px;
+  margin: 2px -10px 6px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+}
+
+.pricePhoto[data-offer='free'] {
+  background-image: url('/images/home/impact-japan.webp');
+}
+
+.pricePhoto[data-offer='trip'] {
+  background-image: url('/images/home/hero-cabin.webp');
+}
+
+.pricePhoto[data-offer='year'] {
+  background-image: url('/images/home/airport-terminal.webp');
 }
 
 @media (max-width: 640px) {

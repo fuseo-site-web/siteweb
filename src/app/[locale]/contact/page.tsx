@@ -25,6 +25,7 @@ export default async function ContactPage({ params }: Props) {
         lead={t('lead')}
         icon="headphones"
         crumbs={[{ label: t('title') }]}
+        visual="airport"
       />
       <div className={styles.layout}>
         <ContactForm />

@@ -1,0 +1,63 @@
+.scene {
+  position: relative;
+  background: #061426;
+  line-height: 0;
+}
+
+.scene svg {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 18vw, 460px);
+}
+
+.title {
+  position: absolute;
+  inset: 18% 0 auto;
+  margin: 0;
+  padding: 0 16px;
+  text-align: center;
+  line-height: 1.2;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(16px, 2vw, 40px);
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.rl {
+  fill: #ffd58a;
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rl {
+    animation: rl 1.5s ease-in-out infinite;
+  }
+
+  .blink {
+    animation: bl 1.2s steps(2) infinite;
+  }
+}
+
+@keyframes rl {
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bl {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .scene svg {
+    height: 130px;
+  }
+
+  .title {
+    top: 12%;
+    font-size: 15px;
+  }
+}

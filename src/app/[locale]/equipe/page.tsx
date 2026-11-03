@@ -86,6 +86,18 @@ export default async function TeamPage({ params }: Props) {
         crumbs={[{ label: pages('team') }]}
       />
       <div className={styles.wrap}>
+        <section className={styles.story} aria-labelledby="team-story">
+          <Reveal>
+            <h2 id="team-story">{t('storyTitle')}</h2>
+            <p className={styles.storyLead}>{t('storyLead')}</p>
+          </Reveal>
+          {Array.from({ length: 10 }, (_, i) => (
+            <Reveal key={i}>
+              <p>{t(`story${i + 1}`)}</p>
+            </Reveal>
+          ))}
+        </section>
+
         <Reveal className={styles.sectionHead}>
           <span className={content.h2icon}>
             <Icon name="badge-check" size={22} />
@@ -112,6 +124,25 @@ export default async function TeamPage({ params }: Props) {
           ))}
         </div>
 
+        <Reveal className={`${styles.sectionHead} ${styles.spaced}`}>
+          <span className={content.h2icon}>
+            <Icon name="sparkles" size={22} />
+          </span>
+          <h2>{t('scienceBehind')}</h2>
+        </Reveal>
+        <Reveal className={styles.scienceLink}>
+          <p>{t('scienceBehindText')}</p>
+          <Link href="/methode">
+            {t('scienceBehindLink')} <Icon name="arrow-right" size={18} />
+          </Link>
+        </Reveal>
+
+        <Reveal className={`${styles.sectionHead} ${styles.spaced}`}>
+          <span className={content.h2icon}>
+            <Icon name="stethoscope" size={22} />
+          </span>
+          <h2>{t('imsTitle')}</h2>
+        </Reveal>
         <Reveal className={styles.ims}>
           <span className={styles.logoChip}>
             <Image
@@ -129,24 +160,6 @@ export default async function TeamPage({ params }: Props) {
             </a>
           </div>
         </Reveal>
-
-        <Reveal className={`${styles.sectionHead} ${styles.spaced}`}>
-          <span className={content.h2icon}>
-            <Icon name="sparkles" size={22} />
-          </span>
-          <h2>{t('approach')}</h2>
-        </Reveal>
-        <div className={styles.grid3}>
-          {(['book', 'stethoscope', 'eye'] as const).map((icon, i) => (
-            <Reveal key={icon} delay={i * 90} className={styles.card}>
-              <span className={content.cardIcon}>
-                <Icon name={icon} size={22} />
-              </span>
-              <h3>{t(`a${i + 1}.t`)}</h3>
-              <p>{t(`a${i + 1}.p`)}</p>
-            </Reveal>
-          ))}
-        </div>
         <p className={styles.moreLink}>
           <Link href="/sources">
             {t('cta')}

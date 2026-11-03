@@ -38,7 +38,7 @@ module.exports = [
   ['planner.remove', 'Supprimer'],
   ['planner.from', 'Aéroport de départ'],
   ['planner.to', "Aéroport d'arrivée"],
-  ['planner.placeholder', 'Ville ou code : Paris, CDG…'],
+  ['planner.placeholder', 'Paris ou CDG', { en: 'Paris or CDG', es: 'París o CDG' }],
   ['planner.depDate', 'Date de départ'],
   ['planner.depTime', 'Heure de départ'],
   ['planner.arrDate', "Date d'arrivée"],

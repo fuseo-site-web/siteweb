@@ -16,6 +16,25 @@ for (const { path, lang } of locales) {
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     });
 
+    test('suit les six sections du parcours demandé, sans débordement', async ({ page }) => {
+      await page.goto(path);
+      const sections = await page
+        .locator('main > section')
+        .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('aria-labelledby')));
+      expect(sections).toEqual([
+        'hero-title',
+        'impact-title',
+        'steps-title',
+        'apercu-title',
+        'home-expertise',
+        'home-final-cta',
+      ]);
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      );
+      expect(overflow).toBe(false);
+    });
+
     test('ne contacte aucun domaine tiers', async ({ page, baseURL }) => {
       const origin = new URL(baseURL!).origin;
       const external: string[] = [];
@@ -895,32 +914,22 @@ test.describe('serveur MCP public', () => {
 });
 
 test.describe('fin de page d’accueil et contact', () => {
-  test("l'accueil se termine par les derniers articles, l'équipe médicale et la carte", async ({
-    page,
-  }) => {
+  test("l'accueil se termine par l'expertise médicale et un appel à l'action", async ({ page }) => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Tout refuser' }).click();
-    const articles = page.getByRole('region', { name: 'Nos derniers conseils' });
-    await expect(articles.getByRole('listitem')).toHaveCount(3);
-    await expect(articles.getByRole('link', { name: /Voir tous les articles/ })).toHaveAttribute(
-      'href',
-      '/blog',
-    );
-    const team = page.getByRole('region', { name: 'Une équipe de spécialistes du sommeil' });
-    await expect(team.getByRole('heading', { name: 'Dr Jonathan Taieb' })).toBeVisible();
-    await expect(team.getByRole('heading', { name: 'Dr Maxime Elbaz' })).toBeVisible();
-    await expect(team.getByRole('link', { name: 'Rencontrer l’équipe médicale' })).toHaveAttribute(
-      'href',
-      '/equipe-medicale',
-    );
+    const team = page.getByRole('region', { name: 'Une expertise médicale à l’origine de Fuseo' });
+    await expect(
+      team.getByRole('link', { name: /Découvrir notre équipe médicale/ }),
+    ).toHaveAttribute('href', '/equipe-medicale');
     await expect(
       page
-        .getByRole('region', { name: 'Nous trouver' })
-        .getByRole('link', { name: 'Nous contacter' }),
-    ).toHaveAttribute('href', '/contact');
+        .getByRole('region', { name: 'Préparez votre voyage, dès aujourd’hui.' })
+        .getByRole('link', { name: /Préparer mon voyage/ }),
+    ).toHaveAttribute('href', '/plan-anti-jet-lag');
+    await expect(page.getByRole('region', { name: 'Nos derniers conseils' })).toHaveCount(0);
   });
 
-  test('la carte ne contacte aucun service tiers avant le clic, puis charge OpenStreetMap', async ({
+  test('la carte Google Maps attend un clic si les cookies sont refusés, sans aucun service tiers avant', async ({
     page,
   }) => {
     const external: string[] = [];
@@ -929,7 +938,7 @@ test.describe('fin de page d’accueil et contact', () => {
       if (!u.startsWith('http://localhost') && !u.startsWith('data:') && !u.startsWith('blob:'))
         external.push(u);
     });
-    await page.goto('/');
+    await page.goto('/contact');
     await page.getByRole('button', { name: 'Tout refuser' }).click();
     const map = page.getByRole('region', { name: 'Nous trouver' });
     await map.scrollIntoViewIfNeeded();
@@ -940,12 +949,27 @@ test.describe('fin de page d’accueil et contact', () => {
       map.getByText('130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine'),
     ).toBeVisible();
     await map.getByRole('button', { name: 'Afficher la carte' }).click();
-    const frame = map.locator('iframe');
-    await expect(frame).toHaveAttribute(
+    await expect(map.locator('iframe')).toHaveAttribute(
       'src',
-      /openstreetmap\.org\/export\/embed\.html.*marker=48\.883,2\.2663/,
+      /maps\.google\.com\/maps\?q=130B%20avenue%20Charles%20de%20Gaulle.*output=embed/,
     );
-    await expect(frame).toHaveAttribute('referrerpolicy', 'no-referrer');
+    await expect(map.getByRole('link', { name: /Itinéraire/ })).toHaveAttribute(
+      'href',
+      /google\.com\/maps\/dir.*destination=130B/,
+    );
+  });
+
+  test("la carte s'affiche directement, sans clic, quand le visiteur a accepté les cookies", async ({
+    page,
+  }) => {
+    await page.goto('/contact');
+    await page.getByRole('button', { name: 'Tout accepter' }).click();
+    const map = page.getByRole('region', { name: 'Nous trouver' });
+    await expect(map.locator('iframe')).toHaveAttribute(
+      'src',
+      /maps\.google\.com\/maps\?q=77%20avenue%20Paul%20Doumer/,
+    );
+    await expect(map.getByRole('button', { name: 'Afficher la carte' })).toHaveCount(0);
   });
 
   test("la page contact explique la suite, affiche la carte et confirme l'envoi", async ({

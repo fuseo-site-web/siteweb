@@ -33,9 +33,9 @@
 }
 
 .inner {
-  max-width: 1240px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--gutter);
   height: var(--header-h);
   display: flex;
   align-items: center;
@@ -56,10 +56,22 @@
   letter-spacing: -1.2px;
 }
 
+/* Liens centrés dans la barre ; sur très grand écran, centrés sur la page entière (logo et actions s'équilibrent). */
 .nav {
   display: flex;
   gap: 2px;
-  margin-left: auto;
+  margin: 0 auto;
+}
+
+@media (min-width: 1600px) {
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .actions {
+    justify-self: end;
+  }
 }
 
 .burger {
@@ -204,7 +216,7 @@
   display: block;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1160px) {
   .nav {
     display: none;
   }

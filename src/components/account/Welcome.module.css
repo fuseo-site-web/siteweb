@@ -1,7 +1,7 @@
 .wrap {
-  max-width: 880px;
+  max-width: var(--wrap-mid);
   margin: 0 auto;
-  padding: clamp(16px, 4vw, 40px) 16px 72px;
+  padding: clamp(16px, 4vw, 40px) var(--gutter) 72px;
   display: grid;
   gap: 20px;
   grid-template-columns: minmax(0, 1fr);

@@ -8,6 +8,20 @@
     linear-gradient(180deg, #061426, #0b2f55);
 }
 
+.hero[data-visual='airport'] {
+  background:
+    linear-gradient(90deg, rgb(3 18 35 / 89%), rgb(3 18 35 / 58%) 57%, rgb(3 18 35 / 17%)),
+    url('/images/home/airport-terminal.webp') center / cover no-repeat,
+    #061426;
+}
+
+.hero[data-visual='cabin'] {
+  background:
+    linear-gradient(90deg, rgb(3 18 35 / 91%), rgb(3 18 35 / 54%) 58%, rgb(3 18 35 / 22%)),
+    url('/images/home/hero-cabin.webp') center / cover no-repeat,
+    #061426;
+}
+
 .sky {
   position: absolute;
   inset: 0;
@@ -62,9 +76,9 @@
 
 .inner {
   position: relative;
-  max-width: 1000px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: clamp(28px, 4vw, 44px) 20px clamp(40px, 6vw, 72px);
+  padding: clamp(28px, 4vw, 44px) var(--gutter) clamp(40px, 6vw, 72px);
 }
 
 .crumbs ol {

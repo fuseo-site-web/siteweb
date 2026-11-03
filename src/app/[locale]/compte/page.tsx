@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { DeleteAccount, HealthConsent, SignOutButton } from '@/components/account/AccountClient';
 import styles from '@/components/account/Account.module.css';
 import dash from '@/components/account/Dashboard.module.css';
+import { PasswordAccess } from '@/components/account/PasswordAccess';
 import { ProfileForm } from '@/components/account/ProfileForm';
 import { Tabs } from '@/components/account/Tabs';
 import { Welcome } from '@/components/account/Welcome';
@@ -199,6 +200,17 @@ async function Dashboard({ locale, next }: { locale: string; next: Promise<strin
             </Link>
           </>
         )}
+      </section>
+      <section className={styles.card}>
+        <h2>{t('passwordTitle')}</h2>
+        {/* Compte Google sans mot de passe : `email` absent des fournisseurs tant qu'aucun mot de passe n'est ajouté. */}
+        <PasswordAccess
+          email={user.email ?? ''}
+          hasPassword={
+            ((user.app_metadata?.providers as string[] | undefined)?.includes('email') ?? false) ||
+            user.user_metadata?.has_password === true
+          }
+        />
       </section>
       <section className={styles.card}>
         <h2>{t('health')}</h2>

@@ -64,6 +64,7 @@ export default async function PricingPage({ params }: Props) {
         icon="tag"
         eyebrow={pages('sectionsMain')}
         crumbs={[{ label: pages('pricing') }]}
+        visual="airport"
       />
       <div className={styles.wrap}>
         <div className={styles.prices}>
@@ -87,6 +88,7 @@ export default async function PricingPage({ params }: Props) {
                 ))}
               </ul>
               {o.fine ? <p className={styles.fine}>{t(o.fine)}</p> : null}
+              <div className={styles.pricePhoto} data-offer={o.key} aria-hidden="true" />
               <Link href="/plan" className={`${styles.btn} ${o.hot ? '' : styles.navy}`}>
                 {t(o.cta)}
                 <Icon name="arrow-right" size={18} />

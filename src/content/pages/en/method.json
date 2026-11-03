@@ -1,7 +1,31 @@
 {
-  "title": "Our method: a calculation, not a one-size-fits-all rule",
-  "lead": "Every Fuseo plan is calculated for you by a chronobiology engine: it simulates your body clock hour by hour, tests hundreds of scenarios and keeps only the one that resets you fastest, in real life.",
+  "title": "A scientific algorithm to adapt to time zone changes",
+  "lead": "A chronobiology engine that considers your sleep, flights and light exposure to build a plan tailored to your trip.",
   "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Why does Fuseo go beyond generic advice?"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Generic advice",
+          "text": [
+            "Standard tips may miss your flight times, usual sleep schedule and biological time of light exposure."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Fuseo’s calculation",
+          "text": [
+            "The engine connects your itinerary, body clock and light windows to propose a personal plan."
+          ]
+        }
+      ]
+    },
     {
       "type": "h",
       "level": 2,

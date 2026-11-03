@@ -25,15 +25,21 @@
     "closeMenu": "Close the menu"
   },
   "hero": {
-    "title": "Arrive on time. Your body too.",
-    "lead": "Enter your flight times. Fuseo works out when to sleep, seek light, avoid it, nap and stop caffeine to help your body clock adapt to your arrival time zone.",
-    "cta": "Create my anti-jet lag plan",
+    "title": "You planned your trip. Fuseo prepares your body for the time change.",
+    "lead": "Get ahead of jet lag with a personal plan that shows when to sleep, seek light and adapt your habits so you arrive feeling better.",
+    "cta": "Prepare my trip",
     "example": "See an example",
     "point1": "Personalized plan",
     "point2": "No subscription",
     "pointFrom": "From",
     "endorse": "Designed by sleep specialists at the Institut Médical du Sommeil, Paris",
-    "price": "€8.90"
+    "price": "€8.90",
+    "titleLine1": "You planned",
+    "titleLine2": "your trip.",
+    "titleLine3": "Fuseo prepares your body",
+    "titleLine4": "for the time change.",
+    "imageAlt": "Traveller asleep on a plane, eye mask on, facing the window and the sunrise above the clouds, wing in Fuseo colours.",
+    "imageCaption": "Traveller asleep on a flight with Fuseo, facing the sunrise"
   },
   "clocks": {
     "title": "Paris → Tokyo, the day after arrival",
@@ -55,10 +61,10 @@
     "title": "They talk about us"
   },
   "preview": {
-    "title": "Here is what you get",
-    "sub": "A real excerpt from a Fuseo plan, calculated for Paris → Tokyo in October.",
+    "title": "Your jet lag plan, day by day.",
+    "sub": "An illustrative Paris to Tokyo trip: see the format before creating your own plan.",
     "sleep": "Bed 11 pm · up 7 am",
-    "note": "Every time is calculated from your route, your usual sleep hours and the direction of the time difference.",
+    "note": "Illustrative example: your own schedule will depend on your flights and habits.",
     "cta": "Calculate my own plan",
     "eve": "Day before departure",
     "flight": "Flight day",
@@ -67,10 +73,11 @@
     "seek": "Bright light",
     "avoid": "Avoid bright light",
     "caf": "Last coffee or tea",
-    "flightItem": "Flight"
+    "flightItem": "Flight",
+    "ticket": "Illustrative flight ticket"
   },
   "steps": {
-    "title": "Three steps",
+    "title": "How does Fuseo work?",
     "s1": {
       "t": "Your sleep",
       "p": "Enter your usual bedtime and wake-up time."
@@ -80,14 +87,14 @@
       "p": "Add your flights, connections and return."
     },
     "s3": {
-      "t": "Your protocol",
-      "p": "Fuseo calculates your strategy for sleep, light, naps and caffeine."
+      "t": "Your plan",
+      "p": "Get a personal program with guidance on sleep, light and caffeine."
     },
     "bed": "I go to bed around",
     "wake": "I get up around",
     "paris": "Paris",
     "tokyo": "Tokyo",
-    "note": "No account needed to get started."
+    "note": "Three steps to prepare your trip."
   },
   "science": {
     "title": "Chronobiology applied to your trip",
@@ -159,8 +166,8 @@
     "plan": "Create my plan"
   },
   "team": {
-    "title": "A team specialized in sleep behind the method",
-    "lead": "Fuseo was born at the Institut Médical du Sommeil in Paris, which cares for patients whose sleep is disrupted by travel, night work or irregular hours.",
+    "title": "Our story and medical team",
+    "lead": "Expertise in sleep medicine and chronobiology, now accessible to all travelers.",
     "approach": "Our approach",
     "a1": {
       "t": "Published science",
@@ -174,7 +181,7 @@
       "t": "Transparency",
       "p": "No advertising, no promise of a cure, and no commercial partner in the calculation of your plan."
     },
-    "committee": "Scientific committee",
+    "committee": "Our scientific committee",
     "committeeSub": "Fuseo's method is based on published chronobiology research and on the team's clinical practice.",
     "taieb": {
       "role": "Sleep physician, aerospace medicine physician",
@@ -191,7 +198,23 @@
     },
     "ims": "The Institut Médical du Sommeil brings together physicians specialized in sleep disorders, working closely with public and private healthcare institutions.",
     "address": "Paris 16th, 77 avenue Paul Doumer · Neuilly-sur-Seine, 130B avenue Charles de Gaulle",
-    "cta": "See all our sources"
+    "cta": "See all our sources",
+    "storyTitle": "Our story",
+    "storyLead": "Medical expertise, now accessible to all travelers.",
+    "story1": "It all began at the Institut Médical du Sommeil in Paris.",
+    "story2": "In our practice, we worked with people facing exceptional demands: elite athletes, executives, frequent international travelers, and patients for whom jet lag was a real difficulty.",
+    "story3": "They all asked the same question: how can I arrive feeling well instead of spending the first days recovering?",
+    "story4": "We saw that advice to sleep on the plane or get daylight was not enough. Jet lag is more complex. Light at the wrong time, a poorly timed nap or unsuitable advice can delay adjustment of the body clock.",
+    "story5": "AI can produce recommendations in seconds, but it does not by itself guarantee that they make sense in chronobiological terms.",
+    "story6": "We wanted to go further.",
+    "story7": "For months, we studied scientific models of the body clock, compared approaches, examined their limits and designed an algorithm to turn that knowledge into personal guidance.",
+    "story8": "Our aim was simple: make this expertise available beyond the few travelers receiving specialist support.",
+    "story9": "Why not let everyone benefit from it?",
+    "story10": "That is how Fuseo was born.",
+    "scienceBehind": "The science behind Fuseo",
+    "scienceBehindText": "Our method explains the scientific models and chronobiology principles behind each plan.",
+    "scienceBehindLink": "Explore our method",
+    "imsTitle": "Born at the Institut Médical du Sommeil"
   },
   "pricing": {
     "title": "Simple pricing, no surprises",
@@ -330,7 +353,7 @@
     "remove": "Delete",
     "from": "Departure airport",
     "to": "Arrival airport",
-    "placeholder": "City or code: Paris, CDG…",
+    "placeholder": "Paris or CDG",
     "depDate": "Departure date",
     "depTime": "Departure time",
     "arrDate": "Arrival date",
@@ -516,7 +539,13 @@
     "homeAirport": "Usual airport",
     "profileSave": "Save my details",
     "profileUpdated": "Details saved.",
-    "profileInvalid": "Please check the details (date of birth: at least 12 years old)."
+    "profileInvalid": "Please check the details (date of birth: at least 12 years old).",
+    "passwordTitle": "Password",
+    "passwordNone": "You sign in with Google. Add a password so you can also sign in with your email address: we will send you a secure link by email.",
+    "passwordSet": "You can sign in with your email address and password. To change it, we will send you a secure link by email.",
+    "passwordAdd": "Add a password",
+    "passwordChange": "Change my password",
+    "passwordSent": "Email sent to {email}: open the link to choose your password."
   },
   "consent": {
     "title": "Your privacy, your choice",
@@ -616,9 +645,15 @@
     "addrParis": "77 avenue Paul Doumer, 75016 Paris",
     "addrNeuilly": "130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine",
     "mapShow": "Show the map",
-    "mapPrivacy": "Showing the map loads OpenStreetMap, a third-party service: connection data is sent to it.",
+    "mapPrivacy": "Showing the map loads Google Maps, a third-party service: connection data is sent to it.",
     "mapDirections": "Directions",
-    "mapAlt": "Stylised map of the area"
+    "mapAlt": "Stylised map of the area",
+    "expertiseTitle": "Medical expertise behind Fuseo",
+    "expertiseText": "Fuseo was born at the Institut Médical du Sommeil in Paris. Its method combines chronobiology, clinical practice and advice tailored to each trip.",
+    "expertiseLink": "Meet our medical team",
+    "ctaTitle": "Prepare for your trip today.",
+    "ctaText": "Enter your flight to discover your personal plan.",
+    "ctaButton": "Prepare my trip"
   },
   "fab": {
     "open": "Write to us",
@@ -626,5 +661,24 @@
     "sub": "Our team will get back to you as soon as possible.",
     "close": "Close",
     "page": "Open the contact page"
+  },
+  "impact": {
+    "title": "Jet lag can disrupt more than your sleep.",
+    "lead": "Your body does not adjust instantly to a new time zone. The effects can reach the moments that matter.",
+    "holiday": {
+      "title": "Holidays",
+      "text": "Days of discovery interrupted by fatigue.",
+      "alt": "Traveler in Japan near a temple and cherry blossoms"
+    },
+    "business": {
+      "title": "Business travel",
+      "text": "Less alertness and focus for important meetings.",
+      "alt": "Tired business traveler in an airport"
+    },
+    "event": {
+      "title": "Important events",
+      "text": "Fatigue that keeps you from enjoying the moment.",
+      "alt": "Couple at a destination wedding"
+    }
   }
 }

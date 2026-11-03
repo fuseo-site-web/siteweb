@@ -422,10 +422,10 @@ module.exports = [
   ['home2.mapShow', 'Afficher la carte', M('Show the map', 'Mostrar el mapa')],
   [
     'home2.mapPrivacy',
-    'L’affichage de la carte charge OpenStreetMap, un service tiers : des données de connexion lui sont transmises.',
+    'L’affichage de la carte charge Google Maps, un service tiers : des données de connexion lui sont transmises.',
     M(
-      'Showing the map loads OpenStreetMap, a third-party service: connection data is sent to it.',
-      'Al mostrar el mapa se carga OpenStreetMap, un servicio de terceros: se le transmiten datos de conexión.',
+      'Showing the map loads Google Maps, a third-party service: connection data is sent to it.',
+      'Al mostrar el mapa se carga Google Maps, un servicio de terceros: se le transmiten datos de conexión.',
     ),
   ],
   ['home2.mapDirections', 'Itinéraire', M('Directions', 'Cómo llegar')],

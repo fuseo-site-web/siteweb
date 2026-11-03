@@ -22,13 +22,18 @@ const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
 
 const nextConfig: NextConfig = {
   images: {
-    // Images du blog téléversées dans le stockage Supabase (déjà converties en WebP).
+    // Images du blog et du site téléversées dans le stockage Supabase (déjà converties en WebP).
     remotePatterns: supabaseHost
       ? [
           {
             protocol: 'https',
             hostname: supabaseHost,
             pathname: '/storage/v1/object/public/blog-images/**',
+          },
+          {
+            protocol: 'https',
+            hostname: supabaseHost,
+            pathname: '/storage/v1/object/public/site-images/**',
           },
         ]
       : [],

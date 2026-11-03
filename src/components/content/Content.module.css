@@ -6,15 +6,16 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 230px minmax(0, 760px);
-  gap: 0 clamp(32px, 5vw, 64px);
+  grid-template-columns: 260px minmax(0, 940px);
+  gap: 0 clamp(32px, 6vw, 96px);
   justify-content: center;
-  max-width: 1160px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--gutter);
 }
 
 .layout .prose {
+  max-width: none;
   padding-left: 0;
   padding-right: 0;
 }
@@ -396,9 +397,9 @@
 
 /* Pour aller plus loin. */
 .related {
-  max-width: 1040px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 0 20px clamp(48px, 7vw, 96px);
+  padding: 0 var(--gutter) clamp(48px, 7vw, 96px);
 }
 
 .related h2 {
@@ -485,7 +486,7 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 20px;
   align-items: center;
-  width: min(1000px, calc(100% - 40px));
+  width: min(var(--wrap-max), calc(100% - 2 * var(--gutter)));
   margin: 0 auto clamp(40px, 6vw, 64px);
   padding: clamp(22px, 3vw, 32px);
   color: #fff;
@@ -548,9 +549,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  max-width: 1040px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: clamp(36px, 6vw, 72px) 20px clamp(56px, 8vw, 110px);
+  padding: clamp(36px, 6vw, 72px) var(--gutter) clamp(56px, 8vw, 110px);
 }
 
 .siteGroup {
@@ -622,8 +623,9 @@
   }
 
   .layout .prose {
-    padding-left: 20px;
-    padding-right: 20px;
+    max-width: 800px;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
 
   .toc {

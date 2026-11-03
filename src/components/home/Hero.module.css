@@ -3,97 +3,104 @@
   isolation: isolate;
   overflow: hidden;
   color: #fff;
-  min-height: calc(100svh - var(--header-h));
+  min-height: min(820px, calc(100svh - var(--header-h)));
   display: grid;
   align-items: center;
   align-content: center;
-  background:
-    radial-gradient(900px 520px at 85% -5%, rgb(60 192 240 / 28%), transparent 60%),
-    radial-gradient(700px 480px at 0% 105%, rgb(255 200 87 / 16%), transparent 60%),
-    linear-gradient(180deg, #061426 0%, #0b2f55 100%);
+  background: #061426;
 }
 
-.stars,
-.arc {
+/*
+ * Photo du hero (bucket Supabase `site-images`), sans voile sombre : seule une légère teinte à gauche
+ * aide la lecture. Sur grand écran, l'image est agrandie et calée à gauche pour que la voyageuse
+ * se place entre le texte et la carte, jamais derrière le titre.
+ */
+.bg {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 70% 30%;
+}
+
+.hero::before {
+  content: '';
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: -1;
-  pointer-events: none;
+  background: linear-gradient(180deg, rgb(3 18 35 / 55%) 0%, rgb(3 18 35 / 35%) 100%);
 }
 
-.star {
-  opacity: 0.7;
-  animation: twinkle 4.5s ease-in-out infinite;
+@media (min-width: 961px) {
+  /* Section plus haute : plus d'air autour du texte (la hauteur reste compatible avec le cadrage de la photo). */
+  .hero {
+    min-height: clamp(680px, 66vw, 900px);
+  }
+
+  .inner {
+    padding-block: clamp(72px, 8vw, 128px);
+  }
+
+  .lead {
+    margin: 28px 0 36px;
+  }
+
+  .endorse {
+    margin-top: 40px;
+  }
+
+  .buttons {
+    margin-top: 34px;
+  }
+
+  /*
+   * Photo dézoomée : presque toute la largeur, décalée de 9 % vers la droite pour que le visage tombe
+   * entre le texte et la carte. `cover` sur la hauteur de la section : jamais de vide, quelle que soit la taille.
+   */
+  .bg {
+    top: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: 9% !important;
+    width: 104% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: 30% 50%;
+    mask-image: linear-gradient(90deg, transparent 0, #000 14%);
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      90deg,
+      rgb(3 18 35 / 38%) 0%,
+      rgb(3 18 35 / 12%) 44%,
+      transparent 62%
+    );
+  }
 }
 
-@keyframes twinkle {
-  50% {
-    opacity: 0.15;
-  }
+/* Le titre s'affiche sur quatre lignes fixes ; la promesse est en ambre. */
+.line {
+  display: block;
 }
 
-.arcPath {
-  fill: none;
-  stroke: rgb(255 255 255 / 22%);
-  stroke-width: 2;
-  stroke-dasharray: 3 11;
-  stroke-linecap: round;
+.promise {
+  color: var(--amber);
 }
 
-.plane {
-  offset-rotate: auto 90deg;
-  offset-distance: 0%;
-  animation: fly 14s cubic-bezier(0.45, 0.05, 0.4, 1) infinite;
-  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 40%));
-}
-
-@keyframes fly {
-  0% {
-    offset-distance: 2%;
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  86% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 98%;
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .plane {
-    animation: none;
-    offset-distance: 58%;
-  }
-
-  .star {
-    animation: none;
-  }
+/* Léger espace entre « Vous avez préparé votre voyage. » et la promesse. */
+.line:not(.promise) + .promise {
+  margin-top: 0.28em;
 }
 
 .inner {
   width: 100%;
-  max-width: 1240px;
+  max-width: var(--wrap-max);
   margin: 0 auto;
-  padding: 56px 20px 40px;
+  padding: clamp(52px, 6vw, 86px) var(--gutter);
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  /* La carte garde sa largeur d'origine (≈ 544 px) quelle que soit la largeur de la fenêtre. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(544px, 47.5%));
   gap: 56px;
-  align-items: start;
-}
-
-/* Carte « Paris → Tokyo » : sous le module de création de plan, centrée. */
-.below {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 20px 72px;
+  align-items: center;
 }
 
 .copy {
@@ -102,7 +109,7 @@
 
 .copy h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 6.2vw, 4.9rem);
+  font-size: clamp(2.35rem, 3.95vw, 3.7rem);
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.035em;
@@ -110,7 +117,29 @@
   animation: rise 0.9s var(--ease-out) both;
 }
 
+/* Sur grand écran, la taille suit la colonne de texte pour que chaque ligne tienne sans retour à la ligne. */
+@media (min-width: 961px) {
+  .copy h1 {
+    font-size: clamp(
+      2rem,
+      calc(
+        (100vw - 2 * var(--gutter) - 56px - min(544px, 0.475 * (100vw - 2 * var(--gutter)))) / 14.5
+      ),
+      3.7rem
+    );
+  }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    background-position:
+      center,
+      60% center;
+  }
+}
+
 .lead {
+  text-shadow: 0 1px 14px rgb(3 18 35 / 55%);
   margin: 22px 0 30px;
   max-width: 52ch;
   font-size: clamp(1.02rem, 1.5vw, 1.2rem);
@@ -123,12 +152,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: 28px;
   animation: rise 0.9s 0.22s var(--ease-out) both;
 }
 
 .primary,
 .ghost {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 800;
   font-size: 16px;
   text-decoration: none;
@@ -146,6 +178,10 @@
   box-shadow: 0 10px 30px rgb(255 200 87 / 25%);
 }
 
+.planeIcon {
+  color: var(--navy);
+}
+
 .primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 40px rgb(255 200 87 / 40%);
@@ -161,48 +197,36 @@
   border-color: #fff;
 }
 
-.points {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 22px;
-  margin: 22px 0 0;
-  padding: 0;
-  font-weight: 700;
-  font-size: 14px;
-  color: #cfe3f4;
-  animation: rise 0.9s 0.3s var(--ease-out) both;
-}
-
-.points li::before {
-  content: '✓';
-  color: var(--amber);
-  margin-right: 7px;
-}
-
 .endorse {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   margin-top: 34px;
   color: #cfe3f4;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  max-width: 52ch;
+  max-width: 62ch;
   animation: rise 0.9s 0.38s var(--ease-out) both;
 }
 
 .chip {
   background: #fff;
-  border-radius: 12px;
-  padding: 6px 10px;
+  border-radius: 14px;
+  padding: 8px 14px;
   display: flex;
   flex-shrink: 0;
 }
 
 .chip img {
-  height: 34px;
+  height: 56px;
   width: auto;
+}
+
+/* Trait vertical entre le logo et la mention. */
+.endorse > span:last-child {
+  padding-left: 18px;
+  border-left: 2px solid rgb(255 255 255 / 35%);
+  line-height: 1.4;
 }
 
 @keyframes rise {
@@ -212,44 +236,10 @@
   }
 }
 
-.cue {
-  position: absolute;
-  left: 50%;
-  bottom: 22px;
-  width: 26px;
-  height: 42px;
-  margin-left: -13px;
-  border: 2px solid rgb(255 255 255 / 45%);
-  border-radius: 14px;
-}
-
-.cue span {
-  position: absolute;
-  left: 50%;
-  top: 8px;
-  width: 4px;
-  height: 8px;
-  margin-left: -2px;
-  border-radius: 2px;
-  background: #fff;
-  animation: cue 1.8s ease-in-out infinite;
-}
-
-@keyframes cue {
-  60% {
-    transform: translateY(14px);
-    opacity: 0;
-  }
-}
-
 @media (max-width: 960px) {
   .inner {
     grid-template-columns: minmax(0, 1fr);
     padding-top: 36px;
     gap: 40px;
-  }
-
-  .cue {
-    display: none;
   }
 }

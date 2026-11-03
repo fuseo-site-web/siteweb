@@ -1,7 +1,31 @@
 {
-  "title": "Nuestro método: un cálculo, no una regla genérica",
-  "lead": "Cada plan Fuseo lo calcula para usted un motor de cronobiología: simula su reloj biológico hora a hora, prueba cientos de escenarios y se queda solo con el que le ajusta más rápido, en la vida real.",
+  "title": "Un algoritmo científico para adaptarte al cambio horario",
+  "lead": "Un motor de cronobiología que tiene en cuenta tu sueño, tus vuelos y la luz para crear un plan adaptado a tu viaje.",
   "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "¿Por qué Fuseo va más allá de los consejos genéricos?"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Consejos genéricos",
+          "text": [
+            "Los consejos estándar pueden pasar por alto tus horarios de vuelo, tus hábitos de sueño y el momento biológico en que recibes luz."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "El cálculo de Fuseo",
+          "text": [
+            "El motor relaciona tu itinerario, tu reloj biológico y las franjas de luz para proponerte un plan personalizado."
+          ]
+        }
+      ]
+    },
     {
       "type": "h",
       "level": 2,

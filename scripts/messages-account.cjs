@@ -391,4 +391,35 @@ module.exports = [
       'Revise los datos (fecha de nacimiento: mínimo 12 años).',
     ),
   ],
+  ['account.passwordTitle', 'Mot de passe', M('Password', 'Contraseña')],
+  [
+    'account.passwordNone',
+    'Vous vous connectez avec Google. Ajoutez un mot de passe pour pouvoir aussi vous connecter avec votre adresse e-mail : nous vous envoyons un lien sécurisé par e-mail.',
+    M(
+      'You sign in with Google. Add a password so you can also sign in with your email address: we will send you a secure link by email.',
+      'Inicia sesión con Google. Añada una contraseña para poder iniciar sesión también con su correo electrónico: le enviaremos un enlace seguro por correo.',
+    ),
+  ],
+  [
+    'account.passwordSet',
+    'Vous pouvez vous connecter avec votre adresse e-mail et votre mot de passe. Pour le modifier, nous vous envoyons un lien sécurisé par e-mail.',
+    M(
+      'You can sign in with your email address and password. To change it, we will send you a secure link by email.',
+      'Puede iniciar sesión con su correo electrónico y su contraseña. Para cambiarla, le enviaremos un enlace seguro por correo.',
+    ),
+  ],
+  ['account.passwordAdd', 'Ajouter un mot de passe', M('Add a password', 'Añadir una contraseña')],
+  [
+    'account.passwordChange',
+    'Modifier mon mot de passe',
+    M('Change my password', 'Cambiar mi contraseña'),
+  ],
+  [
+    'account.passwordSent',
+    'E-mail envoyé à {email} : ouvrez le lien pour choisir votre mot de passe.',
+    M(
+      'Email sent to {email}: open the link to choose your password.',
+      'Correo enviado a {email}: abra el enlace para elegir su contraseña.',
+    ),
+  ],
 ];

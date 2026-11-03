@@ -1,27 +1,32 @@
 'use client';
 
 import { MapPin } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { useConsent } from '@/components/consent/ConsentProvider';
 import styles from './Map.module.css';
 
+// Les deux sites de l'Institut : Google Maps retrouve le lieu à partir de l'adresse.
 const SITES = [
-  { key: 'Paris', lat: 48.8593, lon: 2.2778 },
-  { key: 'Neuilly', lat: 48.883, lon: 2.2663 },
+  { key: 'Paris', address: '77 avenue Paul Doumer, 75016 Paris' },
+  { key: 'Neuilly', address: '130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine' },
 ] as const;
 
-const embed = (lat: number, lon: number) =>
-  `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.012},${lat - 0.006},${lon + 0.012},${lat + 0.006}&layer=mapnik&marker=${lat},${lon}`;
+const embed = (address: string, locale: string) =>
+  `https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&hl=${locale}&output=embed`;
 
 /**
- * Carte des deux sites de l'Institut. La vraie carte (OpenStreetMap, service tiers) ne se charge qu'après un clic :
- * aucune donnée n'est transmise avant que le visiteur le décide.
+ * Carte Google Maps des deux sites de l'Institut. Elle s'affiche d'elle-même dès que le visiteur a accepté les cookies ;
+ * sinon (refus ou pas encore de choix), elle attend un clic : Google ne reçoit aucune donnée sans accord.
  */
 export function MapEmbed() {
   const t = useTranslations('home2');
+  const locale = useLocale();
+  const { consent } = useConsent();
   const [site, setSite] = useState<(typeof SITES)[number]['key']>('Paris');
   const [shown, setShown] = useState(false);
   const cur = SITES.find((s) => s.key === site)!;
+  const visible = shown || consent?.analytics === true;
 
   return (
     <div className={styles.map}>
@@ -42,10 +47,10 @@ export function MapEmbed() {
       <p className={styles.addr}>{t(`addr${site}`)}</p>
 
       <div className={styles.frame}>
-        {shown ? (
+        {visible ? (
           <iframe
             title={`${t('mapTitle')} : ${t(`map${site}`)}`}
-            src={embed(cur.lat, cur.lon)}
+            src={embed(cur.address, locale)}
             loading="lazy"
             referrerPolicy="no-referrer"
           />
@@ -90,7 +95,7 @@ export function MapEmbed() {
 
       <a
         className={styles.dir}
-        href={`https://www.google.com/maps/dir/?api=1&destination=${cur.lat},${cur.lon}`}
+        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(cur.address)}`}
         target="_blank"
         rel="noopener"
       >

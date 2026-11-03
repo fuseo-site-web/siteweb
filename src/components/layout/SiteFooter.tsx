@@ -15,12 +15,6 @@ export function SiteFooter() {
           <FuseoMark size={28} />
           <b>fuseo</b>
         </Link>
-        <p className={styles.credit}>
-          {t('footer.madeBy')}{' '}
-          <a href="https://webfityou.com" target="_blank" rel="noopener">
-            WebFitYou
-          </a>
-        </p>
         <nav className={styles.links} aria-label={t('footer.legal')}>
           <Link href="/contact">{t('contact.title')}</Link>
           <Link href="/plan-du-site">{t('footer.sitemap')}</Link>
@@ -33,6 +27,12 @@ export function SiteFooter() {
           <Link href="/accessibilite">{t('footer.accessibility')}</Link>
         </nav>
       </div>
+      <p className={styles.credit}>
+        {t('footer.madeBy')}{' '}
+        <a href="https://webfityou.com" target="_blank" rel="noopener">
+          WebFitYou
+        </a>
+      </p>
     </footer>
   );
 }

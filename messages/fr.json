@@ -25,15 +25,21 @@
     "closeMenu": "Fermer le menu"
   },
   "hero": {
-    "title": "Arrivez à l'heure. Votre corps aussi.",
-    "lead": "Entrez vos horaires de vol. Fuseo calcule quand dormir, rechercher la lumière, l'éviter, faire une sieste et arrêter la caféine pour aider votre horloge biologique à s'adapter au fuseau d'arrivée.",
-    "cta": "Créer mon plan anti-jet lag",
+    "title": "Vous avez préparé votre voyage. Fuseo prépare votre corps au décalage horaire.",
+    "lead": "Anticipez le jet-lag grâce à un programme personnalisé qui vous indique quand dormir, vous exposer à la lumière et adapter vos habitudes pour arriver en meilleure forme à destination.",
+    "cta": "Préparer mon voyage",
     "example": "Voir un exemple",
     "point1": "Plan personnalisé",
     "point2": "Sans abonnement",
     "pointFrom": "À partir de",
     "endorse": "Conçu par des spécialistes du sommeil de l'Institut Médical du Sommeil, Paris",
-    "price": "8,90 €"
+    "price": "8,90 €",
+    "titleLine1": "Vous avez préparé",
+    "titleLine2": "votre voyage.",
+    "titleLine3": "Fuseo prépare votre corps",
+    "titleLine4": "au décalage horaire.",
+    "imageAlt": "Voyageuse endormie dans un avion, masque de nuit sur les yeux, face au hublot et au lever du soleil au-dessus des nuages, aile aux couleurs de Fuseo.",
+    "imageCaption": "Voyageuse endormie en vol avec Fuseo, face au lever du soleil"
   },
   "clocks": {
     "title": "Paris → Tokyo, le lendemain de l'arrivée",
@@ -55,10 +61,10 @@
     "title": "Ils parlent de nous"
   },
   "preview": {
-    "title": "Voici ce que vous recevez",
-    "sub": "Un extrait réel d'un plan Fuseo, calculé pour un Paris → Tokyo en octobre.",
+    "title": "Votre programme anti-jet-lag, jour après jour.",
+    "sub": "Un exemple illustratif de trajet Paris → Tokyo : découvrez la forme du programme avant de créer le vôtre.",
     "sleep": "Coucher 23 h · lever 7 h",
-    "note": "Chaque horaire est calculé selon votre trajet, vos heures habituelles de sommeil et le sens du décalage horaire.",
+    "note": "Exemple illustratif : les horaires de votre propre plan dépendront de vos vols et de vos habitudes.",
     "cta": "Calculer mon propre plan",
     "eve": "Veille du départ",
     "flight": "Jour du vol",
@@ -67,10 +73,11 @@
     "seek": "Lumière vive",
     "avoid": "Éviter la lumière vive",
     "caf": "Dernier café ou thé",
-    "flightItem": "Vol"
+    "flightItem": "Vol",
+    "ticket": "Billet de vol illustratif"
   },
   "steps": {
-    "title": "Trois étapes",
+    "title": "Comment fonctionne Fuseo ?",
     "s1": {
       "t": "Votre sommeil",
       "p": "Indiquez vos horaires habituels de coucher et de lever."
@@ -80,14 +87,14 @@
       "p": "Ajoutez vos vols, escales et votre retour."
     },
     "s3": {
-      "t": "Votre protocole",
-      "p": "Fuseo calcule votre stratégie sommeil, lumière, siestes et caféine."
+      "t": "Votre plan",
+      "p": "Recevez un programme personnalisé et suivez vos conseils de sommeil, de lumière et de caféine."
     },
     "bed": "Je me couche vers",
     "wake": "Je me lève vers",
     "paris": "Paris",
     "tokyo": "Tokyo",
-    "note": "Aucun compte nécessaire pour commencer."
+    "note": "Trois étapes pour préparer votre voyage."
   },
   "science": {
     "title": "La chronobiologie appliquée à votre voyage",
@@ -159,8 +166,8 @@
     "plan": "Créer mon plan"
   },
   "team": {
-    "title": "Une équipe spécialisée en sommeil derrière la méthode",
-    "lead": "Fuseo est né à l'Institut Médical du Sommeil, à Paris, qui accompagne des patients dont le sommeil est bousculé par les voyages, le travail de nuit ou les horaires décalés.",
+    "title": "Notre histoire et notre équipe médicale",
+    "lead": "Une expertise médicale en sommeil et chronobiologie, désormais accessible à tous les voyageurs.",
     "approach": "Notre approche",
     "a1": {
       "t": "La science publiée",
@@ -174,7 +181,7 @@
       "t": "La transparence",
       "p": "Pas de publicité, pas de promesse de guérison, et aucun partenaire commercial dans le calcul de votre plan."
     },
-    "committee": "Comité scientifique",
+    "committee": "Notre comité scientifique",
     "committeeSub": "La méthode de Fuseo s'appuie sur les travaux publiés en chronobiologie et sur la pratique clinique de l'équipe.",
     "taieb": {
       "role": "Médecin du sommeil, médecin aéronautique et spatial",
@@ -191,7 +198,23 @@
     },
     "ims": "L'Institut Médical du Sommeil réunit des médecins spécialistes des troubles du sommeil, en lien étroit avec les établissements de santé publics et privés.",
     "address": "Paris 16e, 77 avenue Paul Doumer · Neuilly-sur-Seine, 130B avenue Charles de Gaulle",
-    "cta": "Voir toutes nos sources"
+    "cta": "Voir toutes nos sources",
+    "storyTitle": "Notre histoire",
+    "storyLead": "Une expertise médicale, désormais accessible à tous les voyageurs.",
+    "story1": "Tout a commencé à l’Institut Médical du Sommeil, à Paris.",
+    "story2": "Au fil de notre pratique, nous avons été amenés à accompagner des profils aux exigences particulières : sportifs de haut niveau, dirigeants, personnalités en déplacement international, mais aussi des patients pour qui le décalage horaire représentait une véritable difficulté.",
+    "story3": "Tous partageaient la même préoccupation : comment arriver à destination en pleine forme, sans perdre les premiers jours de leur voyage à récupérer ?",
+    "story4": "Nous avons rapidement constaté qu’il ne suffisait pas de conseiller de dormir dans l’avion ou de s’exposer à la lumière du jour. Le décalage horaire est bien plus complexe. Une exposition lumineuse au mauvais moment, une sieste mal programmée ou un conseil inadapté peuvent même retarder l’adaptation de l’horloge biologique.",
+    "story5": "Et si l’intelligence artificielle permet aujourd’hui d’obtenir des recommandations en quelques secondes, elle ne garantit pas, à elle seule, leur cohérence chronobiologique.",
+    "story6": "Nous avons alors voulu aller plus loin.",
+    "story7": "Pendant plusieurs mois, nous avons étudié les modèles scientifiques de l’horloge biologique, confronté différentes approches, analysé leurs limites et travaillé à la conception d’un algorithme capable de traduire ces connaissances en recommandations personnalisées.",
+    "story8": "Notre ambition était simple : ne plus réserver cette expertise à quelques voyageurs bénéficiant d’un accompagnement spécialisé.",
+    "story9": "Pourquoi ne pas permettre à chacun d’en profiter ?",
+    "story10": "C’est ainsi qu’est né Fuseo.",
+    "scienceBehind": "La science derrière Fuseo",
+    "scienceBehindText": "Notre méthode présente les modèles scientifiques et les principes de chronobiologie qui guident le calcul de chaque plan.",
+    "scienceBehindLink": "Découvrir notre méthode",
+    "imsTitle": "Né à l’Institut Médical du Sommeil"
   },
   "pricing": {
     "title": "Des tarifs simples, sans surprise",
@@ -330,7 +353,7 @@
     "remove": "Supprimer",
     "from": "Aéroport de départ",
     "to": "Aéroport d'arrivée",
-    "placeholder": "Ville ou code : Paris, CDG…",
+    "placeholder": "Paris ou CDG",
     "depDate": "Date de départ",
     "depTime": "Heure de départ",
     "arrDate": "Date d'arrivée",
@@ -516,7 +539,13 @@
     "homeAirport": "Aéroport habituel",
     "profileSave": "Enregistrer mes informations",
     "profileUpdated": "Informations enregistrées.",
-    "profileInvalid": "Vérifiez les informations (date de naissance : 12 ans minimum)."
+    "profileInvalid": "Vérifiez les informations (date de naissance : 12 ans minimum).",
+    "passwordTitle": "Mot de passe",
+    "passwordNone": "Vous vous connectez avec Google. Ajoutez un mot de passe pour pouvoir aussi vous connecter avec votre adresse e-mail : nous vous envoyons un lien sécurisé par e-mail.",
+    "passwordSet": "Vous pouvez vous connecter avec votre adresse e-mail et votre mot de passe. Pour le modifier, nous vous envoyons un lien sécurisé par e-mail.",
+    "passwordAdd": "Ajouter un mot de passe",
+    "passwordChange": "Modifier mon mot de passe",
+    "passwordSent": "E-mail envoyé à {email} : ouvrez le lien pour choisir votre mot de passe."
   },
   "consent": {
     "title": "Votre vie privée, votre choix",
@@ -616,9 +645,15 @@
     "addrParis": "77 avenue Paul Doumer, 75016 Paris",
     "addrNeuilly": "130B avenue Charles de Gaulle, 92200 Neuilly-sur-Seine",
     "mapShow": "Afficher la carte",
-    "mapPrivacy": "L’affichage de la carte charge OpenStreetMap, un service tiers : des données de connexion lui sont transmises.",
+    "mapPrivacy": "L’affichage de la carte charge Google Maps, un service tiers : des données de connexion lui sont transmises.",
     "mapDirections": "Itinéraire",
-    "mapAlt": "Carte stylisée du quartier"
+    "mapAlt": "Carte stylisée du quartier",
+    "expertiseTitle": "Une expertise médicale à l’origine de Fuseo",
+    "expertiseText": "Fuseo est né à l’Institut Médical du Sommeil, à Paris. Sa méthode associe chronobiologie, pratique clinique et recommandations adaptées à chaque voyage.",
+    "expertiseLink": "Découvrir notre équipe médicale",
+    "ctaTitle": "Préparez votre voyage, dès aujourd’hui.",
+    "ctaText": "Renseignez votre vol pour découvrir votre programme personnalisé.",
+    "ctaButton": "Préparer mon voyage"
   },
   "fab": {
     "open": "Nous écrire",
@@ -626,5 +661,24 @@
     "sub": "Notre équipe vous répond dans les plus brefs délais.",
     "close": "Fermer",
     "page": "Ouvrir la page de contact"
+  },
+  "impact": {
+    "title": "Le jet-lag peut gâcher bien plus que votre sommeil.",
+    "lead": "Votre corps ne s’adapte pas immédiatement au nouveau fuseau, ce qui peut peser sur les moments qui comptent.",
+    "holiday": {
+      "title": "Vacances",
+      "text": "Des journées de découverte perturbées par la fatigue.",
+      "alt": "Voyageuse au Japon devant un temple et des cerisiers"
+    },
+    "business": {
+      "title": "Voyage professionnel",
+      "text": "Moins de vigilance et de concentration lors de rendez-vous importants.",
+      "alt": "Voyageuse d’affaires fatiguée dans un aéroport"
+    },
+    "event": {
+      "title": "Événement important",
+      "text": "Une fatigue qui vous empêche de profiter pleinement du moment.",
+      "alt": "Couple lors d’un mariage à destination"
+    }
   }
 }

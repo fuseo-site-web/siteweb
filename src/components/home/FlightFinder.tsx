@@ -438,25 +438,27 @@ export function FlightFinder() {
                     value={legs[i]!.to}
                     onChange={(v) => setLeg(i, { to: v })}
                   />
-                  <div className={styles.field}>
-                    <label htmlFor={`ff-rd-${i}`}>{t('date')}</label>
-                    <input
-                      id={`ff-rd-${i}`}
-                      type="date"
-                      value={legs[i]!.dd}
-                      onChange={(e) => setLeg(i, { dd: e.target.value })}
-                    />
+                  <div className={styles.dateRow}>
+                    <div className={styles.field}>
+                      <label htmlFor={`ff-rd-${i}`}>{t('date')}</label>
+                      <input
+                        id={`ff-rd-${i}`}
+                        type="date"
+                        value={legs[i]!.dd}
+                        onChange={(e) => setLeg(i, { dd: e.target.value })}
+                      />
+                    </div>
+                    {trip === 'multi' && multiCount > 2 && i === multiCount - 1 ? (
+                      <button
+                        type="button"
+                        className={styles.icon}
+                        aria-label={t('removeLeg', { n: i + 1 })}
+                        onClick={() => setMultiCount((c) => c - 1)}
+                      >
+                        <X size={16} aria-hidden="true" />
+                      </button>
+                    ) : null}
                   </div>
-                  {trip === 'multi' && multiCount > 2 && i === multiCount - 1 ? (
-                    <button
-                      type="button"
-                      className={styles.icon}
-                      aria-label={t('removeLeg', { n: i + 1 })}
-                      onClick={() => setMultiCount((c) => c - 1)}
-                    >
-                      <X size={16} aria-hidden="true" />
-                    </button>
-                  ) : null}
                 </div>
               ))}
               {trip === 'round' ? (

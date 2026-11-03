@@ -1,0 +1,140 @@
+.section {
+  padding: clamp(72px, 9vw, 116px) 0;
+  background: #f2f8fc;
+  border-block: 1px solid var(--line);
+}
+
+.wrap {
+  max-width: var(--wrap-max);
+  margin: auto;
+  padding: 0 var(--gutter);
+}
+
+.wrap h2 {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  letter-spacing: -0.035em;
+}
+
+.intro {
+  margin: 12px 0 38px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  min-width: 0;
+  padding: clamp(20px, 2.5vw, 30px);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 35px rgb(12 48 81 / 8%);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.number {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--amberInk);
+  font-weight: 800;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.card > p {
+  min-height: 3.5em;
+  margin: 12px 0 22px;
+  color: var(--muted);
+}
+
+.sleepVisual,
+.routeVisual,
+.timelineVisual {
+  min-height: 152px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #e6f4fd, #f6fafc);
+  overflow: hidden;
+}
+
+.sleepVisual {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  color: var(--navy);
+}
+
+.moon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.sleepVisual div {
+  display: grid;
+  gap: 4px;
+}
+
+.sleepVisual small {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.sleepVisual strong {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+}
+
+.routeVisual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 16px;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.routeVisual svg {
+  width: 48%;
+  height: 62px;
+  color: #1478b3;
+}
+
+.timelineVisual {
+  padding: 12px 14px;
+  background: #eef7fb;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card > p {
+    min-height: 0;
+  }
+}

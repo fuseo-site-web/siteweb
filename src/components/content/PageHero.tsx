@@ -35,6 +35,7 @@ export async function PageHero({
   eyebrow,
   crumbs,
   children,
+  visual,
 }: {
   title: string;
   lead?: string;
@@ -42,13 +43,14 @@ export async function PageHero({
   eyebrow?: string;
   crumbs?: Crumb[];
   children?: ReactNode;
+  visual?: 'airport' | 'cabin';
 }) {
   const locale = await getLocale();
   const common = await getTranslations({ locale, namespace: 'common' });
   const trail: Crumb[] = crumbs ? [{ label: common('home'), href: '/' }, ...crumbs] : [];
 
   return (
-    <header className={styles.hero}>
+    <header className={styles.hero} data-visual={visual}>
       {trail.length ? (
         <JsonLd
           data={{

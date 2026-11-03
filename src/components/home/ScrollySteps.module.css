@@ -145,11 +145,12 @@
   order: 1;
   list-style: none;
   margin: 0;
-  padding: 0;
+  /* Un peu d'air avant la première et après la dernière étape, pour que la scène change au bon moment. */
+  padding: 8svh 0;
 }
 
 .steps li {
-  min-height: 62svh;
+  min-height: 30svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -221,7 +222,7 @@
   }
 
   .steps li {
-    min-height: 46svh;
+    min-height: 24svh;
   }
 }
 

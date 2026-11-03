@@ -1,4 +1,4 @@
-import { useFormatter, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import preview from '@/content/home-preview.json';
 import { Link } from '@/i18n/navigation';
 import { Reveal } from '@/components/ui/Reveal';
@@ -7,7 +7,6 @@ import styles from './Sections.module.css';
 
 export function PlanPreview() {
   const t = useTranslations();
-  const format = useFormatter();
   const labels = {
     sleep: t('preview.sleepItem'),
     seek: t('preview.seek'),
@@ -26,6 +25,20 @@ export function PlanPreview() {
           <p className={styles.sub}>{t('preview.sub')}</p>
         </Reveal>
         <Reveal className={styles.previewCard}>
+          <div className={styles.ticket}>
+            <span className={styles.ticketLabel}>{t('preview.ticket')}</span>
+            <div className={styles.ticketRoute}>
+              <div>
+                <b>CDG</b>
+                <span>{t('steps.paris')}</span>
+              </div>
+              <span aria-hidden="true">✈</span>
+              <div>
+                <b>HND</b>
+                <span>{t('steps.tokyo')}</span>
+              </div>
+            </div>
+          </div>
           <div className={styles.previewHead}>
             <div className={styles.route}>
               {t('steps.paris')}
@@ -49,14 +62,6 @@ export function PlanPreview() {
                       `preview.${d.key === 'eve' ? 'eve' : d.key === 'flight' ? 'flight' : 'first'}`,
                     )}
                   </b>
-                  <span>
-                    {format.dateTime(new Date(`${d.date}T12:00:00Z`), {
-                      weekday: 'long',
-                      day: 'numeric',
-                      month: 'long',
-                      timeZone: 'UTC',
-                    })}
-                  </span>
                 </div>
                 <DayTimeline day={d} labels={labels} />
               </Reveal>

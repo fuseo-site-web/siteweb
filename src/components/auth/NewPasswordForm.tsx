@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { getPathname, Link } from '@/i18n/navigation';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
 import styles from './Auth.module.css';
 
 /** Atteint via le lien de réinitialisation : la session de récupération est déjà ouverte par /auth/callback. */
 export function NewPasswordForm() {
   const t = useTranslations('auth');
+  const locale = useLocale();
   const [session, setSession] = useState<'loading' | 'yes' | 'no'>('loading');
   const [password, setPassword] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'weak' | 'error'>('idle');
@@ -23,10 +24,14 @@ export function NewPasswordForm() {
     e.preventDefault();
     if (password.length < 10) return setState('weak');
     setState('sending');
-    const { error } = await createSupabaseBrowserClient().auth.updateUser({ password });
+    // `has_password` (métadonnée d'affichage) : un compte Google qui ajoute un mot de passe reste « google » côté fournisseurs.
+    const { error } = await createSupabaseBrowserClient().auth.updateUser({
+      password,
+      data: { has_password: true },
+    });
     if (error) return setState(error.code === 'weak_password' ? 'weak' : 'error');
     setState('done');
-    setTimeout(() => window.location.assign('/mon-compte'), 1200);
+    setTimeout(() => window.location.assign(getPathname({ href: '/compte', locale })), 1200);
   }
 
   if (session === 'loading') return <div className={styles.card} aria-busy="true" />;

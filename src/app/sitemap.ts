@@ -6,6 +6,7 @@ import { routing, type StaticPathname as AppPathname } from '@/i18n/routing';
 
 const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
 import { absoluteUrl } from '@/lib/seo';
+import { HERO_IMAGE } from '@/lib/site-images';
 
 const PAGES: AppPathname[] = [
   '/',
@@ -68,6 +69,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
       changeFrequency: pathname === '/' ? ('weekly' as const) : ('monthly' as const),
       priority: pathname === '/' ? 1 : 0.7,
+      // Plan d'images : la photo du hero est rattachée à l'accueil.
+      ...(pathname === '/' ? { images: [HERO_IMAGE.src] } : {}),
     })),
   );
   return [...pages, ...posts];

@@ -1,7 +1,31 @@
 {
-  "title": "Notre méthode : un calcul, pas une règle toute faite",
-  "lead": "Chaque plan Fuseo est calculé pour vous par un moteur de chronobiologie : il simule votre horloge biologique heure par heure, teste des centaines de scénarios et ne retient que celui qui vous recale le plus vite, dans la vraie vie.",
+  "title": "Un algorithme scientifique pour mieux s’adapter au décalage horaire",
+  "lead": "Un moteur de calcul chronobiologique qui tient compte de votre sommeil, de vos vols et de la lumière pour construire un programme adapté à votre voyage.",
   "blocks": [
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Pourquoi Fuseo va plus loin qu’un conseil générique ?"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "type": "card",
+          "title": "Une réponse générique",
+          "text": [
+            "Des conseils standards peuvent ignorer vos horaires de vol, votre sommeil habituel et l’heure biologique à laquelle vous recevez la lumière."
+          ]
+        },
+        {
+          "type": "card",
+          "title": "Le calcul Fuseo",
+          "text": [
+            "Le moteur relie votre itinéraire, votre horloge biologique et les fenêtres de lumière pour proposer un programme personnalisé."
+          ]
+        }
+      ]
+    },
     {
       "type": "h",
       "level": 2,

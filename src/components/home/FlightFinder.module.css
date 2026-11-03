@@ -102,12 +102,26 @@
 }
 
 .routeRow {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.7fr) auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* La date (et le bouton de retrait) passent sur leur propre ligne : un sélecteur de date a besoin de place. */
+.dateRow {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.dateRow .field {
+  flex: 1;
+  max-width: 280px;
 }
 
 .field {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
 .field label {
@@ -118,6 +132,8 @@
 
 .field input {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 46px;
   padding: 0 14px;
   border: 1px solid var(--line);
@@ -586,7 +602,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .icon {
+  .row .icon {
     width: 100%;
   }
 

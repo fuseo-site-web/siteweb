@@ -1,7 +1,7 @@
 .wrap {
-  max-width: 1000px;
+  max-width: var(--wrap-mid);
   margin: 0 auto;
-  padding: clamp(28px, 5vw, 56px) 20px clamp(56px, 8vw, 110px);
+  padding: clamp(28px, 5vw, 56px) var(--gutter) clamp(56px, 8vw, 110px);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 18px;
@@ -176,6 +176,12 @@
 .err {
   margin: 8px 0 0;
   color: var(--err);
+  font-weight: 700;
+}
+
+.ok {
+  margin: 8px 0 0;
+  color: #1a7f55;
   font-weight: 700;
 }
 
