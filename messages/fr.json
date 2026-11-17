@@ -606,7 +606,19 @@
     "resetSave": "Enregistrer le mot de passe",
     "resetDone": "Mot de passe mis à jour. Redirection vers votre espace…",
     "resetExpired": "Ce lien a expiré ou a déjà été utilisé.",
-    "resetAgain": "Demander un nouveau lien"
+    "resetAgain": "Demander un nouveau lien",
+    "verifyTitle": "Vérifiez votre adresse e-mail",
+    "verifyIntro": "Nous avons envoyé un code à 8 chiffres à {email}. Saisissez-le ci-dessous pour activer votre compte.",
+    "codeLabel": "Code à 8 chiffres",
+    "verify": "Activer mon compte",
+    "verifying": "Vérification…",
+    "resend": "Renvoyer le code",
+    "resendIn": "Renvoyer le code ({s} s)",
+    "resent": "Un nouveau code vient d’être envoyé à {email}.",
+    "codeBad": "Code incorrect ou expiré. Vérifiez-le, ou demandez un nouveau code.",
+    "tooMany": "Trop de tentatives. Patientez un peu avant de réessayer.",
+    "changeEmail": "Modifier l’adresse e-mail",
+    "verifiedLogin": "Adresse confirmée. Connectez-vous avec votre mot de passe."
   },
   "account": {
     "title": "Mon espace",

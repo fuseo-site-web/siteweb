@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useId, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import planner from '@/components/planner/Planner.module.css';
-import { getPathname } from '@/i18n/navigation';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
 import styles from './Account.module.css';
 
@@ -73,15 +72,13 @@ export function PasswordAccess({ email, hasPassword }: { email: string; hasPassw
 
   async function sendLink() {
     setState('saving');
-    const next = getPathname({ href: '/mot-de-passe', locale });
-    const { error } = await createSupabaseBrowserClient().auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/confirm?next=${encodeURIComponent(next)}`,
-    });
-    // Supabase limite les envois rapprochés (429 « over_email_send_rate_limit ») : un e-mail est déjà parti.
-    if (error)
-      return setState(
-        error.status === 429 || /rate_limit/.test(error.code ?? '') ? 'wait' : 'error',
-      );
+    const r = await fetch('/api/auth/forgot', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, locale }),
+    }).catch(() => null);
+    // Trop de demandes rapprochées : un e-mail vient déjà d'être envoyé.
+    if (!r?.ok) return setState(r?.status === 429 ? 'wait' : 'error');
     setState('linkSent');
   }
 

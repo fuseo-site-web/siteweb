@@ -606,7 +606,19 @@
     "resetSave": "Guardar la contraseña",
     "resetDone": "Contraseña actualizada. Redirigiendo a su espacio…",
     "resetExpired": "Este enlace ha caducado o ya se ha usado.",
-    "resetAgain": "Solicitar un nuevo enlace"
+    "resetAgain": "Solicitar un nuevo enlace",
+    "verifyTitle": "Verifique su correo electrónico",
+    "verifyIntro": "Hemos enviado un código de 8 dígitos a {email}. Introdúzcalo a continuación para activar su cuenta.",
+    "codeLabel": "Código de 8 dígitos",
+    "verify": "Activar mi cuenta",
+    "verifying": "Verificando…",
+    "resend": "Reenviar el código",
+    "resendIn": "Reenviar el código ({s} s)",
+    "resent": "Se ha enviado un nuevo código a {email}.",
+    "codeBad": "Código incorrecto o caducado. Compruébelo o solicite uno nuevo.",
+    "tooMany": "Demasiados intentos. Espere un poco antes de volver a intentarlo.",
+    "changeEmail": "Cambiar el correo electrónico",
+    "verifiedLogin": "Dirección confirmada. Inicie sesión con su contraseña."
   },
   "account": {
     "title": "Mi espacio",

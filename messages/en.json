@@ -606,7 +606,19 @@
     "resetSave": "Save password",
     "resetDone": "Password updated. Redirecting to your account…",
     "resetExpired": "This link has expired or has already been used.",
-    "resetAgain": "Request a new link"
+    "resetAgain": "Request a new link",
+    "verifyTitle": "Verify your email address",
+    "verifyIntro": "We sent an 8-digit code to {email}. Enter it below to activate your account.",
+    "codeLabel": "8-digit code",
+    "verify": "Activate my account",
+    "verifying": "Verifying…",
+    "resend": "Resend the code",
+    "resendIn": "Resend the code ({s} s)",
+    "resent": "A new code has been sent to {email}.",
+    "codeBad": "Incorrect or expired code. Check it, or request a new one.",
+    "tooMany": "Too many attempts. Please wait a bit before trying again.",
+    "changeEmail": "Change email address",
+    "verifiedLogin": "Address confirmed. Sign in with your password."
   },
   "account": {
     "title": "My account",

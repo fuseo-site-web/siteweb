@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, getPathname } from '@/i18n/navigation';
 import type { routing } from '@/i18n/routing';
@@ -8,7 +8,20 @@ import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
 import styles from './Auth.module.css';
 
 type Mode = 'login' | 'signup' | 'forgot';
-type State = 'idle' | 'sending' | 'sent' | 'signupSent' | 'resetSent' | 'bad' | 'weak' | 'error';
+type State =
+  | 'idle'
+  | 'sending'
+  | 'sent'
+  | 'resent'
+  | 'resetSent'
+  | 'bad'
+  | 'weak'
+  | 'codeBad'
+  | 'tooMany'
+  | 'error';
+
+const CODE_LENGTH = 8;
+const RESEND_COOLDOWN = 60;
 
 export function LoginForm({
   next,
@@ -24,6 +37,16 @@ export function LoginForm({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [state, setState] = useState<State>('idle');
+  // Après l'inscription : saisie du code à 8 chiffres reçu par e-mail (envoyé par Fuseo via Resend).
+  const [awaitingCode, setAwaitingCode] = useState(false);
+  const [code, setCode] = useState('');
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const id = window.setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [cooldown]);
 
   // Page de destination après connexion : l'espace compte (ou la page d'origine si elle est locale).
   const target =
@@ -66,22 +89,30 @@ export function LoginForm({
     const mail = email.trim();
     if (mode === 'forgot') {
       setState('sending');
-      const { error } = await supabase.auth.resetPasswordForEmail(mail, {
-        redirectTo: emailRedirect(getPathname({ href: '/mot-de-passe', locale })),
-      });
-      return setState(error ? 'error' : 'resetSent');
+      const r = await fetch('/api/auth/forgot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: mail, locale }),
+      }).catch(() => null);
+      if (r?.ok) return setState('resetSent');
+      return setState(r?.status === 429 ? 'tooMany' : 'error');
     }
     if (mode === 'signup') {
       if (password.length < 10) return setState('weak');
       setState('sending');
-      const { data, error } = await supabase.auth.signUp({
-        email: mail,
-        password,
-        options: { emailRedirectTo: emailRedirect(), data: { locale } },
-      });
-      if (error) return setState(error.code === 'weak_password' ? 'weak' : 'error');
-      if (data.session) return void window.location.assign(target);
-      return setState('signupSent');
+      const r = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: mail, password, locale }),
+      }).catch(() => null);
+      if (r?.ok) {
+        setCode('');
+        setCooldown(RESEND_COOLDOWN);
+        setAwaitingCode(true);
+        return setState('idle');
+      }
+      if (r?.status === 422) return setState('weak');
+      return setState(r?.status === 429 ? 'tooMany' : 'error');
     }
     setState('sending');
     const { error } = await supabase.auth.signInWithPassword({ email: mail, password });
@@ -89,16 +120,123 @@ export function LoginForm({
     window.location.assign(target);
   }
 
+  async function verifyCode(e: React.FormEvent) {
+    e.preventDefault();
+    if (code.length !== CODE_LENGTH) return setState('codeBad');
+    setState('sending');
+    const r = await fetch('/api/auth/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim(), password, code, next: target }),
+    }).catch(() => null);
+    if (r?.ok) {
+      const data = (await r.json().catch(() => ({}))) as { signedIn?: boolean; redirect?: string };
+      if (data.signedIn && data.redirect) return void window.location.assign(data.redirect);
+      // Adresse confirmée mais session non ouverte : retour à la connexion classique.
+      setAwaitingCode(false);
+      setMode('login');
+      setPassword('');
+      return setState('idle');
+    }
+    setState(r?.status === 429 ? 'tooMany' : r?.status === 400 ? 'codeBad' : 'error');
+  }
+
+  async function resendCode() {
+    if (cooldown > 0) return;
+    setState('sending');
+    const r = await fetch('/api/auth/resend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim(), locale }),
+    }).catch(() => null);
+    if (r?.ok) {
+      setCode('');
+      setCooldown(RESEND_COOLDOWN);
+      return setState('resent');
+    }
+    setState(r?.status === 429 ? 'tooMany' : 'error');
+  }
+
+  function changeEmail() {
+    setAwaitingCode(false);
+    setCode('');
+    setState('idle');
+  }
+
   const message: Partial<Record<State, string>> = {
     sent: t('sent', { email }),
-    signupSent: t('signupSent', { email }),
+    resent: t('resent', { email }),
     resetSent: t('resetSent', { email }),
   };
   const errorText: Partial<Record<State, string>> = {
     bad: t('badCreds'),
     weak: t('weak'),
+    codeBad: t('codeBad'),
+    tooMany: t('tooMany'),
     error: t('error'),
   };
+
+  const feedback = (
+    <>
+      {message[state] ? (
+        <p role="status" className={styles.ok}>
+          {message[state]}
+        </p>
+      ) : null}
+      {errorText[state] ? (
+        <p role="alert" className={styles.err}>
+          {errorText[state]}
+        </p>
+      ) : null}
+    </>
+  );
+
+  if (awaitingCode) {
+    return (
+      <div className={styles.card}>
+        <form onSubmit={verifyCode} className={styles.form}>
+          <h2 className={styles.codeTitle}>{t('verifyTitle')}</h2>
+          <p className={styles.intro}>{t('verifyIntro', { email: email.trim() })}</p>
+          <label htmlFor="signup-code">{t('codeLabel')}</label>
+          <input
+            id="signup-code"
+            className={styles.code}
+            type="text"
+            inputMode="numeric"
+            pattern={`[0-9]{${CODE_LENGTH}}`}
+            maxLength={CODE_LENGTH}
+            autoComplete="one-time-code"
+            autoFocus
+            required
+            placeholder="········"
+            value={code}
+            onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, CODE_LENGTH))}
+          />
+          <button
+            type="submit"
+            className={styles.send}
+            disabled={state === 'sending' || code.length !== CODE_LENGTH}
+          >
+            {state === 'sending' ? t('verifying') : t('verify')}
+          </button>
+        </form>
+        <div className={styles.links}>
+          <button
+            type="button"
+            className={styles.linkBtn}
+            disabled={cooldown > 0 || state === 'sending'}
+            onClick={() => void resendCode()}
+          >
+            {cooldown > 0 ? t('resendIn', { s: cooldown }) : t('resend')}
+          </button>
+          <button type="button" className={styles.linkBtn} onClick={changeEmail}>
+            {t('changeEmail')}
+          </button>
+        </div>
+        {feedback}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.card}>
@@ -215,16 +353,7 @@ export function LoginForm({
         ) : null}
       </div>
 
-      {message[state] ? (
-        <p role="status" className={styles.ok}>
-          {message[state]}
-        </p>
-      ) : null}
-      {errorText[state] ? (
-        <p role="alert" className={styles.err}>
-          {errorText[state]}
-        </p>
-      ) : null}
+      {feedback}
 
       <p className={styles.legal}>
         {t('legal')} <Link href="/cgu">{footer('cgu')}</Link> {t('and')}{' '}

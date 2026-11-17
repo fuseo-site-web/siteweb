@@ -183,3 +183,22 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.codeTitle {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.form input.code {
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 0.35em;
+  font-variant-numeric: tabular-nums;
+  padding: 14px 12px 14px calc(12px + 0.35em);
+}
+
+.linkBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}

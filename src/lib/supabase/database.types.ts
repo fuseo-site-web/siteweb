@@ -644,6 +644,30 @@ export type Database = {
         };
         Relationships: [];
       };
+      signup_verifications: {
+        Row: {
+          attempts: number;
+          code_hash: string;
+          expires_at: string;
+          sent_at: string;
+          user_id: string;
+        };
+        Insert: {
+          attempts?: number;
+          code_hash: string;
+          expires_at: string;
+          sent_at?: string;
+          user_id: string;
+        };
+        Update: {
+          attempts?: number;
+          code_hash?: string;
+          expires_at?: string;
+          sent_at?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       nurturing_sends: {
         Row: {
           email_id: string | null;
@@ -960,6 +984,14 @@ export type Database = {
       admin_top_pages: {
         Args: { p_from: string; p_limit?: number; p_to: string };
         Returns: { path: string; views: number; visitors: number }[];
+      };
+      auth_user_by_email: {
+        Args: { p_email: string };
+        Returns: { confirmed: boolean; id: string }[];
+      };
+      signup_code_attempt: {
+        Args: { p_user: string };
+        Returns: string | null;
       };
       rate_limit_hit: {
         Args: { p_key_hash: string; p_limit: number; p_window_seconds: number };

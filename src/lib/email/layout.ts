@@ -17,7 +17,10 @@ export interface EmailContent {
   /** Message cité (texte brut, retours à la ligne conservés). */
   quote?: { label: string; text: string };
   articles?: Array<{ title: string; excerpt: string; url: string; label: string }>;
-  cta: { label: string; url: string };
+  /** Code à recopier sur le site (ex. vérification d'adresse) : affiché en grand, dans un encadré. */
+  code?: string;
+  /** Absent pour les e-mails qui se suffisent à eux-mêmes (ex. un code à saisir). */
+  cta?: { label: string; url: string };
   secondary?: { label: string; url: string };
   signature: string;
 }
@@ -128,6 +131,10 @@ export function renderEmail(
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px;"><tr><td class="box" style="background:#fff8e6;border-left:4px solid #ffc857;border-radius:12px;padding:14px 16px;font-family:${F};font-size:15px;line-height:23px;color:#0b2240;white-space:pre-wrap;">${esc(c.quote.text)}</td></tr></table>`
     : '';
 
+  const code = c.code
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 24px;"><tr><td align="center" class="box rule" style="background:#f5f9fc;border:1px solid #d5e1ec;border-radius:14px;padding:22px 12px;font-family:'Courier New',Courier,monospace;font-size:36px;line-height:42px;font-weight:700;letter-spacing:8px;color:#0b2240;"><span class="ink">${esc(c.code)}</span></td></tr></table>`
+    : '';
+
   const note = c.note
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px;"><tr><td class="box" style="background:#f5f9fc;border-left:4px solid #3cc0f0;border-radius:12px;padding:14px 16px;font-family:${F};">
     <p class="ink" style="margin:0;font-size:14.5px;line-height:22px;color:#0b2240;">${esc(c.note)}</p></td></tr></table>`
@@ -196,8 +203,8 @@ export function renderEmail(
         <tr><td height="4" style="height:4px;line-height:4px;font-size:0;background:#3cc0f0;background-image:linear-gradient(90deg,#3cc0f0,#ffc857);">&nbsp;</td></tr>
         <tr><td class="px" style="padding:36px 36px 10px;font-family:${F};">
           <h1 class="h1 ink" style="margin:0 0 16px;font-size:27px;line-height:33px;font-weight:800;color:#0b2240;letter-spacing:-0.4px;">${esc(c.title)}</h1>
-          ${intro}${facts}${quote}${steps}${note}${articles}
-          ${button(c.cta.label, c.cta.url)}
+          ${intro}${code}${facts}${quote}${steps}${note}${articles}
+          ${c.cta ? button(c.cta.label, c.cta.url) : ''}
           ${secondary}
           <p class="muted" style="margin:0 0 26px;font-size:15px;line-height:23px;color:#51647d;">${esc(c.signature).replace(/\n/g, '<br>')}</p>
         </td></tr>
@@ -220,13 +227,14 @@ export function renderEmail(
     c.title,
     '',
     ...c.intro.map((p) => p.replace(/<[^>]+>/g, '')),
+    ...(c.code ? ['', c.code, ''] : []),
     ...(c.steps ?? []).map((s, i) => `${i + 1}. ${s.title} — ${s.text}`),
     ...(c.facts ?? []).map((f) => `${f.label} : ${f.value}`),
     ...(c.quote ? ['', `${c.quote.label} :`, c.quote.text] : []),
     ...(c.note ? ['', c.note] : []),
     ...(c.articles ?? []).flatMap((a) => ['', a.title, a.excerpt, `${a.label} : ${a.url}`]),
     '',
-    `${c.cta.label} : ${c.cta.url}`,
+    ...(c.cta ? [`${c.cta.label} : ${c.cta.url}`] : []),
     ...(c.secondary ? [`${c.secondary.label} : ${c.secondary.url}`] : []),
     '',
     c.signature,

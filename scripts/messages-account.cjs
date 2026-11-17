@@ -68,6 +68,62 @@ module.exports = [
     ),
   ],
   [
+    'auth.verifyTitle',
+    'Vérifiez votre adresse e-mail',
+    M('Verify your email address', 'Verifique su correo electrónico'),
+  ],
+  [
+    'auth.verifyIntro',
+    'Nous avons envoyé un code à 8 chiffres à {email}. Saisissez-le ci-dessous pour activer votre compte.',
+    M(
+      'We sent an 8-digit code to {email}. Enter it below to activate your account.',
+      'Hemos enviado un código de 8 dígitos a {email}. Introdúzcalo a continuación para activar su cuenta.',
+    ),
+  ],
+  ['auth.codeLabel', 'Code à 8 chiffres', M('8-digit code', 'Código de 8 dígitos')],
+  ['auth.verify', 'Activer mon compte', M('Activate my account', 'Activar mi cuenta')],
+  ['auth.verifying', 'Vérification…', M('Verifying…', 'Verificando…')],
+  ['auth.resend', 'Renvoyer le code', M('Resend the code', 'Reenviar el código')],
+  [
+    'auth.resendIn',
+    'Renvoyer le code ({s} s)',
+    M('Resend the code ({s} s)', 'Reenviar el código ({s} s)'),
+  ],
+  [
+    'auth.resent',
+    'Un nouveau code vient d’être envoyé à {email}.',
+    M('A new code has been sent to {email}.', 'Se ha enviado un nuevo código a {email}.'),
+  ],
+  [
+    'auth.codeBad',
+    'Code incorrect ou expiré. Vérifiez-le, ou demandez un nouveau code.',
+    M(
+      'Incorrect or expired code. Check it, or request a new one.',
+      'Código incorrecto o caducado. Compruébelo o solicite uno nuevo.',
+    ),
+  ],
+  [
+    'auth.tooMany',
+    'Trop de tentatives. Patientez un peu avant de réessayer.',
+    M(
+      'Too many attempts. Please wait a bit before trying again.',
+      'Demasiados intentos. Espere un poco antes de volver a intentarlo.',
+    ),
+  ],
+  [
+    'auth.changeEmail',
+    'Modifier l’adresse e-mail',
+    M('Change email address', 'Cambiar el correo electrónico'),
+  ],
+  [
+    'auth.verifiedLogin',
+    'Adresse confirmée. Connectez-vous avec votre mot de passe.',
+    M(
+      'Address confirmed. Sign in with your password.',
+      'Dirección confirmada. Inicie sesión con su contraseña.',
+    ),
+  ],
+  [
     'auth.signupSent',
     'Compte créé. Confirmez votre adresse avec le lien envoyé à {email}, puis connectez-vous.',
     M(
