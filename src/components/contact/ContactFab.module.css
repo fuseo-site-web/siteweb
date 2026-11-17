@@ -45,6 +45,7 @@
 }
 
 .fab:focus-visible,
+.newPlan:focus-visible,
 .close:focus-visible,
 .page:focus-visible {
   outline: 3px solid var(--focus);
@@ -176,7 +177,40 @@
   }
 }
 
+/* Bouton « + » (nouveau plan) : mobile uniquement, à gauche du bouton de contact. */
+.newPlan {
+  position: fixed;
+  z-index: 55;
+  right: 82px;
+  bottom: 14px;
+  display: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: var(--amber);
+  background: var(--night-2);
+  box-shadow:
+    0 10px 30px rgb(11 47 85 / 35%),
+    0 0 0 4px rgb(255 255 255 / 85%);
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-out);
+  animation: fab-in 0.7s 1.4s var(--ease-out) both;
+}
+
+.newPlan:active {
+  transform: scale(0.94);
+}
+
 @media (max-width: 520px) {
+  .newPlan {
+    display: grid;
+  }
+
+  .newPlan[data-consent='true'] {
+    display: none;
+  }
+
   .fab {
     right: 14px;
     bottom: 14px;
@@ -200,6 +234,7 @@
 
 @media print {
   .fab,
+  .newPlan,
   .panel {
     display: none;
   }
@@ -208,6 +243,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fab,
   .fab::after,
+  .newPlan,
   .panel,
   .loading {
     animation: none;

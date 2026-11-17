@@ -455,6 +455,7 @@ module.exports = [
   ],
   ['nav.contact', 'Contact', M('Contact', 'Contacto')],
   ['fab.open', 'Nous écrire', M('Write to us', 'Escríbanos')],
+  ['fab.newPlan', 'Créer un nouveau plan', M('Create a new plan', 'Crear un nuevo plan')],
   ['fab.title', 'Écrivez-nous', M('Write to us', 'Escríbanos')],
   [
     'fab.sub',

@@ -873,7 +873,8 @@
     "title": "Écrivez-nous",
     "sub": "Notre équipe vous répond dans les plus brefs délais.",
     "close": "Fermer",
-    "page": "Ouvrir la page de contact"
+    "page": "Ouvrir la page de contact",
+    "newPlan": "Créer un nouveau plan"
   },
   "impact": {
     "title": "Le jet-lag peut gâcher bien plus que votre sommeil.",

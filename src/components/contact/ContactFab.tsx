@@ -1,12 +1,12 @@
 'use client';
 
-import { MessageCircleMore, X } from 'lucide-react';
+import { MessageCircleMore, Plus, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { FuseoMark } from '@/components/brand/FuseoMark';
 import { useConsent } from '@/components/consent/ConsentProvider';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import styles from './ContactFab.module.css';
 
 // Le formulaire ne se charge qu'à la première ouverture : aucun poids ajouté au chargement des pages.
@@ -19,6 +19,7 @@ const ContactForm = dynamic(() => import('./ContactForm').then((m) => m.ContactF
 export function ContactFab() {
   const t = useTranslations('fab');
   const { open: consentOpen } = useConsent();
+  const path = usePathname();
   const [open, setOpen] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
@@ -72,6 +73,17 @@ export function ContactFab() {
             </Link>
           </div>
         </div>
+      ) : null}
+      {/* Mobile uniquement : accès direct à la création d'un plan (l'en-tête n'a plus de bouton dédié). */}
+      {path !== '/plan' ? (
+        <Link
+          href="/plan"
+          className={styles.newPlan}
+          data-consent={consentOpen}
+          aria-label={t('newPlan')}
+        >
+          <Plus size={30} strokeWidth={2.6} aria-hidden="true" />
+        </Link>
       ) : null}
       <button
         ref={button}

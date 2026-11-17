@@ -199,6 +199,16 @@
   color: #fff;
 }
 
+/* L'icône n'apparaît que sur mobile (voir plus bas) ; sur grand écran, le texte seul. */
+.loginIcon {
+  display: none;
+}
+
+.login:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .lang {
   display: flex;
   gap: 2px;
@@ -244,8 +254,29 @@
   }
 }
 
+/* Mobile : « Se connecter » devient une icône (même gabarit que le menu) et « Créer mon plan » passe en bas à droite (bouton « + »). */
 @media (max-width: 560px) {
+  .cta {
+    display: none;
+  }
+
   .login {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid var(--glass-line);
+    border-radius: 12px;
+    color: #fff;
+    background: var(--glass);
+  }
+
+  .loginIcon {
+    display: block;
+  }
+
+  .loginLabel {
     display: none;
   }
 }

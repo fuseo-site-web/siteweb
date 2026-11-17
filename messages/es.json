@@ -873,7 +873,8 @@
     "title": "Escríbanos",
     "sub": "Nuestro equipo le responderá lo antes posible.",
     "close": "Cerrar",
-    "page": "Abrir la página de contacto"
+    "page": "Abrir la página de contacto",
+    "newPlan": "Crear un nuevo plan"
   },
   "impact": {
     "title": "El jet lag puede afectar mucho más que tu sueño.",

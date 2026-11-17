@@ -31,7 +31,11 @@ export function SiteHeader({ slugs }: { slugs: SlugMap }) {
           <LanguageSwitcher slugs={slugs} />
           {/* Support (« ? ») : visible une fois connecté. */}
           <SupportWidget />
-          <AuthButton className={styles.login} />
+          <AuthButton
+            className={styles.login}
+            iconClassName={styles.loginIcon}
+            labelClassName={styles.loginLabel}
+          />
           <Link href="/plan" className={styles.cta}>
             {t('cta')}
           </Link>
