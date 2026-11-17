@@ -44,10 +44,19 @@ export async function POST(req: Request) {
   const { data: storedHash } = await db.rpc('signup_code_attempt', { p_user: user.id });
   if (!storedHash || !codeMatches(user.id, code, storedHash)) return invalid();
 
+  // Le mot de passe saisi à l'écran du code est celui du compte (la personne vient de prouver qu'elle possède l'adresse).
   const { error: confirmError } = await db.auth.admin.updateUserById(user.id, {
     email_confirm: true,
+    password,
   });
-  if (confirmError) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+  if (confirmError) {
+    console.error('[verify] confirmation impossible :', confirmError.code, confirmError.message);
+    const weak = confirmError.code === 'weak_password';
+    return NextResponse.json(
+      { error: weak ? 'weak_password' : 'unavailable' },
+      { status: weak ? 422 : 503 },
+    );
+  }
   await db.from('signup_verifications').delete().eq('user_id', user.id);
 
   // Ouverture de session : l'écran de bienvenue demande ensuite les informations du compte.

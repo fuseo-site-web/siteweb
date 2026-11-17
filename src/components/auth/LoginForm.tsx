@@ -138,7 +138,15 @@ export function LoginForm({
       setPassword('');
       return setState('idle');
     }
-    setState(r?.status === 429 ? 'tooMany' : r?.status === 400 ? 'codeBad' : 'error');
+    setState(
+      r?.status === 429
+        ? 'tooMany'
+        : r?.status === 400
+          ? 'codeBad'
+          : r?.status === 422
+            ? 'weak'
+            : 'error',
+    );
   }
 
   async function resendCode() {

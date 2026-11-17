@@ -46,19 +46,26 @@ export async function POST(req: Request) {
 
   let userId = created.data.user?.id;
   if (!userId) {
+    if (created.error?.code === 'weak_password')
+      return NextResponse.json({ error: 'weak_password' }, { status: 422 });
     const existing = await findUserByEmail(db, email);
-    if (!existing) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+    if (!existing) {
+      console.error('[signup] création impossible :', created.error?.code, created.error?.message);
+      return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+    }
     if (existing.confirmed) {
       await sendAlreadyRegistered(email, locale);
       return NextResponse.json({ ok: true });
     }
-    // Inscription jamais validée (code perdu ou expiré) : on reprend avec le nouveau mot de passe saisi.
-    const { error } = await db.auth.admin.updateUserById(existing.id, { password });
-    if (error) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+    // Inscription jamais validée (code perdu ou expiré) : on renvoie un code. Le mot de passe saisi
+    // est appliqué à la validation du code (voir /api/auth/verify), pas ici.
     userId = existing.id;
   }
 
   const sent = await issueSignupCode(db, { id: userId, email }, locale);
-  if (!sent.ok) return NextResponse.json({ error: 'email_failed' }, { status: 502 });
+  if (!sent.ok) {
+    console.error('[signup] envoi du code impossible');
+    return NextResponse.json({ error: 'email_failed' }, { status: 502 });
+  }
   return NextResponse.json({ ok: true });
 }
